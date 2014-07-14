@@ -1,7 +1,9 @@
-%h1 Attendance for #{Date.today.to_s}
+%h1 Attendance for #{@cohort.name}
 
 = form_for @attendance_sheet, url: instructor_cohort_attendance_sheets_path(@cohort), html: {class: "inline-form"} do |f|
-
+  %select{:name => "dropdown_date"}
+    - for day in @class_dates
+      %option= h day
   - @students.each_with_index do |student, index|
     %p
       = hidden_field_tag("attendance_sheet[attendances][#{index}][in_class]", "0")
