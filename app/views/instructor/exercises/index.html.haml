@@ -10,13 +10,13 @@
           = submit_tag "Filter"
           = link_to "Clear Filters", instructor_exercises_path, class: "cancel"
 
-    %table
-      %tbody
-        - @exercises.each do |exercise|
-          %tr
-            %td= link_to exercise.name, exercise.github_repo
-            %td= exercise.tag_list
-            %td= link_to(edit_instructor_exercise_path(exercise), class: 'edit-exercise') { icon('pencil') }
+  .action-table
+    .exercise-list
+      - @exercises.each do |exercise|
+        .exercise
+          .link= link_to exercise.name, exercise.github_repo
+          .tags= exercise.tag_list
+          .edits= link_to(edit_instructor_exercise_path(exercise), class: 'edit-exercise') { icon('pencil') }
 
     .actions
       = link_to 'Create Exercise', new_instructor_exercise_path, class: 'button'

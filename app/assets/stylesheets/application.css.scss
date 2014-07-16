@@ -46,7 +46,28 @@ i.unanswered {
 }
 
 main {
+  @include outer-container;
   aside { @include span-columns(5); }
   article { @include span-columns(7); }
   list-type: none;
+}
+
+.exercise-list {
+  @include outer-container;
+  padding-bottom: 10px;
+
+  .link {
+    @include span-columns(3);
+  }
+  .tags {
+    @include span-columns(8);
+  }
+  .edits {
+    @include span-columns(1);
+  }
+  .exercise {
+    @include row(table);
+    border-bottom: 1px solid $base-border-color;
+    padding: ($base-line-height / 2) 0;
+  }
 }
