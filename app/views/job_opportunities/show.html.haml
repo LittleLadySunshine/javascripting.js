@@ -9,8 +9,8 @@
   %p= job_opportunity.application_type
   %p= job_opportunity.visibility
 
-
-  = link_to 'Delete Job', job_opportunity_path(job_opportunity),
+  - if user_session.current_user.is?(User::INSTRUCTOR)
+    = link_to 'Delete Job', job_opportunity_path(job_opportunity),
             data: { confirm: 'Are you sure?' }, method: :delete, class: 'action'
 
   = link_to 'Edit Job', edit_job_opportunity_path(job_opportunity), class: 'action'
