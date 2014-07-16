@@ -14,6 +14,9 @@
       = f.label :salary
       = f.number_field :salary, min: 0
     %li
+      = f.label :description_link
+      = f.url_field :description_link
+    %li
       = f.label :application_type
       = f.select :application_type, ["Direct Application", "Group Application"]
     %li

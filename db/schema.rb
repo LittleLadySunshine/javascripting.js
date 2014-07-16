@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716174651) do
+ActiveRecord::Schema.define(version: 20140716232250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140716174651) do
     t.string   "application_type"
     t.integer  "company_id"
     t.integer  "posted_by_id"
+    t.string   "description_link"
   end
 
   create_table "submissions", force: true do |t|

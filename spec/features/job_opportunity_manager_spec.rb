@@ -45,6 +45,7 @@ feature 'Job Opportunities' do
     fill_in :job_opportunity_application_due_date, with: '07/30/2014'
     fill_in :job_opportunity_location, with: 'Denver'
     fill_in :job_opportunity_salary, with: '80,000'
+    fill_in :job_opportunity_description_link, with: 'http://example.com/job-description'
     select "Direct Application", from: :job_opportunity_application_type
     select "Public", from: :job_opportunity_visibility
     fill_in :job_opportunity_job_title, with: 'Software Engineer'
@@ -205,7 +206,7 @@ feature 'Job Opportunities' do
   end
 
   scenario 'allows a student to create a company from the company drop down list' do
-    student = create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
+    create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
     visit root_path
     click_on I18n.t('nav.sign_in')
