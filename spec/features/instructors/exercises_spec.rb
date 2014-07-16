@@ -15,7 +15,7 @@ feature "Exercises" do
     click_on "Create Exercise"
 
     fill_in "Name", with: "Bunch of array"
-    fill_in "GitHub Repo", with: "http://example.com/repo"
+    fill_in "GitHub Repo", with: "http://exercises.com/repo"
     fill_in "Tags", with: "warmup, easy"
     click_on "Add Exercise"
 
@@ -24,15 +24,15 @@ feature "Exercises" do
     expect(page).to have_content("warmup")
     expect(page).to have_content("easy")
 
-    click_link "Bunch of array"
-    click_link "Edit"
+    expect(find_link("Bunch of array")['href']).to eq("http://exercises.com/repo")
+    find(".edit-exercise", visible: false).click
 
     fill_in "Name", with: "Bunch of Hashes"
-    fill_in "GitHub Repo", with: "http://exemple.com/hash_repo"
+    fill_in "GitHub Repo", with: "http://exercises.com/hash_repo"
     click_on "Update Exercise"
 
     expect(page).to have_content "Exercise successfully created"
-    expect(page).to have_content "Bunch of Hashes"
+    expect(find_link("Bunch of Hashes")['href']).to eq("http://exercises.com/hash_repo")
   end
 
   scenario "instructor can assign and un-assign an exercise to a cohort" do
