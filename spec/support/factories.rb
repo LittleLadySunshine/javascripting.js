@@ -108,7 +108,7 @@ module ObjectFactories
       company: new_company,
       location: 'Denver, CO',
       application_due_date: '07/20/2014',
-      user: new_user,
+      poster: new_user,
       visibility: "Public",
       application_type: "Group Application"
     }

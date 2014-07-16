@@ -5,5 +5,7 @@ class Application < ActiveRecord::Base
 
   enum status: ["pending", "applied"]
 
+  validates :user, presence: true
+  validates :job_opportunity, presence: true
   validates_uniqueness_of :job_opportunity_id, scope: [:user_id]
 end

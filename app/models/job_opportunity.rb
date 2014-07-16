@@ -1,11 +1,12 @@
 class JobOpportunity < ActiveRecord::Base
-  belongs_to :user
   belongs_to :company
   has_many :applications
   belongs_to :poster, class_name: User, foreign_key: :posted_by_id
 
   has_many :applicants, through: :applications, source: :user
 
+  validates :company, presence: true
+  validates :poster, presence: true
   def company_name
     company.name
   end

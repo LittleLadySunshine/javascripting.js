@@ -11,7 +11,7 @@ class JobOpportunitiesController < ApplicationController
       .merge(posted_by_id: user_session.current_user.id)
 
     job_opportunity = JobOpportunity.new(job_parameters)
-    job_opportunity.user_id = user_session.current_user.id
+    job_opportunity.poster = user_session.current_user
     if job_opportunity.save
       flash[:notice] = 'Job Opportunity Successfully Created'
     else
