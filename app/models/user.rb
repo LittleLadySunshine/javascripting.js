@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
   has_many :applications
-  has_many :job_opportunities, through: :applications
+  has_many :jobs, through: :applications
 
   mount_uploader :avatar, AvatarUploader
 
@@ -48,10 +48,10 @@ class User < ActiveRecord::Base
 
 
   def completed_applications
-    applications.where(status: Application.statuses[:applied]).includes(:job_opportunity)
+    applications.where(status: Application.statuses[:applied]).includes(:job)
   end
 
   def pending_applications
-    applications.where(status: Application.statuses[:pending]).includes(:job_opportunity)
+    applications.where(status: Application.statuses[:pending]).includes(:job)
   end
 end

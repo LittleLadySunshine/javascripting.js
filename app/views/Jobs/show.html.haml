@@ -1,0 +1,23 @@
+%article
+  %h2= job.company.name
+  %p= job.application_due_date
+  %p= job.location
+  %p= job.company.contact_name
+  %p= job.company.contact_email
+  %p= job.salary
+  %p= job.job_title
+  %p= job.application_type
+  %p= job.visibility
+
+  - if user_session.current_user.is?(User::INSTRUCTOR)
+    = link_to 'Delete Job', job_path(job),
+            data: { confirm: 'Are you sure?' }, method: :delete, class: 'action'
+
+  = link_to 'Edit Job', edit_job_path(job), class: 'action'
+
+- if user_session.current_user.is?(User::INSTRUCTOR)
+  %aside
+    %h3 Students that applied:
+    %ul
+    - job.applicants.each do |applicant|
+      %li= "#{applicant.first_name} #{applicant.last_name}"

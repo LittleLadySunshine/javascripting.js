@@ -41,13 +41,13 @@ Students::Application.routes.draw do
   patch "/personal_information" => "personal_information#update"
 
 
-  resources :job_opportunities do
+  resources :jobs do
     resources :applications do
       post :confirm
     end
   end
-  get "/job_dashboard" => "job_opportunities#job_dashboard", as: :job_dashboard
-  get "/job_dashboard/admin" => "job_opportunities#admin_dashboard", as: :admin_job_dashboard
+  get "/job_dashboard" => "jobs#job_dashboard", as: :job_dashboard
+  get "/job_dashboard/admin" => "jobs#admin_dashboard", as: :admin_job_dashboard
   resources :companies
 
   namespace :assessments do

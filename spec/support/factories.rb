@@ -97,13 +97,13 @@ module ObjectFactories
     end
   end
 
-  def create_job_opportunity(overrides = {})
-    new_job_opportunity(overrides).tap do |m|
+  def create_job(overrides = {})
+    new_job(overrides).tap do |m|
       m.save!
     end
   end
 
-  def new_job_opportunity(overrides = {})
+  def new_job(overrides = {})
     defaults = {
       company: new_company,
       location: 'Denver, CO',
@@ -112,7 +112,7 @@ module ObjectFactories
       visibility: "Public",
       application_type: "Group Application"
     }
-    JobOpportunity.new(defaults.merge(overrides))
+    Job.new(defaults.merge(overrides))
   end
 
   def create_application(overrides = {})
@@ -125,7 +125,7 @@ module ObjectFactories
     defaults = {
       resume: 'resume.pdf',
       user: new_user,
-      job_opportunity: new_job_opportunity
+      job: new_job
     }
     Application.new(defaults.merge(overrides))
   end

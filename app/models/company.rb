@@ -1,3 +1,3 @@
 class Company < ActiveRecord::Base
-  has_many :job_opportunities
+  has_many :jobs
 end

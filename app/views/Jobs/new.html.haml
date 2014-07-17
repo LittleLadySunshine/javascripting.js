@@ -1,6 +1,6 @@
 %h2 Create Your New Job Opportunity
-= form_for JobOpportunity.new do |f|
-  %ul.job_opportunity
+= form_for Job.new do |f|
+  %ul.job
     %li
       = f.label :company_name
       = f.select(:company_id, options_from_collection_for_select(Company.all, :id, :name))

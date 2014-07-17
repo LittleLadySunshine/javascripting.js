@@ -1,4 +1,4 @@
-class JobOpportunity < ActiveRecord::Base
+class Job < ActiveRecord::Base
   belongs_to :company
   has_many :applications
   belongs_to :poster, class_name: User, foreign_key: :posted_by_id

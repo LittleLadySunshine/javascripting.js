@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716232250) do
+ActiveRecord::Schema.define(version: 20140717004643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20140716232250) do
     t.string   "resume"
     t.string   "cover_letter"
     t.integer  "user_id"
-    t.integer  "job_opportunity_id"
+    t.integer  "job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",             default: 0, null: false
+    t.integer  "status",       default: 0, null: false
   end
 
   create_table "attendance_sheets", force: true do |t|
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20140716232250) do
     t.boolean  "viewed",       default: false
   end
 
-  create_table "job_opportunities", force: true do |t|
+  create_table "jobs", force: true do |t|
     t.string   "location"
     t.string   "salary"
     t.string   "visibility"

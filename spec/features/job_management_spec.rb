@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Job Opportunities' do
+feature 'Job Management' do
   let!(:cohort) { create_cohort(name: 'Boulder gSchool') }
   let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1, cohort_id: cohort.id) }
 
@@ -12,7 +12,7 @@ feature 'Job Opportunities' do
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
 
     expect(page).to have_content "gSchool Employment"
     expect(page).to have_content "Available Jobs to Apply to"
@@ -27,21 +27,21 @@ feature 'Job Opportunities' do
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
 
-    click_on 'Add a New Opportunity'
-    select "Sensei Academy", from: :job_opportunity_company_id
-    fill_in :job_opportunity_application_due_date, with: '07/30/2014'
-    fill_in :job_opportunity_location, with: 'Denver'
-    fill_in :job_opportunity_salary, with: '80,000'
-    fill_in :job_opportunity_description_link, with: 'http://example.com/job-description'
-    select "Direct Application", from: :job_opportunity_application_type
-    select "Public", from: :job_opportunity_visibility
-    fill_in :job_opportunity_job_title, with: 'Software Engineer'
+    click_on 'Add a New Job'
+    select "Sensei Academy", from: :job_company_id
+    fill_in :job_application_due_date, with: '07/30/2014'
+    fill_in :job_location, with: 'Denver'
+    fill_in :job_salary, with: '80,000'
+    fill_in :job_description_link, with: 'http://example.com/job-description'
+    select "Direct Application", from: :job_application_type
+    select "Public", from: :job_visibility
+    fill_in :job_job_title, with: 'Software Engineer'
     click_on 'Create Job Opportunity'
 
     expect(page).to have_content('Job Opportunity Successfully Created')
-    within('.job_opportunities') do
+    within('.jobs') do
       expect(page).to have_content('Sensei Academy')
     end
   end
@@ -56,20 +56,20 @@ feature 'Job Opportunities' do
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
 
-    click_on 'Add a New Opportunity'
-    select "Pivotal Labs", from: :job_opportunity_company_id
-    fill_in :job_opportunity_application_due_date, with: '07/30/2014'
-    fill_in :job_opportunity_location, with: 'Denver'
-    fill_in :job_opportunity_salary, with: '80,000'
-    select "Direct Application", from: :job_opportunity_application_type
-    select "Private", from: :job_opportunity_visibility
-    fill_in :job_opportunity_job_title, with: 'Software Engineer'
+    click_on 'Add a New Job'
+    select "Pivotal Labs", from: :job_company_id
+    fill_in :job_application_due_date, with: '07/30/2014'
+    fill_in :job_location, with: 'Denver'
+    fill_in :job_salary, with: '80,000'
+    select "Direct Application", from: :job_application_type
+    select "Private", from: :job_visibility
+    fill_in :job_job_title, with: 'Software Engineer'
     click_on 'Create Job Opportunity'
 
     expect(page).to have_content('Job Opportunity Successfully Created')
-    within(".job_opportunities") do
+    within(".jobs") do
       expect(page).to have_content('Pivotal Labs')
     end
 
@@ -78,30 +78,30 @@ feature 'Job Opportunities' do
     mock_user_login(other_student)
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
 
-    within(".job_opportunities") do
+    within(".jobs") do
       expect(page).to_not have_content('Pivotal Labs')
     end
   end
 
   scenario 'allows student to view their added jobs on their employment dashboard' do
     cohort = create_cohort(name: "March gSchool")
-    create_job_opportunity
+    create_job
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
 
     mock_omniauth(base_overrides: {uid: "1234"})
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
     find('.add-job', visible: false).click
 
     within(".jobs_to_apply_for") do
       expect(page).to have_content 'Pivotal Labs'
     end
 
-    visit job_opportunities_path
+    visit jobs_path
     find('.add-job', visible: false).click
     expect(page).to have_content 'You already added this job'
   end
@@ -110,8 +110,8 @@ feature 'Job Opportunities' do
     sign_in(instructor)
 
     visit root_path
-    click_on I18n.t('nav.job_opportunity')
-    create_job_opportunity
+    click_on I18n.t('nav.jobs')
+    create_job
     click_on "Admin Dashboard"
 
     expect(page).to have_content 'Admin Job Dashboard'
@@ -125,7 +125,7 @@ feature 'Job Opportunities' do
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
     click_on "Admin Dashboard"
 
     expect(page).to have_content 'You are not allowed to access this page'
@@ -134,13 +134,13 @@ feature 'Job Opportunities' do
 
   scenario 'allows a student to apply for a group application job opportunity with a resume and cover letter' do
     company = create_company
-    create_job_opportunity(company: company)
+    create_job(company: company)
     create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
     find('.add-job', visible: false).click
     click_on 'Apply'
     attach_file :application_cover_letter, File.join(fixture_path, 'coverletter.jpg')
@@ -159,13 +159,13 @@ feature 'Job Opportunities' do
 
   scenario 'does not allow a student to apply to a direct application job' do
     company = create_company
-    create_job_opportunity(company: company, application_type: "Direct Application")
+    create_job(company: company, application_type: "Direct Application")
     create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
 
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
     find('.add-job', visible: false).click
     click_on 'Apply'
     # There should be a line about confirming the dialog that pops up here, but that would require JS
@@ -181,14 +181,14 @@ feature 'Job Opportunities' do
 
   scenario 'allows an instructor to view the students applying for a particular job' do
     create_company
-    job_op = create_job_opportunity
+    job = create_job
     student = create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
-    apply_for_job(student, job_op, File.open(File.join(fixture_path, "resume.pdf")))
+    apply_for_job(student, job, File.open(File.join(fixture_path, "resume.pdf")))
 
     sign_in(instructor)
     visit root_path
-    click_on I18n.t('nav.job_opportunity')
+    click_on I18n.t('nav.jobs')
     click_on "Admin Dashboard"
     click_on "Pivotal Labs"
     expect(page).to have_content "Zach"
@@ -199,8 +199,8 @@ feature 'Job Opportunities' do
     mock_omniauth(base_overrides: {uid: "1234"})
     visit root_path
     click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.job_opportunity')
-    click_on 'Add a New Opportunity'
+    click_on I18n.t('nav.jobs')
+    click_on 'Add a New Job'
     click_on "Add a new company"
 
     fill_in :company_name, with: 'Quick Left'
@@ -212,7 +212,9 @@ feature 'Job Opportunities' do
   end
 
   def apply_for_job(user, job_op, resume)
-    Application.create!(user: user, job_opportunity: job_op, resume: resume)
+    Application.create!(user: user, job: job_op, resume: resume)
+  def apply_for_job(user, job, resume)
+    Application.create!(user: user, job: job, resume: resume)
   end
 
   # RSpec 3 has some weird new rules for pending
@@ -225,9 +227,9 @@ feature 'Job Opportunities' do
   #
   #   visit root_path
   #   click_on I18n.t('nav.sign_in')
-  #   click_on I18n.t('nav.job_opportunity')
+  #   click_on I18n.t('nav.jobs')
   #
-  #   create_job_opportunity
+  #   create_job
   #
   #   click_link 'Pivotal Labs'
   #   expect(page).to have_content('Pivotal Labs')
@@ -243,13 +245,13 @@ feature 'Job Opportunities' do
   #
   #   visit root_path
   #   click_on I18n.t('nav.sign_in')
-  #   click_on I18n.t('nav.job_opportunity')
+  #   click_on I18n.t('nav.jobs')
   #
-  #   create_job_opportunity
+  #   create_job
   #
   #   click_link 'Pivotal Labs'
   #   click_link 'Edit Job'
-  #   fill_in(:job_opportunity_company_name, with: 'Viget Labs')
+  #   fill_in(:job_company_name, with: 'Viget Labs')
   #   click_on 'Update Job'
   #
   #   expect(page).not_to have_content('Pivotal Labs')

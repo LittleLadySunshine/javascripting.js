@@ -1,5 +1,5 @@
 %h2 Apply!
-= form_for [@application.job_opportunity, @application] do |f|
+= form_for [@application.job, @application] do |f|
   = f.label :resume
   = f.file_field :resume
 

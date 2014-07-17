@@ -1,18 +1,18 @@
-class JobOpportunitiesController < ApplicationController
+class JobsController < ApplicationController
   def index
-    job_opportunities = JobOpportunity.opportunities_for(user_session.current_user)
-    render :index, locals: {job_opportunities: job_opportunities}
+    jobs = Job.opportunities_for(user_session.current_user)
+    render :index, locals: {jobs: jobs}
   end
 
   def create
     job_parameters = params
-      .require(:job_opportunity)
+      .require(:job)
       .permit!
       .merge(posted_by_id: user_session.current_user.id)
 
-    job_opportunity = JobOpportunity.new(job_parameters)
-    job_opportunity.poster = user_session.current_user
-    if job_opportunity.save
+    job = Job.new(job_parameters)
+    job.poster = user_session.current_user
+    if job.save
       flash[:notice] = 'Job Opportunity Successfully Created'
     else
       flash[:notice] = 'Sorry, something went wrong!'
@@ -21,29 +21,29 @@ class JobOpportunitiesController < ApplicationController
   end
 
   def show
-    job_opportunity = JobOpportunity.find(params[:id])
+    job = Job.find(params[:id])
     render 'show', locals: {
-      job_opportunity: job_opportunity
+      job: job
     }
   end
 
   def edit
-    job_opportunity = JobOpportunity.find(params[:id])
+    job = Job.find(params[:id])
     render 'edit', locals: {
-      job_opportunity: job_opportunity
+      job: job
     }
   end
 
   def update
-    job_opportunity = JobOpportunity.find(params[:id])
-    job_parameters = params.require(:job_opportunity).permit!
-    job_opportunity.update(job_parameters)
+    job = Job.find(params[:id])
+    job_parameters = params.require(:job).permit!
+    job.update(job_parameters)
     redirect_to action: :show
   end
 
   def destroy
-    job_opportunity = JobOpportunity.find(params[:id])
-    job_opportunity.destroy
+    job = Job.find(params[:id])
+    job.destroy
     redirect_to action: :index
   end
 
@@ -53,7 +53,7 @@ class JobOpportunitiesController < ApplicationController
   end
 
   def admin_dashboard
-    all_jobs = @job_opportunities = JobOpportunity.all
+    all_jobs = @jobs = Job.all
     if user_session.current_user.is?(User::INSTRUCTOR)
       all_jobs
     else

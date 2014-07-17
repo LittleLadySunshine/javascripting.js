@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     if @company.save
       flash[:notice] = "You successfully added a new company!"
-      redirect_to job_opportunities_path
+      redirect_to jobs_path
     else
       render :new
       flash[:notice] = "Something went wrong. Please try again."

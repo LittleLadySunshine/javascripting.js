@@ -2,7 +2,7 @@
 %h2 Jobs I Will Apply For:
 .action-table
   %table.jobs_to_apply_for
-    %thead.job_opportunity
+    %thead.job
       %tr
         %th Company Name
         %th Application Due Date
@@ -13,7 +13,7 @@
         %th Apply
     %tbody
     - @pending_applications.each do |application|
-      - job = application.job_opportunity
+      - job = application.job
       %tr
         %td= job.company.name
         %td= job.application_due_date
@@ -22,14 +22,14 @@
         %td= job.salary
         %td= job.job_title
         - if job.application_type == "Direct Application"
-          %td= link_to 'Apply', job_opportunity_application_confirm_path(application_id: application.id, job_opportunity_id: job.id), data: {confirm: "You need to email your resume to the contact directly. This confirms that you have done that."}, method: :post
+          %td= link_to 'Apply', job_application_confirm_path(application_id: application.id, job_id: job.id), data: {confirm: "You need to email your resume to the contact directly. This confirms that you have done that."}, method: :post
         - else
-          %td= link_to 'Apply', edit_job_opportunity_application_path(id: application.id, job_opportunity_id: job.id)
+          %td= link_to 'Apply', edit_job_application_path(id: application.id, job_id: job.id)
 
 %h2 Jobs I Have Applied For:
 .action-table
   %table.applied_for
-    %thead.job_opportunity
+    %thead.job
       %tr
         %th Company Name
         %th Application Due Date
@@ -40,7 +40,7 @@
         %th Application Type
     %tbody
       - @completed_applications.each do |application|
-        - job = application.job_opportunity
+        - job = application.job
         %tr
           %td= job.company.name
           %td= job.application_due_date
