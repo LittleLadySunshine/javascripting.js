@@ -2,15 +2,6 @@ require "rails_helper"
 
 feature "Instructor adding student photos" do
   before do
-    Fog.mock!
-    connection = Fog::Storage.new(
-      :provider => "AWS",
-      :aws_access_key_id      => "aws_access_key_id",
-      :aws_secret_access_key  => "aws_secret_access_key",
-    )
-
-    connection.directories.create(:key => 'students-gschool-test')
-
     @cohort = create_cohort(name: "Cohort Name",
                             google_maps_location: "this is a google map url",
                             directions: '<p>The classroom is on the right</p><p>This is some more text</p>')

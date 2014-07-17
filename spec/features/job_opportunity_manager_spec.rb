@@ -1,17 +1,6 @@
 require 'rails_helper'
 
 feature 'Job Opportunities' do
-  before do
-    Fog.mock!
-    connection = Fog::Storage.new(
-      :provider => "AWS",
-      :aws_access_key_id      => "aws_access_key_id",
-      :aws_secret_access_key  => "aws_secret_access_key",
-    )
-
-    connection.directories.create(:key => 'students-gschool-test')
-  end
-
   let!(:cohort) { create_cohort(name: 'Boulder gSchool') }
   let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1, cohort_id: cohort.id) }
 
