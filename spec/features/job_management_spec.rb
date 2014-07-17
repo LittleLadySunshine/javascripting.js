@@ -18,7 +18,7 @@ feature 'Job Management' do
     expect(page).to have_content "Available Jobs to Apply to"
   end
 
-  scenario 'allows student to add a new job opportunity' do
+  scenario 'students can post a job' do
     cohort = create_cohort(name: "March gSchool")
     create_company(name: "Sensei Academy")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
@@ -46,7 +46,7 @@ feature 'Job Management' do
     end
   end
 
-  it 'allows students to add a new private job' do
+  scenario 'students can post a private job' do
     cohort = create_cohort(name: "gSchool")
     create_company
     student = create_user(cohort_id: cohort.id, github_id: "1234")
@@ -85,7 +85,7 @@ feature 'Job Management' do
     end
   end
 
-  scenario 'allows student to view their added jobs on their employment dashboard' do
+  scenario 'students can add a job to their shortlist of jobs to apply to' do
     cohort = create_cohort(name: "March gSchool")
     create_job
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
@@ -106,7 +106,7 @@ feature 'Job Management' do
     expect(page).to have_content 'You already added this job'
   end
 
-  scenario 'allows an instructor to view the admin dashboard for employment' do
+  scenario 'instructors can view the admin dashboard for employment' do
     sign_in(instructor)
 
     visit root_path
@@ -118,7 +118,7 @@ feature 'Job Management' do
     click_link 'Pivotal Labs'
   end
 
-  scenario 'does not allow a student to view the admin dashboard for employment' do
+  scenario 'students cannot view the admin dashboard for employment' do
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
@@ -132,8 +132,8 @@ feature 'Job Management' do
     expect(page).to_not have_content 'Admin Job Dashboard'
   end
 
-  scenario 'allows a student to apply for a group application job opportunity with a resume and cover letter' do
-    company = create_company
+  scenario 'allows a student to apply for a group application job with a resume and cover letter' do
+    company = create_company(name: "company-name")
     create_job(company: company)
     create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
@@ -149,15 +149,41 @@ feature 'Job Management' do
 
     expect(page).to have_content 'You have successfully applied!'
     within '.applied_for' do
-      expect(page).to have_content 'Pivotal Labs'
+      expect(page).to have_content 'company-name'
     end
 
     within '.jobs_to_apply_for' do
-      expect(page).to_not have_content 'Pivotal Labs'
+      expect(page).to_not have_content 'company-name'
     end
   end
 
-  scenario 'does not allow a student to apply to a direct application job' do
+  scenario "students can re-upload their resume and cover letter for a group application" do
+    company = create_company(name: "company-name")
+    job = create_job(company: company)
+    student = create_user
+    application = apply_for_job(student, job, File.open(File.join(fixture_path, "resume.pdf")))
+    mock_user_login(student)
+
+    visit root_path
+    click_on I18n.t("nav.sign_in")
+    click_on I18n.t("nav.jobs")
+    click_on "job-dashboard-action"
+
+    within '.applied_for' do
+      expect(page).to have_content 'company-name'
+      expect(find_link("download-application#{application.id}-action")["href"]).to match("resume.pdf")
+    end
+
+    click_on "edit-application#{application.id}-action"
+
+    attach_file :application_resume, File.join(fixture_path, "other_resume.pdf")
+    attach_file :application_cover_letter, File.join(fixture_path, "coverletter.jpg")
+    click_on "save-application-action"
+
+    expect(find_link("download-application#{application.id}-action")["href"]).to match("other_resume.pdf")
+  end
+
+  scenario 'students applying to a direct application job marks the jobs as applied for' do
     company = create_company
     create_job(company: company, application_type: "Direct Application")
     create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
@@ -179,7 +205,7 @@ feature 'Job Management' do
     end
   end
 
-  scenario 'allows an instructor to view the students applying for a particular job' do
+  scenario 'instructors can view the students applying for a particular job' do
     create_company
     job = create_job
     student = create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
@@ -194,7 +220,7 @@ feature 'Job Management' do
     expect(page).to have_content "Zach"
   end
 
-  scenario 'allows a student to create a company from the company drop down list' do
+  scenario 'users posting a job can create a company' do
     create_user(first_name: "Zach", cohort_id: cohort.id, github_id: "1234")
     mock_omniauth(base_overrides: {uid: "1234"})
     visit root_path
@@ -232,8 +258,14 @@ feature 'Job Management' do
     end
   end
 
-  def apply_for_job(user, job, resume)
-    Application.create!(user: user, job: job, resume: resume)
+  def apply_for_job(user, job, resume, cover_letter = nil)
+    Application.create!(
+      user: user,
+      job: job,
+      resume: resume,
+      cover_letter: cover_letter,
+      status: Application.statuses[:applied],
+    )
   end
 
   # RSpec 3 has some weird new rules for pending

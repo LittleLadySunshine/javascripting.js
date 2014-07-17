@@ -40,6 +40,7 @@
         %th Salary
         %th Job Title
         %th Application Type
+        %th Actions
     %tbody
       - @completed_applications.each do |application|
         - job = application.job
@@ -51,3 +52,6 @@
           %td= job.salary
           %td= job.job_title
           %td= job.application_type
+          %td
+            = link_to(edit_job_application_path(job, application), id: "edit-application#{application.id}-action"){ icon('pencil') }
+            = link_to(application.resume_url, id: "download-application#{application.id}-action", download: "download") { icon('download') }
