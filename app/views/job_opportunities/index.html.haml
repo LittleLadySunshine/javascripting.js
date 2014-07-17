@@ -22,7 +22,7 @@
           %td= job_opportunity.salary
           %td= mail_to job_opportunity.company.contact_email, job_opportunity.company.contact_name
           %td= job_opportunity.application_due_date
-          %td= link_to(job_opportunity_applications_path(job_opportunity), method: :post) { icon('plus') }
+          %td= link_to(job_opportunity_applications_path(job_opportunity), method: :post, class: 'add-job') { icon('plus') }
 
   .actions
     = link_to "Add a New Opportunity", new_job_opportunity_path, class: "button"

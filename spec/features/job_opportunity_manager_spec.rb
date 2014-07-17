@@ -106,14 +106,14 @@ feature 'Job Opportunities' do
     visit root_path
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
-    click_on 'Add Job'
+    find('.add-job', visible: false).click
 
     within(".jobs_to_apply_for") do
       expect(page).to have_content 'Pivotal Labs'
     end
 
     visit job_opportunities_path
-    click_on 'Add Job'
+    find('.add-job', visible: false).click
     expect(page).to have_content 'You already added this job'
   end
 
@@ -152,7 +152,7 @@ feature 'Job Opportunities' do
     visit root_path
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
-    click_on 'Add Job'
+    find('.add-job', visible: false).click
     click_on 'Apply'
     attach_file :application_cover_letter, File.join(fixture_path, 'coverletter.jpg')
     attach_file :application_resume, File.join(fixture_path, 'resume.pdf')
@@ -177,7 +177,7 @@ feature 'Job Opportunities' do
     visit root_path
     click_on I18n.t('nav.sign_in')
     click_on I18n.t('nav.job_opportunity')
-    click_on 'Add Job'
+    find('.add-job', visible: false).click
     click_on 'Apply'
     # There should be a line about confirming the dialog that pops up here, but that would require JS
 
