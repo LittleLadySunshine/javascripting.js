@@ -1,6 +1,6 @@
 class CreateJobOpporunities < ActiveRecord::Migration
   def change
-    create_table :jobs do |t|
+    create_table :job_opportunities do |t|
       t.string :company_name, null: false
       t.string :company_location
       t.string :contact_name
