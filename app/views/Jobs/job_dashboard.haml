@@ -21,10 +21,12 @@
         %td= mail_to job.company.contact_email, job.company.contact_name
         %td= job.salary
         %td= job.job_title
-        - if job.application_type == "Direct Application"
-          %td= link_to 'Apply', job_application_confirm_path(application_id: application.id, job_id: job.id), data: {confirm: "You need to email your resume to the contact directly. This confirms that you have done that."}, method: :post
-        - else
-          %td= link_to 'Apply', edit_job_application_path(id: application.id, job_id: job.id)
+        %td
+          - if job.application_type == "Direct Application"
+            = link_to 'Apply', job_application_confirm_path(application_id: application.id, job_id: job.id), data: {confirm: "You need to email your resume to the contact directly. This confirms that you have done that."}, method: :post
+          - else
+            = link_to 'Apply', edit_job_application_path(id: application.id, job_id: job.id)
+          = link_to([job, application], { method: :delete, class: 'remove-job-action' } ){ icon('times') }
 
 %h2 Jobs I Have Applied For:
 .action-table

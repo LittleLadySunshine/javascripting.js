@@ -211,8 +211,27 @@ feature 'Job Management' do
     expect(page).to have_content 'You successfully added a new company'
   end
 
-  def apply_for_job(user, job_op, resume)
-    Application.create!(user: user, job: job_op, resume: resume)
+  scenario "students can remove a job from the 'jobs I will apply for' section" do
+    create_company
+    create_job(job_title: "banana-master")
+    student = create_user
+
+    mock_user_login(student)
+    visit root_path
+    click_on I18n.t("nav.sign_in")
+    click_on I18n.t("nav.jobs")
+    find(".add-job", visible: false).click
+    within(".jobs_to_apply_for") do
+      expect(page).to have_content("banana-master")
+    end
+
+    find(".remove-job-action", visible: false).click
+    expect(page).to have_content "Job removed from shortlist"
+    within(".jobs_to_apply_for") do
+      expect(page).to_not have_content("banana-master")
+    end
+  end
+
   def apply_for_job(user, job, resume)
     Application.create!(user: user, job: job, resume: resume)
   end

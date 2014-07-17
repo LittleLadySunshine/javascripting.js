@@ -40,6 +40,14 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def destroy
+    @application = Application.find(params[:id])
+    @application.destroy
+
+    flash[:notice] = "Job removed from shortlist"
+    redirect_to job_dashboard_path
+  end
+
  private
 
  def application_params
