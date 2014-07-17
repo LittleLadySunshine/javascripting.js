@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20140717004643) do
     t.boolean  "viewed",       default: false
   end
 
-  create_table "jobs", force: true do |t|
+  create_table "job_opportunities", force: true do |t|
     t.string   "location"
     t.string   "salary"
     t.string   "visibility"
