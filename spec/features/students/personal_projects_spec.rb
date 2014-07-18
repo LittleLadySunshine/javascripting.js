@@ -10,7 +10,6 @@ feature "Student adding a personal project" do
 
     visit root_path
     click_on I18n.t("nav.sign_in")
-
     click_on "Personal Project"
 
     fill_in "Name", :with => "New Awesome App"
