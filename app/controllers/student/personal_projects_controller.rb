@@ -25,6 +25,6 @@ class Student::PersonalProjectsController < SignInRequiredController
 
   def personal_project_params
     params.require(:personal_project).
-      permit(:name, :description, :github_url, :tracker_url, :production_url)
+      permit(:name, :description, :github_repo_name, :tracker_url, :production_url)
   end
 end
