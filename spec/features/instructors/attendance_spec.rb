@@ -38,7 +38,7 @@ feature "Attendance" do
     expect(page).to have_content "#{boulder_cohort.name}"
     expect(page).to have_content "Student User"
     expect(page).to have_content "Other Student"
-    expect(page).not_to have_content "Other Cohort"
+    expect(page).to have_no_content "Other Cohort"
   end
 
   scenario "As an instructor, I should not be able to enter today's attendance twice" do
@@ -49,7 +49,7 @@ feature "Attendance" do
 
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{Date.new(2014, 7, 11)}"
+    expect(page).to have_no_content "#{Date.new(2014, 7, 11)}"
 
     click_on "Submit Attendance"
 
@@ -70,7 +70,7 @@ feature "Attendance" do
     Timecop.freeze(Date.new(2014, 7, 12))
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{Date.new(2014, 7, 12)}"
+    expect(page).to have_no_content "#{Date.new(2014, 7, 12)}"
     Timecop.return
   end
 
@@ -78,7 +78,7 @@ feature "Attendance" do
     Timecop.freeze(Date.new(2014, 7, 13))
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{Date.new(2014, 7, 13)}"
+    expect(page).to have_no_content "#{Date.new(2014, 7, 13)}"
     Timecop.return
   end
 
@@ -86,9 +86,7 @@ feature "Attendance" do
     Timecop.freeze(Date.new(2014, 7, 4))
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{Date.new(2014, 7, 4)}"
+    expect(page).to have_no_content "#{Date.new(2014, 7, 4)}"
     Timecop.return
   end
-
-
 end
