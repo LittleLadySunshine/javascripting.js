@@ -9,6 +9,6 @@ class ApplyForJob
   end
 
   def run!
-    @application.update!(@application_params.merge(status: Application.statuses[:applied]))
+    @application.update!(@application_params.merge(:status => Application.statuses[:applied]))
   end
 end

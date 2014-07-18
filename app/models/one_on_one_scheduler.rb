@@ -17,7 +17,7 @@ class OneOnOneScheduler
         student = current_students.sample
         if student
           current_students.delete(student)
-          @appointments << OpenStruct.new(instructor: instructor, student: student, time: time)
+          @appointments << OpenStruct.new(:instructor => instructor, :student => student, :time => time)
         else
           break
         end

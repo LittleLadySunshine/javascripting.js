@@ -41,7 +41,7 @@ module Clicker
     end
 
     def new_session(uuid)
-      storage[uuid] = {uuid: uuid, status: UNKNOWN}
+      storage[uuid] = {:uuid => uuid, :status => UNKNOWN}
     end
 
     attr_reader :pubsub, :storage, :location

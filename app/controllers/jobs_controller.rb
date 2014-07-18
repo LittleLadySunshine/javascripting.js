@@ -1,14 +1,14 @@
 class JobsController < ApplicationController
   def index
     jobs = Job.opportunities_for(user_session.current_user)
-    render :index, locals: {jobs: jobs}
+    render :index, :locals => {:jobs => jobs}
   end
 
   def create
     job_parameters = params
       .require(:job)
       .permit!
-      .merge(posted_by_id: user_session.current_user.id)
+      .merge(:posted_by_id => user_session.current_user.id)
 
     job = Job.new(job_parameters)
     job.poster = user_session.current_user
@@ -17,20 +17,20 @@ class JobsController < ApplicationController
     else
       flash[:notice] = 'Sorry, something went wrong!'
     end
-    redirect_to action: :index
+    redirect_to :action => :index
   end
 
   def show
     job = Job.find(params[:id])
-    render 'show', locals: {
-      job: job
+    render 'show', :locals => {
+      :job => job
     }
   end
 
   def edit
     job = Job.find(params[:id])
-    render 'edit', locals: {
-      job: job
+    render 'edit', :locals => {
+      :job => job
     }
   end
 
@@ -38,13 +38,13 @@ class JobsController < ApplicationController
     job = Job.find(params[:id])
     job_parameters = params.require(:job).permit!
     job.update(job_parameters)
-    redirect_to action: :show
+    redirect_to :action => :show
   end
 
   def destroy
     job = Job.find(params[:id])
     job.destroy
-    redirect_to action: :index
+    redirect_to :action => :index
   end
 
   def job_dashboard

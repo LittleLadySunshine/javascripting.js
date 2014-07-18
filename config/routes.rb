@@ -5,7 +5,7 @@ Students::Application.routes.draw do
   get "/auth/failure" => "sessions#failure"
   get "/logout" => "sessions#destroy", :as => "logout"
 
-  get "/preparation" => "public_pages#preparation", as: "preparation"
+  get "/preparation" => "public_pages#preparation", :as => "preparation"
   get "/calendar" => "public_pages#calendar", :as => "calendar"
 
   namespace :student do
@@ -37,7 +37,7 @@ Students::Application.routes.draw do
     end
   end
 
-  get "/personal_information" => "personal_information#edit", as: :personal_information
+  get "/personal_information" => "personal_information#edit", :as => :personal_information
   patch "/personal_information" => "personal_information#update"
 
   resources :jobs do
@@ -55,7 +55,7 @@ Students::Application.routes.draw do
       post :create_quiz_for_user, :on => :member
     end
     resources :quizzes do
-      post :submit, on: :member
+      post :submit, :on => :member
     end
     get "/quiz_grades/:cohort_id/:quiz_template_id" => "quiz_grades#summary", :as => "quiz_grades_summary"
     get "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#question", :as => "quiz_grades_question"
@@ -64,11 +64,11 @@ Students::Application.routes.draw do
 
   namespace :clicker do
     get "/" => "location#new"
-    get "/:location" => "role#new", as: :new_role
-    get "/:location/instructor" => "instructor#show", as: :instructor
+    get "/:location" => "role#new", :as => :new_role
+    get "/:location/instructor" => "instructor#show", :as => :instructor
     get "/:location/instructor/boot" => "instructor#boot"
     post "/:location/instructor/reset" => "instructor#reset"
-    get "/:location/student" => "student#show", as: :student
+    get "/:location/student" => "student#show", :as => :student
     post "/:location/student/you-lost-me" => "student#you_lost_me"
     post "/:location/student/caught-up" => "student#caught_up"
   end

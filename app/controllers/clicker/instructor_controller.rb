@@ -6,12 +6,12 @@ module Clicker
 
     def reset
       sessions_repo.delete_all
-      render status: :ok, json: ""
+      render :status => :ok, :json => ""
     end
 
     def boot
       active_sessions = sessions_repo.active_sessions
-      render json: active_sessions
+      render :json => active_sessions
     end
   end
 end

@@ -7,7 +7,7 @@ class Student::SubmissionsController < SignInRequiredController
     @submission = Submission.new(submission_params)
 
     if @submission.save!
-      redirect_to student_exercise_path(@submission.exercise), notice: "Your code has been submitted"
+      redirect_to student_exercise_path(@submission.exercise), :notice => "Your code has been submitted"
     else
       render :new
     end
@@ -21,7 +21,7 @@ class Student::SubmissionsController < SignInRequiredController
     @submission = Submission.find(params[:id])
 
     if @submission.update(submission_params)
-      redirect_to student_exercise_path(@submission.exercise), notice: "Your code has been submitted"
+      redirect_to student_exercise_path(@submission.exercise), :notice => "Your code has been submitted"
     else
       render :edit
     end
@@ -32,6 +32,6 @@ class Student::SubmissionsController < SignInRequiredController
   def submission_params
     params.require(:submission).
       permit(:github_repo_name, :tracker_project_url).
-      merge(user_id: user_session.current_user.id, exercise_id: params[:exercise_id])
+      merge(:user_id => user_session.current_user.id, :exercise_id => params[:exercise_id])
   end
 end

@@ -3,9 +3,9 @@ class Submission < ActiveRecord::Base
   belongs_to :exercise
 
   validates :user, :exercise, :github_repo_name, :presence => true
-  validates :github_repo_name, format: {:with => /\A[^\/]*\z/,
+  validates :github_repo_name, :format => {:with => /\A[^\/]*\z/,
                                         :message => "Repo name cannot contain slashes"}
-  validates :tracker_project_url, format: {:with => /\Ahttps?:\/\/www\.pivotaltracker\.com(.*)\z/,
+  validates :tracker_project_url, :format => {:with => /\Ahttps?:\/\/www\.pivotaltracker\.com(.*)\z/,
                                            :message => "This must be a pivotal tracker url",
                                            :allow_blank => true}
 

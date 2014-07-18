@@ -1,23 +1,23 @@
 class User < ActiveRecord::Base
   INSTRUCTOR = 1
 
-  validates :email, uniqueness: {case_sensitive: false}
-  validates :github_id, uniqueness: { case_sensitive: false, allow_nil: true }
-  validates :email, :first_name, :last_name, :cohort, presence: true
+  validates :email, :uniqueness => {:case_sensitive => false}
+  validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
+  validates :email, :first_name, :last_name, :cohort, :presence => true
 
   belongs_to :cohort
   has_many :submissions
   has_many :applications
-  has_many :jobs, through: :applications
+  has_many :jobs, :through => :applications
   has_one :personal_project
 
   mount_uploader :avatar, AvatarUploader
 
   def self.for_cohort(cohort_id)
-    where(cohort_id: cohort_id).where.not(role_bit_mask: INSTRUCTOR)
+    where(:cohort_id => cohort_id).where.not(:role_bit_mask => INSTRUCTOR)
   end
 
-  scope :instructors, -> { where(role_bit_mask: INSTRUCTOR) }
+  scope :instructors, -> { where(:role_bit_mask => INSTRUCTOR) }
 
   def cohort_exercises
     cohort.order_added_exercises
@@ -48,10 +48,10 @@ class User < ActiveRecord::Base
   end
 
   def completed_applications
-    applications.where(status: Application.statuses[:applied]).includes(:job)
+    applications.where(:status => Application.statuses[:applied]).includes(:job)
   end
 
   def pending_applications
-    applications.where(status: Application.statuses[:pending]).includes(:job)
+    applications.where(:status => Application.statuses[:pending]).includes(:job)
   end
 end

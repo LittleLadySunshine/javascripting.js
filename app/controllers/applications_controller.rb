@@ -54,8 +54,8 @@ class ApplicationsController < ApplicationController
    params.permit(:application).
      permit(:resume).
      merge(
-      job_id: params[:job_id],
-      user_id: user_session.current_user.id,
+      :job_id => params[:job_id],
+      :user_id => user_session.current_user.id,
     )
  end
 end

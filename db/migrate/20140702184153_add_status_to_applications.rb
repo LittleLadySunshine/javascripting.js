@@ -1,5 +1,5 @@
 class AddStatusToApplications < ActiveRecord::Migration
   def change
-    add_column :applications, :status, :integer, null: false, default: Application.statuses[:pending]
+    add_column :applications, :status, :integer, :null => false, :default => Application.statuses[:pending]
   end
 end

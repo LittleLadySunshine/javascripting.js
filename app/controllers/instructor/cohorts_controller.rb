@@ -4,10 +4,10 @@ class Instructor::CohortsController < InstructorRequiredController
     students = User.for_cohort(params[:id]).sort_by { |user| user.full_name.downcase }
     cohort = Cohort.find(params[:id])
     render 'show',
-           locals: {
-             students: students,
-             lucky_winner: students.sample,
-             cohort: cohort
+           :locals => {
+             :students => students,
+             :lucky_winner => students.sample,
+             :cohort => cohort
            }
   end
 
@@ -24,12 +24,12 @@ class Instructor::CohortsController < InstructorRequiredController
     scheduler = OneOnOneScheduler.new(students, selected_instructors)
     scheduler.generate_schedule
     render 'one_on_ones',
-           locals: {
-             cohort_name: cohort.name,
-             appointments: scheduler.appointments,
-             unscheduled_students: scheduler.unscheduled_students,
-             all_instructors: all_instructors,
-             selected_instructors: selected_instructors,
+           :locals => {
+             :cohort_name => cohort.name,
+             :appointments => scheduler.appointments,
+             :unscheduled_students => scheduler.unscheduled_students,
+             :all_instructors => all_instructors,
+             :selected_instructors => selected_instructors,
            }
   end
 end

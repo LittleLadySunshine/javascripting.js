@@ -39,6 +39,6 @@ class Instructor::StudentsController < InstructorRequiredController
   def student_params
     params.require(:student)
           .permit(:first_name, :last_name, :email, :avatar)
-          .merge(cohort_id: params[:cohort_id])
+          .merge(:cohort_id => params[:cohort_id])
   end
 end

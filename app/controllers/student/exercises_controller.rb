@@ -23,7 +23,7 @@ class Student::ExercisesController < SignInRequiredController
       @exercise = exercise
     end
 
-    delegate :name, :github_repo_url, :to_param, :tag_list, to: :exercise
+    delegate :name, :github_repo_url, :to_param, :tag_list, :to => :exercise
 
     def completed_text
       if completed?

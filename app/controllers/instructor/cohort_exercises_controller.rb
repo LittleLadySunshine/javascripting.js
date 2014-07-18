@@ -18,7 +18,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
     @cohort_exercise = CohortExercise.new(create_params)
 
     if @cohort_exercise.save
-      redirect_to instructor_cohort_cohort_exercises_path, notice: 'Exercise successfully added to cohort'
+      redirect_to instructor_cohort_cohort_exercises_path, :notice => 'Exercise successfully added to cohort'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
   def destroy
     CohortExercise.find(params[:id]).destroy
     flash[:success] = "Exercise removed."
-    redirect_to action: :index
+    redirect_to :action => :index
   end
 
   private
@@ -35,6 +35,6 @@ class Instructor::CohortExercisesController < InstructorRequiredController
   def create_params
     params.require(:cohort_exercise).
       permit(:exercise_id).
-      merge(cohort_id: params[:cohort_id])
+      merge(:cohort_id => params[:cohort_id])
   end
 end
