@@ -3,6 +3,7 @@
   %h1= @student.full_name
   = image_tag(@student.avatar.url, class: "avatar")
 
+%section
   %dl
     %dt Email:
     %dd= @student.email
@@ -32,13 +33,29 @@
       - if @student.blog.present?
         = link_to @student.blog, @student.blog
 
+- if @student.personal_project
+  %section
+    %h2 Personal Project
+    %dl
+      %dt Name:
+      %dd= @student.personal_project.name
+
+      %dt Description:
+      %dd= @student.personal_project.description
+
+      %p= link_to "GitHub", @student.personal_project.github_repo_url
+      %p= link_to "Tracker", @student.personal_project.tracker_url
+      %p= link_to "Production", @student.personal_project.production_url
+
+%section
+  %h2 Exercises
   .exercises
-    %h2 Completed Exercises
+    %h3 Completed Exercises
     %ul
     - @student.completed_exercises.each do |exercise|
       %li= exercise.name
   .exercises
-    %h2 Incomplete Exercises
+    %h3 Incomplete Exercises
     %ul
     - @student.incomplete_exercises.each do |exercise|
       %li= exercise.name

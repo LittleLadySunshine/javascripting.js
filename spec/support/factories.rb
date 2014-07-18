@@ -97,6 +97,24 @@ module ObjectFactories
     end
   end
 
+  def new_personal_project(overrides = {})
+    defaults = {
+      :name => "Name",
+      :description => "Description",
+      :github_repo_name => "github-repo",
+      :tracker_url => "Tracker URL",
+      :production_url => "Production url",
+      :user => new_user,
+    }
+    PersonalProject.new(defaults.merge(overrides))
+  end
+
+  def create_personal_project(overrides = {})
+    new_personal_project(overrides).tap do |pp|
+      pp.save!
+    end
+  end
+
   def create_job(overrides = {})
     new_job(overrides).tap do |m|
       m.save!
