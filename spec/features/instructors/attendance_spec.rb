@@ -10,14 +10,18 @@ feature "Attendance" do
   let!(:other_cohort_student) { create_user(first_name: "Other", last_name: "Cohort", github_id: "789", cohort_id: denver_cohort.id, github_username: "Student23456") }
 
   before do
-    @today = Date.new(2014, 7, 11) # set @today to known Friday
+    Timecop.freeze(Date.new(2014, 7, 11))
     sign_in(instructor)
+  end
+
+  after do
+    Timecop.return
   end
 
   scenario "As an instructor, the first date is today if not entered already" do
     click_on "Attendance"
 
-    expect(page).to have_content "#{@today.to_s}"
+    expect(page).to have_content "#{Date.new(2014, 7, 11)}"
 
     check "Student User"
     uncheck "Other Student"
@@ -28,70 +32,62 @@ feature "Attendance" do
   end
 
 
-  scenario "As an instructor, I can enter attendance for my students" do
+  scenario "As an instructor, I can only enter attendance for students from my cohort" do
     click_on "Attendance"
 
+    expect(page).to have_content "#{boulder_cohort.name}"
     expect(page).to have_content "Student User"
     expect(page).to have_content "Other Student"
     expect(page).not_to have_content "Other Cohort"
   end
 
-  scenario "As an instructor, I expect to see my cohort name" do
-    click_on "Attendance"
-
-    expect(page).to have_content "#{boulder_cohort.name}"
-  end
-
   scenario "As an instructor, I should not be able to enter today's attendance twice" do
-    skip
     click_on "Attendance"
-    expect(page).to have_content "#{@today.to_s}"
-    click_on "Submit Attendance" # submits @today
+    expect(page).to have_content "#{Date.new(2014, 7, 11)}"
+    click_on "Submit Attendance" # submits today's date
     expect(page).to have_content "Attendance successfully submitted"
 
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{@today.to_s}"
+    expect(page).not_to have_content "#{Date.new(2014, 7, 11)}"
 
     click_on "Submit Attendance"
 
     expect(page).to have_content "Attendance successfully submitted"
-
   end
 
   scenario "As an instructor, I can take select attendance for a previous date" do
     click_on "Attendance"
 
-    select "#{@today.yesterday.to_s}"
+    select "#{Date.new(2014, 7, 11).yesterday.to_s}"
 
     click_on "Submit Attendance"
 
     expect(page).to have_content "Attendance successfully submitted"
-
   end
 
   scenario "As an instructor, I should not be able to enter attendance on Saturday" do
-    @today = Date.new(2014,7,12) # set @today to a known Saturday
+    Timecop.freeze(Date.new(2014, 7, 12))
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{@today}"
-
+    expect(page).not_to have_content "#{Date.new(2014, 7, 12)}"
+    Timecop.return
   end
 
   scenario "As an instructor, I should not be able to enter attendance on Sunday" do
-    @today = Date.new(2014,7,13) # set @today to a known Sunday
+    Timecop.freeze(Date.new(2014, 7, 13))
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{@today}"
-
+    expect(page).not_to have_content "#{Date.new(2014, 7, 13)}"
+    Timecop.return
   end
 
   scenario "As an instructor, I should not be able to enter attendance on a Holiday" do
-    @today = Date.new(2014,7,4) # set @today to known holiday
+    Timecop.freeze(Date.new(2014, 7, 4))
     click_on "Attendance"
 
-    expect(page).not_to have_content "#{@today}"
-
+    expect(page).not_to have_content "#{Date.new(2014, 7, 4)}"
+    Timecop.return
   end
 
 
