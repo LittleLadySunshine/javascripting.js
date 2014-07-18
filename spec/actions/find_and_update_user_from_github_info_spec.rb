@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe FindAndUpdateUserFromGithubInfo do
   it "returns nil when passed an empty hash" do
-    create_user(email: "user@example.com")
+    create_user(:email => "user@example.com")
 
     found_user = FindAndUpdateUserFromGithubInfo.call({})
 
@@ -11,7 +11,7 @@ describe FindAndUpdateUserFromGithubInfo do
 
   describe "when only email is present" do
     it "finds user when github id is not present" do
-      user = create_user(email: "user@example.com")
+      user = create_user(:email => "user@example.com")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "user@example.com",
                                                         "nickname" => "some nickname",
@@ -21,7 +21,7 @@ describe FindAndUpdateUserFromGithubInfo do
     end
 
     it "updates the userers nickname and id" do
-      create_user(email: "user@example.com")
+      create_user(:email => "user@example.com")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "user@example.com",
                                                         "nickname" => "github_username",
@@ -34,7 +34,7 @@ describe FindAndUpdateUserFromGithubInfo do
     end
 
     it "finds user even if case is mismatched" do
-      user = create_user(email: "user@example.com")
+      user = create_user(:email => "user@example.com")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "USER@example.com", "id" => "2342112")
 
@@ -44,7 +44,7 @@ describe FindAndUpdateUserFromGithubInfo do
 
   describe "when both email and github id are present" do
     it "finds user" do
-      user = create_user(email: "user@example.com", github_id: "2342112")
+      user = create_user(:email => "user@example.com", :github_id => "2342112")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "user@example.com", "id" => "2342112")
 
@@ -52,7 +52,7 @@ describe FindAndUpdateUserFromGithubInfo do
     end
 
     it "finds user even if email is different on github" do
-      user = create_user(email: "user@example.com", github_id: "2342112")
+      user = create_user(:email => "user@example.com", :github_id => "2342112")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "anotherEmail@example.com", "id" => "2342112")
 
@@ -60,9 +60,9 @@ describe FindAndUpdateUserFromGithubInfo do
     end
 
     it "updates the user's username" do
-      create_user(email: "user@example.com",
-                         github_username: "some_username",
-                         github_id: "2342112")
+      create_user(:email => "user@example.com",
+                         :github_username => "some_username",
+                         :github_id => "2342112")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "anotherEmail@example.com",
                                                         "nickname" => "some_new_username",
@@ -72,9 +72,9 @@ describe FindAndUpdateUserFromGithubInfo do
     end
 
     it "updates the users email address" do
-      create_user(email: "user@example.com",
-                  github_username: "some_username",
-                  github_id: "2342112")
+      create_user(:email => "user@example.com",
+                  :github_username => "some_username",
+                  :github_id => "2342112")
 
       found_user = FindAndUpdateUserFromGithubInfo.call("email" => "anotherEmail@example.com",
                                                         "nickname" => "some_new_username",

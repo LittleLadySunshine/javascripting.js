@@ -2,16 +2,16 @@ require 'rails_helper'
 
 feature "Cohorts" do
 
-  let!(:cohort) { create_cohort(name: 'Boulder gSchool') }
-  let!(:instructor) { create_user(first_name: "Instructor", last_name: "User", github_id: '987', role_bit_mask: 1) }
-  let!(:student) { create_user(first_name: "Student", last_name: "User", github_id: '123', cohort_id: cohort.id, github_username: "Student12345") }
+  let!(:cohort) { create_cohort(:name => 'Boulder gSchool') }
+  let!(:instructor) { create_user(:first_name => "Instructor", :last_name => "User", :github_id => '987', :role_bit_mask => 1) }
+  let!(:student) { create_user(:first_name => "Student", :last_name => "User", :github_id => '123', :cohort_id => cohort.id, :github_username => "Student12345") }
 
   scenario "instructor can add student to cohort" do
     sign_in(instructor)
 
     visit '/instructor/dashboard'
 
-    find('.card', text: 'Boulder gSchool').click
+    find('.card', :text => 'Boulder gSchool').click
     click_on 'Add Student'
 
     fill_in 'First name', :with => 'John'
@@ -42,8 +42,8 @@ feature "Cohorts" do
   end
 
   scenario "instructors can see a one-on-one schedule" do
-    instructor = create_user(first_name: "Teacher", last_name: "User", github_id: '1010', role_bit_mask: 1)
-    create_user(first_name: "Student", last_name: "User", github_id: '1111', cohort_id: cohort.id, github_username: "Student12345")
+    instructor = create_user(:first_name => "Teacher", :last_name => "User", :github_id => '1010', :role_bit_mask => 1)
+    create_user(:first_name => "Student", :last_name => "User", :github_id => '1111', :cohort_id => cohort.id, :github_username => "Student12345")
 
     sign_in(instructor)
 
