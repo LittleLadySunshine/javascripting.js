@@ -14,7 +14,7 @@ feature "Attendance" do
     sign_in(instructor)
   end
 
-  scenario "As an instructor, I can take attendance" do
+  scenario "As an instructor, the first date is today if not entered already" do
     click_on "Attendance"
 
     expect(page).to have_content "#{@today.to_s}"
@@ -27,7 +27,8 @@ feature "Attendance" do
     expect(page).to have_content "Attendance successfully submitted"
   end
 
-  scenario "As an instructor, I should not be able to enter attendance on students from other cohorts" do
+
+  scenario "As an instructor, I can enter attendance for my students" do
     click_on "Attendance"
 
     expect(page).to have_content "Student User"

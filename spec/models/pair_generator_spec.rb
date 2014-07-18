@@ -1,20 +1,30 @@
-require 'rails_helper'
+require 'spec_helper'
+require_relative "../../app/models/pair_generator"
 
 describe PairGenerator do
 
   let(:students) {
     [
-      User.new(id: 1),
-      User.new(id: 2),
-      User.new(id: 3),
-      User.new(id: 4),
-      User.new(id: 5),
-      User.new(id: 6)
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
     ]
   }
 
   describe "#random_pairs" do
     it "returns an array of arrays of pairs of students" do
+      two_students = [1, 2]
+
+      pair_generator = PairGenerator.new(two_students)
+      pairings = pair_generator.random_pairs
+
+      expect(pairings.first).to match_array(two_students)
+    end
+
+    it "includes all of the students" do
       pair_generator = PairGenerator.new(students)
       result = pair_generator.random_pairs
 
@@ -44,6 +54,32 @@ describe PairGenerator do
       expect(result1).to_not eq(result2)
     end
 
-  end
+    context "when two students cannot pair together" do
+      it "doesn't pair students that aren't allowed to pair" do
+        skip
+        srand(1)
 
+        first_user = 1
+        second_user = 2
+        third_user = 3
+
+        students = [
+          first_user,
+          second_user,
+          third_user
+        ]
+
+        unpairable = {
+          1 => [3]
+        }
+
+        pairings = PairGenerator.new(students, unpairable).random_pairs
+
+        expect(pairings).to match_array([
+                                          match_array([first_user, second_user]),
+                                          match_array([third_user, nil])
+                                        ])
+      end
+    end
+  end
 end
