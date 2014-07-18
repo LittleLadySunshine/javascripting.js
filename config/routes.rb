@@ -13,6 +13,8 @@ Students::Application.routes.draw do
 
     resources :students, :only => :index
 
+    resource :personal_project, :only => [:show, :edit, :update]
+
     resources :exercises, :only => [:index, :show] do
       resources :submissions, :only => [:new, :create, :edit, :update]
     end
@@ -39,7 +41,6 @@ Students::Application.routes.draw do
 
   get "/personal_information" => "personal_information#edit", as: :personal_information
   patch "/personal_information" => "personal_information#update"
-
 
   resources :jobs do
     resources :applications do

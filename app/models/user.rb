@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :submissions
   has_many :applications
   has_many :jobs, through: :applications
+  has_one :personal_project
 
   mount_uploader :avatar, AvatarUploader
 
@@ -45,7 +46,6 @@ class User < ActiveRecord::Base
   def twitter_url
     "https://twitter.com/#{twitter}"
   end
-
 
   def completed_applications
     applications.where(status: Application.statuses[:applied]).includes(:job)

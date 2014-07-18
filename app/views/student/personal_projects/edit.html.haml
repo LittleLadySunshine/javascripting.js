@@ -1,0 +1,21 @@
+%h2 Edit your Personal Info
+%ul
+  = form_for @personal_project, :url => student_personal_project_path, :method => :patch do |f|
+    = errors_for(f)
+    %li
+      = f.label :name
+      = f.text_field :name
+    %li
+      = f.label :description
+      = f.text_area :description
+    %li
+      = f.label :github_repo_name, "GitHub Repo name"
+      = f.text_field :github_repo_name
+    %li
+      = f.label :tracker_url, "Tracker Project"
+      = f.text_field :tracker_url
+    %li
+      = f.label :production_url, "Production URL (i.e. Heroku)"
+      = f.text_field :production_url
+    %li
+      = f.submit "Save"
