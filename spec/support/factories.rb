@@ -15,10 +15,10 @@ module ObjectFactories
 
   def new_user(overrides = {})
     defaults = {
-        email: "user#{rand}@example.com",
-        first_name: 'John',
-        last_name: 'Smith',
-        cohort: new_cohort
+      :email => "user#{rand}@example.com",
+      :first_name => 'John',
+      :last_name => 'Smith',
+      :cohort => new_cohort
     }
     User.new(defaults.merge(overrides))
   end
@@ -31,11 +31,11 @@ module ObjectFactories
 
   def new_cohort(overrides = {})
     defaults = {
-        name: "gSchool#{rand(1000)}",
-        directions: "<p>Some directions</p>",
-        google_maps_location: 'https://google.com',
-        start_date: "01/01/2001",
-        end_date: "06/01/2001"
+      :name => "gSchool#{rand(1000)}",
+      :directions => "<p>Some directions</p>",
+      :google_maps_location => 'https://google.com',
+      :start_date => "01/01/2001",
+      :end_date => "06/01/2001"
     }
     Cohort.new(defaults.merge(overrides))
   end
@@ -48,8 +48,8 @@ module ObjectFactories
 
   def new_exercise(overrides = {})
     defaults = {
-      name: 'Arrays and stuff',
-      github_repo: 'http://example.com'
+      :name => 'Arrays and stuff',
+      :github_repo => 'http://example.com'
     }
 
     Exercise.new(defaults.merge(overrides))
@@ -57,7 +57,7 @@ module ObjectFactories
 
   def new_submission(overrides = {})
     defaults = {
-      github_repo_name: 'repo'
+      :github_repo_name => 'repo'
     }
 
     Submission.new(defaults.merge(overrides))
@@ -71,9 +71,9 @@ module ObjectFactories
 
   def new_company(overrides = {})
     defaults = {
-      name: 'Pivotal Labs',
-      contact_name: 'Mike',
-      contact_email: 'mike@example.com'
+      :name => 'Pivotal Labs',
+      :contact_name => 'Mike',
+      :contact_email => 'mike@example.com'
     }
     Company.new(defaults.merge(overrides))
   end
@@ -110,12 +110,12 @@ module ObjectFactories
 
   def new_job(overrides = {})
     defaults = {
-      company: new_company,
-      location: 'Denver, CO',
-      application_due_date: '07/20/2014',
-      poster: new_user,
-      visibility: "Public",
-      application_type: "Group Application"
+      :company => new_company,
+      :location => 'Denver, CO',
+      :application_due_date => '07/20/2014',
+      :poster => new_user,
+      :visibility => "Public",
+      :application_type => "Group Application"
     }
     Job.new(defaults.merge(overrides))
   end
@@ -128,9 +128,9 @@ module ObjectFactories
 
   def new_application(overrides = {})
     defaults = {
-      resume: 'resume.pdf',
-      user: new_user,
-      job: new_job
+      :resume => 'resume.pdf',
+      :user => new_user,
+      :job => new_job
     }
     Application.new(defaults.merge(overrides))
   end
