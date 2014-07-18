@@ -18,7 +18,6 @@ Students::Application.routes.draw do
     resources :exercises, :only => [:index, :show] do
       resources :submissions, :only => [:new, :create, :edit, :update]
     end
-    resources :feedback_entries, :only => [:new, :index, :create, :show]
   end
 
   resources :students, :only => :show
@@ -33,7 +32,6 @@ Students::Application.routes.draw do
       resources :pairs
       resources :students, :only => [:new, :create, :show, :edit, :update]
       resources :cohort_exercises
-      resources :feedback_entries, :only => [:new, :index, :create, :show]
 
       resources :attendance_sheets, :only => [:new, :create]
     end

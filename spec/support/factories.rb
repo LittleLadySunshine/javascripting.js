@@ -23,19 +23,6 @@ module ObjectFactories
     User.new(defaults.merge(overrides))
   end
 
-  def create_feedback_entry(overrides = {})
-    new_feedback_entry(overrides).tap do |fe|
-      fe.save!
-    end
-  end
-
-  def new_feedback_entry(overrides = {})
-    defaults = {
-      comment: "Great job!"
-    }
-    FeedbackEntry.new(defaults.merge(overrides))
-  end
-
   def create_cohort(overrides = {})
     new_cohort(overrides).tap do |c|
       c.save!

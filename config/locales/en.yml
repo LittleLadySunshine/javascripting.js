@@ -31,18 +31,12 @@ en:
   access_denied: "You are not authorized to access this site."
   signed_in_user_required_for_page: "Please sign in to access that page."
   submit: "Submit"
-  get_feedback: "Get Feedback"
-  feedback:
-    give: "Give feedback"
-    success: "Feedback successfully recorded"
-    error: "Feedback failed. Please fix orange fields below."
   assessments:
     quiz:
       already_submitted: "This quiz was already submitted and can not be changed."
   nav:
     sign_in: "Sign In"
     sign_out: "Sign Out"
-    feedback: "Feedback"
     jobs: "Employment"
     quiz_templates: "Quiz Templates"
     instructors: "Cohorts"
@@ -52,6 +46,3 @@ en:
     invitation:
       subject: 'Welcome to the gSchool student portal'
 
-  feedback_mailer:
-    feedback_received:
-      subject: 'You have feedback!'
