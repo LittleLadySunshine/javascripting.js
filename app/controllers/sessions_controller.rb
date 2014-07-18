@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       if user.is?(User::INSTRUCTOR)
         redirect_to instructor_cohort_path(user.cohort), notice: notice
       else
-        redirect_to student_students_path, notice: notice
+        redirect_to student_exercises_path, notice: notice
       end
     else
       notice = I18n.t('access_denied')

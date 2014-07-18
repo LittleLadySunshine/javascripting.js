@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "Feedback" do
   scenario "allows logged in user to give feedback to another student" do
+    pending("not used")
     cohort = create_cohort(name: "March gSchool")
     create_user(first_name: "Giving Feedback",
                 cohort_id: cohort.id,
