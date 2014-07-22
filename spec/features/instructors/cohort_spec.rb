@@ -14,6 +14,7 @@ feature "Cohorts" do
     fill_in("End date", :with => "2012-02-01")
     fill_in("Google maps location", :with => "http://google.com")
     fill_in("Directions", :with => "These are some directions")
+    check "Employment phase"
 
     click_on("Save")
 
@@ -22,11 +23,12 @@ feature "Cohorts" do
     click_on "Some new cohort"
     click_on "Edit"
 
-    expect(find("input[value='Some new cohort']")).to be
-    expect(find("input[value='2012-01-01']")).to be
-    expect(find("input[value='2012-02-01']")).to be
-    expect(find("input[value='http://google.com']")).to be
-    expect(find("input[value='These are some directions']")).to be
+    expect(find_field("Name").value).to eq("Some new cohort")
+    expect(find_field("Start date").value).to eq("2012-01-01")
+    expect(find_field("End date").value).to eq("2012-02-01")
+    expect(find_field("Google maps location").value).to eq("http://google.com")
+    expect(find_field("Directions").value).to eq("These are some directions")
+    expect(page).to have_checked_field("Employment phase")
 
     fill_in("Name", :with => "Another new name")
 
