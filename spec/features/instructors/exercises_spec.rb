@@ -36,7 +36,7 @@ feature "Exercises" do
   end
 
   scenario "instructor can assign and un-assign an exercise to a cohort" do
-    create_exercise(:name => "Nested Hashes")
+    create_exercise(:name => "Nested Hashes", github_repo: "http://exercises.com/nested_hashes")
 
     visit "/instructor/dashboard"
 
@@ -50,7 +50,7 @@ feature "Exercises" do
     click_button "Add Exercise"
 
     expect(page).to have_content "Exercise successfully added to cohort"
-    expect(page).to have_content "Nested Hashes"
+    expect(find_link("Nested Hashes")['href']).to eq("http://exercises.com/nested_hashes")
 
     click_on "Remove"
 
@@ -73,9 +73,9 @@ feature "Exercises" do
     within(".sub-nav", :text => cohort.name) do
       click_link "Exercises"
     end
-    click_link exercise.name
-
-    expect(page).to have_content exercise.name
+    submission_count_link = find("td.submission_count a")
+    expect(submission_count_link.text).to eq("1")
+    submission_count_link.click
 
     within("section", :text => "Completed Submissions") do
       expect(all("a").first["href"]).to eq("https://github.com/Student12345/some_repo_name")

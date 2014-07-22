@@ -9,11 +9,13 @@
         %thead
           %tr
             %th Exercise Name
+            %th # of Students Submitted
             %th
         %tbody
           - @cohort_exercises.each do |cohort_exercise|
             %tr
-              %td= link_to cohort_exercise.name, instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise)
+              %td= link_to cohort_exercise.name, cohort_exercise.exercise.github_repo
+              %td.submission_count= link_to(cohort_exercise.submissions.count, instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise))
               %td= link_to "Remove", instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise), method: :delete
       .actions
         = link_to "Assign Exercise", new_instructor_cohort_cohort_exercise_path
