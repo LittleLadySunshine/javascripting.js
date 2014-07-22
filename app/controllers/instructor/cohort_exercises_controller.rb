@@ -12,6 +12,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
 
   def new
     @cohort = Cohort.find(params[:cohort_id])
+    @exercises = Exercise.all.order(:name)
   end
 
   def create
