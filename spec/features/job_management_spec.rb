@@ -281,22 +281,4 @@ feature 'Job Management' do
       :status => Application.statuses[:applied],
     )
   end
-
-  it 'allows student to delete their job opportunities' do
-    cohort = create_cohort(name: "March gSchool")
-    create_user(first_name: "Student", cohort_id: cohort.id, github_id: "1234")
-
-    mock_omniauth(base_overrides: {uid: "1234"})
-
-    visit root_path
-    click_on I18n.t('nav.sign_in')
-    click_on I18n.t('nav.jobs')
-
-    create_job
-
-    click_link 'Pivotal Labs'
-    expect(page).to have_content('Pivotal Labs')
-    click_link 'Delete Job'
-    expect(page).not_to have_content('Pivotal Labs')
-  end
 end
