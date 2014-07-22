@@ -3,4 +3,6 @@
     = nav_item "Exercises", student_exercises_path
     = nav_item "Students", student_students_path
     = nav_item "Info", student_info_path
+    - if user_session.current_cohort.pair_feedback_url
+      = nav_item "Pair Feedback", user_session.current_cohort.pair_feedback_url
     = nav_item "Personal Project", student_personal_project_path

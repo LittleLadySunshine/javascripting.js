@@ -58,4 +58,13 @@ feature "A student viewing their dashboard" do
     expect(page).to have_no_content('<p>This is some more text</p>')
   end
 
+  scenario "links to pair feedback form" do
+    expect(page).to have_no_link("Pair Feedback")
+
+    @cohort.update!(pair_feedback_url: "http://google.com")
+    visit current_url
+    
+    expect(page).to have_link("Pair Feedback", :href => "http://google.com")
+  end
+
 end
