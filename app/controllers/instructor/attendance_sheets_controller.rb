@@ -4,9 +4,11 @@ class Instructor::AttendanceSheetsController < InstructorRequiredController
     @cohort = user_session.current_user.cohort
     @students = @cohort.students
     # set holidays to National Holidays only
+
     @holidays = [Date.new(2014,7,4), Date.new(2014,9,1)]
     @today = Date.today
     # set submitted dates to be per current_user's cohort
+
     @submitted_dates = AttendanceSheet.where(cohort_id: @cohort[:id]).map {|sheet| sheet.sheet_date }
     @class_dates = (date_range(@cohort, @today) - @submitted_dates - @holidays).reverse!
   end

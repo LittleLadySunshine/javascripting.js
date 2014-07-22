@@ -3,3 +3,5 @@
   - @cohorts.each do |cohort|
     = link_to instructor_cohort_path(cohort), class: "card" do
       .title= cohort.name
+
+  = link_to "New Cohort", new_instructor_cohort_path

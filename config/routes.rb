@@ -26,7 +26,7 @@ Students::Application.routes.draw do
     get "dashboard" => "dashboard#index"
     resources :exercises, :except => :show
 
-    resources :cohorts, :only => [:index, :show] do
+    resources :cohorts do
       get :one_on_ones, :on => :member
 
       resources :pairs

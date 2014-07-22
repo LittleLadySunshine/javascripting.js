@@ -1,14 +1,25 @@
 class Instructor::CohortsController < InstructorRequiredController
+  def new
+    @cohort = Cohort.new
+  end
+
+  def create
+    @cohort = Cohort.new(cohort_params)
+
+    if @cohort.save
+      flash[:notice] = "Cohort created"
+      redirect_to instructor_dashboard_path
+    else
+      render :new
+    end
+  end
 
   def show
     students = User.for_cohort(params[:id]).sort_by { |user| user.full_name.downcase }
     cohort = Cohort.find(params[:id])
-    render 'show',
-           :locals => {
-             :students => students,
-             :lucky_winner => students.sample,
-             :cohort => cohort
-           }
+    render('show', :locals => {:students => students,
+                               :lucky_winner => students.sample,
+                               :cohort => cohort})
   end
 
   def one_on_ones
@@ -23,13 +34,18 @@ class Instructor::CohortsController < InstructorRequiredController
                            end
     scheduler = OneOnOneScheduler.new(students, selected_instructors)
     scheduler.generate_schedule
-    render 'one_on_ones',
-           :locals => {
-             :cohort_name => cohort.name,
-             :appointments => scheduler.appointments,
-             :unscheduled_students => scheduler.unscheduled_students,
-             :all_instructors => all_instructors,
-             :selected_instructors => selected_instructors,
-           }
+    render('one_on_ones', :locals => {:cohort_name => cohort.name,
+                                      :appointments => scheduler.appointments,
+                                      :unscheduled_students => scheduler.unscheduled_students,
+                                      :all_instructors => all_instructors,
+                                      :selected_instructors => selected_instructors})
+  end
+
+
+  private
+
+  def cohort_params
+    params.require(:cohort).permit(:name, :start_date, :end_date,
+                                   :google_maps_location, :directions)
   end
 end
