@@ -1,4 +1,6 @@
-class JobsController < ApplicationController
+class JobsController < SignInRequiredController
+  before_filter :require_employment_phase
+
   def index
     jobs = Job.opportunities_for(user_session.current_user)
     render :index, :locals => {:jobs => jobs}
@@ -45,6 +47,14 @@ class JobsController < ApplicationController
     else
       redirect_to root_path
       flash[:notice] = 'You are not allowed to access this page'
+    end
+  end
+
+  private
+
+  def require_employment_phase
+    unless user_session.current_cohort.employment_phase?
+      redirect_to root_path
     end
   end
 end

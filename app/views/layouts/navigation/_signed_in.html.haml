@@ -5,6 +5,7 @@
     = nav_item t('nav.exercises'), instructor_exercises_path
   - else
     = nav_item "Cohort", student_students_path
-  = nav_item t('nav.jobs'), jobs_path
+  - if user_session.current_cohort.employment_phase?
+    = nav_item t('nav.jobs'), jobs_path
   = nav_item "Clicker", clicker_path
   = nav_item "Personal Info", personal_information_path

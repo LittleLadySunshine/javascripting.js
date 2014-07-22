@@ -4,7 +4,23 @@ feature 'Job Management' do
   let!(:cohort) { create_cohort(:name => 'Boulder gSchool') }
   let!(:instructor) { create_user(:first_name => "Instructor", :last_name => "User", :github_id => '987', :role_bit_mask => 1, :cohort_id => cohort.id) }
 
-  scenario 'allows student to view the gSchool employment page' do
+  scenario 'a student cannot view the gSchool employment page if the cohort is not ready' do
+    cohort = create_cohort(:name => "March gSchool", :employment_phase => false)
+    create_user(:first_name => "Student", :cohort_id => cohort.id, :github_id => "1234")
+    
+    mock_omniauth(:base_overrides => {:uid => "1234"})
+    visit root_path
+
+    click_on I18n.t('nav.sign_in')
+    expect(page).to have_no_content(I18n.t('nav.jobs'))
+
+    visit jobs_path
+
+    expect(page).to have_no_content "gSchool Employment"
+    expect(page).to have_no_content "Available Jobs to Apply to"
+  end
+
+  scenario 'allows student to view the gSchool employment page if the cohort allows' do
     cohort = create_cohort(:name => "March gSchool")
     create_user(:first_name => "Student", :cohort_id => cohort.id, :github_id => "1234")
 
