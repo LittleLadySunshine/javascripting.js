@@ -159,7 +159,6 @@ feature 'Job Management' do
     click_on I18n.t('nav.jobs')
     find('.add-job', :visible => false).click
     click_on 'Apply'
-    attach_file :application_cover_letter, File.join(fixture_path, 'coverletter.jpg')
     attach_file :application_resume, File.join(fixture_path, 'resume.pdf')
     click_on 'Apply for this position'
 
@@ -193,7 +192,6 @@ feature 'Job Management' do
     click_on "edit-application#{application.id}-action"
 
     attach_file :application_resume, File.join(fixture_path, "other_resume.pdf")
-    attach_file :application_cover_letter, File.join(fixture_path, "coverletter.jpg")
     click_on "save-application-action"
 
     expect(find_link("download-application#{application.id}-action")["href"]).to match("other_resume.pdf")
