@@ -1,6 +1,6 @@
 %h2 Add Exercise
 
 = form_tag instructor_cohort_cohort_exercises_path(params[:cohort_id]) do
-  = collection_select(:cohort_exercise, :exercise_id, @exercises, :id, :name, disabled: @cohort.exercises.map{|exercise| exercise.id.to_s})
+  = collection_select(:cohort_exercise, :exercise_id, @exercises, :id, :name, disabled: @already_assigned_exercises)
   = submit_tag 'Add Exercise', class: 'action'
 

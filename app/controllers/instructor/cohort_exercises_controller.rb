@@ -13,6 +13,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
   def new
     @cohort = Cohort.find(params[:cohort_id])
     @exercises = Exercise.all.order(:name)
+    @already_assigned_exercises = @cohort.exercises.pluck(:id).map(&:to_s)
   end
 
   def create
