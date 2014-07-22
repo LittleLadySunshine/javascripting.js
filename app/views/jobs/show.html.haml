@@ -17,5 +17,12 @@
   %aside
     %h3 Students that applied:
     %ul
-    - job.applicants.each do |applicant|
-      %li= "#{applicant.first_name} #{applicant.last_name}"
+    - job.applications.each do |application|
+      - applicant = application.user
+      %li
+        = "#{applicant.first_name} #{applicant.last_name}"
+        - if application.applied?
+          = link_to application.resume.url, download: :download do
+            %i.fa.fa-download
+            Resume
+

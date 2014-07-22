@@ -218,6 +218,7 @@ feature 'Job Management' do
     click_on "Admin Dashboard"
     click_on "Pivotal Labs"
     expect(page).to have_content "Zach"
+    expect(page).to have_selector("a[download=download]", text: "Resume")
   end
 
   scenario 'users posting a job can create a company' do
