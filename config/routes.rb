@@ -40,7 +40,7 @@ Students::Application.routes.draw do
   get "/personal_information" => "personal_information#edit", :as => :personal_information
   patch "/personal_information" => "personal_information#update"
 
-  resources :jobs do
+  resources :jobs, except: [:edit, :update] do
     resources :applications do
       post :confirm
     end

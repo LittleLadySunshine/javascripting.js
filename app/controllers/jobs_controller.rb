@@ -27,20 +27,6 @@ class JobsController < ApplicationController
     }
   end
 
-  def edit
-    job = Job.find(params[:id])
-    render 'edit', :locals => {
-      :job => job
-    }
-  end
-
-  def update
-    job = Job.find(params[:id])
-    job_parameters = params.require(:job).permit!
-    job.update(job_parameters)
-    redirect_to :action => :show
-  end
-
   def destroy
     job = Job.find(params[:id])
     job.destroy

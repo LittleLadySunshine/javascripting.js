@@ -13,8 +13,6 @@
     = link_to 'Delete Job', job_path(job),
             data: { confirm: 'Are you sure?' }, method: :delete, class: 'action'
 
-  = link_to 'Edit Job', edit_job_path(job), class: 'action'
-
 - if user_session.current_user.is?(User::INSTRUCTOR)
   %aside
     %h3 Students that applied:
