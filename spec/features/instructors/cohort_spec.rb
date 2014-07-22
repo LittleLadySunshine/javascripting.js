@@ -14,6 +14,7 @@ feature "Cohorts" do
     fill_in("End date", :with => "2012-02-01")
     fill_in("Google maps location", :with => "http://google.com")
     fill_in("Directions", :with => "These are some directions")
+    fill_in("Pair feedback url", :with => "http://google.com/pair_feedback")
     check "Employment phase"
 
     click_on("Save")
@@ -28,6 +29,7 @@ feature "Cohorts" do
     expect(find_field("End date").value).to eq("2012-02-01")
     expect(find_field("Google maps location").value).to eq("http://google.com")
     expect(find_field("Directions").value).to eq("These are some directions")
+    expect(find_field("Pair feedback url").value).to eq("http://google.com/pair_feedback")
     expect(page).to have_checked_field("Employment phase")
 
     fill_in("Name", :with => "Another new name")

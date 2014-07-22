@@ -60,7 +60,12 @@ class Instructor::CohortsController < InstructorRequiredController
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :start_date, :end_date,
-                                   :google_maps_location, :directions, :employment_phase)
+    params.require(:cohort).permit(:name,
+                                   :start_date,
+                                   :end_date,
+                                   :google_maps_location,
+                                   :directions,
+                                   :employment_phase,
+                                   :pair_feedback_url)
   end
 end
