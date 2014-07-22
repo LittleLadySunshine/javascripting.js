@@ -14,6 +14,21 @@ class Instructor::CohortsController < InstructorRequiredController
     end
   end
 
+  def edit
+    @cohort = Cohort.find(params[:id])
+  end
+
+  def update
+    @cohort = Cohort.find(params[:id])
+    
+    if @cohort.update(cohort_params)
+      flash[:notice] = "Cohort saved"
+      redirect_to instructor_cohort_path(@cohort)
+    else
+      render :edit
+    end
+  end
+
   def show
     students = User.for_cohort(params[:id]).sort_by { |user| user.full_name.downcase }
     cohort = Cohort.find(params[:id])

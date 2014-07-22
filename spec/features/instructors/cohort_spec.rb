@@ -18,6 +18,16 @@ feature "Cohorts" do
     click_on("Save")
 
     expect(page).to have_content("Cohort created")
+
+    click_on "Some new cohort"
+    click_on "Edit"
+
+    fill_in("Name", :with => "Another new name")
+
+    click_on("Save")
+
+    expect(page).to have_content("Cohort saved")
+    expect(page).to have_content("Another new name")
   end
 
   context "with an already existing cohort" do
