@@ -22,6 +22,12 @@ feature "Cohorts" do
     click_on "Some new cohort"
     click_on "Edit"
 
+    expect(find("input[value='Some new cohort']")).to be
+    expect(find("input[value='2012-01-01']")).to be
+    expect(find("input[value='2012-02-01']")).to be
+    expect(find("input[value='http://google.com']")).to be
+    expect(find("input[value='These are some directions']")).to be
+
     fill_in("Name", :with => "Another new name")
 
     click_on("Save")
