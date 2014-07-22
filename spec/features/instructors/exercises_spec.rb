@@ -52,7 +52,7 @@ feature "Exercises" do
     expect(page).to have_content "Exercise successfully added to cohort"
     expect(find_link("Nested Hashes")['href']).to eq("http://exercises.com/nested_hashes")
 
-    click_on "Remove"
+    find(".remove-exercise-action", :visible => false).click
 
     expect(page).to have_content("Exercise removed.")
     expect(page).to have_no_content("Nested Hashes")
