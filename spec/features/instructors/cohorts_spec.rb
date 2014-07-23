@@ -14,11 +14,32 @@ feature "Cohorts" do
     fill_in("End date", :with => "2012-02-01")
     fill_in("Google maps location", :with => "http://google.com")
     fill_in("Directions", :with => "These are some directions")
+    fill_in("Pair feedback url", :with => "http://google.com/pair_feedback")
+    check "Employment phase"
 
     click_on("Save")
 
     expect(page).to have_content("Cohort created")
+
+    click_on "Some new cohort"
+    click_on "Edit"
+
+    expect(find_field("Name").value).to eq("Some new cohort")
+    expect(find_field("Start date").value).to eq("2012-01-01")
+    expect(find_field("End date").value).to eq("2012-02-01")
+    expect(find_field("Google maps location").value).to eq("http://google.com")
+    expect(find_field("Directions").value).to eq("These are some directions")
+    expect(find_field("Pair feedback url").value).to eq("http://google.com/pair_feedback")
+    expect(page).to have_checked_field("Employment phase")
+
+    fill_in("Name", :with => "Another new name")
+
+    click_on("Save")
+
+    expect(page).to have_content("Cohort saved")
+    expect(page).to have_content("Another new name")
   end
+
   context "with an already existing cohort" do
     let!(:cohort) { create_cohort(:name => 'Boulder gSchool') }
     let!(:student) { create_user(:first_name => "Student", :last_name => "User", :github_id => '123', :cohort_id => cohort.id, :github_username => "Student12345") }
