@@ -10,8 +10,8 @@
     %meta(name="viewport" content="width=device-width, initial-scale=1")
   %body
     #body_container
-      %header
-        .menu-wrapper
+      %header.navigation
+        .navigation-wrapper
           = link_to user_session.signed_in? ? student_students_path : root_path, class: 'logo' do
             = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
 
