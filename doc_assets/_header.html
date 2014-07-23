@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+      <link rel=stylesheet href="../assets/styleguide/styleguide.css" type="text/css">
+      <link rel=stylesheet href="../assets/application.css" type="text/css">
+      <link rel=javascript href="../assets/application.js" type="text/javascript">
+  </head>
+  <body>
+    <div>
+      <nav>
+        <ul>
+        <% @categories.each do |category, file_name| %>
+          <li><a href="<%= file_name %>"><%= category %></a></li>
+        <% end %>
+        </ul>
+      </nav>
+
+      <h1>Students.gschool.it Styleguide</h1>
+      <section class="content">
+        <ul>
+        <% @blocks.each do |b| %>
+          <li><a href="#<%= b[:name] %>"><%= b[:title] %></a></li>
+        <% end %>
+        </ul>

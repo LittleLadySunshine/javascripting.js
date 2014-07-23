@@ -23,6 +23,8 @@ gem "carrierwave"
 gem "fog"
 
 group :development, :test do
+  gem "hologram"
+  gem "guard-hologram", require: false
   gem "dotenv-rails"
   gem "spring"
   gem "spring-commands-rspec"
