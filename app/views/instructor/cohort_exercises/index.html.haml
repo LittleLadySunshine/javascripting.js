@@ -16,6 +16,6 @@
             %tr
               %td= link_to cohort_exercise.name, cohort_exercise.exercise.github_repo_url
               %td.submission_count= link_to(cohort_exercise.submissions.count, instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise))
-              %td= link_to(instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise), { method: :delete, class: 'remove-exercise-action' } ){ icon('times') }
+              %td= link_to(instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise), { method: :delete, class: 'remove-exercise-action' } ){ icon('times') } if cohort_exercise.submissions.count == 0
       .actions
         = link_to "Assign Exercise", new_instructor_cohort_cohort_exercise_path

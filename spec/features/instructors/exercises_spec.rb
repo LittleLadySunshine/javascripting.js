@@ -87,6 +87,29 @@ feature "Exercises" do
     end
   end
 
+  scenario "instructor can not delete an exercise that has submissions" do
+    create_user(:first_name => "Joe", :last_name => "Mama", :cohort_id => cohort.id)
+
+    exercise = create_exercise(:name => "Nested Hashes", github_repo: "nested_hashes")
+    cohort.update!(:exercises => [exercise])
+    create_submission(:exercise => exercise,
+                      :user => student,
+                      :tracker_project_url => "http://www.pivotaltracker.com",
+                      :github_repo_name => "some_repo_name")
+
+    visit "/instructor/dashboard"
+    click_link cohort.name
+    within(".sub-nav", :text => cohort.name) do
+      click_link "Exercises"
+    end
+    submission_count_link = find("td.submission_count a")
+    expect(submission_count_link.text).to eq("1")
+
+    expect(find_link("Nested Hashes")['href']).to eq("https://github.com/gSchool/nested_hashes")
+
+    expect(page).to_not have_css(".remove-exercise-action")
+  end
+
   scenario "instructor can view what exercises a student has completed" do
     exercise_1 = create_exercise(:name => "Nested Hashes")
     exercise_2 = create_exercise(:name => "Arrays")
