@@ -14,7 +14,7 @@
     .exercise-list
       - @exercises.each do |exercise|
         .exercise
-          .link= link_to exercise.name, exercise.github_repo
+          .link= link_to exercise.name, exercise.github_repo_url
           .tags= exercise.tag_list
           .edits= link_to(edit_instructor_exercise_path(exercise), class: 'edit-exercise') { icon('pencil') }
 

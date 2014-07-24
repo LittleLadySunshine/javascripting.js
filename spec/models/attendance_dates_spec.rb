@@ -19,5 +19,8 @@ describe AttendanceDates do
     expect(boulder_cohort[:end_date].to_s).to eq("2001-01-06")
   end
 
-  
+  it " " do
+    expect(@sheet.cohort).to eq(:boulder_cohort)
+  end
+
 end

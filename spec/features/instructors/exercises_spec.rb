@@ -15,7 +15,7 @@ feature "Exercises" do
     click_on "Create Exercise"
 
     fill_in "Name", :with => "Bunch of array"
-    fill_in "GitHub Repo", :with => "http://exercises.com/repo"
+    fill_in "GitHub Repo", :with => "repo"
     fill_in "Tags", :with => "warmup, easy"
     click_on "Add Exercise"
 
@@ -24,19 +24,19 @@ feature "Exercises" do
     expect(page).to have_content("warmup")
     expect(page).to have_content("easy")
 
-    expect(find_link("Bunch of array")['href']).to eq("http://exercises.com/repo")
+    expect(find_link("Bunch of array")['href']).to eq("https://github.com/gSchool/repo")
     find(".edit-exercise", :visible => false).click
 
     fill_in "Name", :with => "Bunch of Hashes"
-    fill_in "GitHub Repo", :with => "http://exercises.com/hash_repo"
+    fill_in "GitHub Repo", :with => "https://example.com/hash_repo"
     click_on "Update Exercise"
 
     expect(page).to have_content "Exercise successfully created"
-    expect(find_link("Bunch of Hashes")['href']).to eq("http://exercises.com/hash_repo")
+    expect(find_link("Bunch of Hashes")['href']).to eq("https://example.com/hash_repo")
   end
 
   scenario "instructor can assign and un-assign an exercise to a cohort" do
-    create_exercise(:name => "Nested Hashes", github_repo: "http://exercises.com/nested_hashes")
+    create_exercise(:name => "Nested Hashes", github_repo: "nested_hashes")
 
     visit "/instructor/dashboard"
 
@@ -50,7 +50,7 @@ feature "Exercises" do
     click_button "Add Exercise"
 
     expect(page).to have_content "Exercise successfully added to cohort"
-    expect(find_link("Nested Hashes")['href']).to eq("http://exercises.com/nested_hashes")
+    expect(find_link("Nested Hashes")['href']).to eq("https://github.com/gSchool/nested_hashes")
 
     find(".remove-exercise-action", :visible => false).click
 

@@ -1,4 +1,5 @@
 class AttendanceDates
+  attr_accessor :cohort
 
   def initialize(cohort)
     @cohort = cohort

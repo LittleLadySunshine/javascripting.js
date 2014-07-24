@@ -14,7 +14,7 @@
         %tbody
           - @cohort_exercises.each do |cohort_exercise|
             %tr
-              %td= link_to cohort_exercise.name, cohort_exercise.exercise.github_repo
+              %td= link_to cohort_exercise.name, cohort_exercise.exercise.github_repo_url
               %td.submission_count= link_to(cohort_exercise.submissions.count, instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise))
               %td= link_to(instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise), { method: :delete, class: 'remove-exercise-action' } ){ icon('times') }
       .actions
