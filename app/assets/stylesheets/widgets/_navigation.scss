@@ -59,8 +59,7 @@ header.navigation {
   .logo {
     float: left;
     max-height: $navigation-height;
-    padding-left: $navigation-padding;
-    padding-right: 2em;
+    padding-right: 1em;
 
     img {
       max-height: $navigation-height;
@@ -94,9 +93,10 @@ header.navigation {
 
   .nav {
     z-index: 9999999;
-    float: none;
+    display: none;
     margin-left: 10px;
     @include media($horizontal-bar-mode) {
+      display: block;
       float: left;
     }
   }
@@ -154,8 +154,6 @@ header.navigation {
     padding-bottom: 3px;
   }
 
-
-
   // Elements on the far right
 
   .navigation-tools {
@@ -164,10 +162,10 @@ header.navigation {
     padding-right: $navigation-padding;
     padding-left: $navigation-padding/2;
     clear: both;
+    float: right;
 
     @include media($large-screen) {
       background: transparent;
-      float: right;
       clear: none;
     }
 

@@ -2,7 +2,9 @@ require 'rails_helper'
 
 feature "Clicker", :js => :true, :clicker => true do
   before do
-    skip("Clicker features skipped - set PUSHER_KEY to run") if ENV["PUSHER_KEY"] == "pusher_key"
+    if ENV["PUSHER_KEY"] == "pusher_key"
+      skip("Clicker features skipped - set PUSHER_KEY to run")
+    end
   end
 
   scenario "Instructor sees how many students are in the class" do

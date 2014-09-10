@@ -12,19 +12,18 @@
     #body_container
       %header.navigation
         .navigation-wrapper
-          = link_to user_session.signed_in? ? student_students_path : root_path, class: 'logo' do
-            = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
-
-          %p#js-mobile-menu.navigation-menu-button MENU
-
-          .nav
-            - if user_session.signed_in?
-              = render partial: 'layouts/navigation/signed_in'
           .navigation-tools
             - if user_session.signed_in?
               = link_to t('nav.sign_out'), logout_path
             - else
               = link_to t('nav.sign_in'), sign_in_using_github_path
+          .logo
+            = link_to user_session.signed_in? ? student_students_path : root_path, class: 'logo' do
+              = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
+
+          - if user_session.signed_in?
+            .nav
+              = render partial: 'layouts/navigation/signed_in'
 
       - if flash.any?
         #flash
