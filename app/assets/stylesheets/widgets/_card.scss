@@ -5,6 +5,7 @@
     @include span-columns(4);
   }
 
+  margin-top: 10px;
   border: 1px solid transparentize($dark-gray, 0.5);
   border-radius: 3px;
   color: black;
