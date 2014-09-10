@@ -5,7 +5,7 @@
         %h1= @cohort.name
 
 %ul.showcase
-  - @cohort.students.each do |student|
+  - @cohort.students.order(:last_name).each do |student|
     %li
       .container
         .image
