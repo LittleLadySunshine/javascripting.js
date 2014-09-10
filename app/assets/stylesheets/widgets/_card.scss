@@ -1,5 +1,10 @@
 .card {
-  @include span-columns(4);
+  @include span-columns(12);
+
+  @include media($large-screen) {
+    @include span-columns(4);
+  }
+
   border: 1px solid transparentize($dark-gray, 0.5);
   border-radius: 3px;
   color: black;
