@@ -35,6 +35,27 @@ feature "Exercises" do
     expect(find_link("Bunch of Hashes")['href']).to eq("https://example.com/hash_repo")
   end
 
+  scenario "instructor does not see exercises that have been assigned" do
+    exercise_1 = create_exercise(:name => "Nested Hashes", github_repo: "nested_hashes")
+    create_exercise(:name => "Harleigh", github_repo: "harleigh_is_amazing")
+
+    CohortExercise.create!(
+        cohort: cohort,
+        exercise: exercise_1,
+    )
+
+    visit '/instructor/dashboard'
+
+    click_link cohort.name
+    within(".sub-nav", :text => cohort.name) do
+      click_link "Exercises"
+    end
+    click_link "Assign Exercise"
+
+    expect(page).to have_content("Harleigh")
+    expect(page).to have_no_content("Nested Hashes")
+  end
+
   scenario "instructor can assign and un-assign an exercise to a cohort" do
     create_exercise(:name => "Nested Hashes", github_repo: "nested_hashes")
 
@@ -46,8 +67,9 @@ feature "Exercises" do
     end
     click_link "Assign Exercise"
 
-    select "Nested Hashes"
-    click_button "Add Exercise"
+    within("tr", :text => "Nested Hashes") do
+      click_button "Add"
+    end
 
     expect(page).to have_content "Exercise successfully added to cohort"
     expect(find_link("Nested Hashes")['href']).to eq("https://github.com/gSchool/nested_hashes")

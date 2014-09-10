@@ -12,18 +12,15 @@ class Instructor::CohortExercisesController < InstructorRequiredController
 
   def new
     @cohort = Cohort.find(params[:cohort_id])
-    @exercises = Exercise.all.order(:name)
-    @already_assigned_exercises = @cohort.exercises.pluck(:id).map(&:to_s)
+    already_assigned_exercises = @cohort.exercises
+    @exercises = Exercise.all.order(:name) - already_assigned_exercises
   end
 
   def create
     @cohort_exercise = CohortExercise.new(create_params)
 
-    if @cohort_exercise.save
-      redirect_to instructor_cohort_cohort_exercises_path, :notice => 'Exercise successfully added to cohort'
-    else
-      render :new
-    end
+    @cohort_exercise.save!
+    redirect_to instructor_cohort_cohort_exercises_path, :notice => 'Exercise successfully added to cohort'
   end
 
   def destroy
