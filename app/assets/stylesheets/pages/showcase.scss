@@ -1,0 +1,87 @@
+ul.showcase {
+  @include clearfix;
+
+  li {
+    $base-background-color: #F7F7F7;
+    $base-border-color: #dbdbdb;
+    $card-border-color: $base-border-color;
+    $card-border: 1px solid $card-border-color;
+    $card-background: lighten($card-border-color, 10);
+    $card-header-background: $card-background;
+    $card-hover-background: lighten($card-background, 5);
+    $card-image-background: #DBD199;
+    $card-image-hover-background: lighten($card-image-background, 5);
+    $card-stats-color: lighten($base-accent-color, 10);
+
+    @include media($large-screen) {
+      @include span-columns(4);
+      @include omega(3n);
+    }
+
+    .container {
+      @include transition(all 0.2s ease-in-out);
+      background-color: $card-background;
+      border-radius: $base-border-radius;
+      border: $card-border;
+      cursor: pointer;
+      box-shadow: 0 2px 4px darken($base-background-color, 10);
+      position: relative;
+      display: block;
+
+      width: 300px;
+      margin: $base-line-height auto;
+
+      &:hover {
+        background-color: $card-hover-background;
+
+        .image img {
+          background: $card-image-hover-background;
+        }
+
+        .header {
+          background-color: $card-hover-background;
+        }
+      }
+
+      &:active {
+        background-color: $card-background;
+
+        .header {
+          background-color: $card-background;
+        }
+      }
+    }
+
+    .image {
+      overflow: hidden;
+
+      img {
+        max-height: 300px;
+        width: 100%;
+
+        @include transition(all 0.2s ease-in-out);
+        background: no-repeat center center;
+        border-top-left-radius: $base-border-radius;
+        border-top-right-radius: $base-border-radius;
+      }
+    }
+
+
+    .header {
+      @include transition (all 0.2s ease-in-out);
+      background-color: $card-header-background;
+      border-bottom: $card-border;
+      border-radius: $base-border-radius $base-border-radius 0 0;
+      font-weight: bold;
+      padding: $base-line-height/3 $gutter/2;
+    }
+
+
+    .copy {
+      padding: $base-line-height/2 $gutter/2;
+      font-size: .9em;
+      line-height: 1.5em;
+    }
+
+  }
+}

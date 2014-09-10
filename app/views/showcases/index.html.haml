@@ -1,0 +1,5 @@
+%section
+  %h1 Cohorts
+  - @cohorts.each do |cohort|
+    = link_to showcase_path(cohort), class: "card" do
+      .title= cohort.name

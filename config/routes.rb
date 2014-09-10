@@ -1,5 +1,6 @@
 Students::Application.routes.draw do
-  root :to => redirect("/preparation")
+  root :to => "showcases#index"
+  resources :showcases
 
   get "/auth/:provider/callback" => "sessions#create"
   get "/auth/failure" => "sessions#failure"

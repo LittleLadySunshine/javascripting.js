@@ -1,0 +1,12 @@
+%h1= @cohort.name
+
+%ul.showcase
+  - @cohort.students.each do |student|
+    %li
+      .container
+        .image
+          = image_tag student.avatar_url
+        .header
+          %p= student.full_name
+        .copy
+          %p This is the student bio
