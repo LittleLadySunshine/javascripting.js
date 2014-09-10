@@ -1,5 +1,4 @@
 %section
-  %h1 Cohorts
   - @cohorts.each do |cohort|
-    = link_to showcase_path(cohort), class: "card" do
+    = link_to showcase_path(cohort), :class => "hero-card", :style => "background-image: url(#{cohort.hero_url})" do
       .title= cohort.name

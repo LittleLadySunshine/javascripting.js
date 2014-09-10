@@ -1,3 +1,64 @@
+$hero-image: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png';
+$hero-background-top: darken($orange, 25);
+$hero-background-bottom: adjust-hue($hero-background-top, -70);
+$hero-color: white;
+$gradient-angle: 10deg;
+
+.hero-card {
+  @extend .card;
+  @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+
+  height: 300px;
+
+  .title {
+    background-color: white;
+    color: $dark-gray;
+    margin-top: 30px;
+    padding: 15px;
+    text-transform: uppercase;
+  }
+}
+
+.hero {
+  margin-top: -1.5em;
+
+  @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  padding-bottom: 4em;
+  min-height: 500px;
+
+  .hero-inner {
+    @include outer-container;
+    @include clearfix;
+    padding: 3em;
+    margin: auto;
+    color: $hero-color;
+
+    .hero-copy {
+      margin-top: 150px;
+
+      h1 {
+        background-color: white;
+        text-transform: uppercase;
+        color: $dark-gray;
+        font-size: 1.6em;
+        font-family: "Noto Sans";
+        font-weight: normal;
+        padding: 30px;
+        display: inline-block;
+        text-align: left;
+
+        @include media($large-screen) {
+          font-size: 1.8em;
+        }
+      }
+    }
+  }
+}
+
 ul.showcase {
   @include clearfix;
 
