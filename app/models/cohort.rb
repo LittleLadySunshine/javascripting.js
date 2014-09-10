@@ -5,6 +5,8 @@ class Cohort < ActiveRecord::Base
   has_many :exercises, :through => :cohort_exercises
   has_many :users
 
+  mount_uploader :hero, HeroUploader
+
   def students
     users.where.not(:role_bit_mask => User::INSTRUCTOR)
   end

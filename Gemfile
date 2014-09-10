@@ -18,6 +18,7 @@ gem "underscore-rails"
 gem "neat", "1.5.1"
 gem "acts-as-taggable-on"
 gem "zeroclipboard-rails"
+gem "rmagick", :require => 'RMagick'
 
 gem "carrierwave"
 gem "fog"

@@ -20,7 +20,7 @@ class Instructor::CohortsController < InstructorRequiredController
 
   def update
     @cohort = Cohort.find(params[:id])
-    
+
     if @cohort.update(cohort_params)
       flash[:notice] = "Cohort saved"
       redirect_to instructor_cohort_path(@cohort)
@@ -66,6 +66,7 @@ class Instructor::CohortsController < InstructorRequiredController
                                    :google_maps_location,
                                    :directions,
                                    :employment_phase,
-                                   :pair_feedback_url)
+                                   :pair_feedback_url,
+                                   :hero)
   end
 end

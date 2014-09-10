@@ -15,6 +15,8 @@ feature "Cohorts" do
     fill_in("Google maps location", :with => "http://google.com")
     fill_in("Directions", :with => "These are some directions")
     fill_in("Pair feedback url", :with => "http://google.com/pair_feedback")
+    attach_file "Hero", Rails.root.join("spec", "fixtures", "avatar.jpg")
+
     check "Employment phase"
 
     click_on("Save")

@@ -29,5 +29,12 @@
     = f.label :employment_phase
     = f.check_box :employment_phase
 
+  %p
+    = f.label :hero
+    = f.file_field :hero
+
+  - if @cohort.hero.present?
+    = image_tag @cohort.hero.url
+
 
   = f.submit "Save"
