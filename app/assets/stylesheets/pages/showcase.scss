@@ -11,9 +11,10 @@ $gradient-angle: 10deg;
   height: 300px;
 
   .title {
-    background-color: white;
-    color: $dark-gray;
-    margin-top: 30px;
+    background-color: $orange;
+    opacity: 0.9;
+    color: white;
+    margin-top: 20px;
     padding: 15px;
     text-transform: uppercase;
   }
