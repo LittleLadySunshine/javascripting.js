@@ -5,12 +5,12 @@ describe PairGenerator do
 
   let(:students) {
     [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
     ]
   }
 
@@ -52,34 +52,6 @@ describe PairGenerator do
       result2 = pair_generator.random_pairs
 
       expect(result1).to_not eq(result2)
-    end
-
-    context "when two students cannot pair together" do
-      it "doesn't pair students that aren't allowed to pair" do
-        skip
-        srand(1)
-
-        first_user = 1
-        second_user = 2
-        third_user = 3
-
-        students = [
-          first_user,
-          second_user,
-          third_user
-        ]
-
-        unpairable = {
-          1 => [3]
-        }
-
-        pairings = PairGenerator.new(students, unpairable).random_pairs
-
-        expect(pairings).to match_array([
-                                          match_array([first_user, second_user]),
-                                          match_array([third_user, nil])
-                                        ])
-      end
     end
   end
 end
