@@ -1,11 +1,15 @@
-%h1= @cohort.name
+- content_for(:outside_main) do
+  .hero{:style => "background-image: url(#{@cohort.hero_url}), linear-gradient(10deg, #844507, #d37b05), none;"}
+    .hero-inner
+      .hero-copy
+        %h1= @cohort.name
 
 %ul.showcase
   - @cohort.students.each do |student|
     %li
       .container
         .image
-          = image_tag student.avatar_url
+          = image_tag student.avatar_url(:card)
         .header
           %p= student.full_name
         .copy

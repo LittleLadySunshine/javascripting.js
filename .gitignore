@@ -16,6 +16,8 @@ config/database.yml
 TAGS
 .sass-cache/
 
+public/uploads/tmp
+
 .idea/
 *.iml
 

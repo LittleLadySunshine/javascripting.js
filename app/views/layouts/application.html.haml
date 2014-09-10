@@ -30,6 +30,7 @@
         #flash
           - flash.each do |name, msg|
             = content_tag :div, msg, class: "flash-#{name}"
+      = content_for(:outside_main)
       %main
         = yield
       %footer
