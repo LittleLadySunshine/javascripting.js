@@ -6,6 +6,8 @@ $gradient-angle: 10deg;
 
 .hero-card {
   @extend .card;
+
+  @include span-columns(12);
   @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
 
   height: 300px;
