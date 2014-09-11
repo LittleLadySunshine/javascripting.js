@@ -14,7 +14,7 @@ describe "Showcases" do
   end
 
   it "shows the students from the cohort" do
-    cohort = create_cohort(:name => "Awesome Cohort")
+    cohort = create_cohort(:name => "Awesome Cohort", :showcase => true)
     create_user(:cohort => cohort,
                 :first_name => "Jane",
                 :last_name => "Doe")
