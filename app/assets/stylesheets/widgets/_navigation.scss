@@ -44,7 +44,7 @@ header.navigation {
 
   background-color: $navigation-background;
   border-bottom: 1px solid transparentize($orange-dark, 0.5);
-  height: $navigation-height;
+  padding: 10px 0;
   width: 100%;
   z-index: 999;
   margin-bottom: $base-line-height;
