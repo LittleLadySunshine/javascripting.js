@@ -10,6 +10,8 @@ $gradient-angle: 10deg;
   @include span-columns(12);
   @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
 
+  margin-bottom: 30px;
+  border: none;
   height: 300px;
 
   .title {
