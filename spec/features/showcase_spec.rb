@@ -1,14 +1,16 @@
 require "rails_helper"
 
-feature "Showcases" do
-  it "shows the cohorts" do
-    create_cohort(:name => "Awesome Cohort")
-    create_cohort(:name => "Another Cohort")
+describe "Showcases" do
+  it "shows the cohorts that are showcaseable" do
+    create_cohort(:name => "Awesome Cohort", :showcase => true)
+    create_cohort(:name => "Another Cohort", :showcase => true)
+    create_cohort(:name => "Don't show", :showcase => false)
 
     visit root_path
 
     expect(page).to have_content("Awesome Cohort")
     expect(page).to have_content("Another Cohort")
+    expect(page).to have_no_content("Don't show")
   end
 
   it "shows the students from the cohort" do
@@ -34,4 +36,5 @@ feature "Showcases" do
     expect(page).to have_content("Jane Doe")
     expect(page).to have_content("John Smith")
   end
+
 end

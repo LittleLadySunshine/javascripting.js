@@ -18,6 +18,7 @@ feature "Cohorts" do
     attach_file "Hero", Rails.root.join("spec", "fixtures", "avatar.jpg")
 
     check "Employment phase"
+    check "Showcase"
 
     click_on("Save")
 
@@ -33,6 +34,7 @@ feature "Cohorts" do
     expect(find_field("Directions").value).to eq("These are some directions")
     expect(find_field("Pair feedback url").value).to eq("http://google.com/pair_feedback")
     expect(page).to have_checked_field("Employment phase")
+    expect(page).to have_checked_field("Showcase")
 
     fill_in("Name", :with => "Another new name")
 

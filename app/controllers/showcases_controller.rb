@@ -1,6 +1,6 @@
 class ShowcasesController < ApplicationController
   def index
-    @cohorts = Cohort.all.order(:start_date)
+    @cohorts = Cohort.where(:showcase => true).order(:start_date)
   end
 
   def show
