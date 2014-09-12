@@ -22,6 +22,18 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [300, 200]
   end
 
+  version :hero do
+    process :build_hero
+  end
+
+  def build_hero
+    manipulate! :format => 'png' do |img| 
+      img.crop_resized!(1440, 500, ::Magick::CenterGravity)
+      img.opacity = ::Magick::MaxRGB/2
+      img
+    end
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

@@ -14,7 +14,7 @@
       %tbody
         - @students.each do |student|
           %tr
-            %td= link_to student.full_name, student_path(student)
+            %td= link_to student.full_name, student_student_path(student)
             %td= student.phone
             %td= student.email
 

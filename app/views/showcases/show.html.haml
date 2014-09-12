@@ -7,7 +7,7 @@
 %ul.showcase
   - @cohort.students.order(:last_name).each do |student|
     %li
-      .container
+      = link_to student_path(student), :class => "container" do
         .image
           = image_tag student.avatar_url(:card)
         .header

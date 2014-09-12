@@ -1,0 +1,27 @@
+= link_to "Back", :back
+
+%h1= @student.full_name
+= image_tag(@student.avatar.url, class: "avatar")
+
+%dl
+  %dt Email:
+  %dd= @student.email
+
+  %dt Phone:
+  %dd= @student.phone
+
+  %dt Twitter:
+  %dd
+    - if @student.twitter.present?
+      = link_to @student.twitter, @student.twitter_url
+
+  %dt Linkedin:
+  %dd
+    - if @student.linkedin.present?
+      = link_to @student.linkedin, @student.linkedin
+
+  %dt Blog:
+  %dd
+    - if @student.blog.present?
+      = link_to @student.blog, @student.blog
+

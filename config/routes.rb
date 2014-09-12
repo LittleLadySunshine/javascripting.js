@@ -1,6 +1,8 @@
 Students::Application.routes.draw do
   root :to => "showcases#index"
+
   resources :showcases
+  resources :students, :only => :show
 
   get "/auth/:provider/callback" => "sessions#create"
   get "/auth/failure" => "sessions#failure"
@@ -12,7 +14,7 @@ Students::Application.routes.draw do
   namespace :student do
     get "/info" => "info#index", :as => "info"
 
-    resources :students, :only => :index
+    resources :students, :only => [:index, :show]
 
     resource :personal_project, :only => [:show, :edit, :update]
 
@@ -21,7 +23,6 @@ Students::Application.routes.draw do
     end
   end
 
-  resources :students, :only => :show
 
   namespace :instructor do
     get "dashboard" => "dashboard#index"

@@ -1,11 +1,5 @@
-class StudentsController < SignInRequiredController
-
+class StudentsController < ApplicationController
   def show
     @student = User.find(params[:id])
   end
-
-  def edit
-    @student = User.find(params[:id])
-  end
-
 end
