@@ -26,6 +26,7 @@ $gradient-angle: 10deg;
 
 .hero {
   margin-top: -1.5em;
+  box-shadow: inset 0px 0px 10px 0px #424242;
 
   @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
 
@@ -33,21 +34,33 @@ $gradient-angle: 10deg;
   background-position: top;
   background-size: cover;
   padding-bottom: 4em;
-  min-height: 500px;
+  height: 500px;
 
   .hero-inner {
     @include outer-container;
     @include clearfix;
-    padding: 3em 3em 3em 0;
     margin: auto;
     color: $hero-color;
+    padding-top: 100px;
+
+    .profile {
+      img {
+        padding: 4px;
+        line-height: 1.42857;
+        background-color: #FFF;
+        border: 1px solid #DDD;
+        border-radius: 4px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
 
     .hero-copy {
       margin-top: 150px;
 
       h1 {
         background-color: white;
-	opacity: 0.9;
+        opacity: 0.9;
         text-transform: uppercase;
         color: $dark-gray;
         font-size: 1.6em;
@@ -55,11 +68,25 @@ $gradient-angle: 10deg;
         font-weight: normal;
         padding: 30px;
         display: inline-block;
-        text-align: left;
 
         @include media($large-screen) {
           font-size: 1.8em;
         }
+      }
+    }
+
+    .hero-subtitle {
+      margin-top: 30px;
+
+      h1 {
+        font-family: "Noto Sans";
+        font-weight: bolder;
+        color: #F5F5F5;
+        font-size: 35px;
+        line-height: 40px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        text-align: center;
       }
     }
   }

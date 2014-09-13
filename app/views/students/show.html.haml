@@ -1,11 +1,11 @@
 - content_for(:outside_main) do
   .hero{:style => "background-image: url(#{@student.avatar_url(:hero)}), linear-gradient(10deg, #844507, #d37b05), none;"}
     .hero-inner
-      .hero-copy
+      .profile
+        = image_tag @student.avatar_url(:card)
+      .hero-subtitle
         %h1
-          = @student.first_name
-          %br
-          = @student.last_name
+          = @student.full_name
 
 
 .student-information

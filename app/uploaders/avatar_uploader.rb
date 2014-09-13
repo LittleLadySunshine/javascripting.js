@@ -30,7 +30,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     manipulate! :format => 'png' do |img| 
       img.crop_resized!(1440, 500, ::Magick::CenterGravity)
       img.opacity = ::Magick::MaxRGB/2
-      img
+      img.blur_image(0, 50)
     end
   end
 
