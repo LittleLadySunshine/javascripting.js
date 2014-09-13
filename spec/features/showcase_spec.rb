@@ -49,8 +49,8 @@ describe "Showcases" do
     click_on "Jane Doe"
 
     expect(page).to have_content("Jane Doe")
-    expect(page).to have_link("https://github.com/janes_github_username")
-    expect(page).to have_link("https://linkedin.com/jane")
+    expect(find("a[href='https://linkedin.com/jane']")).to be
+    expect(find("a[href='https://github.com/janes_github_username']")).to be
   end
 
 end
