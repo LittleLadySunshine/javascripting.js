@@ -5,7 +5,7 @@
         %h1= @cohort.name
 
 %ul.showcase
-  - @cohort.students.order(:last_name).each do |student|
+  - @cohort.students.order(:first_name).each do |student|
     %li
       = link_to student_path(student), :class => "container" do
         .image
