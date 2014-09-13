@@ -157,3 +157,23 @@ ul.showcase {
 
   }
 }
+
+.student-information {
+  overflow: hidden;
+  padding: 3em 0;
+
+  aside {
+    @include span-columns(12);
+
+    .links {
+      text-align: center;
+
+      img {
+        margin: auto;
+        vertical-align: middle;
+        padding: 10px;
+        width: 75px;
+      }
+    }
+  }
+}

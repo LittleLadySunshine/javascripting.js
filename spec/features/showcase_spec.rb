@@ -3,11 +3,12 @@ require "rails_helper"
 describe "Showcases" do
   def cohort_with_students
     cohort = create_cohort(:name => "Awesome Cohort", :showcase => true)
-    
+
     create_user(:cohort => cohort,
                 :first_name => "Jane",
                 :last_name => "Doe",
-                :github_username => "janes_github_username")
+                :github_username => "janes_github_username",
+                :linkedin => "https://linkedin.com/jane")
 
     create_user(:cohort => cohort,
                 :first_name => "John",
@@ -48,6 +49,8 @@ describe "Showcases" do
     click_on "Jane Doe"
 
     expect(page).to have_content("Jane Doe")
+    expect(page).to have_link("https://github.com/janes_github_username")
+    expect(page).to have_link("https://linkedin.com/jane")
   end
 
 end

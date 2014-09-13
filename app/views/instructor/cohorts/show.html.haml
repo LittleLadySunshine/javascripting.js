@@ -15,15 +15,13 @@
             Actions
         %tbody
           - students.each do |student|
-            - highlight = (student == lucky_winner)
-
-            %tr.student{class: highlight ? 'lucky_winner' : ''}
+            %tr.student
               %td
                 = link_to student.full_name, instructor_cohort_student_path(cohort, student)
               %td
                 %a{"href" => "#", "data-clipboard-text" => student.email}= student.email
               %td
                 - if student.github_username
-                  = link_to "GitHub", "http://github.com/#{student.github_username}?tab=activity", target: '_blank'
+                  = link_to "GitHub", student.github_url, target: '_blank'
       .actions
         = link_to "Add Student", new_instructor_cohort_student_path(params[:id])

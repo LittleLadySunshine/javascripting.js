@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
+  def github_url
+    "https://github.com/#{github_username}"
+  end
+
   def completed_applications
     applications.where(:status => Application.statuses[:applied]).includes(:job)
   end
