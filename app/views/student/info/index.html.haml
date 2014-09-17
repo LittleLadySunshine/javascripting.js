@@ -32,42 +32,12 @@
       that all instructors get your email. If you need to get in touch with an instructor individually
       please use the information below.
 
-    .instructor-wrap
-      .instructor-name
-        Mike Gehard
-      .instructor-email
-        #{mail_to 'mike@gschool.it'}
-      .instructor-phone
-        970-471-9835
-
-    .instructor-wrap
-      .instructor-name
-        Jeff Dean
-      .instructor-email
-        #{mail_to 'jeff@galvanize.it'}
-      .instructor-phone
-        917-414-7801
-
-    .instructor-wrap
-      .instructor-name
-        Jeff Taggart
-      .instructor-email
-        #{mail_to 'taggart@galvanize.it'}
-      .instructor-phone
-        303-910-4832
-
-    .instructor-wrap
-      .instructor-name
-        Hunter Gillane
-      .instructor-email
-        #{mail_to 'hunter@galvanize.it'}
-      .instructor-phone
-        949-370-3783
-
-    .instructor-wrap
-      .instructor-name
-        Kinsey Durham
-      .instructor-email
-        #{mail_to 'kinsey@gschool.it'}
-      .instructor-phone
-        505-249-0403
+    - User.instructors.each do |instructor|
+      .instructor-wrap
+        .instructor-name
+          = instructor.first_name
+          = instructor.last_name
+        .instructor-email
+          #{mail_to instructor.email}
+        .instructor-phone
+          = instructor.phone

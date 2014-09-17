@@ -6,6 +6,14 @@ feature "A student viewing their dashboard" do
                             google_maps_location: "this is a google map url",
                             directions: '<p>The classroom is on the right</p><p>This is some more text</p>')
     create_user(first_name: "Jeff", last_name: "Taggart", email: "user@example.com", cohort: @cohort)
+    User.create!(
+      first_name: "Admin",
+      last_name: "User",
+      email: "admin_user@example.com",
+      github_username: "admin_username",
+      cohort: @cohort,
+      role_bit_mask: 1
+    )
     mock_omniauth
 
     visit root_path
@@ -37,7 +45,7 @@ feature "A student viewing their dashboard" do
     expect(page).to have_content("Another Student")
     expect(page).to have_content("One More")
     expect(page).to have_content("Jeff Taggart")
-    
+
     expect(page).to have_no_content("Not Me")
 
     click_on "One More"
@@ -54,6 +62,7 @@ feature "A student viewing their dashboard" do
 
     expect(page).to have_content('The classroom is on the right')
     expect(page).to have_content('This is some more text')
+    expect(page).to have_content('Admin User')
 
     expect(page).to have_no_content('<p>This is some more text</p>')
   end
@@ -63,7 +72,7 @@ feature "A student viewing their dashboard" do
 
     @cohort.update!(pair_feedback_url: "http://google.com")
     visit current_url
-    
+
     expect(page).to have_link("Pair Feedback", :href => "http://google.com")
   end
 
