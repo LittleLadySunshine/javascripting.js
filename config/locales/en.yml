@@ -31,13 +31,9 @@ en:
   access_denied: "You are not authorized to access this site."
   signed_in_user_required_for_page: "Please sign in to access that page."
   submit: "Submit"
-  assessments:
-    quiz:
-      already_submitted: "This quiz was already submitted and can not be changed."
   nav:
     sign_in: "Sign In"
     sign_out: "Sign Out"
-    quiz_templates: "Quiz Templates"
     instructors: "Cohorts"
     tutorials_site: "Tutorials Site"
     exercises: "Exercises"

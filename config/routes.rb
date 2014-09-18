@@ -42,16 +42,4 @@ Students::Application.routes.draw do
   get "/personal_information" => "personal_information#edit", :as => :personal_information
   patch "/personal_information" => "personal_information#update"
 
-  namespace :assessments do
-    resources :quiz_templates do
-      post :create_quizzes_for_cohort, :on => :member
-      post :create_quiz_for_user, :on => :member
-    end
-    resources :quizzes do
-      post :submit, :on => :member
-    end
-    get "/quiz_grades/:cohort_id/:quiz_template_id" => "quiz_grades#summary", :as => "quiz_grades_summary"
-    get "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#question", :as => "quiz_grades_question"
-    post "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#grade_question"
-  end
 end
