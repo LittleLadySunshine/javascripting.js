@@ -34,24 +34,4 @@ describe User do
     user.add_role(User::INSTRUCTOR)
     expect(user.is?(User::INSTRUCTOR)).to eq true
   end
-
-  describe "#completed_applications" do
-    it "gives a list of all the applications that are finished" do
-      user = create_user
-      pending_application = create_application(user: user, status: Application.statuses[:pending])
-      completed_application = create_application(user: user, status: Application.statuses[:applied])
-
-      expect(user.completed_applications.all).to eq([completed_application])
-    end
-  end
-
-  describe "#pending_applications" do
-    it "gives a list of all the applications that are finished" do
-      user = create_user
-      pending_application = create_application(user: user, status: Application.statuses[:pending])
-      completed_application = create_application(user: user, status: Application.statuses[:applied])
-
-      expect(user.pending_applications.all).to eq([pending_application])
-    end
-  end
 end

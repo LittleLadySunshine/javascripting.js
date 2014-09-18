@@ -35,8 +35,7 @@ module ObjectFactories
       :directions => "<p>Some directions</p>",
       :google_maps_location => 'https://google.com',
       :start_date => "01/01/2001",
-      :end_date => "06/01/2001",
-      :employment_phase => true
+      :end_date => "06/01/2001"
     }
     Cohort.new(defaults.merge(overrides))
   end
@@ -70,21 +69,6 @@ module ObjectFactories
     end
   end
 
-  def new_company(overrides = {})
-    defaults = {
-      :name => 'Pivotal Labs',
-      :contact_name => 'Mike',
-      :contact_email => 'mike@example.com'
-    }
-    Company.new(defaults.merge(overrides))
-  end
-
-  def create_company(overrides = {})
-    new_company(overrides).tap do |c|
-      c.save!
-    end
-  end
-
   def new_personal_project(overrides = {})
     defaults = {
       :name => "Name",
@@ -101,38 +85,5 @@ module ObjectFactories
     new_personal_project(overrides).tap do |pp|
       pp.save!
     end
-  end
-
-  def create_job(overrides = {})
-    new_job(overrides).tap do |m|
-      m.save!
-    end
-  end
-
-  def new_job(overrides = {})
-    defaults = {
-      :company => new_company,
-      :location => 'Denver, CO',
-      :application_due_date => '07/20/2014',
-      :poster => new_user,
-      :visibility => "Public",
-      :application_type => "Group Application"
-    }
-    Job.new(defaults.merge(overrides))
-  end
-
-  def create_application(overrides = {})
-    new_application(overrides).tap do |m|
-      m.save!
-    end
-  end
-
-  def new_application(overrides = {})
-    defaults = {
-      :resume => 'resume.pdf',
-      :user => new_user,
-      :job => new_job
-    }
-    Application.new(defaults.merge(overrides))
   end
 end

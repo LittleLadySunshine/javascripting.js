@@ -1,7 +1,0 @@
-%h2 Apply!
-%h6 Please upload your cover letter (optional) and resume as one file here...
-= form_for [@application.job, @application] do |f|
-  = f.label :resume
-  = f.file_field :resume
-
-  = f.submit "Apply for this position", class: "action", id: "save-application-action"

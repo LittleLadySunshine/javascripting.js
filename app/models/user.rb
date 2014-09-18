@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
 
   belongs_to :cohort
   has_many :submissions
-  has_many :applications
-  has_many :jobs, :through => :applications
   has_one :personal_project
 
   mount_uploader :avatar, AvatarUploader
@@ -49,13 +47,5 @@ class User < ActiveRecord::Base
 
   def github_url
     "https://github.com/#{github_username}"
-  end
-
-  def completed_applications
-    applications.where(:status => Application.statuses[:applied]).includes(:job)
-  end
-
-  def pending_applications
-    applications.where(:status => Application.statuses[:pending]).includes(:job)
   end
 end

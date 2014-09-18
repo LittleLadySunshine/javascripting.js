@@ -5,7 +5,7 @@ feature "Cohorts" do
 
   scenario "an instructor creating and editing a cohort" do
     sign_in(instructor)
-    
+
     click_on("Cohorts")
     click_on("New Cohort")
 
@@ -17,7 +17,6 @@ feature "Cohorts" do
     fill_in("Pair feedback url", :with => "http://google.com/pair_feedback")
     attach_file "Hero", Rails.root.join("spec", "fixtures", "avatar.jpg")
 
-    check "Employment phase"
     check "Showcase"
 
     click_on("Save")
@@ -33,7 +32,6 @@ feature "Cohorts" do
     expect(find_field("Google maps location").value).to eq("http://google.com")
     expect(find_field("Directions").value).to eq("These are some directions")
     expect(find_field("Pair feedback url").value).to eq("http://google.com/pair_feedback")
-    expect(page).to have_checked_field("Employment phase")
     expect(page).to have_checked_field("Showcase")
 
     fill_in("Name", :with => "Another new name")
@@ -47,7 +45,7 @@ feature "Cohorts" do
   context "with an already existing cohort" do
     let!(:cohort) { create_cohort(:name => 'Boulder gSchool') }
     let!(:student) { create_user(:first_name => "Student", :last_name => "User", :github_id => '123', :cohort_id => cohort.id, :github_username => "Student12345") }
-    
+
     scenario "instructor can add student to cohort" do
       sign_in(instructor)
 

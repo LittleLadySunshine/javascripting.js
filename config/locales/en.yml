@@ -37,7 +37,6 @@ en:
   nav:
     sign_in: "Sign In"
     sign_out: "Sign Out"
-    jobs: "Employment"
     quiz_templates: "Quiz Templates"
     instructors: "Cohorts"
     tutorials_site: "Tutorials Site"
@@ -45,4 +44,3 @@ en:
   student_mailer:
     invitation:
       subject: 'Welcome to the gSchool student portal'
-

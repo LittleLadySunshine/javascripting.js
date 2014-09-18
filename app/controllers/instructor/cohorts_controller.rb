@@ -65,7 +65,6 @@ class Instructor::CohortsController < InstructorRequiredController
                                    :end_date,
                                    :google_maps_location,
                                    :directions,
-                                   :employment_phase,
                                    :showcase,
                                    :pair_feedback_url,
                                    :hero)

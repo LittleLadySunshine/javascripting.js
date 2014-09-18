@@ -42,15 +42,6 @@ Students::Application.routes.draw do
   get "/personal_information" => "personal_information#edit", :as => :personal_information
   patch "/personal_information" => "personal_information#update"
 
-  resources :jobs, except: [:edit, :update] do
-    resources :applications do
-      post :confirm
-    end
-  end
-  get "/job_dashboard" => "jobs#job_dashboard", :as => :job_dashboard
-  get "/job_dashboard/admin" => "jobs#admin_dashboard", :as => :admin_job_dashboard
-  resources :companies
-
   namespace :assessments do
     resources :quiz_templates do
       post :create_quizzes_for_cohort, :on => :member
