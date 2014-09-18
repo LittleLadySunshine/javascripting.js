@@ -54,15 +54,4 @@ Students::Application.routes.draw do
     get "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#question", :as => "quiz_grades_question"
     post "/quiz_grades/:cohort_id/:quiz_template_id/:question_index" => "quiz_grades#grade_question"
   end
-
-  namespace :clicker do
-    get "/" => "location#new"
-    get "/:location" => "role#new", :as => :new_role
-    get "/:location/instructor" => "instructor#show", :as => :instructor
-    get "/:location/instructor/boot" => "instructor#boot"
-    post "/:location/instructor/reset" => "instructor#reset"
-    get "/:location/student" => "student#show", :as => :student
-    post "/:location/student/you-lost-me" => "student#you_lost_me"
-    post "/:location/student/caught-up" => "student#caught_up"
-  end
 end

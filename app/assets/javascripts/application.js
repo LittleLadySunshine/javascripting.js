@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require pusher
 //= require underscore
-//= require clicker/app
 //= require zeroclipboard
 //= require_tree .
 

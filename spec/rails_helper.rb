@@ -31,13 +31,4 @@ RSpec.configure do |config|
   connection.directories.create(:key => 'students-gschool-test')
 end
 
-def in_browser(browser_name)
-  old_session = Capybara.session_name
-
-  Capybara.session_name = browser_name
-  yield
-
-  Capybara.session_name = old_session
-end
-
 OmniAuth.config.test_mode = true
