@@ -11,20 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911012330) do
+ActiveRecord::Schema.define(version: 20140918153856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "applications", force: true do |t|
-    t.string   "resume"
-    t.string   "cover_letter"
-    t.integer  "user_id"
-    t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "status",       default: 0, null: false
-  end
 
   create_table "attendance_sheets", force: true do |t|
     t.date     "sheet_date"
@@ -56,44 +46,14 @@ ActiveRecord::Schema.define(version: 20140911012330) do
     t.text     "directions"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "employment_phase",     default: false, null: false
     t.string   "pair_feedback_url"
     t.string   "hero"
     t.boolean  "showcase",             default: false, null: false
   end
 
-  create_table "companies", force: true do |t|
-    t.string "name"
-    t.string "contact_name"
-    t.string "contact_email"
-  end
-
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.string   "github_repo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobs", force: true do |t|
-    t.string   "location"
-    t.string   "salary"
-    t.string   "visibility"
-    t.string   "job_title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "application_due_date"
-    t.string   "application_type"
-    t.integer  "company_id"
-    t.integer  "posted_by_id"
-    t.string   "description_link"
-  end
-
-  create_table "pairings", force: true do |t|
-    t.decimal  "hours"
-    t.integer  "user1_id"
-    t.integer  "user2_id"
-    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
