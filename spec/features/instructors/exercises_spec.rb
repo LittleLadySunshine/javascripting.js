@@ -147,11 +147,11 @@ feature "Exercises" do
     click_on cohort.name
     click_on "Student User"
 
-    within(".exercises", :text => "Completed Exercises") do
+    within(".complete-exercises") do
       expect(page).to have_content("Nested Hashes")
     end
 
-    within(".exercises", :text => "Incomplete Exercises") do
+    within(".incomplete-exercises") do
       expect(page).to have_content("Arrays")
     end
   end

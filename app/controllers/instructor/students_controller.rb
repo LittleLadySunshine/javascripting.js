@@ -1,6 +1,6 @@
 class Instructor::StudentsController < InstructorRequiredController
 
-  layout 'application_bootstrap', only: %w(create new edit update)
+  layout 'application_bootstrap'
 
   before_action do
     @cohort = Cohort.find(params[:cohort_id])
