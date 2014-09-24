@@ -1,44 +1,55 @@
-= form_for([:instructor, @cohort]) do |f|
-  = errors_for(f)
+= form_for  [:instructor, @cohort], html: {class: "form-horizontal"} do |f|
+  = bootstrap_errors_for(f)
 
-  %p
-    = f.label :name
-    = f.text_field :name
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control"
 
-  %p
-    = f.label :start_date
-    = f.date_field :start_date
+  .form-group
+    = f.label :start_date, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.date_field :start_date, class: "form-control"
 
-  %p
-    = f.label :end_date
-    = f.date_field :end_date
+  .form-group
+    = f.label :end_date, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.date_field :end_date, class: "form-control"
 
-  %p
-    = f.label :google_maps_location
-    = f.text_field :google_maps_location
+  .form-group
+    = f.label :google_maps_location, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :google_maps_location, class: "form-control"
 
-  %p
-    = f.label :directions
-    = f.text_field :directions
+  .form-group
+    = f.label :directions, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :directions, class: "form-control"
 
-  %p
-    = f.label :pair_feedback_url
-    = f.text_field :pair_feedback_url
+  .form-group
+    = f.label :pair_feedback_url, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :pair_feedback_url, class: "form-control"
 
-  %p
-    = f.label :curriculum_site_url
-    = f.text_field :curriculum_site_url
+  .form-group
+    = f.label :curriculum_site_url, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :curriculum_site_url, class: "form-control"
 
-  %p
-    = f.label :showcase
-    = f.check_box :showcase
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        %label
+          = f.check_box :showcase
+          Showcase
 
-  %p
-    = f.label :hero
-    = f.file_field :hero
+  .form-group
+    = f.label :hero, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.file_field :hero, class: "form-control"
 
   - if @cohort.hero.present?
     = image_tag @cohort.hero.url
 
-
-  = f.submit "Save"
+  .col-md-offset-2
+    = f.submit "Save", class: "btn btn-primary"

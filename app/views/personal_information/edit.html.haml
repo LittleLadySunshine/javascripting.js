@@ -7,52 +7,52 @@
 
   .form-group
     = f.label :address_1, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :address_1, class: "form-control"
 
   .form-group
     = f.label :address_2, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :address_2, class: "form-control"
 
   .form-group
     = f.label :city, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :city, class: "form-control"
 
   .form-group
     = f.label :state, class: "col-sm-2 control-label"
-    .col-sm-6
+    .col-sm-4
       = f.select :state, us_states, {include_blank: true}, class: "form-control"
 
   .form-group
     = f.label :zip_code, "Zip Code", class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :zip_code, class: "form-control"
 
   .form-group
     = f.label :phone, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :phone, class: "form-control"
 
   .form-group
     = f.label :twitter, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :twitter, class: "form-control"
 
   .form-group
     = f.label :linkedin, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :linkedin, class: "form-control"
 
   .form-group
     = f.label :blog, class: "col-sm-2 control-label"
-    .col-sm-10
+    .col-sm-4
       = f.text_field :blog, class: "form-control"
 
   .form-group
     = f.label :shirt_size, "Shirt Size", class: "col-sm-2 control-label"
-    .col-sm-6
+    .col-sm-4
       - options = [["Women's-S"], ["Women's-M"], ["Women's-L"], ["Men's-S"], ["Men's-M"], ["Men's-L"], ["Men's-XL"]]
       = f.select :shirt_size, options, {prompt: true}, class: "form-control"
 
