@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918153856) do
+ActiveRecord::Schema.define(version: 20140924174644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140918153856) do
     t.string   "pair_feedback_url"
     t.string   "hero"
     t.boolean  "showcase",             default: false, null: false
+    t.string   "curriculum_site_url",                  null: false
   end
 
   create_table "exercises", force: true do |t|
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(version: 20140918153856) do
     t.string   "zip_code"
     t.string   "linkedin"
     t.string   "avatar"
+    t.string   "shirt_size"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree

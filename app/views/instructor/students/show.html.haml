@@ -32,6 +32,8 @@
     %dd
       - if @student.blog.present?
         = link_to @student.blog, @student.blog
+    %dt Shirt Size:
+    %dd= @student.shirt_size
 
 - if @student.personal_project
   %section
