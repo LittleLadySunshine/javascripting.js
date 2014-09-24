@@ -1,4 +1,7 @@
 class PersonalInformationController < SignInRequiredController
+
+  layout 'application_bootstrap'
+
   def edit
     @user = user_session.current_user
   end

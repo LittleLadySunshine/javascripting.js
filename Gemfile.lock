@@ -31,6 +31,8 @@ GEM
       activerecord (>= 3.2, < 5)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
@@ -272,6 +274,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  bootstrap-sass (~> 3.2.0)
   byebug
   capybara
   carrierwave

@@ -18,6 +18,7 @@ gem "neat", "1.5.1"
 gem "acts-as-taggable-on"
 gem "zeroclipboard-rails"
 gem "rmagick", :require => 'RMagick'
+gem 'bootstrap-sass', '~> 3.2.0'
 
 gem "carrierwave"
 gem "fog"
