@@ -48,7 +48,7 @@
                   %li
                     = link_to personal_information_path do
                       %i.glyphicon.glyphicon-pencil
-                      Personal Information 
+                      Personal Information
                   %li.divider
                   %li
                     = link_to logout_path do
@@ -67,9 +67,8 @@
       = yield
 
     %footer
-      %section
-        .github
-          = link_to image_tag("GitHub-Mark-32px.png"), "https://github.com/gSchool/students.gschool.it", target: "_blank"
+      .container
+        = link_to image_tag("GitHub-Mark-32px.png"), "https://github.com/gSchool/students.gschool.it", target: "_blank", class: "pull-right"
 
     = javascript_include_tag 'application'
     = content_for(:javascripts)
