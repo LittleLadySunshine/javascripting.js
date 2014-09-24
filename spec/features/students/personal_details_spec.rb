@@ -22,6 +22,7 @@ feature "Student adding personal details" do
     fill_in "Twitter", with: "jetaggart"
     fill_in "Linkedin", with: "http://linkedin.com/jetaggart"
     fill_in "Blog", with: "someblog.com"
+    select "Women's-M", from: "Shirt Size"
 
     click_on "Save"
     expect(page).to have_content("Personal information was successfully updated")
@@ -37,6 +38,7 @@ feature "Student adding personal details" do
     expect(find_field("Twitter").value).to eq("jetaggart")
     expect(find_field("Linkedin").value).to eq("http://linkedin.com/jetaggart")
     expect(find_field("Blog").value).to eq("someblog.com")
+    expect(find_field("Shirt Size").value).to eq("Women's-M")
   end
 
   scenario "an instructor can see student information" do
@@ -55,6 +57,7 @@ feature "Student adding personal details" do
                 twitter: "twitter_handle",
                 linkedin: "http://linkedin.com/profile",
                 blog: "blog.com",
+                shirt_size: "Men's-L",
                 cohort: @cohort)
 
     create_user(first_name: "Instructor", last_name: "User", email: "admin@example.com", cohort: @cohort, role_bit_mask: User::INSTRUCTOR)
@@ -80,5 +83,6 @@ feature "Student adding personal details" do
     expect(page).to have_content("twitter_handle")
     expect(page).to have_content("http://linkedin.com/profile")
     expect(page).to have_content("blog.com")
+    expect(page).to have_content("Men's-L")
   end
 end
