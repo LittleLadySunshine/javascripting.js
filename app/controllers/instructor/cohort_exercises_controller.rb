@@ -25,7 +25,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
 
   def destroy
     CohortExercise.find(params[:id]).destroy
-    flash[:success] = "Exercise removed."
+    flash[:notice] = "Exercise removed."
     redirect_to :action => :index
   end
 

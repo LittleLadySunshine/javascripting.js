@@ -14,7 +14,7 @@ class Student::PersonalProjectsController < SignInRequiredController
     @personal_project = PersonalProject.find_or_initialize_by(:user_id => user.id)
 
     if @personal_project.update(personal_project_params)
-      flash[:success] = "Personal Project Saved"
+      flash[:notice] = "Personal Project Saved"
       redirect_to student_personal_project_path
     else
       render :edit

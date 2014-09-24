@@ -10,8 +10,7 @@ class PersonalInformationController < SignInRequiredController
     @user = user_session.current_user
 
     if @user.update(personal_project_params)
-      flash[:success] = "Personal information was successfully updated"
-      redirect_to personal_information_path
+      redirect_to personal_information_path, notice: "Personal information was successfully updated"
     else
       render :edit
     end
