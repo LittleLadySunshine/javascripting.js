@@ -1,4 +1,11 @@
 class Instructor::StudentsController < InstructorRequiredController
+
+  layout 'application_bootstrap', only: %w(create new edit update)
+
+  before_action do
+    @cohort = Cohort.find(params[:cohort_id])
+  end
+
   def new
     @student = User.new
   end
