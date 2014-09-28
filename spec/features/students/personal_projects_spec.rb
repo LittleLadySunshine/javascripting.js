@@ -13,6 +13,7 @@ feature "Student adding a personal project" do
     click_on I18n.t("nav.sign_in")
     click_on "Personal Project"
 
+    expect(page).to have_content("Edit your Personal Project")
     fill_in "Name", :with => "New Awesome App"
     fill_in "Description", :with => "This is a description of my application. This needs a lot of words to be valid"
     fill_in "GitHub Repo name", :with => "new-awesome-app"
