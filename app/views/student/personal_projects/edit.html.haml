@@ -1,21 +1,33 @@
-%h2 Edit your Personal Project
-%ul
-  = form_for @personal_project, :url => student_personal_project_path, :method => :patch do |f|
-    = errors_for(f)
-    %li
-      = f.label :name
-      = f.text_field :name
-    %li
-      = f.label :description
-      = f.text_area :description
-    %li
-      = f.label :github_repo_name, "GitHub Repo name"
-      = f.text_field :github_repo_name
-    %li
-      = f.label :tracker_url, "Tracker Project"
-      = f.text_field :tracker_url
-    %li
-      = f.label :production_url, "Production URL (i.e. Heroku)"
-      = f.text_field :production_url
-    %li
-      = f.submit "Save"
+.page-header
+  %h2 Edit your Personal Project
+
+= form_for @personal_project, :url => student_personal_project_path, :method => :patch, html: {class: "form-horizontal"} do |f|
+  = bootstrap_errors_for(f)
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control"
+
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_area :description, class: "form-control"
+
+  .form-group
+    = f.label :github_repo_name, "GitHub Repo name", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :github_repo_name, class: "form-control"
+
+  .form-group
+    = f.label :tracker_url, "Tracker Project", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :tracker_url, class: "form-control"
+
+  .form-group
+    = f.label :production_url, "Production URL (i.e. Heroku)", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :production_url, class: "form-control"
+
+  .col-sm-offset-2
+    = f.submit "Save", class: 'btn btn-primary'

@@ -1,4 +1,6 @@
 class Student::PersonalProjectsController < SignInRequiredController
+  layout 'application_bootstrap', only: [:update, :edit]
+
   def show
     @personal_project = user_session.current_user.personal_project
     redirect_to(:action => :edit) unless @personal_project.present?
