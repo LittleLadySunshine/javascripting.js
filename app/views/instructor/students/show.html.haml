@@ -1,65 +1,90 @@
-%section
-  = link_to "Back to cohort", instructor_cohort_path(params[:cohort_id])
+%ol.breadcrumb
+  %li
+    = link_to "Cohorts", instructor_dashboard_path
+  %li
+    = link_to @cohort.name, instructor_cohort_path(@cohort)
+  %li.active
+    = @student.full_name
+
+.page-header
+  = link_to "Edit", edit_instructor_cohort_student_path(params[:cohort_id], params[:id]), class: "btn btn-info pull-right"
   %h1= @student.full_name
-  = image_tag(@student.avatar.url, class: "avatar")
 
-%section
-  %dl
-    %dt Email:
-    %dd= @student.email
+.row
+  .col-md-4
+    = image_tag(@student.avatar.url, style: "width: 100%;")
 
-    %dt Address:
-    %dd
-      %p= @student.address_1
-      %p= @student.address_2
-      %p= "#{@student.city}, #{@student.state}"
-      %p= @student.zip_code
+  .col-md-8
+    %dl.dl-horizontal
+      %dt Email
+      %dd= mail_to @student.email, @student.email
 
-    %dt Phone:
-    %dd= @student.phone
+      %dt Address 1
+      %dd= @student.address_1
 
-    %dt Twitter:
-    %dd
-      - if @student.twitter.present?
-        = link_to @student.twitter, @student.twitter_url
+      %dt Address 2
+      %dd= @student.address_2
 
-    %dt Linkedin:
-    %dd
-      - if @student.linkedin.present?
-        = link_to @student.linkedin, @student.linkedin
+      %dt City / State
+      %dd= [@student.city, @student.state].reject(&:blank?).join(", ")
 
-    %dt Blog:
-    %dd
-      - if @student.blog.present?
-        = link_to @student.blog, @student.blog
-    %dt Shirt Size:
-    %dd= @student.shirt_size
+      %dt Zip
+      %dd= @student.zip_code
 
-- if @student.personal_project
-  %section
-    %h2 Personal Project
-    %dl
-      %dt Name:
-      %dd= @student.personal_project.name
+      %dt Phone
+      %dd= @student.phone
 
-      %dt Description:
-      %dd= @student.personal_project.description
+      %dt Twitter
+      %dd
+        - if @student.twitter.present?
+          = link_to @student.twitter, @student.twitter_url
 
-      %p= link_to "GitHub", @student.personal_project.github_repo_url
-      %p= link_to "Tracker", @student.personal_project.tracker_url
-      %p= link_to "Production", @student.personal_project.production_url
+      %dt LinkedIn
+      %dd
+        - if @student.linkedin.present?
+          = link_to @student.linkedin, @student.linkedin
 
-%section
-  %h2 Exercises
-  .exercises
-    %h3 Completed Exercises
-    %ul
-    - @student.completed_exercises.each do |exercise|
-      %li= exercise.name
-  .exercises
-    %h3 Incomplete Exercises
-    %ul
-    - @student.incomplete_exercises.each do |exercise|
-      %li= exercise.name
+      %dt Blog
+      %dd
+        - if @student.blog.present?
+          = link_to @student.blog, @student.blog
 
-  = link_to "Edit", edit_instructor_cohort_student_path(params[:cohort_id], params[:id])
+      %dt Shirt Size
+      %dd= @student.shirt_size
+
+    - if @student.personal_project
+      %h2 Personal Project
+      %dl
+        %dt Name:
+        %dd= @student.personal_project.name
+
+        %dt Description:
+        %dd= @student.personal_project.description
+
+        %p= link_to "GitHub", @student.personal_project.github_repo_url
+        %p= link_to "Tracker", @student.personal_project.tracker_url
+        %p= link_to "Production", @student.personal_project.production_url
+
+.row
+  .col-md-12
+    %h2 Exercises
+
+    %section.complete-exercises
+      %h3 Completed Exercises
+      - if @student.completed_exercises.present?
+        %ul
+          - @student.completed_exercises.each do |exercise|
+            %li= exercise.name
+      - else
+        .well
+          There are no completed exercises
+
+    %section.incomplete-exercises
+      %h3 Incomplete Exercises
+      - if @student.incomplete_exercises.present?
+        %ul
+          - @student.incomplete_exercises.each do |exercise|
+            %li= exercise.name
+      - else
+        .well
+          There are no incomplete exercises
