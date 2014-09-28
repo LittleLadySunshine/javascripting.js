@@ -25,7 +25,10 @@ feature "Exercises" do
     expect(page).to have_content("easy")
 
     expect(find_link("Bunch of array")['href']).to eq("https://github.com/gSchool/repo")
-    find(".edit-exercise", :visible => false).click
+
+    within("table") do
+      find(".glyphicon-pencil", :visible => false).find(:xpath,".//..").click
+    end
 
     fill_in "Name", :with => "Bunch of Hashes"
     fill_in "GitHub Repo", :with => "https://example.com/hash_repo"
