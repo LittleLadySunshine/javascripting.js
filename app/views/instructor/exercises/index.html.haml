@@ -1,17 +1,15 @@
-%section
+.page-header
   %h2 gSchool Exercises
 
-  .action-table
-    .filter
-      = form_tag({}, {method: :get}) do
-        = label_tag "filter", "Filter by"
-        = text_field_tag "filter", params[:filter], id: "filter"
-        .actions
-          = submit_tag "Filter"
-          = link_to "Clear Filters", instructor_exercises_path, class: "cancel"
-
-  .action-table
-    %table
+  .form-group
+    = form_tag({}, method: :get, html: {class: "form-horizontal"}) do
+      = label_tag "filter", "Filter by", class: "col-sm-2 control-label"
+      .col-sm-12
+        = text_field_tag "filter", params[:filter], id: "filter", class: "form-control"
+        = link_to "Clear Filters", instructor_exercises_path, class: 'btn btn-default'
+        = submit_tag "Filter", class: 'btn btn-primary'
+  .col-sm-12
+    %table{class: "table"}
       %thead
         %th Exercise Name
         %th Tags
@@ -21,7 +19,8 @@
           %tr
             %td= link_to exercise.name, exercise.github_repo_url
             %td= exercise.tag_list
-            %td= link_to(edit_instructor_exercise_path(exercise), class: 'edit-exercise') { icon('pencil') }
+            %td
+              = link_to edit_instructor_exercise_path(exercise) do
+                %i.glyphicon.glyphicon-pencil
 
-    .actions
-      = link_to 'Create Exercise', new_instructor_exercise_path, class: 'button'
+    = link_to 'Create Exercise', new_instructor_exercise_path, class: 'btn btn-primary'

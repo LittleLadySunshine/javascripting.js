@@ -1,4 +1,5 @@
 class Instructor::ExercisesController < InstructorRequiredController
+  layout 'application_bootstrap', only: [:new, :create, :update, :edit, :index]
   def index
     @exercises = Exercise.order(:name)
     if params[:filter]

@@ -27,8 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    flash[:error] = I18n.t("login_failed")
+    flash[:alert] = I18n.t("login_failed")
     redirect_to root_path
   end
 end
-

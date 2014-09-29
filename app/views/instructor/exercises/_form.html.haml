@@ -1,19 +1,20 @@
-= form_for [:instructor, @exercise] do |f|
-  = errors_for(f)
+= form_for [:instructor, @exercise], html: {class: "form-horizontal"} do |f|
+  = bootstrap_errors_for(f)
 
-  %p
-    = f.label :name
-  %p
-    = f.text_field :name
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control"
 
-  %p
-    = f.label :github_repo, "GitHub Repo"
-  %p
-    = f.text_field :github_repo
+  .form-group
+    = f.label :github_repo, "GitHub Repo", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :github_repo, class: "form-control"
 
-  %p
-    = f.label :tag_list, "Tags (separated by commas)"
-  %p
-    = f.text_field :tag_list
-  %p
-    = f.submit value: submit_text, class: 'action'
+  .form-group
+    = f.label :tag_list, "Tags (separated by commas)", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :tag_list, class: "form-control"
+
+  .col-md-offset-2
+    = f.submit value: submit_text, class: 'btn btn-primary'

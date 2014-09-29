@@ -2,15 +2,11 @@
   @include outer-container;
   margin-top: -$base-line-height;
 
-  .flash-error {
+  .flash-alert {
     @include flash($error-color);
   }
 
   .flash-notice {
     @include flash($notice-color);
-  }
-
-  .flash-success {
-    @include flash($success-color);
   }
 }

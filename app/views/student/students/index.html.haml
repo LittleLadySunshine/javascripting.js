@@ -3,8 +3,8 @@
 
   .content
     %h2 Other Students
-
-    %table
+  .col-sm-12
+    %table{class: "table"}
       %thead
         %tr
           %th Name
@@ -17,6 +17,3 @@
             %td= link_to student.full_name, student_student_path(student)
             %td= student.phone
             %td= student.email
-
-
-

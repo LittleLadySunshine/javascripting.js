@@ -8,8 +8,7 @@ feature "Login" do
 
     visit root_path
     click_on I18n.t("nav.sign_in")
-
-    within "#flash" do
+    within ".alert" do
       expect(page).to have_content(I18n.t("welcome_message", first_name: "Github", last_name: "User"))
     end
 

@@ -1,0 +1,74 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = csrf_meta_tags
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %title= content_for(:title) || "Students"
+    = favicon_link_tag 'favicon.ico'
+    = stylesheet_link_tag 'bootstrapified', media: 'all'
+    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  %body{:role => "document"}
+    / Fixed navbar
+    .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to user_session.signed_in? ? student_students_path : root_path, class: "logo-link" do
+            = image_tag('gschool-logo.svg', class: "gschool-logo")
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            - if user_session.signed_in?
+              - current_user = user_session.current_user
+              - if current_user.is?(User::INSTRUCTOR)
+                %li= link_to t('nav.instructors'), instructor_dashboard_path
+                %li= link_to t('nav.exercises'), instructor_exercises_path
+              - else
+                - if current_user.cohort
+                  %li= link_to "Curriculum", current_user.cohort.curriculum_site_url
+                %li= link_to "Cohort", student_students_path
+
+          %ul.nav.navbar-nav.pull-right
+            - if user_session.signed_in?
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = user_session.current_user.full_name
+                  %span.caret
+                %ul.dropdown-menu{:role => "menu"}
+                  %li
+                    = link_to personal_information_path do
+                      %i.glyphicon.glyphicon-pencil
+                      Personal Information
+                  %li.divider
+                  %li
+                    = link_to logout_path do
+                      %i.glyphicon.glyphicon-off
+                      = t('nav.sign_out')
+
+            - else
+              %li= link_to t('nav.sign_in'), sign_in_using_github_path
+
+    .container{:role => "main"}
+      - if flash[:notice]
+        .alert.alert-success= notice
+      - if flash[:alert]
+        .alert.alert-danger= alert
+      = content_for(:outside_main)
+      = yield
+
+    %footer
+      .container
+        = link_to image_tag("GitHub-Mark-32px.png"), "https://github.com/gSchool/students.gschool.it", target: "_blank", class: "pull-right"
+
+    = javascript_include_tag 'application'
+    = content_for(:javascripts)
