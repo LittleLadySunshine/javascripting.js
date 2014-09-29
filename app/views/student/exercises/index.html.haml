@@ -3,7 +3,8 @@
 
   .content
     %h2 Exercises
-    %table
+  .col-sm-12
+    %table{class: "table"}
       %thead
         %tr
           %th Name
@@ -15,4 +16,3 @@
             %td= link_to exercise.name, student_exercise_path(exercise)
             %td= exercise.tag_list
             %td= exercise.completed_text
-
