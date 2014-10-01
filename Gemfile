@@ -19,6 +19,7 @@ gem "acts-as-taggable-on"
 gem "zeroclipboard-rails"
 gem "rmagick", :require => 'RMagick'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'faraday', '~> 0.9.0'
 
 gem "carrierwave"
 gem "fog"
@@ -37,6 +38,8 @@ group :development, :test do
   gem "git-duet"
   gem "byebug"
   gem "timecop"
+  gem "webmock", "~> 1.19.0"
+  gem "vcr", "~> 2.9.3"
 end
 
 group :review, :production do

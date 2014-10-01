@@ -5,6 +5,13 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/mocks'
 require 'capybara/rspec'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
+  c.filter_sensitive_data('<PIVOTAL TRACKER TOKEN>') { ENV['PIVOTAL_TRACKER_TOKEN'].to_s }
+end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 

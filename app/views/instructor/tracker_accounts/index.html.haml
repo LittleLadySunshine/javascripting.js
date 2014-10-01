@@ -1,0 +1,25 @@
+.page-header
+  %h1 Tracker Accounts for #{@cohort.name}
+
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Status
+      %tbody
+        - @students.each do |student|
+          %tr
+            %td= student.full_name
+            %td= student.email
+            - member = @members.map{|membership| membership[:person][:email].downcase }.include?(student.email.downcase)
+            %td
+              - if member
+                %span.label.label-success Member
+              - else
+                %span.label.label-danger Not a member
+
+    = form_tag instructor_cohort_tracker_accounts_path do
+      = submit_tag "Create Tracker Accounts", class: "btn btn-primary"
