@@ -44,7 +44,7 @@ describe Instructor::StudentsController do
 
       created_email = ActionMailer::Base.deliveries.last
       expect(created_email.to).to eq ['email@example.com']
-      expect(created_email.bcc).to eq ['kirsten@galvanize.it']
+      expect(created_email.bcc).to eq ['info@gschool.it']
     end
 
     it "creates a student" do
