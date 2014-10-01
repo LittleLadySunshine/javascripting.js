@@ -25,17 +25,20 @@ gem "carrierwave"
 gem "fog"
 
 group :development, :test do
+  gem "rspec-rails"
+  gem "git-duet"
+  gem "dotenv-rails"
+end
+
+group :test do
   gem "hologram"
   gem "guard-hologram", require: false
-  gem "dotenv-rails"
   gem "spring"
   gem "spring-commands-rspec"
   gem "launchy"
-  gem "rspec-rails"
   gem "rspec-mocks"
   gem "capybara"
   gem "selenium-webdriver"
-  gem "git-duet"
   gem "byebug"
   gem "timecop"
   gem "webmock", "~> 1.19.0"
