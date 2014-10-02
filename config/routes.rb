@@ -34,8 +34,6 @@ Students::Application.routes.draw do
       resources :pairs
       resources :students, :only => [:new, :create, :show, :edit, :update]
       resources :cohort_exercises
-
-      resources :attendance_sheets, :only => [:new, :create]
     end
   end
 
