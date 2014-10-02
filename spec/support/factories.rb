@@ -2,7 +2,7 @@ module ObjectFactories
 
   def create_instructor_user(overrides = {})
     create_user(overrides).tap do |u|
-      u.add_role(User::INSTRUCTOR)
+      u.role = :instructor
       u.save!
     end
   end

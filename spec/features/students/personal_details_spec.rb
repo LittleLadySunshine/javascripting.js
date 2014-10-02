@@ -60,7 +60,13 @@ feature "Student adding personal details" do
                 shirt_size: "Men's-L",
                 cohort: @cohort)
 
-    create_user(first_name: "Instructor", last_name: "User", email: "admin@example.com", cohort: @cohort, role_bit_mask: User::INSTRUCTOR)
+    create_user(
+      first_name: "Instructor",
+      last_name: "User",
+      email: "admin@example.com",
+      cohort: @cohort,
+      role: :instructor
+    )
 
     mock_omniauth(info_overrides: {email: "admin@example.com"})
 

@@ -5,7 +5,7 @@ describe CohortExercise do
     it "returns only students" do
       cohort = create_cohort
 
-      instructor = create_user(cohort: cohort, role_bit_mask: User::INSTRUCTOR)
+      instructor = create_user(cohort: cohort, role: :instructor)
       student = create_user(cohort: cohort)
 
       cohort_exercise = CohortExercise.create!(exercise: create_exercise, cohort: cohort)

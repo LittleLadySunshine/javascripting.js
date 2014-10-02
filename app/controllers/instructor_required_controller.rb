@@ -4,7 +4,7 @@ class InstructorRequiredController < SignInRequiredController
   protected
 
   def require_instructor
-    unless user_session.current_user.is?(User::INSTRUCTOR)
+    unless user_session.current_user.instructor?
       redirect_to root_path
     end
   end

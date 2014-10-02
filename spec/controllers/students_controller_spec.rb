@@ -4,7 +4,7 @@ describe Instructor::StudentsController do
   let!(:cohort) { create_cohort }
 
   def sign_in_instructor
-    sign_in(create_user(:role_bit_mask => User::INSTRUCTOR))
+    sign_in(create_user(:role => :instructor))
   end
 
   def check_instructor_authorized(&request)
@@ -15,7 +15,7 @@ describe Instructor::StudentsController do
     request.call
     expect(response).to redirect_to(root_path)
 
-    sign_in(create_user(:role_bit_mask => User::INSTRUCTOR))
+    sign_in(create_user(:role => :instructor))
     request.call
     expect(response.status).to_not redirect_to(root_path)
   end

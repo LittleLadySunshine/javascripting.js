@@ -17,7 +17,7 @@ describe "Showcases" do
     create_user(:cohort => cohort,
                 :first_name => "Jeff",
                 :last_name => "Taggart",
-                :role_bit_mask => 1)
+                :role => :instructor)
 
     visit root_path
     click_on "Awesome Cohort"

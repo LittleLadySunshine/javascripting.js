@@ -14,7 +14,7 @@ feature "Student adding a personal project" do
                 :last_name => "Taggart",
                 :email => "user@example.com",
                 :cohort => cohort,
-                :role_bit_mask => User::INSTRUCTOR)
+                :role => :instructor)
 
     mock_omniauth
     visit root_path

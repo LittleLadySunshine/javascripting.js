@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  INSTRUCTOR = 1
+  enum role: [ :student, :instructor ]
 
   validates :email, :uniqueness => {:case_sensitive => false}
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
@@ -12,10 +12,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def self.for_cohort(cohort_id)
-    where(:cohort_id => cohort_id).where.not(:role_bit_mask => INSTRUCTOR)
+    student.where(:cohort_id => cohort_id)
   end
-
-  scope :instructors, -> { where(:role_bit_mask => INSTRUCTOR) }
 
   def cohort_exercises
     cohort.order_added_exercises
@@ -31,14 +29,6 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
-  end
-
-  def is?(role)
-    role_bit_mask & role != 0
-  end
-
-  def add_role(role)
-    self.role_bit_mask += role
   end
 
   def twitter_url

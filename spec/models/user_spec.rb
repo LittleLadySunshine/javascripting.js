@@ -29,9 +29,9 @@ describe User do
   it 'can determine if the user is an instructor' do
     user = new_user
 
-    expect(user.is?(User::INSTRUCTOR)).to eq false
+    expect(user).to be_student
 
-    user.add_role(User::INSTRUCTOR)
-    expect(user.is?(User::INSTRUCTOR)).to eq true
+    user.role = :instructor
+    expect(user).to be_instructor
   end
 end

@@ -9,7 +9,7 @@ class Cohort < ActiveRecord::Base
   mount_uploader :hero, HeroUploader
 
   def students
-    users.where.not(:role_bit_mask => User::INSTRUCTOR)
+    users.student
   end
 
   def order_added_exercises

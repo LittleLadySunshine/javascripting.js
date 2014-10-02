@@ -20,7 +20,7 @@ feature "Login" do
   end
 
   scenario "allows an instructor to log in with github and log out" do
-    create_user(first_name: "Instructor", last_name: "User", email: "user@example.com", role_bit_mask: User::INSTRUCTOR, cohort: create_cohort(name: "Denver 2014"))
+    create_user(first_name: "Instructor", last_name: "User", email: "user@example.com", role: :instructor, cohort: create_cohort(name: "Denver 2014"))
 
     mock_omniauth
 

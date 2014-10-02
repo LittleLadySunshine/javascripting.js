@@ -12,7 +12,7 @@ feature "A student viewing their dashboard" do
       email: "admin_user@example.com",
       github_username: "admin_username",
       cohort: @cohort,
-      role_bit_mask: 1
+      role: :instructor
     )
     mock_omniauth
 

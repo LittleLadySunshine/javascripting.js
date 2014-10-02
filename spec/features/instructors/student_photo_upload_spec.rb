@@ -10,7 +10,7 @@ feature "Instructor adding student photos" do
       :last_name => "Taggart",
       :email => "user@example.com",
       :cohort => @cohort,
-      :role_bit_mask => User::INSTRUCTOR)
+      :role => :instructor)
 
     create_user(
       :first_name => "John",
