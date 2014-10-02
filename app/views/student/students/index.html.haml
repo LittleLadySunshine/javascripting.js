@@ -1,19 +1,18 @@
-.sub-nav
-  = render :partial => 'student/sub_nav'
+= render :partial => 'student/sub_nav'
 
-  .content
-    %h2 Other Students
-  .col-sm-12
-    %table{class: "table"}
-      %thead
-        %tr
-          %th Name
-          %th Phone
-          %th Email
+.page-header
+  %h2 Other Students
 
-      %tbody
-        - @students.each do |student|
-          %tr
-            %td= link_to student.full_name, student_student_path(student)
-            %td= student.phone
-            %td= student.email
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Phone
+      %th Email
+
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td= link_to student.full_name, student_student_path(student)
+        %td= student.phone
+        %td= mail_to student.email, student.email

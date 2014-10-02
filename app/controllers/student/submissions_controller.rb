@@ -1,12 +1,17 @@
 class Student::SubmissionsController < SignInRequiredController
+
+  layout 'application_bootstrap'
+
   def new
-    @submission = Submission.new
+    @submission = Submission.new(
+      exercise_id: params[:exercise_id]
+    )
   end
 
   def create
     @submission = Submission.new(submission_params)
 
-    if @submission.save!
+    if @submission.save
       redirect_to student_exercise_path(@submission.exercise), :notice => "Your code has been submitted"
     else
       render :new

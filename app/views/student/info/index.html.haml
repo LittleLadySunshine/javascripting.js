@@ -1,7 +1,7 @@
-.sub-nav
-  = render partial: 'student/sub_nav'
+= render partial: 'student/sub_nav'
 
-  .content
+.row
+  .col-md-12
     - if @cohort.present?
       %h1 Class location
 
@@ -33,11 +33,14 @@
       please use the information below.
 
     - User.instructors.each do |instructor|
-      .instructor-wrap
-        .instructor-name
-          = instructor.first_name
-          = instructor.last_name
-        .instructor-email
-          #{mail_to instructor.email}
-        .instructor-phone
-          = instructor.phone
+      .panel.panel-info
+        .panel-heading
+          %h2.panel-title= instructor.full_name
+        .panel-body
+          %ul
+            %li
+              %i.glyphicon.glyphicon-envelope
+              = mail_to instructor.email, instructor.email
+            %li
+              %i.glyphicon.glyphicon-phone
+              = instructor.phone

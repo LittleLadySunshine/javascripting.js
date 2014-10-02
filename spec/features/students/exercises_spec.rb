@@ -22,19 +22,21 @@ feature "Student Exercises" do
 
     within("tr", text: "Arrays and things") do
       expect(page).to have_no_content("✓")
-      expect(page).to have_content("ruby, arrays")
+      expect(page).to have_content("ruby")
+      expect(page).to have_content("arrays")
       click_on "Arrays and things"
     end
 
     expect(page).to have_content("Arrays and things")
-    expect(page).to have_content("ruby, arrays")
+    expect(page).to have_content("ruby")
+    expect(page).to have_content("arrays")
     expect(page).to have_no_link("Tracker Project")
     expect(page).to have_content("You have not submitted a solution")
 
     click_on "Submit Code"
 
     fill_in "GitHub Repo Name", with: "some_completed_exercise"
-    fill_in "Tracker Project URL (optional)", with: "http://www.pivotaltracker.com"
+    fill_in "Tracker Project URL", with: "http://www.pivotaltracker.com"
     click_on "Submit"
 
     expect(page).to have_content("Arrays and things")

@@ -1,27 +1,33 @@
-= link_to "Back", :back
+= render :partial => 'student/sub_nav'
 
-%h1= @student.full_name
-= image_tag(@student.avatar.url, class: "avatar")
+.page-header
+  .pull-right
+    = link_to "Back", :back, class: "btn btn-info"
 
-%dl
-  %dt Email:
-  %dd= @student.email
+  %h1= @student.full_name
 
-  %dt Phone:
-  %dd= @student.phone
+.row
+  .col-md-4
+    = image_tag(@student.avatar.url, class: "avatar")
+  .col-md-8
+    %dl.horizontal
+      %dt Email:
+      %dd= @student.email
 
-  %dt Twitter:
-  %dd
-    - if @student.twitter.present?
-      = link_to @student.twitter, @student.twitter_url
+      %dt Phone:
+      %dd= @student.phone
 
-  %dt Linkedin:
-  %dd
-    - if @student.linkedin.present?
-      = link_to @student.linkedin, @student.linkedin
+      %dt Twitter:
+      %dd
+        - if @student.twitter.present?
+          = link_to @student.twitter, @student.twitter_url
 
-  %dt Blog:
-  %dd
-    - if @student.blog.present?
-      = link_to @student.blog, @student.blog
+      %dt Linkedin:
+      %dd
+        - if @student.linkedin.present?
+          = link_to @student.linkedin, @student.linkedin
 
+      %dt Blog:
+      %dd
+        - if @student.blog.present?
+          = link_to @student.blog, @student.blog

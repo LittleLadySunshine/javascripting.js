@@ -2,6 +2,6 @@
   %h1
     Editing #{@cohort.name_was}
 
-= render partial: 'instructor_cohort_sub_nav_bootstrap', locals: { cohort_id: @cohort.id }
+= render partial: 'nav', locals: { cohort_id: @cohort.id }
 
 = render "form"

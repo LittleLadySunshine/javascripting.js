@@ -1,5 +1,6 @@
 class Student::StudentsController < SignInRequiredController
-  layout 'application_bootstrap', only: [:index]
+  layout 'application_bootstrap'
+
   def index
     @students = user_session.current_cohort.students
   end

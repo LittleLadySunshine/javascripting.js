@@ -18,7 +18,7 @@ feature "Student adding a personal project" do
     fill_in "Description", :with => "This is a description of my application. This needs a lot of words to be valid"
     fill_in "GitHub Repo name", :with => "new-awesome-app"
     fill_in "Tracker Project", :with => "http://pivotaltracker.com/something"
-    fill_in "Production URL (i.e. Heroku)", :with => "http://awesomepossum.com"
+    fill_in "Production URL", :with => "http://awesomepossum.com"
     click_on "Save"
 
     expect(page).to have_content("Personal Project Saved")

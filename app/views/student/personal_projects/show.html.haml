@@ -1,11 +1,10 @@
-.sub-nav
-  = render partial: 'student/sub_nav'
+= render partial: 'student/sub_nav'
 
-  .content
-    %h1= @personal_project.name
-    %p= link_to "Edit", edit_student_personal_project_path(@personal_project), :class => "btn btn-primary"
+.page-header
+  .pull-right= link_to "Edit", edit_student_personal_project_path(@personal_project), :class => "btn btn-info"
+  %h1= @personal_project.name
 
-    %p= @personal_project.description
-    %p= link_to "GitHub", @personal_project.github_repo_url
-    %p= link_to "Tracker", @personal_project.tracker_url
-    %p= link_to "Production URL", @personal_project.production_url
+%p= @personal_project.description
+%p= link_to "GitHub", @personal_project.github_repo_url
+%p= link_to "Tracker", @personal_project.tracker_url
+%p= link_to "Production URL", @personal_project.production_url

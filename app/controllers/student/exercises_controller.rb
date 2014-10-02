@@ -1,5 +1,6 @@
 class Student::ExercisesController < SignInRequiredController
-  layout 'application_bootstrap', only: [:index]
+  layout 'application_bootstrap'
+
   def index
     user = user_session.current_user
 
@@ -46,9 +47,9 @@ class Student::ExercisesController < SignInRequiredController
 
     def submission_link
       if completed?
-        link_to("Edit", edit_student_exercise_submission_path(exercise, submission), :class => "button").html_safe
+        link_to("Edit", edit_student_exercise_submission_path(exercise, submission), :class => "btn btn-info").html_safe
       else
-        link_to("Submit Code", new_student_exercise_submission_path(exercise)).html_safe
+        link_to("Submit Code", new_student_exercise_submission_path(exercise), class: "btn btn-primary").html_safe
       end
     end
 

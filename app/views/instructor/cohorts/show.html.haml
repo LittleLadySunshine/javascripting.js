@@ -3,7 +3,7 @@
     = link_to "Add Student", new_instructor_cohort_student_path(params[:id]), class: "btn btn-info"
   %h1 #{cohort.name} Dashboard
 
-= render partial: 'instructor_cohort_sub_nav_bootstrap', locals: { cohort_id: params[:id] }
+= render partial: 'nav', locals: { cohort_id: params[:id] }
 
 %table.table
   %thead
