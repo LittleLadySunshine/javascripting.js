@@ -1,0 +1,12 @@
+.page-header
+  %h2 Edit #{@user.first_name_was} #{@user.last_name_was}
+
+%ol.breadcrumb
+  %li
+    = link_to "Users", instructor_users_path
+  %li
+    = link_to "#{@user.first_name_was} #{@user.last_name_was}", instructor_user_path(@user)
+  %li.active
+    Edit
+
+= render 'form'

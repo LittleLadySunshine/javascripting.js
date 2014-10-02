@@ -1,0 +1,71 @@
+%ol.breadcrumb
+  %li
+    = link_to "Users", instructor_users_path
+  %li.active
+    = @user.full_name
+
+.page-header
+  = link_to "Edit", edit_instructor_user_path(@user), class: "btn btn-info pull-right"
+  %h1= @user.full_name
+
+.row
+  .col-md-4
+    = image_tag(@user.avatar.url, style: "width: 100%;")
+
+  .col-md-8
+    %dl.dl-horizontal
+      %dt Email
+      %dd= mail_to @user.email, @user.email
+
+      %dt Role
+      %dd= @user.role
+
+      - if @user.cohort
+        %dt Cohort
+        %dd= link_to @user.cohort.name, instructor_cohort_path(@user.cohort)
+
+      %dt Phone
+      %dd= @user.phone
+
+      %dt Address 1
+      %dd= @user.address_1
+
+      %dt Address 2
+      %dd= @user.address_2
+
+      %dt City / State
+      %dd= [@user.city, @user.state].reject(&:blank?).join(", ")
+
+      %dt Zip
+      %dd= @user.zip_code
+
+      %dt Twitter
+      %dd
+        - if @user.twitter.present?
+          = link_to @user.twitter, @user.twitter_url
+
+      %dt LinkedIn
+      %dd
+        - if @user.linkedin.present?
+          = link_to @user.linkedin, @user.linkedin
+
+      %dt Blog
+      %dd
+        - if @user.blog.present?
+          = link_to @user.blog, @user.blog
+
+      %dt Shirt Size
+      %dd= @user.shirt_size
+
+    - if @user.personal_project
+      %h2 Personal Project
+      %dl
+        %dt Name:
+        %dd= @user.personal_project.name
+
+        %dt Description:
+        %dd= @user.personal_project.description
+
+        %p= link_to "GitHub", @user.personal_project.github_repo_url
+        %p= link_to "Tracker", @user.personal_project.tracker_url
+        %p= link_to "Production", @user.personal_project.production_url

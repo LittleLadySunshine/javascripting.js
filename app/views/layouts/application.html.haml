@@ -33,6 +33,7 @@
               - if current_user.instructor?
                 %li= link_to t('nav.instructors'), instructor_cohorts_path
                 %li= link_to t('nav.exercises'), instructor_exercises_path
+                %li= link_to 'Users', instructor_users_path
               - else
                 - if current_user.cohort
                   %li= link_to "Curriculum", current_user.cohort.curriculum_site_url
