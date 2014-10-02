@@ -1,5 +1,4 @@
 class Student::ExercisesController < SignInRequiredController
-  layout 'application_bootstrap'
 
   def index
     user = user_session.current_user

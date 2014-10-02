@@ -1,4 +1,7 @@
 class ShowcasesController < ApplicationController
+
+  layout 'public'
+  
   def index
     @cohorts = Cohort.where(:showcase => true).order(:start_date)
   end

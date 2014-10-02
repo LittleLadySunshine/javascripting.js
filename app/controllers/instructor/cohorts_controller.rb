@@ -1,5 +1,4 @@
 class Instructor::CohortsController < InstructorRequiredController
-  layout 'application_bootstrap'
 
   def new
     @cohort = Cohort.new

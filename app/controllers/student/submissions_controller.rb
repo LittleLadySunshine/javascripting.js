@@ -1,7 +1,5 @@
 class Student::SubmissionsController < SignInRequiredController
 
-  layout 'application_bootstrap'
-
   def new
     @submission = Submission.new(
       exercise_id: params[:exercise_id]

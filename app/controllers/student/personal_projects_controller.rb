@@ -1,5 +1,4 @@
 class Student::PersonalProjectsController < SignInRequiredController
-  layout 'application_bootstrap', only: [:update, :edit, :show]
 
   def show
     @personal_project = user_session.current_user.personal_project

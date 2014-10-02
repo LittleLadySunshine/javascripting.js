@@ -1,5 +1,4 @@
 class Instructor::ExercisesController < InstructorRequiredController
-  layout 'application_bootstrap'
 
   def index
     @exercises = Exercise.order(:name)

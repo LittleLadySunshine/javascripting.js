@@ -1,7 +1,5 @@
 class Instructor::PairsController < InstructorRequiredController
 
-  layout 'application_bootstrap'
-
   def index
     @cohort = Cohort.find(params[:cohort_id])
     @students = @cohort.students
