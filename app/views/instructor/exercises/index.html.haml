@@ -1,15 +1,19 @@
 .page-header
+  .pull-right
+    = link_to 'Create Exercise', new_instructor_exercise_path, class: 'btn btn-info'
+
   %h2 gSchool Exercises
 
-  .form-group
-    = form_tag({}, method: :get, html: {class: "form-horizontal"}) do
-      = label_tag "filter", "Filter by", class: "col-sm-2 control-label"
-      .col-sm-12
-        = text_field_tag "filter", params[:filter], id: "filter", class: "form-control"
-        = link_to "Clear Filters", instructor_exercises_path, class: 'btn btn-default'
-        = submit_tag "Filter", class: 'btn btn-primary'
-  .col-sm-12
-    %table{class: "table"}
+  = form_tag({}, method: :get, class: "form-inline") do
+    .form-group
+      = label_tag "filter", "Filter by", class: "sr-only"
+      = text_field_tag "filter", params[:filter], id: "filter", class: "form-control", placeholder: 'Filter by...'
+    = submit_tag "Filter", class: 'btn btn-primary'
+    = link_to "Clear Filters", instructor_exercises_path, class: 'btn btn-default'
+
+.row
+  .col-md-12
+    %table.table
       %thead
         %th Exercise Name
         %th Tags
@@ -18,9 +22,9 @@
         - @exercises.each do |exercise|
           %tr
             %td= link_to exercise.name, exercise.github_repo_url
-            %td= exercise.tag_list
+            %td
+              - exercise.tag_list.each do |tag|
+                = link_to tag, instructor_exercises_path(filter: tag), class: "label label-info"
             %td
               = link_to edit_instructor_exercise_path(exercise) do
                 %i.glyphicon.glyphicon-pencil
-
-    = link_to 'Create Exercise', new_instructor_exercise_path, class: 'btn btn-primary'

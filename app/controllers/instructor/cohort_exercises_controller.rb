@@ -1,4 +1,6 @@
 class Instructor::CohortExercisesController < InstructorRequiredController
+  layout 'application_bootstrap'
+
   def index
     @cohort = Cohort.find(params[:cohort_id])
     @cohort_exercises = @cohort.cohort_exercises.order(:created_at)

@@ -53,7 +53,7 @@ feature "Cohorts" do
 
       visit '/instructor/dashboard'
 
-      find('.card', :text => 'Boulder gSchool').click
+      click_on 'Boulder gSchool'
       click_on 'Add Student'
 
       fill_in 'First name', :with => 'John'

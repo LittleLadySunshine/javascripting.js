@@ -1,23 +1,21 @@
-.sub-nav
+.page-header
+  .pull-right
+    = link_to "Random", instructor_cohort_pairs_path(@cohort), class: "btn btn-info"
+
   %h1= @cohort.name
 
-  = render partial: "instructor/cohorts/instructor_cohort_sub_nav", locals: { cohort_id: params[:cohort_id] }
+= render partial: 'instructor/cohorts/instructor_cohort_sub_nav_bootstrap', locals: { cohort_id: @cohort.id }
 
-  .content
-    .action-table
-      %table
-        %thead
-          %tr
-            %th Pair 1
-            %th Pair 2
-        %tbody
-          - @pairs.each do |pair|
-            %tr
-              %td= pair.first.full_name
-              - if pair.second
-                %td= pair.second.full_name
-              - else
-                %td.not-paired Not Paired
-      .actions
-        = link_to "Random", instructor_cohort_pairs_path(@cohort)
-
+%table.table
+  %thead
+    %tr
+      %th Pair 1
+      %th Pair 2
+  %tbody
+    - @pairs.each do |pair|
+      %tr
+        %td= pair.first.full_name
+        - if pair.second
+          %td= pair.second.full_name
+        - else
+          %td.not-paired Not Paired

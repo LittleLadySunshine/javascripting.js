@@ -42,7 +42,9 @@ feature "Instructor dashboard" do
       expect(page).to have_no_link("GitHub")
     end
 
-    expect(page).to have_no_content("Instructor User")
+    within ".table" do
+      expect(page).to have_no_content("Instructor User")
+    end
   end
 
 end

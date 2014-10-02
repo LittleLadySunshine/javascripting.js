@@ -11,7 +11,7 @@ feature "Exercises" do
   end
 
   scenario "instructor is able to create and edit exercises" do
-    within("#navigation-menu") { click_on "Exercises" }
+    click_on "Exercises", match: :first
     click_on "Create Exercise"
 
     fill_in "Name", :with => "Bunch of array"
@@ -50,7 +50,7 @@ feature "Exercises" do
     visit '/instructor/dashboard'
 
     click_link cohort.name
-    within(".sub-nav", :text => cohort.name) do
+    within(".cohort-nav") do
       click_link "Exercises"
     end
     click_link "Assign Exercise"
@@ -65,7 +65,7 @@ feature "Exercises" do
     visit "/instructor/dashboard"
 
     click_link cohort.name
-    within(".sub-nav", :text => cohort.name) do
+    within(".cohort-nav") do
       click_link "Exercises"
     end
     click_link "Assign Exercise"
@@ -95,7 +95,7 @@ feature "Exercises" do
 
     visit "/instructor/dashboard"
     click_link cohort.name
-    within(".sub-nav", :text => cohort.name) do
+    within ".cohort-nav" do
       click_link "Exercises"
     end
     submission_count_link = find("td.submission_count a")
@@ -124,7 +124,7 @@ feature "Exercises" do
 
     visit "/instructor/dashboard"
     click_link cohort.name
-    within(".sub-nav", :text => cohort.name) do
+    within(".cohort-nav") do
       click_link "Exercises"
     end
     submission_count_link = find("td.submission_count a")
@@ -167,7 +167,7 @@ feature "Exercises" do
 
     cohort.update!(:exercises => [exercise_1, exercise_2, exercise_3, exercise_4])
 
-    within("#navigation-menu") { click_on "Exercises" }
+    click_on "Exercises", match: :first
 
     fill_in "Filter by", :with => "warmup"
     click_on "Filter"

@@ -27,9 +27,7 @@ feature "Login" do
     visit root_path
     click_on I18n.t("nav.sign_in")
 
-    within "#flash" do
-      expect(page).to have_content(I18n.t("welcome_message", first_name: "Instructor", last_name: "User"))
-    end
+    expect(page).to have_content(I18n.t("welcome_message", first_name: "Instructor", last_name: "User"))
 
     expect(page).to have_content("Denver 2014 Dashboard")
 
