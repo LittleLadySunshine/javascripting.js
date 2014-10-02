@@ -51,7 +51,7 @@ feature "Cohorts" do
     scenario "instructor can add student to cohort" do
       sign_in(instructor)
 
-      visit '/instructor/dashboard'
+      visit '/instructor/cohorts'
 
       click_on 'Boulder gSchool'
       click_on 'Add Student'
@@ -71,7 +71,7 @@ feature "Cohorts" do
     scenario "it shows errors on the add student form" do
       sign_in(instructor)
 
-      visit '/instructor/dashboard'
+      visit '/instructor/cohorts'
 
       click_on 'Boulder gSchool'
       click_on 'Add Student'
@@ -89,7 +89,7 @@ feature "Cohorts" do
 
       sign_in(instructor)
 
-      visit '/instructor/dashboard'
+      visit '/instructor/cohorts'
       click_on cohort.name
       click_on '1-on-1 Schedule'
 

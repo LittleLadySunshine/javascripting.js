@@ -31,7 +31,7 @@
             - if user_session.signed_in?
               - current_user = user_session.current_user
               - if current_user.is?(User::INSTRUCTOR)
-                %li= link_to t('nav.instructors'), instructor_dashboard_path
+                %li= link_to t('nav.instructors'), instructor_cohorts_path
                 %li= link_to t('nav.exercises'), instructor_exercises_path
               - else
                 - if current_user.cohort

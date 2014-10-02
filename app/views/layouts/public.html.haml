@@ -26,7 +26,7 @@
               - current_user = user_session.current_user
               %ul#navigation-menu
                 - if current_user.is?(User::INSTRUCTOR)
-                  = nav_item t('nav.instructors'), instructor_dashboard_path
+                  = nav_item t('nav.instructors'), instructor_cohorts_path
                   = nav_item t('nav.exercises'), instructor_exercises_path
                 - else
                   - if current_user.cohort

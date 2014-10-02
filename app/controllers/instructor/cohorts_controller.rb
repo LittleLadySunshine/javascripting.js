@@ -1,5 +1,9 @@
 class Instructor::CohortsController < InstructorRequiredController
 
+  def index
+    @cohorts = Cohort.all
+  end
+
   def new
     @cohort = Cohort.new
   end
@@ -9,7 +13,7 @@ class Instructor::CohortsController < InstructorRequiredController
 
     if @cohort.save
       flash[:notice] = "Cohort created"
-      redirect_to instructor_dashboard_path
+      redirect_to instructor_cohorts_path
     else
       render :new
     end

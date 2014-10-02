@@ -20,7 +20,7 @@ feature "Student adding a personal project" do
     visit root_path
     click_on "Sign In"
 
-    visit "/instructor/dashboard"
+    visit "/instructor/cohorts"
     click_link cohort.name
 
     click_on "Bob Builder"

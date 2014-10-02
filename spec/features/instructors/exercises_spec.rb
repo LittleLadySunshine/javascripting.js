@@ -47,7 +47,7 @@ feature "Exercises" do
         exercise: exercise_1,
     )
 
-    visit '/instructor/dashboard'
+    visit '/instructor/cohorts'
 
     click_link cohort.name
     within(".cohort-nav") do
@@ -62,7 +62,7 @@ feature "Exercises" do
   scenario "instructor can assign and un-assign an exercise to a cohort" do
     create_exercise(:name => "Nested Hashes", github_repo: "nested_hashes")
 
-    visit "/instructor/dashboard"
+    visit "/instructor/cohorts"
 
     click_link cohort.name
     within(".cohort-nav") do
@@ -93,7 +93,7 @@ feature "Exercises" do
                       :tracker_project_url => "http://www.pivotaltracker.com",
                       :github_repo_name => "some_repo_name")
 
-    visit "/instructor/dashboard"
+    visit "/instructor/cohorts"
     click_link cohort.name
     within ".cohort-nav" do
       click_link "Exercises"
@@ -122,7 +122,7 @@ feature "Exercises" do
                       :tracker_project_url => "http://www.pivotaltracker.com",
                       :github_repo_name => "some_repo_name")
 
-    visit "/instructor/dashboard"
+    visit "/instructor/cohorts"
     click_link cohort.name
     within(".cohort-nav") do
       click_link "Exercises"
@@ -146,7 +146,7 @@ feature "Exercises" do
                       :github_repo_name => "some_repo_name")
 
 
-    visit "/instructor/dashboard"
+    visit "/instructor/cohorts"
     click_on cohort.name
     click_on "Student User"
 
