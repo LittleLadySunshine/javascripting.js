@@ -1,34 +1,38 @@
-.sub-nav
+.page-header
   %h1= cohort_name
 
-  = render partial: 'instructor_cohort_sub_nav', locals: { cohort_id: params[:id] }
+= render partial: 'instructor_cohort_sub_nav_bootstrap', locals: { cohort_id: params[:id] }
 
-  .content
-    = form_tag one_on_ones_instructor_cohort_path(params[:id]), method: :get do
-      - all_instructors.each do |instructor|
-        %label
-          %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
-          = instructor.full_name
-      = submit_tag 'Regenerate', class: 'action'
+= form_tag one_on_ones_instructor_cohort_path(params[:id]), method: :get do
+  - all_instructors.each do |instructor|
+    %label
+      %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
+      = instructor.full_name
+  = submit_tag 'Regenerate', class: 'btn btn-primary btn-sm'
 
-    - if unscheduled_students.present?
-      %h2= "There are #{pluralize(unscheduled_students.length, "Unscheduled Student")}!"
+%br
 
+- if unscheduled_students.present?
+  .panel.panel-danger
+    .panel-heading
+      %h3.panel-title
+        = "There are #{pluralize(unscheduled_students.length, "Unscheduled Student")}!"
+    .panel-body
       %ul
         - unscheduled_students.each do |student|
           %li= student.full_name
 
-    %h2 Generated Appointments
+.page-header
+  %h2 Generated Appointments
 
-    .action-table
-      %table
-        %thead
-          %th Student
-          %th Instructor
-          %th Time
-        %tbody
-          - appointments.each do |appointment|
-            %tr
-              %td= appointment.student.full_name
-              %td= appointment.instructor.full_name
-              %td= appointment.time
+%table.table
+  %thead
+    %th Student
+    %th Instructor
+    %th Time
+  %tbody
+    - appointments.each do |appointment|
+      %tr
+        %td= appointment.student.full_name
+        %td= appointment.instructor.full_name
+        %td= appointment.time
