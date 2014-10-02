@@ -1,7 +1,9 @@
+- cohort = user_session.current_user.cohort
 %ul.nav.nav-tabs
-  = nav_item "Exercises", student_exercises_path
-  = nav_item "Students", student_students_path
-  = nav_item "Info", student_info_path
+  = nav_item "Exercises", cohort_exercises_path(cohort)
+  = nav_item "Students", cohort_students_path(cohort)
+  = nav_item "Info", cohort_info_path(cohort)
   - if user_session.current_cohort.pair_feedback_url
     = nav_item "Pair Feedback", user_session.current_cohort.pair_feedback_url
-  = nav_item "Personal Project", student_personal_project_path
+  = nav_item "Personal Project", cohort_personal_project_path(cohort)
+  = nav_item "Curriculum", cohort.curriculum_site_url

@@ -90,7 +90,6 @@ feature "Student Exercises" do
       exercise: create_exercise(name: "Shouldn't be there")
     )
 
-    click_on "Cohort"
     click_on "Exercises"
 
     expect(page).to have_content("Arrays and things")

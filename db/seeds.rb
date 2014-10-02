@@ -21,5 +21,5 @@ User.create!(
   email: email,
   github_username: username,
   cohort: cohort,
-  role: :instructor
+  role: :student
 )

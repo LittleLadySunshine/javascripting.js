@@ -1,7 +1,7 @@
 class Student::InfoController < SignInRequiredController
 
-  def index
-    @cohort = user_session.current_cohort
+  before_action do
+    @cohort = Cohort.find(params[:cohort_id])
   end
 
 end

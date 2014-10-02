@@ -1,10 +1,14 @@
 class Student::ExercisesController < SignInRequiredController
 
+  before_action do
+    @cohort = Cohort.find(params[:cohort_id])
+  end
+
   def index
     user = user_session.current_user
 
     @exercises = user.cohort_exercises.map do |exercise|
-      StudentCohortExercise.new(user.id, exercise)
+      StudentCohortExercise.new(user.id, exercise, @cohort)
     end
   end
 
@@ -12,16 +16,17 @@ class Student::ExercisesController < SignInRequiredController
     user = user_session.current_user
     exercise = Exercise.find(params[:id])
 
-    @exercise = StudentCohortExercise.new(user.id, exercise)
+    @exercise = StudentCohortExercise.new(user.id, exercise, @cohort)
   end
 
   class StudentCohortExercise
     include ActionView::Helpers
     include Rails.application.routes.url_helpers
 
-    def initialize(user_id, exercise)
+    def initialize(user_id, exercise, cohort)
       @user_id = user_id
       @exercise = exercise
+      @cohort = cohort
     end
 
     delegate :name, :github_repo_url, :to_param, :tag_list, :to => :exercise
@@ -46,9 +51,9 @@ class Student::ExercisesController < SignInRequiredController
 
     def submission_link
       if completed?
-        link_to("Edit", edit_student_exercise_submission_path(exercise, submission), :class => "btn btn-info").html_safe
+        link_to("Edit", edit_cohort_exercise_submission_path(@cohort, exercise, submission), :class => "btn btn-info").html_safe
       else
-        link_to("Submit Code", new_student_exercise_submission_path(exercise), class: "btn btn-primary").html_safe
+        link_to("Submit Code", new_cohort_exercise_submission_path(@cohort, exercise), class: "btn btn-primary").html_safe
       end
     end
 

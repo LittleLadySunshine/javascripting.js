@@ -11,18 +11,14 @@ Students::Application.routes.draw do
   get "/preparation" => "public_pages#preparation", :as => "preparation"
   get "/calendar" => "public_pages#calendar", :as => "calendar"
 
-  namespace :student do
-    get "/info" => "info#index", :as => "info"
-
-    resources :students, :only => [:index, :show]
-
-    resource :personal_project, :only => [:show, :edit, :update]
-
-    resources :exercises, :only => [:index, :show] do
-      resources :submissions, :only => [:new, :create, :edit, :update]
+  resources :cohorts, only: [] do
+    get "/info" => "student/info#index", :as => "info"
+    resources :students, :only => [:index, :show], controller: 'student/students'
+    resources :exercises, :only => [:index, :show], controller: 'student/exercises' do
+      resources :submissions, :only => [:new, :create, :edit, :update], controller: 'student/submissions'
     end
+    resource :personal_project, :only => [:show, :edit, :update], controller: 'student/personal_projects'
   end
-
 
   namespace :instructor do
     resources :users

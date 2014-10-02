@@ -18,7 +18,7 @@
             - else
               = link_to t('nav.sign_in'), sign_in_using_github_path
           .logo
-            = link_to user_session.signed_in? ? student_students_path : root_path, class: 'logo' do
+            = link_to user_session.signed_in? ? cohort_students_path(user_session.current_user.cohort) : root_path, class: 'logo' do
               = image_tag(image_path('gschool_logo-large.png'), class: 'header-logo-image')
 
           - if user_session.signed_in?
@@ -31,7 +31,7 @@
                 - else
                   - if current_user.cohort
                     = nav_item "Curriculum", current_user.cohort.curriculum_site_url
-                  = nav_item "Cohort", student_students_path
+                  = nav_item "Cohort", cohort_students_path(current_user.cohort)
                 = nav_item "Personal Info", personal_information_path
 
       - if flash.any?

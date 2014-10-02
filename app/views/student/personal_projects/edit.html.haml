@@ -3,7 +3,7 @@
 .page-header
   %h2 Edit your Personal Project
 
-= form_for @personal_project, :url => student_personal_project_path, :method => :patch, html: {class: "form-horizontal"} do |f|
+= form_for [@cohort, @personal_project], html: {class: "form-horizontal"} do |f|
   = errors_for(f)
 
   .form-group

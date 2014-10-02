@@ -3,4 +3,4 @@
 .page-header
   %h1 New Submission for #{@submission.exercise.name}
 
-= render "form", submission: @submission, url: student_exercise_submissions_path(params[:exercise_id])
+= render "form", submission: @submission, url: cohort_exercise_submissions_path(@cohort, params[:exercise_id])

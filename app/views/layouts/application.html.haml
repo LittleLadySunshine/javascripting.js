@@ -24,7 +24,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to user_session.signed_in? ? student_students_path : root_path, class: "logo-link" do
+          = link_to user_session.signed_in? ? cohort_exercises_path(user_session.current_user.cohort) : root_path, class: "logo-link" do
             = image_tag('gschool-logo.svg', class: "gschool-logo")
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
@@ -34,15 +34,12 @@
                 %li= link_to t('nav.instructors'), instructor_cohorts_path
                 %li= link_to t('nav.exercises'), instructor_exercises_path
                 %li= link_to 'Users', instructor_users_path
-              - else
-                - if current_user.cohort
-                  %li= link_to "Curriculum", current_user.cohort.curriculum_site_url
-                %li= link_to "Cohort", student_students_path
 
           %ul.nav.navbar-nav.pull-right
             - if user_session.signed_in?
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  %i.glyphicon.glyphicon-user
                   = user_session.current_user.full_name
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}

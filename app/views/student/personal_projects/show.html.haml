@@ -1,7 +1,7 @@
 = render partial: 'student/sub_nav'
 
 .page-header
-  .pull-right= link_to "Edit", edit_student_personal_project_path(@personal_project), :class => "btn btn-info"
+  .pull-right= link_to "Edit", edit_cohort_personal_project_path(@cohort), :class => "btn btn-info"
   %h1= @personal_project.name
 
 %p= @personal_project.description
