@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => {:case_sensitive => false}
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
   validates :email, :first_name, :last_name, :presence => true
-
   validates :cohort, presence: {if: :student?, message: "can't be blank for students"}
 
   belongs_to :cohort
@@ -18,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def cohort_exercises
-    cohort.order_added_exercises
+    cohort ? cohort.order_added_exercises : []
   end
 
   def completed_exercises

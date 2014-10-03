@@ -7,14 +7,8 @@ class SessionsController < ApplicationController
 
     if user.present?
       user_session.sign_in(user)
-
       notice = I18n.t("welcome_message", :first_name => user.first_name, :last_name => user.last_name)
-
-      if user.instructor?
-        redirect_to instructor_cohorts_path, :notice => notice
-      else
-        redirect_to cohort_exercises_path(user.cohort), :notice => notice
-      end
+      redirect_to get_home_path, :notice => notice
     else
       notice = I18n.t('access_denied')
       redirect_to root_path, :notice => notice

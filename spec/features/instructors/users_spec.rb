@@ -3,11 +3,10 @@ require "rails_helper"
 feature "Users" do
   let!(:cohort) { create_cohort }
   let!(:instructor) {
-    create_user(
+    create_instructor(
       :first_name => "Instructor",
       :last_name => "User",
-      :github_id => '987',
-      :role => :instructor
+      :github_id => '987'
     )
   }
 
@@ -20,7 +19,7 @@ feature "Users" do
     fill_in("First name", :with => "Joe")
     fill_in("Last name", :with => "Example")
     fill_in("Email", :with => "joe@example.com")
-    select("instructor", :from => "Role")
+    select("student", :from => "Role")
     select(cohort.name, :from => "Cohort")
 
     click_on "Create User"

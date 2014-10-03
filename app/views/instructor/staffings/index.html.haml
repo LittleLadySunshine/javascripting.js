@@ -1,0 +1,21 @@
+.page-header
+  .pull-right
+    = link_to 'New Staffing', new_instructor_cohort_staffing_path, class: 'btn btn-info'
+  %h1 Staffings
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+%table.table
+  %thead
+    %tr
+      %th User
+      %th Status
+      %th
+      %th
+  %tbody
+    - @staffings.each do |staffing|
+      %tr
+        %td= link_to staffing.user.full_name, instructor_user_path(staffing.user)
+        %td= staffing.status
+        %td= link_to 'edit', edit_instructor_cohort_staffing_path(@cohort, staffing)
+        %td= link_to 'delete', instructor_cohort_staffing_path(@cohort, staffing), method: :delete, data: {confirm: true}

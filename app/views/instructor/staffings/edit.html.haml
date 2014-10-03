@@ -1,0 +1,6 @@
+.page-header
+  %h2 Add Staffing for #{@staffing.user.full_name} in #{@cohort.name}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+= render 'form', show_user: false
