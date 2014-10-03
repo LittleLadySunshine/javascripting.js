@@ -6,7 +6,9 @@
 
 .page-header
   = link_to "Edit", edit_instructor_user_path(@user), class: "btn btn-info pull-right"
-  %h1= @user.full_name
+  %h1
+    = @user.full_name
+    (#{@user.status})
 
 .row
   .col-md-4

@@ -17,6 +17,11 @@
       = f.email_field :email, class: "form-control"
 
   .form-group
+    = f.label :status, class: "col-sm-2 control-label"
+    .col-sm-6
+      = f.collection_select :status, User.statuses, :first, :first, {}, class: "form-control"
+
+  .form-group
     = f.label :role, class: "col-sm-2 control-label"
     .col-sm-6
       = f.collection_select :role, User.roles, :first, :first, {}, class: "form-control"

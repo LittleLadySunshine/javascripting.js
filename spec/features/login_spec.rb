@@ -38,7 +38,6 @@ feature "Login" do
     expect(page).to have_link(I18n.t("nav.sign_in"))
   end
 
-
   scenario "displays a unauthorized message if the user does not have a record in the db" do
     mock_omniauth
 
@@ -48,6 +47,17 @@ feature "Login" do
     within "#flash" do
       expect(page).to have_content(I18n.t("access_denied"))
     end
+  end
+
+  scenario "displays a unauthorized message if the user is inactive" do
+    create_instructor(first_name: "Instructor", last_name: "User", email: "user@example.com", status: :inactive)
+
+    mock_omniauth
+
+    visit root_path
+    click_on I18n.t("nav.sign_in")
+
+    expect(page).to have_content(I18n.t("access_denied"))
   end
 
   scenario "redirects to the root path when oauth fails" do

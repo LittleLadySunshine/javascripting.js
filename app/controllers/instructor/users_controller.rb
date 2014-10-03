@@ -52,6 +52,7 @@ class Instructor::UsersController < InstructorRequiredController
       :email,
       :avatar,
       :role,
+      :status,
       :github_username,
       :github_id,
       :cohort_id,

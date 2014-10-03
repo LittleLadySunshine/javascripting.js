@@ -9,12 +9,13 @@ describe UserSession do
       expect(user_session).to_not be_signed_in
     end
     it 'knows if a user is signed in from the session' do
-      rails_session['user_id'] = 1
+      user = create_user
+      rails_session['user_id'] = user.id
       expect(user_session).to be_signed_in
     end
 
     it 'knows the user is signed in after signing in the user' do
-      user = User.new(id: 123)
+      user = create_user
 
       user_session.sign_in(user)
       expect(user_session).to be_signed_in

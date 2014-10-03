@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   enum role: [ :student, :instructor ]
+  enum status: [ :active, :inactive ]
 
   validates :email, :uniqueness => {:case_sensitive => false}
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
