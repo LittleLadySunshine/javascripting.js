@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def self.for_cohort(cohort_id)
-    student.where(:cohort_id => cohort_id)
+    where(:cohort_id => cohort_id)
   end
 
   def cohort_exercises

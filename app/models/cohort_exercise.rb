@@ -7,7 +7,7 @@ class CohortExercise < ActiveRecord::Base
   delegate :submissions, :name, :to => :exercise
 
   def students_missing_submission
-    cohort.students - submissions.map(&:user)
+    cohort.users - submissions.map(&:user)
   end
 
   def check_for_submissions?
