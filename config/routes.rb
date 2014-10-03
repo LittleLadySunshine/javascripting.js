@@ -29,6 +29,7 @@ Students::Application.routes.draw do
       resources :tracker_accounts
       resources :staffings, except: [:show]
       resources :pairs
+      resources :imports, only: [:index, :create]
       resources :students, :only => [:new, :create, :show, :edit, :update]
       resources :cohort_exercises
     end

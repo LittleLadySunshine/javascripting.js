@@ -1,0 +1,38 @@
+.page-header
+  %h2 Import students into #{@cohort.name}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+- if @saved.present?
+  .alert.alert-success
+    %p
+      %strong #{pluralize(@saved.length, "student")} were imported successfully!
+
+- if @failed
+  .alert.alert-danger
+    %p
+      %strong Could not import #{pluralize(@failed.length, "student")}!
+    %ul
+      - @failed.each do |line_number, data|
+        - user = data[:user]
+        - row = data[:row]
+        %li On line #{line_number}: #{user.errors.full_messages.join(",")}
+    %p
+      The failed rows appear in the text area below.
+
+%p Available fields are:
+%table.table.table-bordered
+  %thead
+    %tr
+      - header_fields.each do |field|
+        %th= field
+
+= form_tag instructor_cohort_imports_path(@cohort) do
+
+  .form-group
+    = text_area_tag :student_csv, @text, class: "col-md-12", rows: 30, placeholder: "Paste your csv text here..."
+
+  .alert.alert-warning
+    NOTE:  This will send emails to every student inviting them to students.gschool.it.
+
+  = submit_tag "Import Students", class: 'btn btn-primary'
