@@ -1,5 +1,18 @@
 module ObjectFactories
 
+  def create_staffing(overrides = {})
+    new_staffing(overrides).tap do |u|
+      u.save!
+    end
+  end
+
+  def new_staffing(overrides = {})
+    defaults = {
+      :status => :active
+    }
+    Staffing.new(defaults.merge(overrides))
+  end
+
   def create_instructor(overrides = {})
     new_user(overrides).tap do |u|
       u.role = :instructor

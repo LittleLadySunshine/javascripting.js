@@ -6,11 +6,15 @@ feature "A student viewing their dashboard" do
                             google_maps_location: "this is a google map url",
                             directions: '<p>The classroom is on the right</p><p>This is some more text</p>')
     create_user(first_name: "Jeff", last_name: "Taggart", email: "user@example.com", cohort: @cohort)
-    create_instructor(
+    instructor = create_instructor(
       first_name: "Admin",
       last_name: "User",
       email: "admin_user@example.com",
       github_username: "admin_username"
+    )
+    create_staffing(
+      user: instructor,
+      cohort: @cohort,
     )
     mock_omniauth
 
