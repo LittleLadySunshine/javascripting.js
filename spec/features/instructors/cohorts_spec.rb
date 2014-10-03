@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Cohorts" do
-  let!(:instructor) { create_user(:first_name => "Instructor", :last_name => "User", :github_id => '987', :role => :instructor) }
+  let!(:instructor) { create_instructor(:first_name => "Instructor", :last_name => "User", :github_id => '987') }
 
   scenario "an instructor creating and editing a cohort" do
     sign_in(instructor)
@@ -84,7 +84,7 @@ feature "Cohorts" do
     end
 
     scenario "instructors can see a one-on-one schedule" do
-      instructor = create_user(:first_name => "Teacher", :last_name => "User", :github_id => '1010', :role => :instructor)
+      instructor = create_instructor(:first_name => "Teacher", :last_name => "User", :github_id => '1010')
       create_user(:first_name => "Student", :last_name => "User", :github_id => '1111', :cohort_id => cohort.id, :github_username => "Student12345")
 
       sign_in(instructor)

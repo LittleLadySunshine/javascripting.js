@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
 
   validates :email, :uniqueness => {:case_sensitive => false}
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
-  validates :email, :first_name, :last_name, :cohort, :presence => true
+  validates :email, :first_name, :last_name, :presence => true
+
+  validates :cohort, presence: {if: :student?, message: "can't be blank for students"}
 
   belongs_to :cohort
   has_many :submissions

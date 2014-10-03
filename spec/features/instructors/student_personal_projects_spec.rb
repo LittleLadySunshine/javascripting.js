@@ -10,11 +10,11 @@ feature "Student adding a personal project" do
                             :description => "This is a long description",
                             :user => student)
 
-    create_user(:first_name => "Jeff",
-                :last_name => "Taggart",
-                :email => "user@example.com",
-                :cohort => cohort,
-                :role => :instructor)
+    create_instructor(
+      :first_name => "Jeff",
+      :last_name => "Taggart",
+      :email => "user@example.com"
+    )
 
     mock_omniauth
     visit root_path

@@ -1,8 +1,9 @@
 module ObjectFactories
 
-  def create_instructor_user(overrides = {})
-    create_user(overrides).tap do |u|
+  def create_instructor(overrides = {})
+    new_user(overrides).tap do |u|
       u.role = :instructor
+      u.cohort = nil
       u.save!
     end
   end

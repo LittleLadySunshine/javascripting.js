@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe User do
+  it 'validates the presence of a cohort if the user is a student' do
+    user = User.new
+    user.valid?
+    expect(user.errors[:cohort]).to be_present
+    user.role = :instructor
+    user.valid?
+    expect(user.errors[:cohort]).to be_blank
+  end
+
   it 'validates uniqueness of email' do
     create_user(email: 'sue@example.com')
 

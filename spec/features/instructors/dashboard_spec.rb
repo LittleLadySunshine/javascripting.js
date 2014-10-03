@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Instructor cohorts" do
 
   let!(:cohort) { create_cohort(:name => 'Boulder gSchool') }
-  let!(:instructor) { create_user(:first_name => "Instructor", :last_name => "User", :github_id => '987', :role => :instructor, :cohort_id => cohort.id) }
+  let!(:instructor) { create_instructor(:first_name => "Instructor", :last_name => "User", :github_id => '987') }
   let!(:student) { create_user(:first_name => "Student", :last_name => "User", :github_id => '123', :cohort_id => cohort.id, :github_username => "Student12345") }
 
   scenario "instructor is able to view the cohorts" do

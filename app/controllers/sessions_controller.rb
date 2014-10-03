@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       notice = I18n.t("welcome_message", :first_name => user.first_name, :last_name => user.last_name)
 
       if user.instructor?
-        redirect_to instructor_cohort_path(user.cohort), :notice => notice
+        redirect_to instructor_cohorts_path, :notice => notice
       else
         redirect_to cohort_exercises_path(user.cohort), :notice => notice
       end

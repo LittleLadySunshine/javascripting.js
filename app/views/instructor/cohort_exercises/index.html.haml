@@ -3,7 +3,7 @@
     = link_to "Assign Exercise", new_instructor_cohort_cohort_exercise_path, class: "btn btn-info"
   %h1= @cohort.name
 
-= render partial: 'instructor/cohorts/nav', locals: { cohort_id: params[:cohort_id] }
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
 
 %table.table
   %thead

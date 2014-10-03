@@ -19,10 +19,6 @@ class UserSession
     @current_user ||= User.find(rails_session['user_id'])
   end
 
-  def current_cohort
-    @current_cohort ||= current_user.cohort
-  end
-
   private
   attr_reader :rails_session
 end

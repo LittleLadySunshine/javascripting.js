@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Cohorts" do
   let!(:instructor) {
-    create_user(:first_name => "Instructor", :last_name => "User", :github_id => '987', :role => :instructor)
+    create_instructor(:first_name => "Instructor", :last_name => "User", :github_id => '987')
   }
 
   let!(:cohort) { create_cohort }

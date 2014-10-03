@@ -1,7 +1,8 @@
 %ul.nav.nav-tabs.cohort-nav
-  = nav_item "Students", instructor_cohort_path(cohort_id)
-  = nav_item "1-on-1 Schedule", one_on_ones_instructor_cohort_path(cohort_id)
-  = nav_item "Pairs", instructor_cohort_pairs_path(cohort_id)
-  = nav_item "Exercises", instructor_cohort_cohort_exercises_path(cohort_id)
-  = nav_item "Edit", edit_instructor_cohort_path(cohort_id)
-  = nav_item "Tracker Accounts", instructor_cohort_tracker_accounts_path(cohort_id)
+  = nav_item "Students", instructor_cohort_path(cohort)
+  = nav_item "1-on-1 Schedule", one_on_ones_instructor_cohort_path(cohort)
+  = nav_item "Pairs", instructor_cohort_pairs_path(cohort)
+  = nav_item "Exercises", instructor_cohort_cohort_exercises_path(cohort)
+  = nav_item "Edit", edit_instructor_cohort_path(cohort)
+  = nav_item "Tracker Accounts", instructor_cohort_tracker_accounts_path(cohort)
+  = nav_item "Curriculum", cohort.curriculum_site_url

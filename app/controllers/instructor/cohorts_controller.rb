@@ -54,7 +54,8 @@ class Instructor::CohortsController < InstructorRequiredController
                            end
     scheduler = OneOnOneScheduler.new(students, selected_instructors)
     scheduler.generate_schedule
-    render('one_on_ones', :locals => {:cohort_name => cohort.name,
+    render('one_on_ones', :locals => {:cohort => cohort,
+                                      :cohort_name => cohort.name,
                                       :appointments => scheduler.appointments,
                                       :unscheduled_students => scheduler.unscheduled_students,
                                       :all_instructors => all_instructors,

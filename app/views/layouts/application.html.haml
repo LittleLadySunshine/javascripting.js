@@ -24,7 +24,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to user_session.signed_in? ? cohort_exercises_path(user_session.current_user.cohort) : root_path, class: "logo-link" do
+          = link_to get_home_path, class: "logo-link" do
             = image_tag('gschool-logo.svg', class: "gschool-logo")
         .navbar-collapse.collapse
           %ul.nav.navbar-nav

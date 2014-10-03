@@ -1,10 +1,13 @@
 require "rails_helper"
 
 feature "Student adding personal details" do
-  scenario "a student cant add personal details to their account" do
-    @cohort = create_cohort(name: "Cohort Name",
-                            google_maps_location: "this is a google map url",
-                            directions: '<p>The classroom is on the right</p><p>This is some more text</p>')
+  scenario "a student can add personal details to their account" do
+    @cohort = create_cohort(
+      name: "Cohort Name",
+      google_maps_location: "this is a google map url",
+      directions: '<p>The classroom is on the right</p><p>This is some more text</p>'
+    )
+
     create_user(first_name: "Jeff", last_name: "Taggart", email: "user@example.com", cohort: @cohort)
     mock_omniauth
 
@@ -60,12 +63,10 @@ feature "Student adding personal details" do
                 shirt_size: "Men's-L",
                 cohort: @cohort)
 
-    create_user(
+    create_instructor(
       first_name: "Instructor",
       last_name: "User",
       email: "admin@example.com",
-      cohort: @cohort,
-      role: :instructor
     )
 
     mock_omniauth(info_overrides: {email: "admin@example.com"})

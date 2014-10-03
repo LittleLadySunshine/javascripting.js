@@ -4,7 +4,7 @@
 
   %h1= @cohort.name
 
-= render partial: 'instructor/cohorts/nav', locals: { cohort_id: @cohort.id }
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
 
 %table.table
   %thead
