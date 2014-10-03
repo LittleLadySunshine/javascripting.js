@@ -84,3 +84,8 @@
 
   .col-sm-offset-2
     = f.submit class: 'btn btn-primary'
+
+    - if f.object.persisted?
+      = link_to [:instructor, @user], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right" do
+        %i.glyphicon.glyphicon-trash
+        Delete User
