@@ -196,11 +196,8 @@ ActiveRecord::Schema.define(version: 20141003211830) do
     t.string   "linkedin"
     t.string   "avatar"
     t.string   "shirt_size"
-<<<<<<< HEAD
     t.string   "employer"
-=======
     t.integer  "status",          default: 0, null: false
->>>>>>> 955005c99738015d30d24915f230fcac5e873c33
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
