@@ -52,6 +52,9 @@
       %dt Shirt Size
       %dd= @student.shirt_size
 
+      %dt Employer
+      %dd= @student.employer
+
     - if @student.personal_project
       %h2 Personal Project
       %dl
@@ -64,6 +67,7 @@
         %p= link_to "GitHub", @student.personal_project.github_repo_url
         %p= link_to "Tracker", @student.personal_project.tracker_url
         %p= link_to "Production", @student.personal_project.production_url
+
 
 .row
   .col-md-12
