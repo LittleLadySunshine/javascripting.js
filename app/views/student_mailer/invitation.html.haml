@@ -1,5 +1,15 @@
 %p
-  You have just been added to the gSchool student portal. In preparation for your upcoming session,
-  please go through the #{link_to "preparation guide", preparation_url}. If you have any questions, please email us at #{mail_to 'instructors@gschool.it'}.
+  You have just been added to the gSchool student portal!
 
+%p
+  In preparation for your upcoming session, please go to
+  %a{href: "https://students.gschool.it/"} https://students.gschool.it/
+  and sign in using your Github account.
 
+%p
+  NOTE: If this address (#{@email}) is
+  %strong not
+  the email address you use to login to Github, please send us the email that you use with Github.
+
+%p
+  If you have any questions, please email us at #{mail_to 'instructors@gschool.it'}.

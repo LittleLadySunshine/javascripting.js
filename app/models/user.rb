@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   enum role: [ :student, :instructor ]
+  enum status: [ :active, :inactive ]
 
   validates :email, :uniqueness => {:case_sensitive => false}
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def self.for_cohort(cohort_id)
-    student.where(:cohort_id => cohort_id)
+    where(:cohort_id => cohort_id)
   end
 
   def cohort_exercises

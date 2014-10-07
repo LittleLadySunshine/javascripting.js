@@ -12,11 +12,11 @@ class UserSession
   end
 
   def signed_in?
-    !rails_session['user_id'].nil?
+    !!current_user
   end
 
   def current_user
-    @current_user ||= User.find(rails_session['user_id'])
+    @current_user ||= User.active.find_by_id(rails_session['user_id'])
   end
 
   private

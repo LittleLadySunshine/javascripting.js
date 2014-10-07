@@ -9,10 +9,6 @@ class Cohort < ActiveRecord::Base
 
   mount_uploader :hero, HeroUploader
 
-  def students
-    users.student
-  end
-
   def order_added_exercises
     cohort_exercises.includes(:exercise).order(:created_at).map(&:exercise)
   end

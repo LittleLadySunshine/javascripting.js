@@ -32,13 +32,13 @@ class FindAndUpdateUserFromGithubInfo
     def find_by_email
       return unless github_email.present?
 
-      User.find_by(:email => github_email.downcase)
+      User.active.find_by(:email => github_email.downcase)
     end
 
     def find_by_github_id
       return unless github_id.present?
 
-      User.find_by(:github_id => github_id)
+      User.active.find_by(:github_id => github_id)
     end
 
     def github_id

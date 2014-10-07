@@ -20,6 +20,7 @@ feature "Users" do
     fill_in("Last name", :with => "Example")
     fill_in("Email", :with => "joe@example.com")
     select("student", :from => "Role")
+    select("active", :from => "Status")
     select(cohort.name, :from => "Cohort")
 
     click_on "Create User"

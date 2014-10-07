@@ -5,7 +5,7 @@ class Student::StudentsController < SignInRequiredController
   end
 
   def index
-    @students = @cohort.students
+    @students = @cohort.users
   end
 
   def show

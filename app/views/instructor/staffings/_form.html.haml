@@ -5,7 +5,7 @@
     .form-group
       = f.label :user_id, class: "col-sm-2 control-label"
       .col-sm-6
-        = f.collection_select :user_id, User.instructor, :id, :full_name, {prompt: true}, class: "form-control"
+        = f.collection_select :user_id, User.instructor.order(:first_name, :last_name), :id, :full_name, {prompt: true}, class: "form-control"
 
   .form-group
     = f.label :status, class: "col-sm-2 control-label"
