@@ -29,8 +29,7 @@
                   = nav_item t('nav.instructors'), instructor_cohorts_path
                   = nav_item t('nav.exercises'), instructor_exercises_path
                 - else
-                  - if @cohort
-                    = nav_item "Curriculum", @cohort.curriculum_site_url
+                  = nav_item "Curriculum", current_user.cohort.curriculum_site_url
                 = nav_item "Personal Info", personal_information_path
 
       - if flash.any?
