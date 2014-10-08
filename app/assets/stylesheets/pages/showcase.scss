@@ -222,8 +222,8 @@ ul.showcase {
   @include size($ribbon-size);
   overflow: hidden;
   position: absolute;
-  top: $base-line-height;
-  right: -3px;
+  top: -1px;
+  right: -1px;
 
   .ribbon-employed {
     font-size: .8em;
