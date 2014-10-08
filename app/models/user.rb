@@ -42,6 +42,6 @@ class User < ActiveRecord::Base
   end
 
   def is_employed?
-    self.employer != nil && self.employer != "" ? true : false
+    !employer.blank?
   end
 end
