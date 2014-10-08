@@ -16,39 +16,6 @@ ActiveRecord::Schema.define(version: 20141007180233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: true do |t|
-    t.text     "text"
-    t.integer  "comprehension_question_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "answers", ["comprehension_question_id"], name: "index_answers_on_comprehension_question_id", using: :btree
-
-  create_table "applications", force: true do |t|
-    t.string   "resume"
-    t.string   "cover_letter"
-    t.integer  "user_id"
-    t.integer  "job_opportunity_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "attendance_sheets", force: true do |t|
-    t.date     "sheet_date"
-    t.integer  "cohort_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "attendances", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "attendance_sheet_id"
-    t.boolean  "in_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cohort_exercises", force: true do |t|
     t.integer  "exercise_id"
     t.integer  "cohort_id"
@@ -70,48 +37,11 @@ ActiveRecord::Schema.define(version: 20141007180233) do
     t.string   "curriculum_site_url",                  null: false
   end
 
-  create_table "companies", force: true do |t|
-    t.string "name"
-    t.string "contact_name"
-    t.string "contact_email"
-  end
-
-  create_table "comprehension_questions", force: true do |t|
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "cohort_exercise_id"
-  end
-
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.string   "github_repo"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "feedback_entries", force: true do |t|
-    t.integer  "recipient_id"
-    t.text     "comment"
-    t.integer  "provider_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "viewed",       default: false
-  end
-
-  create_table "job_opportunities", force: true do |t|
-    t.string   "location"
-    t.string   "salary"
-    t.string   "job_status"
-    t.string   "decision"
-    t.string   "job_title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.string   "application_due_date"
-    t.string   "application_type"
-    t.string   "status"
-    t.integer  "company_id"
   end
 
   create_table "personal_projects", force: true do |t|
@@ -123,14 +53,6 @@ ActiveRecord::Schema.define(version: 20141007180233) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "questions", force: true do |t|
-    t.string   "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "cohort_id"
-    t.boolean  "answered"
   end
 
   create_table "staffings", force: true do |t|
@@ -196,8 +118,8 @@ ActiveRecord::Schema.define(version: 20141007180233) do
     t.string   "linkedin"
     t.string   "avatar"
     t.string   "shirt_size"
-    t.string   "employer"
     t.integer  "status",          default: 0, null: false
+    t.string   "employer"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
