@@ -7,6 +7,14 @@
 %ul.showcase
   - @cohort.users.order(:first_name).each do |student|
     %li
+      - if student.employer != nil
+        %div.ribbon-wrapper
+          %div.ribbon-employed
+            HIRED
+      - else
+        %div.ribbon-wrapper
+          %div.ribbon-unemployed
+            HIRE ME!
       = link_to student_path(student), :class => "container" do
         .image
           = image_tag student.avatar_url(:card)
