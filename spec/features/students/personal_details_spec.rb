@@ -26,6 +26,7 @@ feature "Student adding personal details" do
     fill_in "Linkedin", with: "http://linkedin.com/jetaggart"
     fill_in "Blog", with: "someblog.com"
     select "Women's-M", from: "Shirt Size"
+    fill_in "gCamp Tracker URL", with: "https://github.com/gSchool/boulder-g4-assets/tree/master/gCamp"
 
     click_on "Save"
     expect(page).to have_content("Personal information was successfully updated")
@@ -42,6 +43,7 @@ feature "Student adding personal details" do
     expect(find_field("Linkedin").value).to eq("http://linkedin.com/jetaggart")
     expect(find_field("Blog").value).to eq("someblog.com")
     expect(find_field("Shirt Size").value).to eq("Women's-M")
+    expect(find_field("gCamp Tracker URL").value).to eq("https://github.com/gSchool/boulder-g4-assets/tree/master/gCamp")
   end
 
   scenario "an instructor can see student information" do

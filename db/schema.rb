@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003211830) do
+ActiveRecord::Schema.define(version: 20141008221928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20141003211830) do
     t.string   "github_username"
     t.string   "github_id"
     t.integer  "cohort_id"
-    t.integer  "role",            default: 0
+    t.integer  "role",              default: 0
     t.string   "phone"
     t.string   "twitter"
     t.string   "blog"
@@ -118,7 +118,8 @@ ActiveRecord::Schema.define(version: 20141003211830) do
     t.string   "linkedin"
     t.string   "avatar"
     t.string   "shirt_size"
-    t.integer  "status",          default: 0, null: false
+    t.string   "gcamp_tracker_url"
+    t.integer  "status",            default: 0, null: false
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree

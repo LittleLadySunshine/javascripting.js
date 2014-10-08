@@ -56,5 +56,10 @@
       - options = [["Women's-S"], ["Women's-M"], ["Women's-L"], ["Men's-S"], ["Men's-M"], ["Men's-L"], ["Men's-XL"]]
       = f.select :shirt_size, options, {prompt: true}, class: "form-control"
 
+  .form-group
+    = f.label :gcamp_tracker_url, "gCamp Tracker URL", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :gcamp_tracker_url, class: "form-control"
+
   .col-md-offset-2
     = f.submit "Save", class: "btn btn-primary"
