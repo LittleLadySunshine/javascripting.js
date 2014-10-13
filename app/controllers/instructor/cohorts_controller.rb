@@ -46,7 +46,7 @@ class Instructor::CohortsController < InstructorRequiredController
     cohort = Cohort.find(params[:id])
 
     students = User.for_cohort(params[:id])
-    all_instructors = User.instructor
+    all_instructors = cohort.instructors
     selected_instructors = if params[:instructor_ids]
                              all_instructors.select { |instructor| params[:instructor_ids].include?(instructor.id.to_s) }
                            else
