@@ -15,6 +15,7 @@
     = image_tag(@user.avatar.url, style: "width: 100%;")
 
   .col-md-8
+    %h2 Personal Info
     %dl.dl-horizontal
       %dt Email
       %dd= mail_to @user.email, @user.email
@@ -61,13 +62,30 @@
 
     - if @user.personal_project
       %h2 Personal Project
-      %dl
+      %dl.dl-horizontal
         %dt Name:
         %dd= @user.personal_project.name
 
         %dt Description:
         %dd= @user.personal_project.description
 
-        %p= link_to "GitHub", @user.personal_project.github_repo_url
-        %p= link_to "Tracker", @user.personal_project.tracker_url
-        %p= link_to "Production", @user.personal_project.production_url
+        %dt Github:
+        %dd= link_to @user.personal_project.github_repo_url, @user.personal_project.github_repo_url
+
+        %dt Tracker:
+        %dd= link_to @user.personal_project.tracker_url, @user.personal_project.tracker_url
+
+        %dt Production:
+        %dd= link_to @user.personal_project.production_url, @user.personal_project.production_url
+
+    %h2 gCamp
+    %dl.dl-horizontal
+      %dt Tracker URL:
+      %dd
+        - if @user.gcamp_tracker_url?
+          = link_to @user.gcamp_tracker_url, @user.gcamp_tracker_url
+
+      %dt Production URL:
+      %dd
+        - if @user.gcamp_url?
+          = link_to @user.gcamp_url, @user.gcamp_url

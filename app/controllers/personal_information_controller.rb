@@ -17,6 +17,19 @@ class PersonalInformationController < SignInRequiredController
   private
 
   def personal_project_params
-    params.require(:user).permit(:phone, :twitter, :linkedin, :blog, :address_1, :address_2, :city, :state, :zip_code, :shirt_size, :gcamp_tracker_url)
+    params.require(:user).permit(
+      :phone,
+      :twitter,
+      :linkedin,
+      :blog,
+      :address_1,
+      :address_2,
+      :city,
+      :state,
+      :zip_code,
+      :shirt_size,
+      :gcamp_url,
+      :gcamp_tracker_url,
+    )
   end
 end
