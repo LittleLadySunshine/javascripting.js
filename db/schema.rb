@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(version: 20141008221928) do
     t.string   "linkedin"
     t.string   "avatar"
     t.string   "shirt_size"
-    t.string   "gcamp_tracker_url"
     t.integer  "status",            default: 0, null: false
+    t.string   "gcamp_tracker_url"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
