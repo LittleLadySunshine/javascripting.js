@@ -62,6 +62,9 @@ class Instructor::CohortsController < InstructorRequiredController
                                       :selected_instructors => selected_instructors})
   end
 
+  def acceptance
+    @users = User.for_cohort(@cohort)
+  end
 
   private
 

@@ -14,11 +14,5 @@
               = cohort.name
         .panel-body
           %ul
-            %li= link_to "1-on-1 Schedule", one_on_ones_instructor_cohort_path(cohort)
-            %li= link_to "Pairs", instructor_cohort_pairs_path(cohort)
-            %li= link_to "Exercises", instructor_cohort_cohort_exercises_path(cohort)
-            %li= link_to "Edit", edit_instructor_cohort_path(cohort)
-            %li= link_to "Tracker Accounts", instructor_cohort_tracker_accounts_path(cohort)
-            %li= link_to "Staffings", instructor_cohort_staffings_path(cohort)
-            %li= link_to "Import", instructor_cohort_imports_path(cohort)
-            %li= link_to "Info", cohort_info_path(cohort)
+            - instructor_cohort_links(cohort).each do |link|
+              %li= link_to link.text, link.path
