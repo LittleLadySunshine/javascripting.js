@@ -1,3 +1,8 @@
+.page-header
+  %h1 #{@cohort.name} Acceptance Links
+
+= render partial: 'nav', locals: { cohort: @cohort }
+
 %table.table.table-bordered.table-striped
   %thead
     %tr
@@ -10,7 +15,7 @@
         %td= link_to "#{user.github_username}/gCamp", "http://github.com/#{user.github_username}/gCamp", target: :_blank
         %td
           - if user.gcamp_tracker_url?
-            = link_to 'Tracker', user.gcamp_tracker_url
+            = link_to 'Tracker', user.gcamp_tracker_url, target: :_blank
         %td
           - if user.gcamp_url?
-            = link_to 'Heroku', user.gcamp_url
+            = link_to 'Heroku', user.gcamp_url, target: :_blank
