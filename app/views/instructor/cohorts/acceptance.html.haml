@@ -12,10 +12,10 @@
     - @users.each do |user|
       %tr
         %td= user.full_name
-        %td= link_to "#{user.github_username}/gCamp", "http://github.com/#{user.github_username}/gCamp", target: :_blank
         %td
           - if user.gcamp_tracker_url?
             = link_to 'Tracker', user.gcamp_tracker_url, target: :_blank
         %td
           - if user.gcamp_url?
             = link_to 'Heroku', user.gcamp_url, target: :_blank
+        %td= link_to "#{user.github_username}/gCamp", "http://github.com/#{user.github_username}/gCamp", target: :_blank
