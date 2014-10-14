@@ -63,6 +63,7 @@ class Instructor::CohortsController < InstructorRequiredController
   end
 
   def acceptance
+    @cohort = Cohort.find(params[:id])
     @users = User.for_cohort(@cohort)
   end
 
