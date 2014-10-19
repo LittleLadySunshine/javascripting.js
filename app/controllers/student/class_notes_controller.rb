@@ -7,7 +7,7 @@ class Student::ClassNotesController < SignInRequiredController
     end
   end
 
-  class ClassNote
+  class ClassNotePresenter
     attr_reader :date
 
     def initialize(github_data)
@@ -44,7 +44,7 @@ class Student::ClassNotesController < SignInRequiredController
     client = Octokit::Client.new(access_token: session[:access_token])
     repo_name = @cohort.class_notes_repo_name
     results = client.contents(repo_name, path: "class-notes")
-    @days = results.map{|result| ClassNote.new(result) }
+    @days = results.map{|result| ClassNotePresenter.new(result) }
 
     result = []
     @days.group_by{|day| day.date.strftime("%U") }.each.with_index(1) do |(_, days), week_number|

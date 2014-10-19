@@ -1,7 +1,8 @@
-= render 'student/sub_nav'
+= render 'student/sub_nav', tab: @date == Date.today ? :todays_class_notes : :class_notes
 
-.page-header
-  %h1= @date.strftime("Class Notes - %B #{@date.day.ordinalize}, %Y")
+.breadcrumb
+  %li= link_to "Class Notes", cohort_class_notes_path
+  %li.active= @date.strftime("Class Notes - %B #{@date.day.ordinalize}, %Y")
 
 - if @content
   .github-content

@@ -1,6 +1,7 @@
 module ApplicationHelper
-  def nav_item(name, path, link_options: {})
-    content_tag('li', :class => (current_page?(path) ? 'active' : nil)) do
+  def nav_item(name, path, link_options: {}, active: false)
+    active ||= current_page?(path)
+    content_tag('li', :class => (active ? 'active' : nil)) do
       link_to(name, path, link_options)
     end
   end
