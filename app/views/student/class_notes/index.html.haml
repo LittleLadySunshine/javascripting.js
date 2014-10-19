@@ -1,10 +1,11 @@
-.page-header
-  %h1 Class Notes
-
 = render 'student/sub_nav'
 
+.page-header
+  %h1= @date.strftime("Class Notes - %B #{@date.day.ordinalize}, %Y")
+
 - if @content
-  = @content.html_safe
+  .github-content
+    = @content.html_safe
 - else
   .jumbotron
     %h2 Class notes could not be found for today
