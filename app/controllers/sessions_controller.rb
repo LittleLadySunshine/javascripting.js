@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = FindAndUpdateUserFromGithubInfo.call(github_info)
 
     if user.present?
+      session[:access_token] = request.env['omniauth.auth']['credentials']['token']
       user_session.sign_in(user)
       notice = I18n.t("welcome_message", :first_name => user.first_name, :last_name => user.last_name)
       redirect_to get_home_path, :notice => notice

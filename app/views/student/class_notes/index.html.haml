@@ -1,0 +1,14 @@
+.page-header
+  %h1 Class Notes
+
+= render 'student/sub_nav'
+
+- if @content
+  = @content.html_safe
+- else
+  .jumbotron
+    %h2 Class notes could not be found for today
+    %p.lead
+      Please visit
+      - url = "#{@cohort.curriculum_site_url}/tree/master/class-notes"
+      = link_to url, url

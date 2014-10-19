@@ -19,6 +19,8 @@ $navbar-height: 80px;
 @import "bootstrap";
 @import "bootstrap/theme";
 
+@import "pygments";
+
 .gschool-logo {
   height: $navbar-height - 10px;
 
