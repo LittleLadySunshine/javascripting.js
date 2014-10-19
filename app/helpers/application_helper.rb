@@ -18,6 +18,7 @@ module ApplicationHelper
       {text: "Import", path: instructor_cohort_imports_path(cohort)},
       {text: "Info", path: cohort_info_path(cohort)},
       {text: "Acceptance", path: acceptance_instructor_cohort_path(cohort)},
+      {text: "Class Notes", path: cohort_class_notes_path(cohort)},
     ].map{|hash| OpenStruct.new(hash) }
   end
 end

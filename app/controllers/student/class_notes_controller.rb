@@ -2,6 +2,9 @@ class Student::ClassNotesController < SignInRequiredController
 
   before_action do
     @cohort = Cohort.find(params[:cohort_id])
+    if @cohort.class_notes_repo_name.blank?
+      redirect_to get_home_path, alert: "Class notes are not available for this cohort"
+    end
   end
 
   class ClassNote
@@ -39,7 +42,8 @@ class Student::ClassNotesController < SignInRequiredController
 
   def index
     client = Octokit::Client.new(access_token: session[:access_token])
-    results = client.contents('gSchool/boulder-g4-assets', path: "class-notes")
+    repo_name = @cohort.class_notes_repo_name
+    results = client.contents(repo_name, path: "class-notes")
     @days = results.map{|result| ClassNote.new(result) }
 
     result = []
@@ -55,8 +59,9 @@ class Student::ClassNotesController < SignInRequiredController
 
     @date = params[:id].to_date
     begin
+      repo_name = @cohort.class_notes_repo_name
       @content = client.contents(
-        'gSchool/boulder-g4-assets',
+        repo_name,
         path: "class-notes/#{@date.strftime("%Y-%m-%d")}.md",
         accept: "application/vnd.github.VERSION.html"
       )

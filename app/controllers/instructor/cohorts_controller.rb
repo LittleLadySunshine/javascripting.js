@@ -54,12 +54,14 @@ class Instructor::CohortsController < InstructorRequiredController
                            end
     scheduler = OneOnOneScheduler.new(students, selected_instructors)
     scheduler.generate_schedule
-    render('one_on_ones', :locals => {:cohort => cohort,
-                                      :cohort_name => cohort.name,
-                                      :appointments => scheduler.appointments,
-                                      :unscheduled_students => scheduler.unscheduled_students,
-                                      :all_instructors => all_instructors,
-                                      :selected_instructors => selected_instructors})
+    render('one_on_ones', :locals => {
+      :cohort => cohort,
+      :cohort_name => cohort.name,
+      :appointments => scheduler.appointments,
+      :unscheduled_students => scheduler.unscheduled_students,
+      :all_instructors => all_instructors,
+      :selected_instructors => selected_instructors}
+    )
   end
 
   def acceptance
@@ -70,14 +72,17 @@ class Instructor::CohortsController < InstructorRequiredController
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name,
-                                   :start_date,
-                                   :end_date,
-                                   :google_maps_location,
-                                   :directions,
-                                   :showcase,
-                                   :curriculum_site_url,
-                                   :pair_feedback_url,
-                                   :hero)
+    params.require(:cohort).permit(
+      :name,
+      :start_date,
+      :end_date,
+      :google_maps_location,
+      :directions,
+      :showcase,
+      :curriculum_site_url,
+      :pair_feedback_url,
+      :class_notes_repo_name,
+      :hero
+    )
   end
 end
