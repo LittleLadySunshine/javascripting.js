@@ -1,0 +1,15 @@
+= render 'student/sub_nav'
+
+.page-header
+  %h1= @date.strftime("Class Notes - %B #{@date.day.ordinalize}, %Y")
+
+- if @content
+  .github-content
+    = @content.html_safe
+- else
+  .jumbotron
+    %h2 Class notes could not be found for today
+    %p.lead
+      Please visit
+      - url = "#{@cohort.curriculum_site_url}/tree/master/class-notes"
+      = link_to url, url
