@@ -28,14 +28,19 @@ feature "Action Plans" do
     click_on("New Entry")
 
     fill_in "Description", with: "# Some header"
-    click_on "Create Action plan entry"
+    expect do
+      click_on "Create Action plan entry"
+    end.to change{ActionMailer::Base.deliveries.length}.by(1)
 
     expect(page).to have_css(".panel h1", text: "Some header")
 
     within('.panel'){ click_on("Edit") }
 
     fill_in "Description", with: "* some list"
-    click_on "Update Action plan entry"
+
+    expect do
+      click_on "Update Action plan entry"
+    end.to change{ActionMailer::Base.deliveries.length}.by(1)
 
     expect(page).to have_css(".panel li", text: "some list")
 
