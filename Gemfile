@@ -24,6 +24,7 @@ gem 'octokit'
 gem 'carrierwave'
 gem 'fog'
 gem 'nokogiri'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'rspec-rails'

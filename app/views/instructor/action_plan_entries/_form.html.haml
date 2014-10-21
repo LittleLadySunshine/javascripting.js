@@ -1,0 +1,8 @@
+= errors_for(f)
+
+.form-group
+  = f.label :description
+  = f.text_area :description, class: "form-control", rows: 20, autofocus: true
+
+.form-group
+  = f.submit class: 'btn btn-primary'

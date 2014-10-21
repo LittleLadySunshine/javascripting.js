@@ -26,9 +26,10 @@ module ApplicationHelper
     {
       "Students" => {
         "Students" => instructor_cohort_path(cohort),
+        "Action Plans" => instructor_cohort_action_plans_path(cohort),
         "Acceptance" => acceptance_instructor_cohort_path(cohort),
       },
-      "Students Links" => {
+      "Student Links" => {
         "Info" => cohort_info_path(cohort),
         "Class Notes" => cohort_class_notes_path(cohort),
         "Curriculum" => cohort.curriculum_site_url,

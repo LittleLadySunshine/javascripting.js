@@ -310,6 +310,7 @@ DEPENDENCIES
   pg
   rails
   rails_12factor
+  redcarpet
   rmagick
   rspec-mocks
   rspec-rails

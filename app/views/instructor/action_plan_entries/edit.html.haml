@@ -1,0 +1,7 @@
+.page-header
+  %h1 #{@user.full_name}: Edit Action Plan Entry
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+= form_for @entry, url: instructor_cohort_student_action_plan_entry_path(@cohort, @user, @entry) do |f|
+  = render 'form', f: f

@@ -34,7 +34,10 @@ Students::Application.routes.draw do
       resources :staffings, except: [:show]
       resources :pairs
       resources :imports, only: [:index, :create]
-      resources :students, :only => [:new, :create, :show, :edit, :update]
+      resources :students, :only => [:new, :create, :show, :edit, :update] do
+        resources :action_plan_entries
+      end
+      resources :action_plans, only: :index
       resources :cohort_exercises
     end
   end
