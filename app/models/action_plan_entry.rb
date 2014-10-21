@@ -5,7 +5,7 @@ class ActionPlanEntry < ActiveRecord::Base
 
   validates :description, presence: true
 
-  def self.for_cohort_and_student(cohort, user)
+  def self.for_cohort_and_user(cohort, user)
     where(cohort_id: cohort, user_id: user)
   end
 

@@ -6,7 +6,7 @@ class Instructor::ActionPlanEntriesController < InstructorRequiredController
   end
 
   def index
-    @entries = ActionPlanEntry.for_cohort_and_student(@cohort, @user).order('created_at desc')
+    @entries = ActionPlanEntry.for_cohort_and_user(@cohort, @user).order('created_at desc')
   end
 
   def new
@@ -30,11 +30,11 @@ class Instructor::ActionPlanEntriesController < InstructorRequiredController
   end
 
   def edit
-    @entry = ActionPlanEntry.for_cohort_and_student(@cohort, @user).find(params[:id])
+    @entry = ActionPlanEntry.for_cohort_and_user(@cohort, @user).find(params[:id])
   end
 
   def update
-    @entry = ActionPlanEntry.for_cohort_and_student(@cohort, @user).find(params[:id])
+    @entry = ActionPlanEntry.for_cohort_and_user(@cohort, @user).find(params[:id])
 
     if @entry.update(entry_params)
       StudentMailer.action_plan_entry(user_session.current_user, @entry).deliver
@@ -48,7 +48,7 @@ class Instructor::ActionPlanEntriesController < InstructorRequiredController
   end
 
   def destroy
-    @entry = ActionPlanEntry.for_cohort_and_student(@cohort, @user)
+    @entry = ActionPlanEntry.for_cohort_and_user(@cohort, @user)
       .find_by_id(params[:id])
       .try(:destroy)
 

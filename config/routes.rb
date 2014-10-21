@@ -18,6 +18,7 @@ Students::Application.routes.draw do
       resources :submissions, :only => [:new, :create, :edit, :update], controller: 'student/submissions'
     end
     resource :personal_project, :only => [:show, :edit, :update], controller: 'student/personal_projects'
+    resources :action_plan_entries, controller: 'student/action_plan_entries', only: :index
     resources :class_notes, controller: 'student/class_notes' do
       get :today, on: :collection
     end

@@ -2,10 +2,17 @@ require "rails_helper"
 
 feature "Student Exercises" do
   before do
-    @cohort = create_cohort(name: "Cohort Name",
-                            google_maps_location: "this is a google map url",
-                            directions: '<p>The classroom is on the right</p><p>This is some more text</p>')
-    @user = create_user(first_name: "Jeff", last_name: "Taggart", email: "user@example.com", cohort: @cohort)
+    @cohort = create_cohort(
+      name: "Cohort Name",
+      google_maps_location: "this is a google map url",
+      directions: '<p>The classroom is on the right</p><p>This is some more text</p>'
+    )
+    @user = create_user(
+      first_name: "Jeff",
+      last_name: "Taggart",
+      email: "user@example.com",
+      cohort: @cohort
+    )
     mock_omniauth
 
     visit root_path
