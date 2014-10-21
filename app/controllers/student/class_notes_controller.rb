@@ -65,6 +65,13 @@ class Student::ClassNotesController < SignInRequiredController
         path: "class-notes/#{@date.strftime("%Y-%m-%d")}.md",
         accept: "application/vnd.github.VERSION.html"
       )
+
+      doc = Nokogiri::HTML::DocumentFragment.parse(@content)
+
+      @nav_links = []
+      doc.css("a[name]").each do |element|
+        @nav_links << {name: element[:name], text: element.parent.text.strip}
+      end
     rescue Octokit::NotFound => e
     end
   end

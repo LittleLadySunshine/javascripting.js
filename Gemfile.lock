@@ -304,6 +304,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   neat (= 1.5.1)
+  nokogiri
   octokit
   omniauth-github
   pg

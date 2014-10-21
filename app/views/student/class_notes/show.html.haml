@@ -5,8 +5,14 @@
   %li.active= @date.strftime("Class Notes - %B #{@date.day.ordinalize}, %Y")
 
 - if @content
-  .github-content
-    = @content.html_safe
+  .row
+    .col-md-9
+      .github-content
+        = @content.html_safe
+    .col-md-3
+      %ul.nav
+        - @nav_links.each do |link|
+          %li= link_to link[:text], anchor: link[:name]
 - else
   .jumbotron
     %h2 Class notes could not be found for today

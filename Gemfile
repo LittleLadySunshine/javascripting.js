@@ -23,6 +23,7 @@ gem 'faraday', '~> 0.9.0'
 gem 'octokit'
 gem 'carrierwave'
 gem 'fog'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'rspec-rails'
