@@ -18,6 +18,10 @@ Students::Application.routes.draw do
       resources :submissions, :only => [:new, :create, :edit, :update], controller: 'student/submissions'
     end
     resource :personal_project, :only => [:show, :edit, :update], controller: 'student/personal_projects'
+    resources :action_plan_entries, controller: 'student/action_plan_entries', only: :index
+    resources :class_notes, controller: 'student/class_notes' do
+      get :today, on: :collection
+    end
   end
 
   namespace :instructor do
@@ -26,11 +30,15 @@ Students::Application.routes.draw do
 
     resources :cohorts do
       get :one_on_ones, :on => :member
+      get :acceptance, :on => :member
       resources :tracker_accounts
       resources :staffings, except: [:show]
       resources :pairs
       resources :imports, only: [:index, :create]
-      resources :students, :only => [:new, :create, :show, :edit, :update]
+      resources :students, :only => [:new, :create, :show, :edit, :update] do
+        resources :action_plan_entries
+      end
+      resources :action_plans, only: :index
       resources :cohort_exercises
     end
   end

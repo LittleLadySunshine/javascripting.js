@@ -86,7 +86,7 @@ feature "Cohorts" do
     scenario "instructors can see a one-on-one schedule" do
       instructor = create_instructor(:first_name => "Teacher", :last_name => "User", :github_id => '1010')
       create_user(:first_name => "Student", :last_name => "User", :github_id => '1111', :cohort_id => cohort.id, :github_username => "Student12345")
-
+      create_staffing(cohort: cohort, user: instructor)
       sign_in(instructor)
 
       visit '/instructor/cohorts'
@@ -96,6 +96,20 @@ feature "Cohorts" do
       expect(page).to have_content("Student User")
       expect(page).to have_content("Teacher User")
       expect(page).to have_content("1pm")
+    end
+
+    scenario "instructors can see a table of acceptance links for gCamp" do
+      instructor = create_instructor(:first_name => "Teacher", :last_name => "User", :github_id => '1010')
+      create_user(:first_name => "Student", :last_name => "User", :github_id => '1111', :cohort_id => cohort.id, :github_username => "Student12345")
+      create_staffing(cohort: cohort, user: instructor)
+      sign_in(instructor)
+
+      visit '/instructor/cohorts'
+      click_on cohort.name
+      click_on 'Acceptance'
+
+      expect(page).to have_content("Student User")
+      expect(page).to have_content("/gCamp")
     end
 
   end

@@ -1,7 +1,7 @@
-= render partial: 'student/sub_nav'
+= render 'student/sub_nav'
 
 .page-header
-  %h2 Edit your Personal Project
+  %h1 Edit your Personal Project
 
 = form_for [@cohort, @personal_project], html: {class: "form-horizontal"} do |f|
   = errors_for(f)

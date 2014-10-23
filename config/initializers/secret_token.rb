@@ -9,4 +9,7 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Students::Application.config.secret_key_base = 'f4fff57954cb99e899146122aecabd095c5270e02532feae606c00eae6072c87ba642abd8267bd4b21be2e63a2ad3ebec06ddf8d7ae2073ff18d583abce9802e'
+
+secret_key_base = ENV['SECRET_KEY_BASE'] || SecureRandom.hex(64)
+
+Students::Application.config.secret_key_base = secret_key_base

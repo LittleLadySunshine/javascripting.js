@@ -1,15 +1,15 @@
-= render :partial => 'student/sub_nav'
+= render 'student/sub_nav'
 
 .page-header
   .pull-right
     = link_to "Back", :back, class: "btn btn-info"
-
   %h1= @student.full_name
 
 .row
   .col-md-4
     = image_tag(@student.avatar.url, class: "avatar")
   .col-md-8
+    %h2 Personal Info
     %dl.horizontal
       %dt Email:
       %dd= @student.email
@@ -31,3 +31,15 @@
       %dd
         - if @student.blog.present?
           = link_to @student.blog, @student.blog
+
+    %h2 gCamp
+    %dl.dl-horizontal
+      %dt Tracker URL:
+      %dd
+        - if @student.gcamp_tracker_url?
+          = link_to @student.gcamp_tracker_url, @student.gcamp_tracker_url
+
+      %dt Production URL:
+      %dd
+        - if @student.gcamp_url?
+          = link_to @student.gcamp_url, @student.gcamp_url

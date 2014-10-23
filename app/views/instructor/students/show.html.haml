@@ -12,9 +12,10 @@
 
 .row
   .col-md-4
-    = image_tag(@student.avatar.url, style: "width: 100%;")
+    = image_tag(@student.avatar.url, style: "max-width: 100%;")
 
   .col-md-8
+    %h2 Personal Info
     %dl.dl-horizontal
       %dt Email
       %dd= mail_to @student.email, @student.email
@@ -57,16 +58,33 @@
 
     - if @student.personal_project
       %h2 Personal Project
-      %dl
+      %dl.dl-horizontal
         %dt Name:
         %dd= @student.personal_project.name
 
         %dt Description:
         %dd= @student.personal_project.description
 
-        %p= link_to "GitHub", @student.personal_project.github_repo_url
-        %p= link_to "Tracker", @student.personal_project.tracker_url
-        %p= link_to "Production", @student.personal_project.production_url
+        %dt Github:
+        %dd= link_to @student.personal_project.github_repo_url, @student.personal_project.github_repo_url
+
+        %dt Tracker:
+        %dd= link_to @student.personal_project.tracker_url, @student.personal_project.tracker_url
+
+        %dt Production:
+        %dd= link_to @student.personal_project.production_url, @student.personal_project.production_url
+
+    %h2 gCamp
+    %dl.dl-horizontal
+      %dt Tracker URL:
+      %dd
+        - if @student.gcamp_tracker_url?
+          = link_to @student.gcamp_tracker_url, @student.gcamp_tracker_url
+
+      %dt Production URL:
+      %dd
+        - if @student.gcamp_url?
+          = link_to @student.gcamp_url, @student.gcamp_url
 
 
 .row

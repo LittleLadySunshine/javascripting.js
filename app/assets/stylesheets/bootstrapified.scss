@@ -19,6 +19,8 @@ $navbar-height: 80px;
 @import "bootstrap";
 @import "bootstrap/theme";
 
+@import "pygments";
+
 .gschool-logo {
   height: $navbar-height - 10px;
 
@@ -44,4 +46,16 @@ footer {
 
 .cohort-nav {
   margin-bottom: 1em;
+}
+
+.github-content {
+  img {
+    display: block;
+  }
+}
+
+a[name] {
+  padding-top: $navbar-height + 30;
+  margin-top: ($navbar-height + 30) * -1;
+  display: inline-block; /* required for webkit browsers */
 }

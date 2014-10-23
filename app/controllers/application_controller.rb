@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   include UserSessionHelper
 
-
   def get_home_path
     if user_session.signed_in?
       if user_session.current_user.instructor?

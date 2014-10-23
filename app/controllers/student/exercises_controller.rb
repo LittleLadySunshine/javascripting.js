@@ -7,7 +7,7 @@ class Student::ExercisesController < SignInRequiredController
   def index
     user = user_session.current_user
 
-    @exercises = user.cohort_exercises.map do |exercise|
+    @exercises = @cohort.order_added_exercises.map do |exercise|
       StudentCohortExercise.new(user.id, exercise, @cohort)
     end
   end

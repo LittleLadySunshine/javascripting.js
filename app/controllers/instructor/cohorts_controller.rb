@@ -46,7 +46,7 @@ class Instructor::CohortsController < InstructorRequiredController
     cohort = Cohort.find(params[:id])
 
     students = User.for_cohort(params[:id])
-    all_instructors = User.instructor
+    all_instructors = cohort.instructors
     selected_instructors = if params[:instructor_ids]
                              all_instructors.select { |instructor| params[:instructor_ids].include?(instructor.id.to_s) }
                            else
@@ -54,26 +54,35 @@ class Instructor::CohortsController < InstructorRequiredController
                            end
     scheduler = OneOnOneScheduler.new(students, selected_instructors)
     scheduler.generate_schedule
-    render('one_on_ones', :locals => {:cohort => cohort,
-                                      :cohort_name => cohort.name,
-                                      :appointments => scheduler.appointments,
-                                      :unscheduled_students => scheduler.unscheduled_students,
-                                      :all_instructors => all_instructors,
-                                      :selected_instructors => selected_instructors})
+    render('one_on_ones', :locals => {
+      :cohort => cohort,
+      :cohort_name => cohort.name,
+      :appointments => scheduler.appointments,
+      :unscheduled_students => scheduler.unscheduled_students,
+      :all_instructors => all_instructors,
+      :selected_instructors => selected_instructors}
+    )
   end
 
+  def acceptance
+    @cohort = Cohort.find(params[:id])
+    @users = User.for_cohort(@cohort)
+  end
 
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name,
-                                   :start_date,
-                                   :end_date,
-                                   :google_maps_location,
-                                   :directions,
-                                   :showcase,
-                                   :curriculum_site_url,
-                                   :pair_feedback_url,
-                                   :hero)
+    params.require(:cohort).permit(
+      :name,
+      :start_date,
+      :end_date,
+      :google_maps_location,
+      :directions,
+      :showcase,
+      :curriculum_site_url,
+      :pair_feedback_url,
+      :class_notes_repo_name,
+      :hero
+    )
   end
 end

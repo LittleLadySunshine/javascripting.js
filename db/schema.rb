@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141007180233) do
+=======
+ActiveRecord::Schema.define(version: 20141021033126) do
+>>>>>>> 3bde556e9355255a802486cdd6678f412c5b3ab2
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_plan_entries", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "cohort_id",   null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "cohort_exercises", force: true do |t|
     t.integer  "exercise_id"
@@ -33,8 +45,9 @@ ActiveRecord::Schema.define(version: 20141007180233) do
     t.date     "end_date"
     t.string   "pair_feedback_url"
     t.string   "hero"
-    t.boolean  "showcase",             default: false, null: false
-    t.string   "curriculum_site_url",                  null: false
+    t.boolean  "showcase",              default: false, null: false
+    t.string   "curriculum_site_url",                   null: false
+    t.string   "class_notes_repo_name"
   end
 
   create_table "exercises", force: true do |t|
@@ -106,7 +119,7 @@ ActiveRecord::Schema.define(version: 20141007180233) do
     t.string   "github_username"
     t.string   "github_id"
     t.integer  "cohort_id"
-    t.integer  "role",            default: 0
+    t.integer  "role",              default: 0
     t.string   "phone"
     t.string   "twitter"
     t.string   "blog"
@@ -120,6 +133,8 @@ ActiveRecord::Schema.define(version: 20141007180233) do
     t.string   "shirt_size"
     t.integer  "status",          default: 0, null: false
     t.string   "employer"
+    t.string   "gcamp_tracker_url"
+    t.string   "gcamp_url"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree

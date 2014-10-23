@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def self.for_cohort(cohort_id)
-    where(:cohort_id => cohort_id)
+    where(:cohort_id => cohort_id).order(:first_name, :last_name)
   end
 
   def cohort_exercises
