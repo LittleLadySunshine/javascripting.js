@@ -9,6 +9,10 @@ class Submission < ActiveRecord::Base
                                            :message => "This must be a pivotal tracker url",
                                            :allow_blank => true}
 
+  def self.for_cohort(cohort)
+    joins(:user).where(users: {cohort_id: cohort})
+  end
+
   def user_name
     user.full_name
   end

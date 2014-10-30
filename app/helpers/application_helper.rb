@@ -32,14 +32,15 @@ module ApplicationHelper
       "Student Links" => {
         "Info" => cohort_info_path(cohort),
         "Class Notes" => cohort_class_notes_path(cohort),
+        "Today's Class Notes" => today_cohort_class_notes_path(cohort),
         "Curriculum" => cohort.curriculum_site_url,
       },
       "Setup" => {
         "Staffings" => instructor_cohort_staffings_path(cohort),
         "Tracker Accounts" => instructor_cohort_tracker_accounts_path(cohort),
-        "Exercises" => instructor_cohort_cohort_exercises_path(cohort),
         "Import" => instructor_cohort_imports_path(cohort),
       },
+      "Exercises" => instructor_cohort_cohort_exercises_path(cohort),
       "1-on-1 Schedule" => one_on_ones_instructor_cohort_path(cohort),
       "Pairs" => instructor_cohort_pairs_path(cohort),
       "Edit" => edit_instructor_cohort_path(cohort),

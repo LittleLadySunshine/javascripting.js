@@ -1,18 +1,20 @@
 class Instructor::CohortExercisesController < InstructorRequiredController
 
-  def index
+  before_action do
     @cohort = Cohort.find(params[:cohort_id])
+  end
+
+  def index
     @cohort_exercises = @cohort.cohort_exercises.order(:created_at)
   end
 
   def show
     @exercise = CohortExercise.includes(:exercise).find(params[:id])
-    @submissions = @exercise.submissions
+    @submissions = @exercise.submissions.for_cohort(@cohort)
     @students_missing_submission = @exercise.students_missing_submission
   end
 
   def new
-    @cohort = Cohort.find(params[:cohort_id])
     already_assigned_exercises = @cohort.exercises
     @exercises = Exercise.all.order(:name) - already_assigned_exercises
   end

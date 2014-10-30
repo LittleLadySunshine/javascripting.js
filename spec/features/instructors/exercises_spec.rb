@@ -103,12 +103,48 @@ feature "Exercises" do
     submission_count_link.click
 
     within("section", :text => "Completed Submissions") do
-      expect(all("a").first["href"]).to eq("https://github.com/Student12345/some_repo_name")
+      expect(all("a")[1]["href"]).to eq("https://github.com/Student12345/some_repo_name")
       expect(page).to have_link("Tracker Project")
     end
 
     within("section", :text => "Students Without Submissions") do
       expect(page).to have_content("Joe Mama")
+    end
+  end
+
+  scenario "instructor only views student submissions from the given cohort" do
+    cohort2 = create_cohort
+    student1 = create_user(:first_name => "Joe", :last_name => "Mama", :cohort_id => cohort.id)
+    student2 = create_user(:first_name => "Other", :last_name => "Mama", :cohort_id => cohort2.id)
+
+    exercise = create_exercise(:name => "Nested Hashes")
+    cohort.update!(:exercises => [exercise])
+    cohort2.update!(:exercises => [exercise])
+
+    create_submission(
+      exercise: exercise,
+      user: student1,
+      tracker_project_url: "http://www.pivotaltracker.com",
+      github_repo_name: "some_repo_name"
+    )
+
+    create_submission(
+      exercise: exercise,
+      user: student2,
+      tracker_project_url: "http://www.pivotaltracker.com",
+      github_repo_name: "some_repo_name"
+    )
+
+    visit "/instructor/cohorts"
+    click_link cohort.name
+    within(".cohort-nav") { click_link "Exercises" }
+    submission_count_link = find("td.submission_count a")
+    expect(submission_count_link.text).to eq("1")
+    submission_count_link.click
+
+    within("section", :text => "Completed Submissions") do
+      expect(page).to have_content("Joe Mama")
+      expect(page).to have_no_content("Other Mama")
     end
   end
 
