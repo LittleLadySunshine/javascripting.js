@@ -33,11 +33,15 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def twitter_url
-    "https://twitter.com/#{twitter}"
-  end
-
   def github_url
     "https://github.com/#{github_username}"
+  end
+
+  def twitter_url
+    if twitter =~ /https?:\/\//
+      twitter
+    else
+      "https://twitter.com/#{twitter}"
+    end
   end
 end

@@ -31,6 +31,7 @@ Students::Application.routes.draw do
     resources :cohorts do
       get :one_on_ones, :on => :member
       get :acceptance, :on => :member
+      get :social, :on => :member
       resources :tracker_accounts
       resources :staffings, except: [:show]
       resources :pairs

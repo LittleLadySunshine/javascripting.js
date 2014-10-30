@@ -69,6 +69,11 @@ class Instructor::CohortsController < InstructorRequiredController
     @users = User.for_cohort(@cohort)
   end
 
+  def social
+    @cohort = Cohort.find(params[:id])
+    @users = User.for_cohort(@cohort)
+  end
+
   private
 
   def cohort_params

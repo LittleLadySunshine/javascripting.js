@@ -1,0 +1,25 @@
+.page-header
+  %h1 #{@cohort.name} Social Links
+
+= render partial: 'nav', locals: { cohort: @cohort }
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Twitter
+      %th Blog
+      %th LinkedIn
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to user.full_name, instructor_user_path(user)
+        %td
+          - if user.twitter?
+            = link_to('Twitter', user.twitter_url)
+        %td
+          - if user.blog?
+            = link_to('Blog', user.blog)
+        %td
+          - if user.linkedin?
+            = link_to('LinkedIn', user.linkedin)

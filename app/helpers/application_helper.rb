@@ -29,6 +29,7 @@ module ApplicationHelper
         "Action Plans" => instructor_cohort_action_plans_path(cohort),
         "Acceptance" => acceptance_instructor_cohort_path(cohort),
         "Personal Projects" => instructor_cohort_projects_path(cohort),
+        "Social Links" => social_instructor_cohort_path(cohort),
       },
       "Student Links" => {
         "Info" => cohort_info_path(cohort),
