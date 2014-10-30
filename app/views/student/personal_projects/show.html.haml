@@ -5,6 +5,12 @@
   %h1= @personal_project.name
 
 %p= @personal_project.description
-%p= link_to "GitHub", @personal_project.github_repo_url
-%p= link_to "Tracker", @personal_project.tracker_url
-%p= link_to "Production URL", @personal_project.production_url
+
+- if @personal_project.github_repo_name?
+  %p= link_to "GitHub", @personal_project.github_repo_url
+
+- if @personal_project.tracker_url?
+  %p= link_to "Tracker", @personal_project.tracker_url
+
+- if @personal_project.production_url?
+  %p= link_to "Production URL", @personal_project.production_url
