@@ -2,7 +2,7 @@
 
 .page-header
   .pull-right= link_to "Edit", edit_cohort_personal_project_path(@cohort), :class => "btn btn-info"
-  %h1= @personal_project.name
+  %h1= @personal_project.name.presence || "(unnamed)"
 
 %p= @personal_project.description
 
