@@ -11,7 +11,7 @@
       .panel-body
         .row
           .col-md-2
-            = image_tag student.avatar.url.present? ? student.avatar.url : "http://placekitten.com/g/200/300",
+            = image_tag student.avatar.url.present? ? student.avatar.url(:card) : "http://placekitten.com/g/200/300",
                         class: "img-responsive"
             = student.full_name
           .col-md-8
@@ -37,11 +37,11 @@
       .col-md-2.text-center
         - if @done_users[student.id]
           .text-translucent
-            = image_tag student.avatar.url.present? ? student.avatar.url : "http://placekitten.com/g/200/300",
+            = image_tag student.avatar.url.present? ? student.avatar.url(:card) : "http://placekitten.com/g/200/300",
                         class: "img-responsive"
             = student.full_name
         - else
           = link_to new_cohort_pairing_path(@cohort, student_id: student) do
-            = image_tag student.avatar.url.present? ? student.avatar.url : "http://placekitten.com/g/200/300",
+            = image_tag student.avatar.url.present? ? student.avatar.url(:card) : "http://placekitten.com/g/200/300",
                         class: "img-responsive"
             = student.full_name
