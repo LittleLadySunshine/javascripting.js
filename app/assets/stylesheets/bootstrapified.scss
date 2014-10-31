@@ -59,3 +59,11 @@ a[name] {
   margin-top: ($navbar-height + 30) * -1;
   display: inline-block; /* required for webkit browsers */
 }
+
+.text-translucent {
+  opacity: 0.3;
+}
+
+.pending-pairing {
+  margin-bottom: 1em;
+}

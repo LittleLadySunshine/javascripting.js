@@ -1,4 +1,12 @@
 module ObjectFactories
+  
+  def create_pairing(overrides = {})
+    defaults = {
+      feedback: 'great job!',
+      paired_on: Date.today,
+    }
+    Pairing.create!(defaults.merge(overrides))
+  end
 
   def create_staffing(overrides = {})
     new_staffing(overrides).tap do |u|

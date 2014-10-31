@@ -13,6 +13,7 @@ Students::Application.routes.draw do
 
   resources :cohorts, only: [] do
     get "/info" => "student/info#index", :as => "info"
+    resources :pairings, controller: 'student/pairings'
     resources :students, :only => [:index, :show], controller: 'student/students'
     resources :exercises, :only => [:index, :show], controller: 'student/exercises' do
       resources :submissions, :only => [:new, :create, :edit, :update], controller: 'student/submissions'
