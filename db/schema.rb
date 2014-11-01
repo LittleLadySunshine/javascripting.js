@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030193034) do
+ActiveRecord::Schema.define(version: 20141031173241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,5 +146,25 @@ ActiveRecord::Schema.define(version: 20141030193034) do
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
   add_index "users", ["status"], name: "index_users_on_status", using: :btree
+
+  create_table "writeup_topics", force: true do |t|
+    t.integer  "cohort_id",                  null: false
+    t.string   "subject",                    null: false
+    t.text     "description"
+    t.boolean  "active",      default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "writeups", force: true do |t|
+    t.integer  "writeup_topic_id",                 null: false
+    t.integer  "user_id",                          null: false
+    t.text     "response",                         null: false
+    t.boolean  "read",             default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "writeups", ["writeup_topic_id", "user_id"], name: "index_writeups_on_writeup_topic_id_and_user_id", using: :btree
 
 end

@@ -1,0 +1,6 @@
+.page-header
+  %h2 New Writeup Topic for #{@cohort.name}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+= render 'form', show_user: true

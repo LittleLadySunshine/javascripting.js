@@ -1,0 +1,29 @@
+.page-header
+  .pull-right
+    = link_to 'Back', instructor_cohort_writeup_topics_path(@cohort), class: 'btn btn-info'
+  %h1 #{@writeup_topic.subject}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+- if @writeup_topic.description?
+  %blockquote= markdownify(@writeup_topic.description)
+
+- if @writeup_topic.writeups.present?
+  - @writeup_topic.writeups.each do |writeup|
+    .panel.panel-default
+      .panel-heading
+        - unless writeup.read
+          .pull-right{data: {behavior: "mark-as-read"}}
+            = link_to "Mark as read",
+                      instructor_cohort_writeup_topic_writeup_path(@cohort, @writeup_topic, writeup),
+                      method: :patch,
+                      remote: true
+        %h3.panel-title
+          = writeup.user.full_name
+      .panel-body
+        .pull-right
+          = writeup.created_at.to_s(:long)
+        = markdownify(writeup.response)
+- else
+  .jumbotron
+    %h2 There are no writeups yet

@@ -41,6 +41,7 @@ module ApplicationHelper
         "Staffings" => instructor_cohort_staffings_path(cohort),
         "Tracker Accounts" => instructor_cohort_tracker_accounts_path(cohort),
         "Import" => instructor_cohort_imports_path(cohort),
+        "Writeup Topics" => instructor_cohort_writeup_topics_path(cohort),
       },
       "Exercises" => instructor_cohort_cohort_exercises_path(cohort),
       "1-on-1 Schedule" => one_on_ones_instructor_cohort_path(cohort),

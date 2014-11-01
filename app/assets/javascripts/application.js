@@ -30,5 +30,10 @@ $(document).ready(function() {
     });
   });
 
-  clip = new ZeroClipboard($("[data-clipboard-text]"))
+  clip = new ZeroClipboard($("[data-clipboard-text]"));
+
+  $(document).on("ajax:success", "[data-behavior=mark-as-read] a", function(e){
+    $(this).closest("[data-behavior=mark-as-read]").remove();
+  });
+
 });

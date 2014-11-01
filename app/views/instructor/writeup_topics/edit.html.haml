@@ -1,0 +1,6 @@
+.page-header
+  %h2 #{@writeup_topic.subject}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+= render 'form'

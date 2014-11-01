@@ -1,0 +1,31 @@
+= render 'student/sub_nav'
+
+.page-header
+  %h1 #{user_session.current_user.full_name}: Writeups
+
+- if @pending_topics.any?
+  - @pending_topics.each do |writeup_topic|
+    = render 'form', writeup_topic: writeup_topic, writeup: Writeup.new
+
+- if @writeups.present?
+  - @writeups.each do |writeup|
+    .panel.panel-default
+      .panel-heading
+        .pull-right
+          = link_to "edit", edit_cohort_writeup_topic_writeup_path(@cohort, writeup.writeup_topic, writeup)
+          - if writeup.writeup_topic.active?
+            |
+            = link_to "delete",
+                      cohort_writeup_topic_writeup_path(@cohort, writeup.writeup_topic, writeup),
+                      method: :delete,
+                      data: {confirm: "Are you sure?"}
+
+        %h3.panel-title
+          = writeup.writeup_topic.subject
+      .panel-body
+        .pull-right
+          = writeup.created_at.to_s(:long)
+        = markdownify(writeup.response)
+- else
+  .jumbotron
+    %h2 You have no writeups yet

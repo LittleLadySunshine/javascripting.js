@@ -13,6 +13,10 @@ Students::Application.routes.draw do
 
   resources :cohorts, only: [] do
     get "/info" => "student/info#index", :as => "info"
+    resources :writeups, controller: 'student/writeups', only: :index
+    resources :writeup_topics, only: [] do
+      resources :writeups, only: [:new, :create, :edit, :update, :destroy], controller: 'student/writeups'
+    end
     resources :pairings, controller: 'student/pairings'
     resources :students, :only => [:index, :show], controller: 'student/students'
     resources :exercises, :only => [:index, :show], controller: 'student/exercises' do
@@ -33,6 +37,9 @@ Students::Application.routes.draw do
       get :one_on_ones, :on => :member
       get :acceptance, :on => :member
       get :social, :on => :member
+      resources :writeup_topics do
+        resources :writeups
+      end
       resources :tracker_accounts
       resources :staffings, except: [:show]
       resources :pairs

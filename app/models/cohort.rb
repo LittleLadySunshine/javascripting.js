@@ -6,6 +6,7 @@ class Cohort < ActiveRecord::Base
   has_many :exercises, :through => :cohort_exercises
   has_many :users
   has_many :staffings
+  has_many :writeup_topics
   has_many :instructors, :through => :staffings, :source => :user
 
   mount_uploader :hero, HeroUploader

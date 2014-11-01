@@ -1,0 +1,23 @@
+.page-header
+  .pull-right
+    = link_to 'New Topic', new_instructor_cohort_writeup_topic_path(@cohort), class: 'btn btn-info'
+  %h1 Writeup Topics for #{@cohort.name}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+%table.table
+  %thead
+    %tr
+      %th Subject
+      %th Active
+      %th
+  %tbody
+    - @writeup_topics.each do |writeup_topic|
+      %tr
+        %td= link_to writeup_topic.subject, instructor_cohort_writeup_topic_path(@cohort, writeup_topic)
+        %td= writeup_topic.active
+        %td
+          .pull-right
+            = link_to 'edit', edit_instructor_cohort_writeup_topic_path(@cohort, writeup_topic)
+            |
+            = link_to 'delete', instructor_cohort_writeup_topic_path(@cohort, writeup_topic), method: :delete, data: {confirm: "Are you sure?"}
