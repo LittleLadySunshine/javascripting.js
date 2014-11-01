@@ -18,11 +18,13 @@
         %th Name
         %th % Complete
         %th Tags
-        %th Actions
       %tbody
         - @lesson_plans.each do |lesson_plan|
           %tr
-            %td= link_to lesson_plan.name, instructor_lesson_plan_path(lesson_plan)
+            %td
+              = link_to 'edit', edit_instructor_lesson_plan_path(lesson_plan)
+              |
+              = link_to lesson_plan.name, instructor_lesson_plan_path(lesson_plan)
             %td
               .progress
                 - percent = lesson_plan.completed_sections / 4.0 * 100
@@ -31,6 +33,3 @@
             %td
               - lesson_plan.tag_list.each do |tag|
                 = link_to tag, instructor_lesson_plans_path(filter: tag), class: "label label-info"
-            %td
-              .pull-right
-                = link_to 'edit', edit_instructor_lesson_plan_path(lesson_plan)
