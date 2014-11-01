@@ -31,6 +31,7 @@ Students::Application.routes.draw do
 
   namespace :instructor do
     resources :users
+    resources :lesson_plans
     resources :exercises, :except => :show
 
     resources :cohorts do

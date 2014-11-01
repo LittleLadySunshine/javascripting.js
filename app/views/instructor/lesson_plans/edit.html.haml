@@ -1,0 +1,9 @@
+.page-header
+  %h1 Edit Lesson Plan
+
+%ol.breadcrumb
+  %li= link_to "Lesson Plans", instructor_lesson_plans_path
+  %li= link_to @lesson_plan.name_was, instructor_lesson_plan_path(@lesson_plan)
+  %li.active Edit
+
+= render 'form'

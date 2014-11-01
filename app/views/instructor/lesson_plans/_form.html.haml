@@ -1,0 +1,62 @@
+= form_for [:instructor, @lesson_plan], html: {class: "form-horizontal"} do |f|
+  = errors_for(f)
+  - rows = 12
+
+  .pull-right
+    All content accepts markdown
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control", autofocus: true
+
+  .form-group
+    = f.label :objectives, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :objectives,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "By the end of this lesson you should be able to..."
+      .alert.alert-info
+        Write these so they talk directly to students (so we can show it on the daily plans)
+
+  .form-group
+    = f.label :assessment, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :assessment,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "Students will [create a writeup, write code...] describing..."
+      .alert.alert-warning
+        How will you #{content_tag(:strong, "know")} every student has accomplished their objectives?
+
+  .form-group
+    = f.label :activity, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :activity,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "Create an app that does the following three things..."
+      .alert.alert-info
+        Write instructions for students (can be shown on daily class notes)
+
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :description,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "Do a quick demo, then have students follow along..."
+      .alert.alert-warning
+        Write any notes for instructors (students will not see this)
+
+  .form-group
+    = f.label :tag_list, "Tags", class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :tag_list, class: "form-control", placeholder: "tag1, tag2, tag3"
+
+  .form-group
+    .col-md-offset-2.col-md-4
+      = f.submit class: 'btn btn-primary'
+      - path = f.object.persisted? ? instructor_lesson_plan_path(f.object) : instructor_lesson_plans_path
+      = link_to "cancel", path, class: "btn btn-default"

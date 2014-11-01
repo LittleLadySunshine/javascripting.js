@@ -1,0 +1,47 @@
+.page-header
+  .pull-right
+    = link_to new_instructor_lesson_plan_path, class: "btn btn-info" do
+      %i.glyphicon.glyphicon-plus
+      New Lesson Plan
+    = link_to edit_instructor_lesson_plan_path(@lesson_plan), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-pencil
+      Edit
+  %h1 #{@lesson_plan.name}
+
+%ol.breadcrumb
+  %li
+    = link_to "Lesson Plans", instructor_lesson_plans_path
+  %li.active
+    = @lesson_plan.name
+
+%p
+  - @lesson_plan.tag_list.each do |tag|
+    = link_to tag, instructor_lesson_plans_path(filter: tag), class: "label label-info"
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Objectives
+  .panel-body
+    = markdownify(@lesson_plan.objectives)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Assessment
+  .panel-body
+    = markdownify(@lesson_plan.assessment)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Activity
+  .panel-body
+    = markdownify(@lesson_plan.activity)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Description
+  .panel-body
+    = markdownify(@lesson_plan.description)

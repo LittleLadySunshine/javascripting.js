@@ -1,0 +1,30 @@
+.page-header
+  .pull-right
+    = link_to 'Create Lesson Plan', new_instructor_lesson_plan_path, class: 'btn btn-info'
+
+  %h2 gSchool Lesson Plans
+
+  = form_tag({}, method: :get, class: "form-inline") do
+    .form-group
+      = label_tag "filter", "Filter by", class: "sr-only"
+      = text_field_tag "filter", params[:filter], id: "filter", class: "form-control", placeholder: 'Filter by...'
+    = submit_tag "Filter", class: 'btn btn-primary'
+    = link_to "Clear Filters", instructor_lesson_plans_path, class: 'btn btn-default'
+
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %th Name
+        %th Tags
+        %th Actions
+      %tbody
+        - @lesson_plans.each do |lesson_plan|
+          %tr
+            %td= link_to lesson_plan.name, instructor_lesson_plan_path(lesson_plan)
+            %td
+              - lesson_plan.tag_list.each do |tag|
+                = link_to tag, instructor_lesson_plans_path(filter: tag), class: "label label-info"
+            %td
+              .pull-right
+                = link_to 'edit', edit_instructor_lesson_plan_path(lesson_plan)
