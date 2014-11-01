@@ -106,3 +106,57 @@
       - else
         .well
           There are no incomplete exercises
+
+.row
+  .col-md-12
+    %h2 Pair Feedback
+
+    - pairings = Pairing.where(pair_id: @student)
+    - if pairings.present?
+      - pairings.each do |pairing|
+        .panel.panel-default
+          .panel-heading
+            .pull-right
+              = pairing.paired_on.to_s(:long)
+            %h3.panel-title
+              = pairing.user.full_name
+          .panel-body
+            = markdownify(pairing.feedback)
+    - else
+      .well
+        There is no pair feedback
+
+.row
+  .col-md-12
+    %h2 Writeups
+
+    - writeups = Writeup.where(user_id: @student)
+    - if writeups.present?
+      - writeups.each do |writeup|
+        .panel.panel-default
+          .panel-heading
+            .pull-right
+              = writeup.created_at.to_s(:long)
+            %h3.panel-title
+              = writeup.writeup_topic.subject
+          .panel-body
+            = markdownify(writeup.response)
+    - else
+      .well
+        This user hasn't written anything up yet
+
+.row
+  .col-md-12
+    %h2 Action Plan
+
+    - entry = ActionPlanEntry.order('created_at desc').where(user_id: @student).first
+    - if entry
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = entry.created_at.to_s(:long)
+        .panel-body
+          = markdownify(entry.description)
+    - else
+      .well
+        This user has no current action plan
