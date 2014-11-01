@@ -1,7 +1,7 @@
 class Instructor::LessonPlansController < InstructorRequiredController
 
   def index
-    @lesson_plans = LessonPlan.order(:name)
+    @lesson_plans = LessonPlan.order('lower(name)')
     if params[:filter]
       @lesson_plans = @lesson_plans.tagged_with(params[:filter].split(',').map(&:strip))
     end

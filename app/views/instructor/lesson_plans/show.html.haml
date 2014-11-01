@@ -23,25 +23,37 @@
     %h3.panel-title
       Objectives
   .panel-body
-    = markdownify(@lesson_plan.objectives)
+    - if @lesson_plan.objectives?
+      = markdownify(@lesson_plan.objectives)
+    - else
+      %p.lead There are no objectives yet
 
 .panel.panel-default
   .panel-heading
     %h3.panel-title
       Assessment
   .panel-body
-    = markdownify(@lesson_plan.assessment)
+    - if @lesson_plan.assessment?
+      = markdownify(@lesson_plan.assessment)
+    - else
+      %p.lead There is no assessment yet
 
 .panel.panel-default
   .panel-heading
     %h3.panel-title
       Activity
   .panel-body
-    = markdownify(@lesson_plan.activity)
+    - if @lesson_plan.activity?
+      = markdownify(@lesson_plan.activity)
+    - else
+      %p.lead There is no activity yet
 
 .panel.panel-default
   .panel-heading
     %h3.panel-title
       Description
   .panel-body
-    = markdownify(@lesson_plan.description)
+    - if @lesson_plan.description?
+      = markdownify(@lesson_plan.description)
+    - else
+      %p.lead There is no description yet
