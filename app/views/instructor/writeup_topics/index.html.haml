@@ -9,12 +9,16 @@
   %thead
     %tr
       %th Subject
+      %th # Completed
+      %th # Not completed
       %th Active
       %th
   %tbody
     - @writeup_topics.each do |writeup_topic|
       %tr
         %td= link_to writeup_topic.subject, instructor_cohort_writeup_topic_path(@cohort, writeup_topic)
+        %td= writeup_topic.students_who_completed.length
+        %td= writeup_topic.students_who_did_not_complete.length
         %td= writeup_topic.active
         %td
           .pull-right

@@ -14,6 +14,7 @@ class Instructor::WriteupTopicsController < InstructorRequiredController
 
   def show
     @writeup_topic = @cohort.writeup_topics.find(params[:id])
+    @students_who_did_not_complete = @writeup_topic.students_who_did_not_complete
   end
 
   def create

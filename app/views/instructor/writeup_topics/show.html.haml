@@ -5,6 +5,12 @@
 
 = render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
 
+- if @students_who_did_not_complete.present?
+  %h3 The following students have not completed the writeup
+  %ul
+    - @students_who_did_not_complete.each do |student|
+      %li= link_to student.full_name, instructor_cohort_student_path(@cohort, student)
+
 - if @writeup_topic.description?
   %blockquote= markdownify(@writeup_topic.description)
 
