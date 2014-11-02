@@ -1,6 +1,6 @@
-= render 'student/sub_nav'
-
 .page-header
   %h1 Edit Submission for #{@submission.exercise.name}
+
+= render 'student/sub_nav'
 
 = render "form", submission: @submission, url:  cohort_exercise_submission_path(@cohort, @submission.exercise, @submission)

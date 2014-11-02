@@ -1,5 +1,3 @@
-= render 'student/sub_nav'
-
 .page-header
   .pull-right
     = link_to "Back", cohort_pairings_path(@cohort), class: "btn btn-info"
@@ -7,11 +5,13 @@
     New Pairing with
     = @pair.full_name
 
+= render 'student/sub_nav'
+
 = form_for [:cohort, @pairing], html: {class: "form-horizontal"} do |f|
   = errors_for(f)
 
   = hidden_field_tag :student_id, params[:student_id]
-  
+
   .form-group
     = f.label :paired_on, class: "col-sm-2 control-label"
     .col-sm-6

@@ -1,7 +1,7 @@
-= render 'student/sub_nav'
-
 .page-header
   %h2 Pair Bingo
+
+= render 'student/sub_nav'
 
 - if @pending_users.present?
   - @pending_users.each_value do |student|

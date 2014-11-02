@@ -1,6 +1,6 @@
 - tab ||= nil
 
-%ul.nav.nav-tabs
+%ul.nav.nav-tabs.student-sub-nav
   = nav_item "Exercises", cohort_exercises_path(@cohort)
   - if @cohort.class_notes_repo_name?
     = nav_item "Today's Class Notes", today_cohort_class_notes_path(@cohort), active: tab == :todays_class_notes

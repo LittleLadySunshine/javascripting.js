@@ -1,7 +1,7 @@
-= render 'student/sub_nav'
-
 .page-header
   %h1 Edit your Personal Project
+
+= render 'student/sub_nav'
 
 = form_for [@cohort, @personal_project], html: {class: "form-horizontal"} do |f|
   = errors_for(f)

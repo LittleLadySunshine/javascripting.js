@@ -1,9 +1,9 @@
-= render "student/sub_nav"
-
 .page-header
   .pull-right
     = link_to "GitHub", @exercise.github_repo_url, :class => "btn btn-info"
   %h1= @exercise.name
+
+= render "student/sub_nav"
 
 %p
   Tags:

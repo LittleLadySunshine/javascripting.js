@@ -30,7 +30,7 @@ $navbar-height: 80px;
 }
 
 body {
-  padding-top: $navbar-height + 20px;
+  padding-top: $navbar-height;
 }
 
 .logo-link {
@@ -65,5 +65,9 @@ a[name] {
 }
 
 .pending-pairing {
+  margin-bottom: 1em;
+}
+
+.student-sub-nav {
   margin-bottom: 1em;
 }
