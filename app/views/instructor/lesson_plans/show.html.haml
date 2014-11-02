@@ -3,7 +3,6 @@
     = link_to new_instructor_lesson_plan_path, class: "btn btn-info" do
       %i.glyphicon.glyphicon-plus
       New Lesson Plan
-
     = link_to edit_instructor_lesson_plan_path(@lesson_plan), class: "btn btn-info" do
       %i.glyphicon.glyphicon-pencil
       Edit
@@ -59,3 +58,9 @@
       = markdownify(@lesson_plan.description)
     - else
       %p.lead There is no description yet
+
+%h3 Paste the following to seed your class notes:
+
+%pre
+  = @lesson_plan.objectives
+  = @lesson_plan.activity

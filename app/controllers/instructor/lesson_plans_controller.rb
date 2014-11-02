@@ -16,7 +16,7 @@ class Instructor::LessonPlansController < InstructorRequiredController
 
     if @lesson_plan.save
       redirect_to(
-        instructor_lesson_plans_path,
+        instructor_lesson_plan_path(@lesson_plan),
         notice: 'Lesson Plan successfully created'
       )
     else
@@ -37,7 +37,7 @@ class Instructor::LessonPlansController < InstructorRequiredController
 
     if @lesson_plan.update(lesson_plan_params)
       redirect_to(
-        instructor_lesson_plans_path,
+        instructor_lesson_plan_path(@lesson_plan),
         notice: 'Lesson Plan successfully created'
       )
     else

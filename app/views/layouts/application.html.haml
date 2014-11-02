@@ -58,10 +58,10 @@
               %li= link_to t('nav.sign_in'), sign_in_using_github_path
 
     .container{:role => "main"}
-      - if flash[:notice]
-        .alert.alert-success= notice
-      - if flash[:alert]
-        .alert.alert-danger= alert
+      - if notice
+        .flash.alert.alert-success= notice
+      - if alert
+        .flash.alert.alert-danger= alert
       = content_for(:outside_main)
       = yield
 
