@@ -37,9 +37,8 @@
                       remote: true
         %h3.panel-title
           = writeup.user.full_name
+          (#{writeup.created_at.to_s(:long)})
       .panel-body
-        .pull-right
-          = writeup.created_at.to_s(:long)
         = markdownify(writeup.response)
 - else
   .jumbotron

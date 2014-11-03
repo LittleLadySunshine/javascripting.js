@@ -23,8 +23,6 @@
         %h3.panel-title
           = writeup.writeup_topic.subject
       .panel-body
-        .pull-right
-          = writeup.created_at.to_s(:long)
         = markdownify(writeup.response)
 - else
   .jumbotron
