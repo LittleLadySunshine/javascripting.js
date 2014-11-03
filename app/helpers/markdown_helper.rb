@@ -3,7 +3,8 @@ module MarkdownHelper
   RENDERER = Redcarpet::Markdown.new(
     Redcarpet::Render::HTML,
     autolink: true,
-    tables: true
+    tables: true,
+    fenced_code_blocks: true,
   )
 
   def markdownify(raw)
