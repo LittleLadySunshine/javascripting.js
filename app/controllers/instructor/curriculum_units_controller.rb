@@ -4,6 +4,10 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
     @cohort = Cohort.find(params[:cohort_id])
   end
 
+  before_action except: [:index, :destroy] do
+    @last_position = CurriculumUnit.ordered.where(cohort_id: @cohort).last.try(:position)
+  end
+
   def index
     @curriculum_units = CurriculumUnit.ordered.where(cohort_id: @cohort)
   end
