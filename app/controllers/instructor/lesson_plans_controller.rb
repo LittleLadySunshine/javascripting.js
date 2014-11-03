@@ -1,7 +1,7 @@
 class Instructor::LessonPlansController < InstructorRequiredController
 
   def index
-    @lesson_plans = LessonPlan.order('lower(name)')
+    @lesson_plans = LessonPlan.ordered
     if params[:filter]
       @lesson_plans = @lesson_plans.tagged_with(params[:filter].split(',').map(&:strip))
     end
@@ -40,7 +40,7 @@ class Instructor::LessonPlansController < InstructorRequiredController
     if @lesson_plan.update(lesson_plan_params)
       redirect_to(
         instructor_lesson_plan_path(@lesson_plan),
-        notice: 'Lesson Plan successfully created'
+        notice: 'Lesson Plan successfully updated'
       )
     else
       render :edit

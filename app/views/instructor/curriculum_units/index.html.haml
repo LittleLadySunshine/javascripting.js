@@ -28,4 +28,10 @@
             %td= markdownify curriculum_unit.assessment
             %td= markdownify curriculum_unit.rationale
             %td= markdownify curriculum_unit.essential_questions
-            %td= markdownify curriculum_unit.activities
+            %td
+              = markdownify curriculum_unit.activities
+              - if curriculum_unit.lesson_plans.present?
+                %strong Lesson Plans
+                %ul
+                  - curriculum_unit.lesson_plans.each do |lesson_plan|
+                    %li= link_to lesson_plan.name, instructor_lesson_plan_path(lesson_plan)

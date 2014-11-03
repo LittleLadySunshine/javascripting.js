@@ -40,7 +40,7 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
     if @curriculum_unit.update(curriculum_unit_params)
       redirect_to(
         instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
-        notice: 'Curriculum Unit successfully created'
+        notice: 'Curriculum Unit successfully updated'
       )
     else
       render :edit
