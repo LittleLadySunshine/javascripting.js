@@ -36,7 +36,7 @@
       = f.text_area :activity,
                     class: "form-control",
                     rows: rows,
-                    placeholder: "Create an app that does the following three things..."
+                    placeholder: "Include instructions here that students will see in class notes"
       .alert.alert-info
         Write instructions for students (can be shown on daily class notes)
 
@@ -46,9 +46,14 @@
       = f.text_area :description,
                     class: "form-control",
                     rows: rows,
-                    placeholder: "Do a quick demo, then have students follow along..."
+                    placeholder: "A description of your manageable, measurable, made first and most-important lesson plan!"
       .alert.alert-warning
-        Write any notes for instructors (students will not see this)
+        %p Make sure this lesson meets the 4 Ms:
+        %ul
+          %li Manageable (appropriate objectives for a single class)
+          %li Measurable (by the end of the class period)
+          %li Made first (write the objectives first, not the activity)
+          %li Most import ("the next step straigt up the mountain")
 
   .form-group
     = f.label :tag_list, "Tags", class: "col-sm-2 control-label"
