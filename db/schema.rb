@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101164837) do
+ActiveRecord::Schema.define(version: 20141103062448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,22 @@ ActiveRecord::Schema.define(version: 20141101164837) do
     t.string   "curriculum_site_url",                   null: false
     t.string   "class_notes_repo_name"
   end
+
+  create_table "curriculum_units", force: true do |t|
+    t.integer  "cohort_id",           null: false
+    t.string   "name",                null: false
+    t.integer  "position",            null: false
+    t.text     "objectives",          null: false
+    t.text     "assessment",          null: false
+    t.text     "essential_questions"
+    t.text     "rationale"
+    t.text     "activities"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "curriculum_units", ["name", "cohort_id"], name: "index_curriculum_units_on_name_and_cohort_id", unique: true, using: :btree
+  add_index "curriculum_units", ["position", "cohort_id"], name: "index_curriculum_units_on_position_and_cohort_id", unique: true, using: :btree
 
   create_table "exercises", force: true do |t|
     t.string   "name"

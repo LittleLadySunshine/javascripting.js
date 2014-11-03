@@ -1,0 +1,31 @@
+.page-header
+  .pull-right
+    = link_to new_instructor_cohort_curriculum_unit_path(@cohort), class: 'btn btn-info' do
+      %i.glyphicon.glyphicon-plus
+      Create Curriculum Unit
+
+  %h2 Curriculum Units for #{@cohort.name}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+.row
+  .col-md-12
+    %table.table.table-bordered
+      %thead
+        %th Name
+        %th Objectives
+        %th Assessment
+        %th Rationale
+        %th Essential Questions
+        %th Activities
+      %tbody
+        - @curriculum_units.each do |curriculum_unit|
+          %tr
+            %td
+              = link_to curriculum_unit.name, instructor_cohort_curriculum_unit_path(@cohort, curriculum_unit)
+              (#{link_to 'edit', edit_instructor_cohort_curriculum_unit_path(@cohort, curriculum_unit)})
+            %td= markdownify curriculum_unit.objectives
+            %td= markdownify curriculum_unit.assessment
+            %td= markdownify curriculum_unit.rationale
+            %td= markdownify curriculum_unit.essential_questions
+            %td= markdownify curriculum_unit.activities

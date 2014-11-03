@@ -8,7 +8,11 @@ module MarkdownHelper
   )
 
   def markdownify(raw)
-    RENDERER.render(raw).html_safe
+    if raw.present?
+      RENDERER.render(raw).html_safe
+    else
+      ''
+    end
   end
 
 end

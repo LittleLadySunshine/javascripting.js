@@ -41,6 +41,7 @@ Students::Application.routes.draw do
       resources :writeup_topics do
         resources :writeups
       end
+      resources :curriculum_units
       resources :tracker_accounts
       resources :staffings, except: [:show]
       resources :pairs

@@ -1,0 +1,54 @@
+= form_for [:instructor, @cohort, @curriculum_unit], html: {class: "form-horizontal"} do |f|
+  = errors_for(f)
+  - rows = 12
+
+  .pull-right
+    All content accepts markdown
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control", autofocus: true
+
+  .form-group
+    = f.label :objectives, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :objectives,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "By the end of this unit students should be able to..."
+
+  .form-group
+    = f.label :assessment, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :assessment,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "Students will..."
+
+  .form-group
+    = f.label :essential_questions, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :essential_questions,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "How do we...?"
+
+  .form-group
+    = f.label :rationale, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :rationale,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "This is the most important next step because..."
+
+  .form-group
+    = f.label :position, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.number_field :position, class: "form-control"
+
+  .form-group
+    .col-md-offset-2.col-md-4
+      = f.submit class: 'btn btn-primary'
+      - path = f.object.persisted? ? instructor_cohort_curriculum_unit_path(@cohort, f.object) : instructor_cohort_curriculum_units_path(@cohort)
+      = link_to "cancel", path, class: "btn btn-default"

@@ -38,6 +38,7 @@ module ApplicationHelper
         "Curriculum" => cohort.curriculum_site_url,
       },
       "Setup" => {
+        "Curriculum Units" => instructor_cohort_curriculum_units_path(cohort),
         "Staffings" => instructor_cohort_staffings_path(cohort),
         "Tracker Accounts" => instructor_cohort_tracker_accounts_path(cohort),
         "Import" => instructor_cohort_imports_path(cohort),

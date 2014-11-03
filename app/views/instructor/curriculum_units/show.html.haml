@@ -1,0 +1,62 @@
+.page-header
+  .pull-right
+    = link_to new_instructor_cohort_curriculum_unit_path(@cohort), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-plus
+      New Curriculum Unit
+    = link_to edit_instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-pencil
+      Edit
+
+  %h1 #{@curriculum_unit.name}
+
+= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+%ol.breadcrumb
+  %li
+    = link_to "Curriculum Units", instructor_cohort_curriculum_units_path(@cohort)
+  %li.active
+    = @curriculum_unit.name
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Objectives
+  .panel-body
+    = markdownify(@curriculum_unit.objectives)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Assessment
+  .panel-body
+    = markdownify(@curriculum_unit.assessment)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Essential Questions
+  .panel-body
+    - if @curriculum_unit.essential_questions?
+      = markdownify(@curriculum_unit.essential_questions)
+    - else
+      %p.lead There are no essential questions yet
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Rationale
+  .panel-body
+    - if @curriculum_unit.rationale?
+      = markdownify(@curriculum_unit.rationale)
+    - else
+      %p.lead There is no rationale yet
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Activities
+  .panel-body
+    - if @curriculum_unit.activities?
+      = markdownify(@curriculum_unit.activities)
+    - else
+      %p.lead There are no activities yet
