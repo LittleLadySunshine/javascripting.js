@@ -5,6 +5,7 @@ module MarkdownHelper
     autolink: true,
     tables: true,
     fenced_code_blocks: true,
+    no_intra_emphasis: true,
   )
 
   def markdownify(raw)
