@@ -25,6 +25,8 @@ class Instructor::LessonPlansController < InstructorRequiredController
   end
 
   def show
+    active_staffings = Staffing.where(user_id: user_session.current_user).active
+    @cohorts = active_staffings.map(&:cohort).select(&:class_notes_repo_name?)
     @lesson_plan = LessonPlan.find(params[:id])
   end
 

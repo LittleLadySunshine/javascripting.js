@@ -59,7 +59,14 @@
     - else
       %p.lead There is no description yet
 
-%h3 Paste the following to seed your class notes:
+- if @cohorts.present?
+  - if @cohorts.length == 1
+    %h3 Paste the following to seed your #{link_to "class notes", cohort_class_notes_path(@cohorts.first)}:
+  - else
+    %h3 Paste the following to seed your class notes for:
+    %ul
+      - @cohorts.each do |cohort|
+        %li= link_to cohort.name, cohort_class_notes_path(cohort)
 
 %pre
   = @lesson_plan.objectives
