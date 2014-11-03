@@ -43,6 +43,14 @@
                     placeholder: "This is the most important next step because..."
 
   .form-group
+    = f.label :activities, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :activities,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "A notepad for ideas about lesson plans..."
+
+  .form-group
     = f.label :position, class: "col-sm-2 control-label"
     .col-sm-4
       = f.number_field :position, class: "form-control"
