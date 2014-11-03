@@ -5,7 +5,7 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
   end
 
   def index
-    @curriculum_units = CurriculumUnit.ordered
+    @curriculum_units = CurriculumUnit.ordered.where(cohort_id: @cohort)
   end
 
   def new
