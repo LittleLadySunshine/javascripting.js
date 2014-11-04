@@ -40,10 +40,4 @@
       Markdown for class notes
   .panel-body
     %pre
-      \### gCamp Stories: #{@class_project_feature.name}
-
-      ```
-      = @class_project_feature.stories
-      ```
-
-      = @class_project_feature.wireframes
+      = class_project_feature_markdown(@class_project_feature)
