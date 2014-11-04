@@ -13,7 +13,7 @@ class Instructor::CurriculumsController < InstructorRequiredController
 
     if @curriculum.save
       redirect_to(
-        instructor_curriculum_path(@curriculum),
+        instructor_curriculum_curriculum_units_path(@curriculum),
         notice: 'Curriculum successfully created'
       )
     else
@@ -30,7 +30,7 @@ class Instructor::CurriculumsController < InstructorRequiredController
 
     if @curriculum.update(curriculum_params)
       redirect_to(
-        instructor_curriculum_path(@curriculum),
+        instructor_curriculum_curriculum_units_path(@curriculum),
         notice: 'Curriculum successfully updated'
       )
     else
