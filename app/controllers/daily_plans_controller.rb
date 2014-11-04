@@ -27,7 +27,7 @@ class DailyPlansController < ApplicationController
   end
 
   def show
-    @daily_plan = DailyPlan.find_by!(date: params[:id])
+    @daily_plan = DailyPlan.where(cohort_id: @cohort).find_by!(date: params[:id])
   end
 
   def today
@@ -35,11 +35,11 @@ class DailyPlansController < ApplicationController
   end
 
   def edit
-    @daily_plan = DailyPlan.find_by!(date: params[:id])
+    @daily_plan = DailyPlan.where(cohort_id: @cohort).find_by!(date: params[:id])
   end
 
   def update
-    @daily_plan = DailyPlan.find_by!(date: params[:id])
+    @daily_plan = DailyPlan.where(cohort_id: @cohort).find_by!(date: params[:id])
 
     if @daily_plan.update(daily_plan_params)
       redirect_to(
@@ -52,7 +52,7 @@ class DailyPlansController < ApplicationController
   end
 
   def destroy
-    @daily_plan = DailyPlan.find_by(date: params[:id])
+    @daily_plan = DailyPlan.where(cohort_id: @cohort).find_by!(date: params[:id])
     @daily_plan.try(:destroy)
     redirect_to(
       cohort_daily_plans_path(@cohort),
