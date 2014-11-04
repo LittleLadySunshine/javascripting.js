@@ -1,0 +1,14 @@
+= form_for @class_project, html: {class: "form-horizontal"} do |f|
+  = errors_for(f)
+  - rows = 12
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control", autofocus: true
+
+  .form-group
+    .col-md-offset-2.col-md-4
+      = f.submit class: 'btn btn-primary'
+      - path = f.object.persisted? ? class_project_path(f.object) : class_projects_path
+      = link_to "cancel", path, class: "btn btn-default"

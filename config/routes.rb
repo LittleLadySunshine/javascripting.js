@@ -29,6 +29,8 @@ Students::Application.routes.draw do
     end
   end
 
+  resources :class_projects
+
   namespace :instructor do
     resources :users
     resources :lesson_plans
