@@ -1,15 +1,15 @@
 class Instructor::CurriculumUnitsController < InstructorRequiredController
 
   before_action do
-    @cohort = Cohort.find(params[:cohort_id])
+    @curriculum = Curriculum.find(params[:curriculum_id])
   end
 
   before_action except: [:index, :destroy] do
-    @last_position = CurriculumUnit.ordered.where(cohort_id: @cohort).last.try(:position)
+    @last_position = CurriculumUnit.ordered.where(curriculum_id: @curriculum).last.try(:position)
   end
 
   def index
-    @curriculum_units = CurriculumUnit.ordered.where(cohort_id: @cohort)
+    @curriculum_units = CurriculumUnit.ordered.where(curriculum_id: @curriculum)
   end
 
   def new
@@ -18,11 +18,11 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
 
   def create
     @curriculum_unit = CurriculumUnit.new(curriculum_unit_params)
-    @curriculum_unit.cohort = @cohort
+    @curriculum_unit.curriculum = @curriculum
 
     if @curriculum_unit.save
       redirect_to(
-        instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
+        instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
         notice: 'Curriculum Unit successfully created'
       )
     else
@@ -31,19 +31,19 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
   end
 
   def show
-    @curriculum_unit = CurriculumUnit.where(cohort_id: @cohort).find(params[:id])
+    @curriculum_unit = CurriculumUnit.where(curriculum_id: @curriculum).find(params[:id])
   end
 
   def edit
-    @curriculum_unit = CurriculumUnit.where(cohort_id: @cohort).find(params[:id])
+    @curriculum_unit = CurriculumUnit.where(curriculum_id: @curriculum).find(params[:id])
   end
 
   def update
-    @curriculum_unit = CurriculumUnit.where(cohort_id: @cohort).find(params[:id])
+    @curriculum_unit = CurriculumUnit.where(curriculum_id: @curriculum).find(params[:id])
 
     if @curriculum_unit.update(curriculum_unit_params)
       redirect_to(
-        instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
+        instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
         notice: 'Curriculum Unit successfully updated'
       )
     else
@@ -52,10 +52,10 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
   end
 
   def destroy
-    @curriculum_unit = CurriculumUnit.where(cohort_id: @cohort).find_by(id: params[:id])
+    @curriculum_unit = CurriculumUnit.where(curriculum_id: @curriculum).find_by(id: params[:id])
     @curriculum_unit.try(:destroy)
     redirect_to(
-      instructor_cohort_curriculum_units_path(@cohort, @curriculum_unit),
+      instructor_curriculum_curriculum_units_path(@curriculum, @curriculum_unit),
       notice: "Unit was deleted successfully"
     )
   end

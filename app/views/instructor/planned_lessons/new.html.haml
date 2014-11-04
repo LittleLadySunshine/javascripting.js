@@ -1,11 +1,9 @@
 .page-header
   %h1 Add Lesson Plan to #{@curriculum_unit.name}
 
-= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
-
 %ol.breadcrumb
-  %li= link_to "Curriculum Units", instructor_cohort_curriculum_units_path(@cohort)
-  %li= link_to @curriculum_unit.name_was, instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit)
+  %li= link_to "Curriculums", instructor_curriculums_path
+  %li= link_to @curriculum_unit.name_was, instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit)
   %li.active Add Lesson Plan
 
 = render 'form'

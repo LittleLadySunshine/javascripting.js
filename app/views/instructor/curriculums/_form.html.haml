@@ -1,0 +1,25 @@
+= form_for [:instructor, @curriculum], html: {class: "form-horizontal"} do |f|
+  = errors_for(f)
+  - rows = 12
+
+  .pull-right
+    All content accepts markdown
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control", autofocus: true
+
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :description,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "General overview of this curriculum"
+
+  .form-group
+    .col-md-offset-2.col-md-4
+      = f.submit class: 'btn btn-primary'
+      - path = f.object.persisted? ? instructor_curriculum_path(f.object) : instructor_curriculums_path
+      = link_to "cancel", path, class: "btn btn-default"

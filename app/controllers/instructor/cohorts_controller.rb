@@ -84,6 +84,7 @@ class Instructor::CohortsController < InstructorRequiredController
       :google_maps_location,
       :directions,
       :showcase,
+      :curriculum_id,
       :curriculum_site_url,
       :pair_feedback_url,
       :class_notes_repo_name,

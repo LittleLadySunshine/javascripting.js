@@ -1,4 +1,4 @@
-= form_for [:instructor, @cohort, @curriculum_unit, @planned_lesson], html: {class: "form-horizontal"} do |f|
+= form_for [:instructor, @curriculum, @curriculum_unit, @planned_lesson], html: {class: "form-horizontal"} do |f|
   = errors_for(f)
 
   .form-group
@@ -18,5 +18,5 @@
   .form-group
     .col-md-offset-2.col-md-4
       = f.submit class: 'btn btn-primary'
-      - path = instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit)
+      - path = instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit)
       = link_to "cancel", path, class: "btn btn-default"

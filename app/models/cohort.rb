@@ -8,6 +8,7 @@ class Cohort < ActiveRecord::Base
   has_many :staffings
   has_many :writeup_topics
   has_many :instructors, :through => :staffings, :source => :user
+  belongs_to :curriculum
 
   mount_uploader :hero, HeroUploader
 

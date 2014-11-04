@@ -1,11 +1,9 @@
 .page-header
   %h1 Edit Curriculum Unit
 
-= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
-
 %ol.breadcrumb
-  %li= link_to "Curriculum Units", instructor_cohort_curriculum_units_path(@cohort)
-  %li= link_to @curriculum_unit.name_was, instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit)
+  %li= link_to "Curriculum Units", instructor_curriculum_curriculum_units_path(@curriculum)
+  %li= link_to @curriculum_unit.name_was, instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit)
   %li.active Edit
 
 = render 'form'
@@ -14,7 +12,7 @@
   .col-md-10.col-md-offset-2.text-center
     .well
       = link_to "Delete",
-                instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
+                instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
                 method: :delete,
                 data: {confirm: "Are you sure?"},
                 class: "btn btn-danger"

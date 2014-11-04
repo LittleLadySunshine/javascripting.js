@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def instructor_link_groups(cohort)
-    {
+    link_groups = {
       "Students" => {
         "Students" => instructor_cohort_path(cohort),
         "Action Plans" => instructor_cohort_action_plans_path(cohort),
@@ -32,13 +32,10 @@ module ApplicationHelper
         "Social Links" => social_instructor_cohort_path(cohort),
       },
       "Student Links" => {
-        "Info" => cohort_info_path(cohort),
         "Class Notes" => cohort_class_notes_path(cohort),
         "Today's Class Notes" => today_cohort_class_notes_path(cohort),
-        "Curriculum" => cohort.curriculum_site_url,
       },
       "Setup" => {
-        "Curriculum Units" => instructor_cohort_curriculum_units_path(cohort),
         "Staffings" => instructor_cohort_staffings_path(cohort),
         "Tracker Accounts" => instructor_cohort_tracker_accounts_path(cohort),
         "Import" => instructor_cohort_imports_path(cohort),
@@ -49,6 +46,12 @@ module ApplicationHelper
       "Pairs" => instructor_cohort_pairs_path(cohort),
       "Edit" => edit_instructor_cohort_path(cohort),
     }
+    if cohort.curriculum
+      link_groups["Setup"] = {
+        "Edit Curriculum" => instructor_curriculum_curriculum_units_path(cohort.curriculum)
+      }.merge(link_groups["Setup"])
+    end
+    link_groups
   end
 
   def instructor_tab_renderers(cohort)

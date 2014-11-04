@@ -1,7 +1,7 @@
 class Instructor::PlannedLessonsController < InstructorRequiredController
 
   before_action do
-    @cohort = Cohort.find(params[:cohort_id])
+    @curriculum = Curriculum.find(params[:curriculum_id])
     @curriculum_unit = CurriculumUnit.find(params[:curriculum_unit_id])
   end
 
@@ -20,7 +20,7 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
 
     if @planned_lesson.save
       redirect_to(
-        instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
+        instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
         notice: 'Lesson Plan was added successfully'
       )
     else
@@ -37,7 +37,7 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
 
     if @planned_lesson.update(planned_lesson_params)
       redirect_to(
-        instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
+        instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
         notice: 'Lesson Plan updated successfully'
       )
     else
@@ -49,7 +49,7 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
     @planned_lesson = PlannedLesson.find_by(id: params[:id])
     @planned_lesson.try(:destroy)
     redirect_to(
-      instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit),
+      instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
       notice: 'Lesson Plan removed successfully'
     )
   end

@@ -32,6 +32,11 @@ Students::Application.routes.draw do
   namespace :instructor do
     resources :users
     resources :lesson_plans
+    resources :curriculums, except: :show do
+      resources :curriculum_units do
+        resources :planned_lessons, except: %i(index show)
+      end
+    end
     resources :exercises, :except => :show
 
     resources :cohorts do
@@ -40,9 +45,6 @@ Students::Application.routes.draw do
       get :social, :on => :member
       resources :writeup_topics do
         resources :writeups
-      end
-      resources :curriculum_units do
-        resources :planned_lessons, except: %i(index show)
       end
       resources :tracker_accounts
       resources :staffings, except: [:show]

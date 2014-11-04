@@ -1,19 +1,17 @@
 .page-header
   .pull-right
-    = link_to new_instructor_cohort_curriculum_unit_path(@cohort), class: "btn btn-info" do
+    = link_to new_instructor_curriculum_curriculum_unit_path(@curriculum), class: "btn btn-info" do
       %i.glyphicon.glyphicon-plus
       New Curriculum Unit
-    = link_to edit_instructor_cohort_curriculum_unit_path(@cohort, @curriculum_unit), class: "btn btn-info" do
+    = link_to edit_instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit), class: "btn btn-info" do
       %i.glyphicon.glyphicon-pencil
       Edit
 
   %h1 #{@curriculum_unit.name}
 
-= render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
-
 %ol.breadcrumb
   %li
-    = link_to "Curriculum Units", instructor_cohort_curriculum_units_path(@cohort)
+    = link_to "Curriculum Units", instructor_curriculum_curriculum_units_path(@curriculum)
   %li.active
     = @curriculum_unit.name
 
@@ -64,7 +62,7 @@
 .panel.panel-default
   .panel-heading
     .pull-right
-      = link_to new_instructor_cohort_curriculum_unit_planned_lesson_path(@cohort, @curriculum_unit) do
+      = link_to new_instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit) do
         %i.glyphicon.glyphicon-plus
         Add Lesson Plan
     %h3.panel-title
@@ -82,10 +80,10 @@
             %td
               .pull-right
                 = link_to "edit",
-                          edit_instructor_cohort_curriculum_unit_planned_lesson_path(@cohort, @curriculum_unit, planned_lesson)
+                          edit_instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson)
                 |
                 = link_to "remove",
-                          instructor_cohort_curriculum_unit_planned_lesson_path(@cohort, @curriculum_unit, planned_lesson),
+                          instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson),
                           method: :delete,
                           data: {confirm: "Are you sure?"}
   - else

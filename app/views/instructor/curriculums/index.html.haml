@@ -1,0 +1,19 @@
+.page-header
+  .pull-right
+    = link_to 'Create Curriculum', new_instructor_curriculum_path, class: 'btn btn-info'
+
+  %h2 gSchool Curriculums
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %th Name
+        %th
+      %tbody
+        - @curriculums.each do |curriculum|
+          %tr
+            %td
+              = link_to curriculum.name, instructor_curriculum_curriculum_units_path(curriculum)
+            %td
+              = link_to 'edit', edit_instructor_curriculum_path(curriculum)
