@@ -54,6 +54,28 @@ footer {
   }
 }
 
+pre {
+  word-break: none;
+  word-wrap: normal;
+  color: #333333;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 0px;
+}
+
+pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+  white-space: inherit;
+}
+
 a[name] {
   padding-top: $navbar-height + 30;
   margin-top: ($navbar-height + 30) * -1;
