@@ -32,6 +32,7 @@ module ApplicationHelper
         "Social Links" => social_instructor_cohort_path(cohort),
       },
       "Student Links" => {
+        "Daily Plans" => cohort_daily_plans_path(cohort),
         "Class Notes" => cohort_class_notes_path(cohort),
         "Today's Class Notes" => today_cohort_class_notes_path(cohort),
       },

@@ -1,0 +1,23 @@
+.page-header
+  .pull-right
+    = link_to edit_cohort_daily_plan_path(@cohort, @daily_plan), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-pencil
+      Edit
+
+  %h1 Daily Plan for #{@daily_plan.date}
+
+%ol.breadcrumb
+  %li= link_to @cohort.name, instructor_cohort_path(@cohort)
+  %li= link_to "Daily Plans", cohort_daily_plans_path(@cohort)
+  %li.active= @daily_plan.date
+
+- daily_plan_renderer = new_daily_plan_renderer(@daily_plan)
+.row
+  .col-md-9
+    .github-content
+      = daily_plan_renderer.content
+  .col-md-3
+    %ul.nav
+      %li
+        - daily_plan_renderer.nav_links.each do |link|
+          %li= link_to link[:text], anchor: link[:name]

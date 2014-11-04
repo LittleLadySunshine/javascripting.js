@@ -27,6 +27,9 @@ Students::Application.routes.draw do
     resources :class_notes, controller: 'student/class_notes' do
       get :today, on: :collection
     end
+    resources :daily_plans do
+      get :today, on: :collection
+    end
   end
 
   resources :class_projects do

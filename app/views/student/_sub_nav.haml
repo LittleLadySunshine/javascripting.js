@@ -5,6 +5,9 @@
   - if @cohort.class_notes_repo_name?
     = nav_item "Today's Class Notes", today_cohort_class_notes_path(@cohort), active: tab == :todays_class_notes
     = nav_item "Class Notes", cohort_class_notes_path(@cohort), active: tab == :class_notes
+  - else
+    = nav_item "Today's Plan", today_cohort_daily_plans_path(@cohort)
+    = nav_item "Daily Plans", cohort_daily_plans_path(@cohort)
   = nav_item "Students", cohort_students_path(@cohort)
   = nav_item "Info", cohort_info_path(@cohort)
   - if @cohort.pair_feedback_url?
