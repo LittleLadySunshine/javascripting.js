@@ -20,8 +20,11 @@ feature "Daily Plans" do
 
     sign_in(student)
     click_on("Today's Plan")
-
     expect(page).to have_content("Some header")
+    expect(page).to have_no_css(".page-header .pull-right .btn", text: "Edit")
+
+    click_on("Daily Plans", match: :first)
+    expect(page).to have_no_content("New Daily Plan")
   end
 
 end

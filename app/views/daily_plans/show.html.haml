@@ -1,8 +1,9 @@
 .page-header
-  .pull-right
-    = link_to edit_cohort_daily_plan_path(@cohort, @daily_plan), class: "btn btn-info" do
-      %i.glyphicon.glyphicon-pencil
-      Edit
+  - if can?(:manage, :daily_plans)
+    .pull-right
+      = link_to edit_cohort_daily_plan_path(@cohort, @daily_plan), class: "btn btn-info" do
+        %i.glyphicon.glyphicon-pencil
+        Edit
 
   %h1 Daily Plan for #{@daily_plan.date}
 

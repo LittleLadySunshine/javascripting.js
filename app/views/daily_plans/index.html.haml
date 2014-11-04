@@ -1,8 +1,9 @@
 .page-header
-  .pull-right
-    = link_to new_cohort_daily_plan_path(@cohort), class: "btn btn-info" do
-      %i.glyphicon.glyphicon-plus
-      New Daily Plan
+  - if can?(:manage, :daily_plans)
+    .pull-right
+      = link_to new_cohort_daily_plan_path(@cohort), class: "btn btn-info" do
+        %i.glyphicon.glyphicon-plus
+        New Daily Plan
 
   %h2 Daily Plans for #{@cohort.name}
 

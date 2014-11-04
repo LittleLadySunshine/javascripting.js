@@ -4,6 +4,10 @@ class DailyPlansController < ApplicationController
     @cohort = Cohort.find(params[:cohort_id])
   end
 
+  before_action except: [:index, :show, :today] do
+    authorize!(:manage, :daily_plans)
+  end
+
   def index
     @grouped_plans = DailyPlan.grouped_by_week(@cohort)
   end
