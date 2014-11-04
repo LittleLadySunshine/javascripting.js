@@ -5,7 +5,9 @@ class Pairing < ActiveRecord::Base
 
   validates :paired_on, presence: true
   validates :feedback, presence: true
-  validates :pair, presence: true, uniqueness: {scope: :user_id}
+  validates :pair,
+            presence: true,
+            uniqueness: {scope: [:user_id, :paired_on], message: "has already been given feedback for this date"}
   validates :user, presence: true
 
   def self.for_user(user)

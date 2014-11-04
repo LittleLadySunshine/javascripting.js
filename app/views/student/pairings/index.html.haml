@@ -37,7 +37,7 @@
     - group.each do |student|
       .col-md-2.text-center
         - if @done_users[student.id]
-          .text-translucent
+          = link_to new_cohort_pairing_path(@cohort, student_id: student), class: 'text-translucent' do
             = image_tag user_avatar_url_or_default(student), class: "img-responsive"
             = student.full_name
         - else

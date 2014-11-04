@@ -83,7 +83,9 @@ a[name] {
 }
 
 .text-translucent {
-  opacity: 0.3;
+  &, & img {
+    opacity: 0.3;
+  }
 }
 
 .pending-pairing {
