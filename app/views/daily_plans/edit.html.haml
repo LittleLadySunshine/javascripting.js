@@ -1,6 +1,11 @@
 .page-header
   %h1 Edit Daily Plan
 
+- if user_session.current_user.instructor?
+  = render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+- else
+  = render 'student/sub_nav'
+
 %ol.breadcrumb
   %li= link_to @cohort.name, instructor_cohort_path(@cohort)
   %li= link_to "Daily Plans", cohort_daily_plans_path(@cohort)

@@ -30,6 +30,10 @@ class DailyPlansController < ApplicationController
     @daily_plan = DailyPlan.find_by!(date: params[:id])
   end
 
+  def today
+    redirect_to cohort_daily_plan_path(@cohort, Date.today.to_s)
+  end
+
   def edit
     @daily_plan = DailyPlan.find_by!(date: params[:id])
   end
