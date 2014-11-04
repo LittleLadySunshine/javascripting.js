@@ -37,24 +37,6 @@ class User < ActiveRecord::Base
     "https://github.com/#{github_username}"
   end
 
-  require 'openssl'
-
-  def tracker_token
-    decipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    decipher.decrypt
-    decipher.key = key
-    decipher.iv = iv
-    decipher.update(encrypted) + decipher.final
-  end
-
-  def tracker_token=(token)
-    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    cipher.encrypt
-    key = cipher.random_key
-    iv = cipher.random_iv
-    encrypted = cipher.update(token) + cipher.final
-  end
-
   def twitter_url
     if twitter =~ /https?:\/\//
       twitter
