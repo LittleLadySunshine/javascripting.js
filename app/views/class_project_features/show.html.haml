@@ -33,3 +33,17 @@
       MVP Wireframes
   .panel-body
     = markdownify(@class_project_feature.wireframes)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Markdown for class notes
+  .panel-body
+    %pre
+      \### gCamp Stories: #{@class_project_feature.name}
+
+      ```
+      = @class_project_feature.stories
+      ```
+
+      = @class_project_feature.wireframes

@@ -22,7 +22,7 @@ class ClassProjectFeaturesController < InstructorRequiredController
 
     if @class_project_feature.save
       redirect_to(
-        class_project_features_path(@class_project),
+        class_project_feature_path(@class_project, @class_project_feature),
         notice: 'Project Feature was added successfully'
       )
     else
@@ -43,7 +43,7 @@ class ClassProjectFeaturesController < InstructorRequiredController
 
     if @class_project_feature.update(class_project_feature_params)
       redirect_to(
-        class_project_features_path(@class_project),
+        class_project_feature_path(@class_project, @class_project_feature),
         notice: 'Project Feature was updated successfully'
       )
     else

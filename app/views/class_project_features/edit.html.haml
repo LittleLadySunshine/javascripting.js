@@ -3,7 +3,9 @@
 
 %ol.breadcrumb
   %li= link_to "Class Projects", class_projects_path
-  %li= link_to @class_project.name_was, class_project_path(@class_project)
+  %li= link_to "#{@class_project.name} Features", class_project_path(@class_project)
   %li.active Edit
 
-= render 'form'
+- url = class_project_feature_path(@class_project, @class_project_feature)
+= form_for @class_project_feature, url: url, html: {class: "form-horizontal"} do |f|
+  = render 'form', f: f

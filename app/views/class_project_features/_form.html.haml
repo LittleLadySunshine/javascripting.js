@@ -1,34 +1,33 @@
-= form_for [@class_project_feature], html: {class: "form-horizontal"} do |f|
-  = errors_for(f)
-  - rows = 12
+= errors_for(f)
+- rows = 12
 
-  .form-group
-    = f.label :name, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.text_field :name, class: "form-control", autofocus: true
+.form-group
+  = f.label :name, class: "col-sm-2 control-label"
+  .col-sm-4
+    = f.text_field :name, class: "form-control", autofocus: true
 
-  .form-group
-    = f.label :category, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.collection_select :category, ClassProjectFeature.categories, :first, :first, {}, class: "form-control"
+.form-group
+  = f.label :category, class: "col-sm-2 control-label"
+  .col-sm-4
+    = f.collection_select :category, ClassProjectFeature.categories, :first, :first, {}, class: "form-control"
 
-  .form-group
-    = f.label :stories, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_area :stories, class: "form-control", rows: rows
+.form-group
+  = f.label :stories, class: "col-sm-2 control-label"
+  .col-sm-10
+    = f.text_area :stories, class: "form-control", rows: rows
 
-  .form-group
-    = f.label :wireframes, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_area :wireframes, class: "form-control", rows: rows
+.form-group
+  = f.label :wireframes, class: "col-sm-2 control-label"
+  .col-sm-10
+    = f.text_area :wireframes, class: "form-control", rows: rows
 
-  .form-group
-    = f.label :position, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.number_field :position, class: "form-control", placeholder: "Suggested position: #{(@last_position || 0) + 10}"
+.form-group
+  = f.label :position, class: "col-sm-2 control-label"
+  .col-sm-4
+    = f.number_field :position, class: "form-control", placeholder: "Suggested position: #{(@last_position || 0) + 10}"
 
-  .form-group
-    .col-md-offset-2.col-md-4
-      = f.submit class: 'btn btn-primary'
-      - path = class_project_features_path(@class_project)
-      = link_to "cancel", path, class: "btn btn-default"
+.form-group
+  .col-md-offset-2.col-md-4
+    = f.submit class: 'btn btn-primary'
+    - path = class_project_features_path(@class_project)
+    = link_to "cancel", path, class: "btn btn-default"
