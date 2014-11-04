@@ -1,0 +1,35 @@
+.page-header
+  .pull-right
+    = link_to new_class_project_feature_path(@class_project), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-plus
+      New Feature
+    = link_to edit_class_project_feature_path(@class_project, @class_project_feature), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-pencil
+      Edit
+
+  %h1 #{@class_project_feature.name}
+
+%ol.breadcrumb
+  %li= link_to "Class Projects", class_projects_path
+  %li= link_to "#{@class_project.name} Features", class_project_features_path(@class_project)
+  %li.active= @class_project_feature.name
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      MVP Stories
+  %table.table.table-bordered
+    - @class_project_feature.story_rows.each_with_index do |row, index|
+      %tr
+        - row.each do |cell|
+          - if index == 0
+            %th= cell
+          - else
+            %td= cell
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      MVP Wireframes
+  .panel-body
+    = markdownify(@class_project_feature.wireframes)

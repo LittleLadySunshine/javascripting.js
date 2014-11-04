@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104001726) do
+ActiveRecord::Schema.define(version: 20141104005208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20141104001726) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "class_project_features", force: true do |t|
+    t.integer  "class_project_id",             null: false
+    t.integer  "category",         default: 0, null: false
+    t.string   "name",                         null: false
+    t.integer  "position",                     null: false
+    t.text     "stories"
+    t.text     "wireframes"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "class_project_features", ["class_project_id", "name", "category"], name: "index_category_feature_name", unique: true, using: :btree
+  add_index "class_project_features", ["class_project_id", "position"], name: "index_class_project_features_on_class_project_id_and_position", unique: true, using: :btree
 
   create_table "class_projects", force: true do |t|
     t.string   "name",       null: false

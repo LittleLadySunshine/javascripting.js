@@ -29,7 +29,9 @@ Students::Application.routes.draw do
     end
   end
 
-  resources :class_projects
+  resources :class_projects do
+    resources :features, controller: 'class_project_features'
+  end
 
   namespace :instructor do
     resources :users

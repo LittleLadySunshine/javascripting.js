@@ -1,0 +1,25 @@
+.page-header
+  .pull-right
+    = link_to 'Create Feature', new_class_project_feature_path(@class_project), class: 'btn btn-info'
+
+  %h2= @class_project.name
+
+%ol.breadcrumb
+  %li= link_to "Class Projects", class_projects_path
+  %li.active= "#{@class_project.name} Features"
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %th Name
+        %th Category
+        %th
+      %tbody
+        - @class_project_features.each do |feature|
+          %tr
+            %td= link_to feature.name, class_project_feature_path(@class_project, feature)
+            %td= feature.category
+            %td
+              .pull-right
+                = link_to 'edit', edit_class_project_feature_path(@class_project, feature)
