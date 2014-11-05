@@ -32,7 +32,6 @@ feature "Instructor adding student photos" do
     click_on "Edit"
     attach_file "Avatar", Rails.root.join("spec", "fixtures", "avatar.jpg")
     click_on "Update Student"
-    click_on "John Foley"
 
     expect(page).to have_selector("img[src$='avatar.jpg']")
   end

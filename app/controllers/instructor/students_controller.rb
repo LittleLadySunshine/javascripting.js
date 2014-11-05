@@ -14,7 +14,7 @@ class Instructor::StudentsController < InstructorRequiredController
     if @student.save
       flash[:notice] = 'Student added successfully'
       StudentMailer.invitation(@student.email).deliver
-      redirect_to instructor_cohort_path(params[:cohort_id])
+      redirect_to instructor_cohort_student_path(params[:cohort_id], @student)
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Instructor::StudentsController < InstructorRequiredController
 
     if @student.update(student_params)
       flash[:notice] = 'Student updated successfully'
-      redirect_to instructor_cohort_path(params[:cohort_id])
+      redirect_to instructor_cohort_student_path(params[:cohort_id], @student)
     else
       render :edit
     end
