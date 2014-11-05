@@ -31,7 +31,8 @@ class DailyPlansController < ApplicationController
   end
 
   def show
-    @daily_plan = DailyPlan.where(cohort_id: @cohort).find_by!(date: params[:id])
+    @daily_plan = DailyPlan.where(cohort_id: @cohort).find_by(date: params[:id])
+    render :no_plan if @daily_plan.nil?
   end
 
   def today
