@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
   validates :email, :first_name, :last_name, :presence => true
   validates :cohort, presence: {if: :student?, message: "can't be blank for students"}
+  validates :linkedin,
+            format: {
+              with: /\Ahttps?:\/\/.+/,
+              message: "must be a full URL that starts with 'http'",
+              allow_blank: true,
+            }
 
   belongs_to :cohort
   has_many :submissions

@@ -10,6 +10,21 @@ describe User do
     expect(user.errors[:cohort]).to be_blank
   end
 
+  it 'validates that linkedin is a full url' do
+    user = User.new
+    user.valid?
+    expect(user.errors[:linkedin]).to be_empty
+    user.linkedin = "www.linkedin.com"
+    user.valid?
+    expect(user.errors[:linkedin]).to include("must be a full URL that starts with 'http'")
+    user.linkedin = "http://www.linkedin.com"
+    user.valid?
+    expect(user.errors[:linkedin]).to be_empty
+    user.linkedin = "https://www.linkedin.com"
+    user.valid?
+    expect(user.errors[:linkedin]).to be_empty
+  end
+
   it 'validates uniqueness of email' do
     create_user(email: 'sue@example.com')
 
