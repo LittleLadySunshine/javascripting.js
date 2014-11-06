@@ -59,7 +59,9 @@
       = f.file_field :hero, class: "form-control"
 
   - if @cohort.hero.present?
-    = image_tag @cohort.hero.url
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = image_tag @cohort.hero.url, class: "img-responsive"
 
   .col-md-offset-2
     = f.submit "Save", class: "btn btn-primary"
