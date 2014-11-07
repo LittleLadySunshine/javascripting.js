@@ -9,7 +9,7 @@ class ClassProjectFeaturesController < InstructorRequiredController
   end
 
   def index
-    @class_project_features = ClassProjectFeature.ordered
+    @class_project_features = @class_project.features.ordered
   end
 
   def new
@@ -31,15 +31,15 @@ class ClassProjectFeaturesController < InstructorRequiredController
   end
 
   def show
-    @class_project_feature = ClassProjectFeature.find(params[:id])
+    @class_project_feature = @class_project.features.find(params[:id])
   end
 
   def edit
-    @class_project_feature = ClassProjectFeature.find(params[:id])
+    @class_project_feature = @class_project.features.find(params[:id])
   end
 
   def update
-    @class_project_feature = ClassProjectFeature.find(params[:id])
+    @class_project_feature = @class_project.features.find(params[:id])
 
     if @class_project_feature.update(class_project_feature_params)
       redirect_to(
@@ -52,11 +52,11 @@ class ClassProjectFeaturesController < InstructorRequiredController
   end
 
   def destroy
-    @class_project_feature = ClassProjectFeature.find_by(id: params[:id])
+    @class_project_feature = @class_project.features.find_by(id: params[:id])
     @class_project_feature.try(:destroy)
     redirect_to(
       class_project_features_path(@class_project),
-      notice: 'Lesson Plan removed successfully'
+      notice: 'Project Feature removed successfully'
     )
   end
 

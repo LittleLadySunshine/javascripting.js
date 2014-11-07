@@ -9,3 +9,12 @@
 - url = class_project_feature_path(@class_project, @class_project_feature)
 = form_for @class_project_feature, url: url, html: {class: "form-horizontal"} do |f|
   = render 'form', f: f
+
+.row
+  .col-md-4.col-md-offset-2
+    .well.text-center
+      = link_to "Delete",
+                class_project_feature_path(@class_project, @class_project_feature),
+                method: :delete,
+                data: {confirm: "Are you sure?"},
+                class: "btn btn-danger"
