@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109214844) do
+ActiveRecord::Schema.define(version: 20141109222623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,15 +23,6 @@ ActiveRecord::Schema.define(version: 20141109214844) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  create_table "assessments", force: true do |t|
-    t.string   "name",           null: false
-    t.json     "questions_json", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "assessments", ["name"], name: "index_assessments_on_name", unique: true, using: :btree
 
   create_table "class_project_features", force: true do |t|
     t.integer  "class_project_id",             null: false
@@ -168,6 +159,15 @@ ActiveRecord::Schema.define(version: 20141109214844) do
 
   add_index "planned_lessons", ["curriculum_unit_id", "lesson_plan_id"], name: "index_planned_lessons_on_curriculum_unit_id_and_lesson_plan_id", unique: true, using: :btree
   add_index "planned_lessons", ["curriculum_unit_id", "position"], name: "index_planned_lessons_on_curriculum_unit_id_and_position", unique: true, using: :btree
+
+  create_table "rubrics", force: true do |t|
+    t.string   "name",           null: false
+    t.json     "questions_json", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rubrics", ["name"], name: "index_rubrics_on_name", unique: true, using: :btree
 
   create_table "staffings", force: true do |t|
     t.integer  "cohort_id",  null: false

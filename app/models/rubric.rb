@@ -1,4 +1,4 @@
-class Assessment < ActiveRecord::Base
+class Rubric < ActiveRecord::Base
 
   validate do
     unless questions_json.is_a?(Array)

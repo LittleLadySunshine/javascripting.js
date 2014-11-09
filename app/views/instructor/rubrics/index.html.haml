@@ -1,0 +1,17 @@
+.page-header
+  .pull-right
+    = link_to 'New Rubric', new_instructor_rubric_path, class: 'btn btn-info'
+
+  %h2 gSchool Rubric
+
+.row
+  .col-md-12
+    %table.table.table-hover
+      %thead
+        %th Name
+        %th
+      %tbody
+        - @rubrics.each do |rubric|
+          %tr
+            %td= link_to rubric.name, instructor_rubric_path(rubric)
+            %td= link_to 'edit', edit_instructor_rubric_path(rubric)

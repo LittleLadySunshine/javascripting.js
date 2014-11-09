@@ -45,7 +45,7 @@ Students::Application.routes.draw do
       end
     end
     resources :exercises, :except => :show
-    resources :assessments
+    resources :rubrics
 
     resources :cohorts do
       get :one_on_ones, :on => :member

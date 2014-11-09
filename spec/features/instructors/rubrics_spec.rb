@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Assessments" do
+feature "Rubrics" do
   let!(:instructor) {
     create_instructor(
       first_name: "Instructor",
@@ -11,9 +11,9 @@ feature "Assessments" do
 
   scenario "an instructor can define an assessment" do
     sign_in(instructor)
-    click_on("Assessments")
-    click_on("New Assessment")
-    fill_in "Name", with: "Growth Mindset Assessment"
+    click_on("Rubrics")
+    click_on("New Rubric")
+    fill_in "Name", with: "Growth Mindset Rubric"
     fill_in "Questions", with: [
       {
         title: "Uses growth mindset language",
@@ -26,7 +26,7 @@ feature "Assessments" do
         }
       }
     ].to_json
-    click_on("Create Assessment")
+    click_on("Create Rubric")
 
     expect(page).to have_content("Uses growth mindset language")
     expect(page).to have_content("Scale (1: Never, 4: Always)")

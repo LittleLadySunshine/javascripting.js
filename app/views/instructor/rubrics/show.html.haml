@@ -1,8 +1,8 @@
 .page-header
   .pull-right
-    = link_to 'Edit', edit_instructor_assessment_path(@assessment), class: "btn btn-info"
+    = link_to 'Edit', edit_instructor_rubric_path(@rubric), class: "btn btn-info"
 
-  %h1 #{@assessment.name}
+  %h1 #{@rubric.name}
 
 .row
   .col-md-12
@@ -13,7 +13,7 @@
           %th Name
           %th Description
       %tbody
-        - @assessment.questions.each do |question|
+        - @rubric.questions.each do |question|
           %tr
             %td= question.title
             %td= question

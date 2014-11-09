@@ -1,4 +1,4 @@
-= form_for [:instructor, @assessment], html: {class: "form-horizontal"} do |f|
+= form_for [:instructor, @rubric], html: {class: "form-horizontal"} do |f|
   = errors_for(f)
   - rows = 12
 
@@ -11,7 +11,7 @@
     = f.label :questions_json, class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_area :questions_json,
-                    value: @assessment.questions_json_pretty,
+                    value: @rubric.questions_json_pretty,
                     class: "form-control",
                     rows: rows,
                     placeholder: "Type valid JSON here"
@@ -35,4 +35,4 @@
   .form-group
     .col-md-offset-2.col-md-4
       = f.submit class: 'btn btn-primary'
-      = link_to "cancel", instructor_assessments_path, class: "btn btn-default"
+      = link_to "cancel", instructor_rubrics_path, class: "btn btn-default"
