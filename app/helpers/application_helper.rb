@@ -30,6 +30,7 @@ module ApplicationHelper
         "Acceptance" => acceptance_instructor_cohort_path(cohort),
         "Personal Projects" => instructor_cohort_projects_path(cohort),
         "Social Links" => social_instructor_cohort_path(cohort),
+        "Assessments" => cohort_rubrics_path(cohort),
       },
       "Student Links" => {
         "Daily Plans" => cohort_daily_plans_path(cohort),

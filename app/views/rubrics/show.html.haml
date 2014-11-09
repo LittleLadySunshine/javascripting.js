@@ -1,0 +1,18 @@
+.page-header
+  %h1 #{@rubric.name}
+
+= render 'instructor/cohorts/nav', cohort: @cohort
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to user.full_name, cohort_rubric_user_assessments_path(@cohort, @rubric, user)
+        %td
+          = link_to "Assess",
+                    new_cohort_rubric_user_assessment_path(@cohort, @rubric, user),
+                    title: "Assess #{user.full_name}"

@@ -1,5 +1,7 @@
 class Rubric < ActiveRecord::Base
 
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
+
   validate do
     unless questions_json.is_a?(Array)
       errors[:questions_json] << "must be an array"
@@ -18,6 +20,14 @@ class Rubric < ActiveRecord::Base
   end
 
   class ScaleQuestion < Question
+    def format_answer(value)
+      value.present? ? value.to_i : value
+    end
+
+    def question_type
+      'scale'
+    end
+
     def scale_start
       options['scale_start']
     end

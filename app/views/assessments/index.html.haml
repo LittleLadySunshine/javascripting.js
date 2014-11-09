@@ -1,0 +1,22 @@
+.page-header
+  %h1 Assessments for #{@user.full_name} about #{@rubric.name}
+
+= render 'instructor/cohorts/nav', cohort: @cohort
+
+%ul.breadcrumb
+  %li= link_to @cohort.name, instructor_cohort_path(@cohort)
+  %li= link_to "Assessments", cohort_rubrics_path(@cohort)
+  %li= link_to @rubric.name, cohort_rubric_path(@cohort, @rubric)
+  %li.active= @user.full_name
+
+- @assessments.each do |assessment|
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        = assessment.date.strftime("%-m/%-d/%Y")
+    %table.table.table-striped
+      %tbody
+        - assessment.responses_json.each do |response|
+          %tr
+            %td= response['question']
+            %td= response['response'].presence || "(unknown)"

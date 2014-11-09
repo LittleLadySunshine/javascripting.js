@@ -30,6 +30,12 @@ Students::Application.routes.draw do
     resources :daily_plans do
       get :today, on: :collection
     end
+
+    resources :rubrics, only: %i(index show) do
+      resources :users, only: [] do
+        resources :assessments, only: [:index, :new, :create]
+      end
+    end
   end
 
   resources :class_projects do
@@ -51,6 +57,7 @@ Students::Application.routes.draw do
       get :one_on_ones, :on => :member
       get :acceptance, :on => :member
       get :social, :on => :member
+
       resources :writeup_topics do
         resources :writeups
       end

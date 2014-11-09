@@ -1,0 +1,36 @@
+.page-header
+  %h1 New Assessment for #{@user.full_name} about #{@rubric.name}
+
+= render 'instructor/cohorts/nav', cohort: @cohort
+
+%ul.breadcrumb
+  %li= link_to @cohort.name, instructor_cohort_path(@cohort)
+  %li= link_to "Assessments", cohort_rubrics_path(@cohort)
+  %li= link_to @rubric.name, cohort_rubric_path(@cohort, @rubric)
+  %li.active New Assessment
+
+= form_for [@cohort, @rubric, @user, @assessment], html: {class: "form-horizontal"} do |f|
+
+  = errors_for(f)
+
+  .form-group
+    = f.label :date, class: "control-label col-sm-2"
+    .col-sm-4
+      = f.date_field :date, class: "form-control"
+
+  .form-group
+    %label.control-label.col-sm-2 Questions
+    .col-sm-10
+      - @rubric.questions.each_with_index do |question, index|
+        %label.control-label.question-title= question.title
+        .question-row
+          %span.question-label= question.first_label
+          - question.scale_start.upto(question.scale_end) do |value|
+            %label.radio-inline
+              %input{type: 'radio', name: "assessment[responses][#{index}]", id: "question-#{index}-#{value}", value: value}
+              = value
+          %span.question-label= question.last_label
+
+  .form-group
+    .col-sm-4.col-sm-offset-2
+      = f.submit class: "btn btn-primary"
