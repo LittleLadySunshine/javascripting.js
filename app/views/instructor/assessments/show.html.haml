@@ -1,0 +1,19 @@
+.page-header
+  .pull-right
+    = link_to 'Edit', edit_instructor_assessment_path(@assessment), class: "btn btn-info"
+
+  %h1 #{@assessment.name}
+
+.row
+  .col-md-12
+    %h2 Questions
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Description
+      %tbody
+        - @assessment.questions.each do |question|
+          %tr
+            %td= question.title
+            %td= question

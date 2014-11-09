@@ -1,0 +1,38 @@
+= form_for [:instructor, @assessment], html: {class: "form-horizontal"} do |f|
+  = errors_for(f)
+  - rows = 12
+
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control", autofocus: true
+
+  .form-group
+    = f.label :questions_json, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :questions_json,
+                    value: @assessment.questions_json_pretty,
+                    class: "form-control",
+                    rows: rows,
+                    placeholder: "Type valid JSON here"
+      .help-block
+        Here's an example question:
+        %pre
+          :plain
+            [
+              {
+                "title": "Question title",
+                "question_type": "scale",
+                "options": {
+                  "scale_start": 1,
+                  "scale_end": 4,
+                  "first_label": "Never",
+                  "last_label": "Always"
+                }
+              }
+            ]
+
+  .form-group
+    .col-md-offset-2.col-md-4
+      = f.submit class: 'btn btn-primary'
+      = link_to "cancel", instructor_assessments_path, class: "btn btn-default"
