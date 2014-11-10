@@ -32,10 +32,9 @@ module ApplicationHelper
         "Social Links" => social_instructor_cohort_path(cohort),
         "Assessments" => cohort_rubrics_path(cohort),
       },
-      "Student Links" => {
-        "Daily Plans" => cohort_daily_plans_path(cohort),
-        "Class Notes" => cohort_class_notes_path(cohort),
-        "Today's Class Notes" => today_cohort_class_notes_path(cohort),
+      "Daily Plans" => {
+        "Today's Plan" => today_cohort_daily_plans_path(cohort),
+        "All Plans" => cohort_daily_plans_path(cohort),
       },
       "Setup" => {
         "Staffings" => instructor_cohort_staffings_path(cohort),
@@ -52,6 +51,12 @@ module ApplicationHelper
       link_groups["Setup"] = {
         "Edit Curriculum" => instructor_curriculum_curriculum_units_path(cohort.curriculum)
       }.merge(link_groups["Setup"])
+    end
+    if cohort.class_notes_repo_name?
+      link_groups["Daily Plans"].merge!(
+        "Class Notes" => cohort_class_notes_path(cohort),
+        "Today's Class Notes" => today_cohort_class_notes_path(cohort),
+      )
     end
     link_groups
   end
