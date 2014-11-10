@@ -12,16 +12,19 @@ This site is the one stop shop for gSchool students to get information about the
   * [Semaphore](https://semaphoreapp.com/galvanize-dev/students-gschool-it--2)
 * Deployed to Heroku (see below)
 
-
 ## Contributing
 * [Style Guide](https://github.com/styleguide)
 
 ### Development Environment
 
 1. Copy config/database.yml.example to config/database.yml. Configure for your local database settings.
-1. Run `rake db:create:all` to create the databases.
+1. Run `rake db:create db:schema:load` to create the databases.
 1. Copy the .env.example to .env and fill in the values you need from the localhost Development Environment application registered under the Galvanize-IT Github organization.
 1. Run 'rake db:seed' to create the local cohort and admin user
+1. Run 'rake db:seed' to create the local cohort and admin user
+
+NOTE: to log in as a student and an instructor locally, you'll need to
+create two separate github accounts.
 
 ### Setup git duet (optional)
 
