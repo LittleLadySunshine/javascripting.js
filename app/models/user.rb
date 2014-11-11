@@ -50,4 +50,8 @@ class User < ActiveRecord::Base
       "https://twitter.com/#{twitter}"
     end
   end
+
+  def is_employed?
+    employer.present?
+  end
 end

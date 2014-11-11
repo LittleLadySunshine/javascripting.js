@@ -52,4 +52,25 @@ describe "Showcases" do
     expect(find("a[href='https://github.com/janes_github_username']")).to be
   end
 
+  it "displays employment status and employer" do
+    cohort = create_cohort(:name => "Awesome Cohort", :showcase => true)
+    user = create_user(cohort: cohort, first_name: "Dwayne", last_name: "Johnson")
+
+    visit root_path
+    click_link("Awesome Cohort")
+
+    expect(page).to have_content("HIRE ME!")
+
+    user.update(employer: "Awesomeness.io")
+
+    visit root_path
+    click_link("Awesome Cohort")
+
+    expect(page).to have_content("HIRED")
+
+    click_link(user.full_name)
+
+    expect(page).to have_content("Awesomeness.io")
+  end
+
 end

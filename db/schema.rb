@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20141109225256) do
     t.string   "avatar"
     t.string   "shirt_size"
     t.integer  "status",            default: 0, null: false
+    t.string   "employer"
     t.string   "gcamp_tracker_url"
     t.string   "gcamp_url"
   end
