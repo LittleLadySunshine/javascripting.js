@@ -48,8 +48,6 @@ feature "Users" do
     fill_in("Employer", :with => "Awesomeness.io")
     click_on("Update Student")
 
-    click_link(user.full_name)
-
     expect(page).to have_content("Employer")
     expect(page).to have_content("Awesomeness.io")
   end
