@@ -18,7 +18,9 @@ Students::Application.routes.draw do
       resources :writeups, only: [:new, :create, :edit, :update, :destroy], controller: 'student/writeups'
     end
     resources :pairings, controller: 'student/pairings'
-    resources :students, :only => [:index, :show], controller: 'student/students'
+    resources :students, :only => [:index, :show], controller: 'student/students' do
+      resources :mentors
+    end
     resources :exercises, :only => [:index, :show], controller: 'student/exercises' do
       resources :submissions, :only => [:new, :create, :edit, :update], controller: 'student/submissions'
     end
@@ -56,6 +58,7 @@ Students::Application.routes.draw do
     resources :cohorts do
       get :one_on_ones, :on => :member
       get :acceptance, :on => :member
+      get :mentors, :on => :member
       get :social, :on => :member
 
       resources :writeup_topics do

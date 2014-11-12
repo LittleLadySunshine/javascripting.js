@@ -1,19 +1,33 @@
 - tab ||= nil
 
 %ul.nav.nav-tabs.student-sub-nav
-  = nav_item "Exercises", cohort_exercises_path(@cohort)
   - if @cohort.class_notes_repo_name?
     = nav_item "Today's Class Notes", today_cohort_class_notes_path(@cohort), active: tab == :todays_class_notes
     = nav_item "Class Notes", cohort_class_notes_path(@cohort), active: tab == :class_notes
   - else
     = nav_item "Today's Plan", today_cohort_daily_plans_path(@cohort)
     = nav_item "Daily Plans", cohort_daily_plans_path(@cohort)
-  = nav_item "Students", cohort_students_path(@cohort)
-  = nav_item "Info", cohort_info_path(@cohort)
-  - if @cohort.pair_feedback_url?
-    = nav_item "Pair Feedback", @cohort.pair_feedback_url
-  = nav_item "Personal Project", cohort_personal_project_path(@cohort)
-  = nav_item "Action Plan", cohort_action_plan_entries_path(@cohort)
-  = nav_item "Pair Bingo", cohort_pairings_path(@cohort)
-  = nav_item "Writeups", cohort_writeups_path(@cohort)
-  = nav_item "Curriculum", @cohort.curriculum_site_url
+
+  %li.dropdown
+    = link_to "#", data: {toggle: "dropdown"}, class: "dropdown-toggle" do
+      Class Work
+      %span.caret
+    %ul.dropdown-menu
+      = nav_item "Exercises", cohort_exercises_path(@cohort)
+      = nav_item "Personal Project", cohort_personal_project_path(@cohort)
+      = nav_item "Writeups", cohort_writeups_path(@cohort)
+      = nav_item "Pair Bingo", cohort_pairings_path(@cohort)
+      = nav_item "Action Plan", cohort_action_plan_entries_path(@cohort)
+      - if @cohort.pair_feedback_url?
+        = nav_item "Pair Feedback", @cohort.pair_feedback_url
+
+  %li.dropdown
+    = link_to "#", data: {toggle: "dropdown"}, class: "dropdown-toggle" do
+      Class Info
+      %span.caret
+    %ul.dropdown-menu
+      = nav_item "Students", cohort_students_path(@cohort)
+      = nav_item "Class Details", cohort_info_path(@cohort)
+      = nav_item "Curriculum", @cohort.curriculum_site_url
+
+  = nav_item "Mentorship", cohort_student_mentors_path(@cohort, user_session.current_user)

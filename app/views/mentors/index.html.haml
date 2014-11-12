@@ -1,0 +1,32 @@
+.page-header
+  .pull-right
+    = link_to 'Add Mentor', new_cohort_student_mentor_path(@cohort, @user), class: 'btn btn-info'
+
+  %h1 gSchool Mentors for #{@user.full_name}
+
+- if user_session.current_user.instructor?
+  = render 'instructor/cohorts/nav', cohort: @cohort
+- else
+  = render 'student/sub_nav'
+
+.row
+  .col-md-12
+    - if @mentors.present?
+      %table.table.table-hover
+        %thead
+          %th First Name
+          %th Last Name
+          %th Email
+          %th
+        %tbody
+          - @mentors.each do |mentor|
+            %tr
+              %td= mentor.first_name
+              %td= mentor.last_name
+              %td= mentor.email
+              %td
+                .pull-right
+                  = link_to 'edit', edit_cohort_student_mentor_path(@cohort, @user, mentor)
+    - else
+      .jumbotron
+        %h2 You haven't recorded any mentors yet.

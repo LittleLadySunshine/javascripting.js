@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109225256) do
+ActiveRecord::Schema.define(version: 20141112061928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,15 @@ ActiveRecord::Schema.define(version: 20141109225256) do
 
   add_index "lesson_plans", ["name"], name: "index_lesson_plans_on_name", unique: true, using: :btree
 
+  create_table "mentors", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.string   "email",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pairings", force: true do |t|
     t.integer  "user_id",    null: false
     t.integer  "pair_id",    null: false
@@ -244,9 +253,9 @@ ActiveRecord::Schema.define(version: 20141109225256) do
     t.string   "avatar"
     t.string   "shirt_size"
     t.integer  "status",            default: 0, null: false
-    t.string   "employer"
     t.string   "gcamp_tracker_url"
     t.string   "gcamp_url"
+    t.string   "employer"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree

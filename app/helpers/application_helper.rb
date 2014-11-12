@@ -31,6 +31,7 @@ module ApplicationHelper
         "Personal Projects" => instructor_cohort_projects_path(cohort),
         "Social Links" => social_instructor_cohort_path(cohort),
         "Assessments" => cohort_rubrics_path(cohort),
+        "Mentors" => mentors_instructor_cohort_path(cohort),
       },
       "Daily Plans" => {
         "Today's Plan" => today_cohort_daily_plans_path(cohort),

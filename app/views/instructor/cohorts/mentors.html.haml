@@ -1,0 +1,35 @@
+.page-header
+  %h1 #{@cohort.name} Mentors
+
+= render partial: 'nav', locals: { cohort: @cohort }
+
+%h3 Students without mentors
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Student
+      %th
+  %tbody
+    - (@users - @mentors.map(&:user)).sort_by(&:first_name).each do |user|
+      %tr
+        %td= user.full_name
+        %td= link_to "Manage", cohort_student_mentors_path(@cohort, user)
+
+%h3 Mentor List
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Student
+      %th Mentor
+      %th
+  %tbody
+    - @mentors.each do |mentor|
+      %tr
+        %td= mentor.user.full_name
+        %td
+          = mentor.first_name
+          = mentor.last_name
+          (#{mail_to mentor.email, mentor.email})
+        %td= link_to "Manage", cohort_student_mentors_path(@cohort, mentor.user)

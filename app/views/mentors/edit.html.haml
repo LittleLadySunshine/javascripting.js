@@ -1,0 +1,10 @@
+.page-header
+  %h1 Edit Mentor
+
+- if user_session.current_user.instructor?
+  = render 'instructor/cohorts/nav', cohort: @cohort
+- else
+  = render 'student/sub_nav'
+
+= form_for @mentor, url: cohort_student_mentor_path(@cohort, @user, @mentor), html: {class: "form-horizontal"} do |f|
+  = render 'form', f: f
