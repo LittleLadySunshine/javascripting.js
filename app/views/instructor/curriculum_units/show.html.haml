@@ -75,7 +75,7 @@
           %th
       %tbody
         - @curriculum_unit.planned_lessons.ordered.each do |planned_lesson|
-          %tr{data: {row_id: planned_lesson.id}}
+          %tr{id: planned_lesson.id}
             %td= link_to planned_lesson.lesson_plan.name, instructor_lesson_plan_path(planned_lesson.lesson_plan)
             %td
               .pull-right

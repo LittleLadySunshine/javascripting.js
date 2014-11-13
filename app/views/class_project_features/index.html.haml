@@ -17,7 +17,7 @@
         %th
       %tbody
         - @class_project_features.each do |feature|
-          %tr{data: {row_id: feature.id}}
+          %tr{id: feature.id}
             %td= link_to feature.name, class_project_feature_path(@class_project, feature)
             %td= feature.category
             %td

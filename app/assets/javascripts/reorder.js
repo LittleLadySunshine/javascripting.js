@@ -9,15 +9,15 @@ $(function(){
   });
 
   $tables.tableDnD({
+    dragHandle: "[data-behavior=draghandle]",
+    onDragClass: "is-dragging",
     onDrop: function(table, row) {
       var $table = $(table), data = {};
       $table.find("tbody tr").each(function(i, row){
-        data[$(row).data('row-id')] = i;
+        data[$(row).attr('id')] = i;
       });
       $.post($table.data().reorderUrl, {positions: data});
-    },
-    dragHandle: "[data-behavior=draghandle]",
-    onDragClass: "is-dragging"
+    }
   });
 
 });
