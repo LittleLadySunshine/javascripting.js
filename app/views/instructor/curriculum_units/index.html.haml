@@ -20,8 +20,8 @@
         %th Name
         %th Objectives
         %th Assessment
-        %th Rationale
         %th Essential Questions
+        %th Rationale
         %th Activities
       %tbody
         - @curriculum_units.each do |curriculum_unit|
@@ -31,8 +31,8 @@
               (#{link_to 'edit', edit_instructor_curriculum_curriculum_unit_path(@curriculum, curriculum_unit)})
             %td= markdownify curriculum_unit.objectives
             %td= markdownify curriculum_unit.assessment
-            %td= markdownify curriculum_unit.rationale
             %td= markdownify curriculum_unit.essential_questions
+            %td= markdownify curriculum_unit.rationale
             %td
               = markdownify curriculum_unit.activities
               - if curriculum_unit.lesson_plans.present?
