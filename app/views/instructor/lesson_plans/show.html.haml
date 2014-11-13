@@ -68,6 +68,5 @@
       - @cohorts.each do |cohort|
         %li= link_to cohort.name, cohort_class_notes_path(cohort)
 
-%pre
-  = @lesson_plan.objectives
-  = @lesson_plan.activity
+- markdown = [@lesson_plan.objectives, @lesson_plan.activity].join("\n\n")
+%pre= markdown
