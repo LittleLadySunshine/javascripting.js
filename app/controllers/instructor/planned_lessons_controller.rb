@@ -6,7 +6,11 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
   end
 
   before_action except: :destroy do
-    @lesson_plans = LessonPlan.ordered
+    if params[:filter]
+      @lesson_plans = LessonPlan.tagged_with(params[:filter].split(',').map(&:strip))
+    else
+      @lesson_plans = LessonPlan.ordered
+    end
   end
 
   def index
@@ -34,26 +38,11 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
     @planned_lesson.curriculum_unit = @curriculum_unit
     @planned_lesson.save!
     redirect_to(
-      instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum, @curriculum_unit),
+      instructor_curriculum_curriculum_unit_planned_lessons_path(
+        @curriculum, @curriculum_unit, filter: params[:filter]
+      ),
       notice: 'Lesson Plan was added successfully'
     )
-  end
-
-  def edit
-    @planned_lesson = PlannedLesson.find(params[:id])
-  end
-
-  def update
-    @planned_lesson = PlannedLesson.find(params[:id])
-
-    if @planned_lesson.update(planned_lesson_params)
-      redirect_to(
-        instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit),
-        notice: 'Lesson Plan updated successfully'
-      )
-    else
-      render :edit
-    end
   end
 
   def destroy
@@ -61,7 +50,9 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
     @planned_lesson.try(:destroy)
     if params[:multi]
       redirect_to(
-        instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum, @curriculum_unit),
+        instructor_curriculum_curriculum_unit_planned_lessons_path(
+          @curriculum, @curriculum_unit, filter: params[:filter]
+        ),
         notice: 'Lesson Plan removed successfully'
       )
     else

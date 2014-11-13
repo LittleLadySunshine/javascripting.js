@@ -9,6 +9,15 @@
 
 .row
   .col-sm-12
+
+    = form_tag({}, method: :get, class: "form-inline") do
+      .form-group
+        = label_tag "filter", "Filter by", class: "sr-only"
+        = text_field_tag "filter", params[:filter], id: "filter", class: "form-control", placeholder: 'Filter by...'
+      = submit_tag "Filter", class: 'btn btn-primary'
+      = link_to "Clear Filters", instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum, @curriculum_unit), class: 'btn btn-default'
+
+
     %table.table.table-hover
       %thead
         %th Name
@@ -26,13 +35,14 @@
                   %span.sr-only #{percent.to_i}% Complete
             %td
               - lesson_plan.tag_list.each do |tag|
-                %span.label.label-info= tag
+                = link_to tag, instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum, @curriculum_unit, filter: tag), class: "label label-info"
             %td
               - if planned_lesson.persisted?
                 = link_to "Remove",
-                          instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson, multi: true),
+                          instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson, multi: true, filter: params[:filter]),
                           class: "btn btn-danger btn-sm", method: :delete
               - else
                 = form_for [:instructor, @curriculum, @curriculum_unit, planned_lesson], html: {class: "form-horizontal"} do |f|
                   = f.hidden_field :lesson_plan_id, value: lesson_plan.id
+                  = hidden_field_tag :filter, params[:filter]
                   = f.submit "Add", class: "btn btn-primary btn-sm"
