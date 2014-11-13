@@ -15,24 +15,27 @@
 
 .row
   .col-md-12
-    %table.table.table-bordered{data: {behavior: :tablednd, reorder_url: reorder_instructor_curriculum_curriculum_units_path(@curriculum)}}
-      %thead
-        %th Name
-        %th Objectives
-        %th Assessment
-        %th Essential Questions
-        %th Rationale
-        %th Activities
+    %table.table{data: {behavior: :tablednd, reorder_url: reorder_instructor_curriculum_curriculum_units_path(@curriculum)}}
       %tbody
         - @curriculum_units.each do |curriculum_unit|
           %tr{id: curriculum_unit.id}
             %td
-              = link_to curriculum_unit.name, instructor_curriculum_curriculum_unit_path(@curriculum, curriculum_unit)
-              (#{link_to 'edit', edit_instructor_curriculum_curriculum_unit_path(@curriculum, curriculum_unit)})
-            %td= markdownify curriculum_unit.objectives
-            %td= markdownify curriculum_unit.assessment
-            %td= markdownify curriculum_unit.essential_questions
-            %td= markdownify curriculum_unit.rationale
+              %dl.dl-horizontal
+                %dt
+                  .h4 Name
+                %dd
+                  .h4
+                    = link_to curriculum_unit.name,
+                              instructor_curriculum_curriculum_unit_path(@curriculum, curriculum_unit)
+                    (#{link_to 'edit', edit_instructor_curriculum_curriculum_unit_path(@curriculum, curriculum_unit)})
+                %dt Objectives
+                %dd= markdownify curriculum_unit.objectives
+                %dt Assessment
+                %dd= markdownify curriculum_unit.assessment
+                %dt Essential Questions
+                %dd= markdownify curriculum_unit.essential_questions
+                %dt Rationale
+                %dd= markdownify curriculum_unit.rationale
             %td
               = markdownify curriculum_unit.activities
               - if curriculum_unit.lesson_plans.present?
