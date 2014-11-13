@@ -1,0 +1,38 @@
+.page-header
+  %h1 Lesson Plans for #{@curriculum_unit.name}
+
+%ol.breadcrumb
+  %li= link_to "Curriculums", instructor_curriculums_path
+  %li= link_to "Curriculum Units", instructor_curriculum_curriculum_units_path(@curriculum)
+  %li= link_to @curriculum_unit.name, instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit)
+  %li.active Manage Lessons
+
+.row
+  .col-sm-12
+    %table.table.table-hover
+      %thead
+        %th
+        %th Name
+        %th % Complete
+        %th Tags
+      %tbody
+        - @planned_lessons.each do |lesson_plan, planned_lesson|
+          %tr
+            %td= lesson_plan.name
+            %td
+              .progress
+                - percent = lesson_plan.completed_sections / 4.0 * 100
+                .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => percent.to_i, :role => "progressbar", :style => "width: #{percent.to_i}%;"}
+                  %span.sr-only #{percent.to_i}% Complete
+            %td
+              - lesson_plan.tag_list.each do |tag|
+                %span.label.label-info= tag
+            %td
+              - if planned_lesson.persisted?
+                = link_to "Remove",
+                          instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson, multi: true),
+                          class: "btn btn-danger btn-sm", method: :delete
+              - else
+                = form_for [:instructor, @curriculum, @curriculum_unit, planned_lesson], html: {class: "form-horizontal"} do |f|
+                  = f.hidden_field :lesson_plan_id, value: lesson_plan.id
+                  = f.submit "Add", class: "btn btn-primary btn-sm"

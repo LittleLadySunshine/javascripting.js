@@ -59,12 +59,11 @@
     - else
       %p.lead There are no activities yet
 
-.panel.panel-default
+.panel.panel-default#lesson-plans
   .panel-heading
     .pull-right
-      = link_to new_instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit) do
-        %i.glyphicon.glyphicon-plus
-        Add Lesson Plan
+      = link_to instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum, @curriculum_unit) do
+        Add / Remove Lesson Plans
     %h3.panel-title
       Lesson Plans
   - if @curriculum_unit.planned_lessons.present?
@@ -79,9 +78,6 @@
             %td= link_to planned_lesson.lesson_plan.name, instructor_lesson_plan_path(planned_lesson.lesson_plan)
             %td
               .pull-right
-                = link_to "edit",
-                          edit_instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson)
-                |
                 = link_to "remove",
                           instructor_curriculum_curriculum_unit_planned_lesson_path(@curriculum, @curriculum_unit, planned_lesson),
                           method: :delete,

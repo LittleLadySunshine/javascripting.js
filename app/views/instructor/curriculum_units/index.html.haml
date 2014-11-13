@@ -40,6 +40,6 @@
               = markdownify curriculum_unit.activities
               - if curriculum_unit.lesson_plans.present?
                 %strong Lesson Plans
-                %ul.list-unstyled
+                %ul
                   - curriculum_unit.lesson_plans.each do |lesson_plan|
                     %li= link_to lesson_plan.name, instructor_lesson_plan_path(lesson_plan)

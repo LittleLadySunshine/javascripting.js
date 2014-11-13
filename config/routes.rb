@@ -52,7 +52,7 @@ Students::Application.routes.draw do
     resources :curriculums, except: :show do
       resources :curriculum_units do
         post :reorder, on: :collection
-        resources :planned_lessons, except: %i(index show) do
+        resources :planned_lessons, except: %i(new show edit update) do
           post :reorder, on: :collection
         end
       end
