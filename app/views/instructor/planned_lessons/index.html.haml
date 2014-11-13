@@ -11,14 +11,14 @@
   .col-sm-12
     %table.table.table-hover
       %thead
-        %th
         %th Name
         %th % Complete
         %th Tags
+        %th
       %tbody
         - @planned_lessons.each do |lesson_plan, planned_lesson|
           %tr
-            %td= lesson_plan.name
+            %td= link_to lesson_plan.name, edit_instructor_lesson_plan_path(lesson_plan)
             %td
               .progress
                 - percent = lesson_plan.completed_sections / 4.0 * 100
