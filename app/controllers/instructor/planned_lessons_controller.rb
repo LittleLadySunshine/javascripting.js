@@ -7,7 +7,11 @@ class Instructor::PlannedLessonsController < InstructorRequiredController
 
   before_action except: :destroy do
     @lesson_plans = LessonPlan.ordered
-    @last_position = PlannedLesson.ordered.where(curriculum_unit_id: @curriculum_unit).last.try(:position)
+  end
+
+  include Reorderable
+  def reorder
+    update_positions PlannedLesson.where(curriculum_unit_id: @curriculum_unit)
   end
 
   def new

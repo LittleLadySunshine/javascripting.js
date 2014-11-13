@@ -68,14 +68,14 @@
     %h3.panel-title
       Lesson Plans
   - if @curriculum_unit.planned_lessons.present?
-    %table.table.table-bordered.table-striped
+    %table.table.table-bordered.table-striped{data: {behavior: :tablednd, reorder_url: reorder_instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum, @curriculum_unit)}}
       %thead
         %tr
           %th Name
           %th
       %tbody
         - @curriculum_unit.planned_lessons.ordered.each do |planned_lesson|
-          %tr
+          %tr{data: {row_id: planned_lesson.id}}
             %td= link_to planned_lesson.lesson_plan.name, instructor_lesson_plan_path(planned_lesson.lesson_plan)
             %td
               .pull-right

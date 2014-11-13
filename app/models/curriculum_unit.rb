@@ -10,6 +10,13 @@ class CurriculumUnit < ActiveRecord::Base
   validates :objectives, presence: true
   validates :assessment, presence: true
 
+  before_validation on: :create do
+    if curriculum && !position
+      max_position = self.class.ordered.where(curriculum_id: curriculum).last.try(:position) || 0
+      self.position = max_position + 1
+    end
+  end
+
   def self.ordered
     order(:position)
   end

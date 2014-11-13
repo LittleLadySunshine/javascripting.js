@@ -22,11 +22,6 @@
     = f.text_area :wireframes, class: "form-control", rows: rows
 
 .form-group
-  = f.label :position, class: "col-sm-2 control-label"
-  .col-sm-4
-    = f.number_field :position, class: "form-control", placeholder: "Suggested position: #{(@last_position || 0) + 10}"
-
-.form-group
   .col-md-offset-2.col-md-4
     = f.submit class: 'btn btn-primary'
     - path = class_project_features_path(@class_project)

@@ -15,6 +15,13 @@ class ClassProjectFeature < ActiveRecord::Base
             numericality: true,
             uniqueness: {scope: :class_project_id}
 
+  before_validation on: :create do
+    if class_project && !position
+      max_position = self.class.ordered.where(class_project_id: class_project).last.try(:position) || 0
+      self.position = max_position + 1
+    end
+  end
+
   def self.ordered
     order(:position)
   end

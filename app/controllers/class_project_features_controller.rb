@@ -4,12 +4,13 @@ class ClassProjectFeaturesController < InstructorRequiredController
     @class_project = ClassProject.find(params[:class_project_id])
   end
 
-  before_action except: :destroy do
-    @last_position = ClassProjectFeature.ordered.where(class_project_id: @class_project).last.try(:position)
-  end
-
   def index
     @class_project_features = @class_project.features.ordered
+  end
+
+  include Reorderable
+  def reorder
+    update_positions ClassProjectFeature.ordered.where(class_project_id: @class_project)
   end
 
   def new

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tablednd
 //= require underscore
 //= require zeroclipboard
 //= require bootstrap-sprockets
@@ -35,5 +36,4 @@ $(document).ready(function() {
   $(document).on("ajax:success", "[data-behavior=mark-as-read] a", function(e){
     $(this).closest("[data-behavior=mark-as-read]").remove();
   });
-
 });

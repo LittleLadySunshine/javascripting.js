@@ -41,7 +41,9 @@ Students::Application.routes.draw do
   end
 
   resources :class_projects do
-    resources :features, controller: 'class_project_features'
+    resources :features, controller: 'class_project_features' do
+      post :reorder, on: :collection
+    end
   end
 
   namespace :instructor do
@@ -49,7 +51,10 @@ Students::Application.routes.draw do
     resources :lesson_plans
     resources :curriculums, except: :show do
       resources :curriculum_units do
-        resources :planned_lessons, except: %i(index show)
+        post :reorder, on: :collection
+        resources :planned_lessons, except: %i(index show) do
+          post :reorder, on: :collection
+        end
       end
     end
     resources :exercises, :except => :show

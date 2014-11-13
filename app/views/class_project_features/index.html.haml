@@ -10,14 +10,14 @@
 
 .row
   .col-md-12
-    %table.table.table-hover
+    %table.table{data: {behavior: :tablednd, reorder_url: reorder_class_project_features_path(@class_project)}}
       %thead
         %th Name
         %th Category
         %th
       %tbody
         - @class_project_features.each do |feature|
-          %tr
+          %tr{data: {row_id: feature.id}}
             %td= link_to feature.name, class_project_feature_path(@class_project, feature)
             %td= feature.category
             %td

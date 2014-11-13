@@ -4,12 +4,13 @@ class Instructor::CurriculumUnitsController < InstructorRequiredController
     @curriculum = Curriculum.find(params[:curriculum_id])
   end
 
-  before_action except: [:index, :destroy] do
-    @last_position = CurriculumUnit.ordered.where(curriculum_id: @curriculum).last.try(:position)
-  end
-
   def index
     @curriculum_units = CurriculumUnit.ordered.where(curriculum_id: @curriculum)
+  end
+
+  include Reorderable
+  def reorder
+    update_positions CurriculumUnit.ordered.where(curriculum_id: @curriculum)
   end
 
   def new
