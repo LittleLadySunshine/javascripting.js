@@ -5,7 +5,7 @@ $(function(){
   $tables.each(function(){
     var $table = $(this);
     $table.find("thead tr").append("<th></th>");
-    $table.find("tbody tr").append('<td class=text-center data-behavior=draghandle><i class="glyphicon glyphicon-move"></i></td>');
+    $table.find("tbody tr").append('<td class="draghandle text-center" data-behavior=draghandle><i class="glyphicon glyphicon-move"></i></td>');
   });
 
   $tables.tableDnD({
@@ -16,7 +16,8 @@ $(function(){
       });
       $.post($table.data().reorderUrl, {positions: data});
     },
-    dragHandle: "[data-behavior=draghandle]"
+    dragHandle: "[data-behavior=draghandle]",
+    onDragClass: "is-dragging"
   });
 
 });

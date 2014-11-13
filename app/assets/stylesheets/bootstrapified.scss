@@ -115,3 +115,13 @@ a[name] {
 .question-label {
   margin: .5em;
 }
+
+.draghandle {
+  cursor: move;
+}
+
+tr.is-dragging {
+  td {
+    background: #ffff99;
+  }
+}
