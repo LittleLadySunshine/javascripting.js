@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112061928) do
+ActiveRecord::Schema.define(version: 20141114062753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,8 @@ ActiveRecord::Schema.define(version: 20141112061928) do
     t.date     "end_date"
     t.string   "pair_feedback_url"
     t.string   "hero"
-    t.boolean  "showcase",              default: false, null: false
-    t.string   "curriculum_site_url",                   null: false
-    t.string   "class_notes_repo_name"
+    t.boolean  "showcase",             default: false, null: false
+    t.string   "curriculum_site_url",                  null: false
     t.integer  "curriculum_id"
   end
 

@@ -54,12 +54,6 @@ module ApplicationHelper
         "Edit Curriculum" => instructor_curriculum_curriculum_units_path(cohort.curriculum)
       }.merge(link_groups["Setup"])
     end
-    if cohort.class_notes_repo_name?
-      link_groups["Daily Plans"].merge!(
-        "Class Notes" => cohort_class_notes_path(cohort),
-        "Today's Class Notes" => today_cohort_class_notes_path(cohort),
-      )
-    end
     link_groups
   end
 

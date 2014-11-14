@@ -61,12 +61,12 @@
 
 - if @cohorts.present?
   - if @cohorts.length == 1
-    %h3 Paste the following to seed your #{link_to "class notes", cohort_class_notes_path(@cohorts.first)}:
+    %h3 Paste the following to seed your #{link_to "Daily Plan", cohort_daily_plans_path(@cohorts.first)}:
   - else
     %h3 Paste the following to seed your class notes for:
     %ul
       - @cohorts.each do |cohort|
-        %li= link_to cohort.name, cohort_class_notes_path(cohort)
+        %li= link_to cohort.name, cohort_daily_plans_path(cohort)
 
 - markdown = [@lesson_plan.objectives, @lesson_plan.activity].join("\n\n")
 %pre= markdown
