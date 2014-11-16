@@ -69,4 +69,7 @@
         %li= link_to cohort.name, cohort_daily_plans_path(cohort)
 
 - markdown = [@lesson_plan.objectives, @lesson_plan.activity].join("\n\n")
+
+%a{"href" => "", "data-clipboard-text" => markdown} Copy Text
+
 %pre= markdown
