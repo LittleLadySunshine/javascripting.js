@@ -8,13 +8,14 @@
   - @cohort.users.order(:first_name).each do |student|
     %li
       = link_to student_path(student), :class => "container" do
-        %div.ribbon-wrapper
-          - if student.is_employed?
-            %div.ribbon-employed
-              HIRED
-          - else
-            %div.ribbon-unemployed
-              HIRE ME!
+        - if student.cohort.show_employment_ribbon?
+          %div.ribbon-wrapper
+            - if student.is_employed?
+              %div.ribbon-employed
+                HIRED
+            - else
+              %div.ribbon-unemployed
+                HIRE ME!
         .image
           = image_tag student.avatar_url(:card)
         .header

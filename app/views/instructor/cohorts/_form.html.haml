@@ -49,6 +49,13 @@
           Showcase
 
   .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        %label
+          = f.check_box :show_employment_ribbon
+          Show employment ribbon
+
+  .form-group
     = f.label :hero, class: "col-sm-2 control-label"
     .col-sm-4
       = f.file_field :hero, class: "form-control"

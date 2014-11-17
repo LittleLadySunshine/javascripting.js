@@ -53,7 +53,7 @@ describe "Showcases" do
   end
 
   it "displays employment status and employer" do
-    cohort = create_cohort(:name => "Awesome Cohort", :showcase => true)
+    cohort = create_cohort(name: "Awesome Cohort", showcase: true, show_employment_ribbon: true)
     user = create_user(cohort: cohort, first_name: "Dwayne", last_name: "Johnson")
 
     visit root_path
