@@ -4,18 +4,18 @@ class CohortExercise < ActiveRecord::Base
   before_destroy :check_for_submissions?
 
   validates :exercise, :cohort, :presence => true
-  delegate :submissions, :name, :to => :exercise
+  delegate :name, :to => :exercise
+
+  def submissions
+    exercise.submissions.for_cohort(cohort)
+  end
 
   def students_missing_submission
     cohort.users - submissions.map(&:user)
   end
 
   def check_for_submissions?
-    if self.submissions.count == 0
-      true
-    else
-      false
-    end
+    !submissions.present?
   end
 
 end

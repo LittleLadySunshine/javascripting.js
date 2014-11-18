@@ -3,10 +3,17 @@ require 'rails_helper'
 describe "Submissions API" do
   describe 'GET /api/cohort_exercises/:cohort_exercise_id/submissions' do
     it 'shows all submissions for that cohort exercise' do
-      cohort = create_cohort
       exercise = create_exercise
+
+      cohort = create_cohort
       cohort_exercise = CohortExercise.create!(
         cohort: cohort,
+        exercise: exercise
+      )
+
+      cohort2 = create_cohort
+      CohortExercise.create!(
+        cohort: cohort2,
         exercise: exercise
       )
 
@@ -16,8 +23,20 @@ describe "Submissions API" do
         github_username: "someuser1"
       )
 
+      student2 = create_user(
+        email: 'user2@example.com',
+        cohort: cohort2,
+        github_username: "someuser2"
+      )
+
       submission = Submission.create!(
         user_id: student.id,
+        exercise_id: exercise.id,
+        github_repo_name: "song-that-doesnt-end",
+      )
+
+      Submission.create!(
+        user_id: student2.id,
         exercise_id: exercise.id,
         github_repo_name: "song-that-doesnt-end",
       )

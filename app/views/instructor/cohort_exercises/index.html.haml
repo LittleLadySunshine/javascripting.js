@@ -14,7 +14,7 @@
       %th Actions
   %tbody
     - @cohort_exercises.each do |cohort_exercise|
-      - count = cohort_exercise.submissions.for_cohort(@cohort).count
+      - count = cohort_exercise.submissions.count
       %tr
         %td= cohort_exercise.id
         %td= link_to cohort_exercise.name, cohort_exercise.exercise.github_repo_url

@@ -10,7 +10,7 @@ class Instructor::CohortExercisesController < InstructorRequiredController
 
   def show
     @exercise = CohortExercise.includes(:exercise).find(params[:id])
-    @submissions = @exercise.submissions.for_cohort(@cohort)
+    @submissions = @exercise.submissions
     @students_missing_submission = @exercise.students_missing_submission
   end
 
