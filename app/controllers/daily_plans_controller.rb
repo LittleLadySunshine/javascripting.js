@@ -1,4 +1,4 @@
-class DailyPlansController < ApplicationController
+class DailyPlansController < SignInRequiredController
 
   before_action do
     @cohort = Cohort.find(params[:cohort_id])

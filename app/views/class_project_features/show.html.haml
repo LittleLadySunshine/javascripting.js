@@ -37,6 +37,8 @@
 .panel.panel-default
   .panel-heading
     %h3.panel-title
+      .pull-right
+        = link_to "Copy to Clipboard", "#", data: {clipboard_text: class_project_feature_markdown(@class_project_feature)}
       Markdown for class notes
   .panel-body
     %pre
