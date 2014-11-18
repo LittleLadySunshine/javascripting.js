@@ -1,6 +1,12 @@
 Students::Application.routes.draw do
   root :to => "showcases#index"
 
+  namespace :api do
+    resources :cohorts, only: [] do
+      resources :students, only: :index
+    end
+  end
+
   resources :showcases
   resources :students, :only => :show
 
