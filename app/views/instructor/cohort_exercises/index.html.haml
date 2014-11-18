@@ -8,6 +8,7 @@
 %table.table
   %thead
     %tr
+      %th ID
       %th Exercise Name
       %th # of Students Submitted
       %th Actions
@@ -15,6 +16,7 @@
     - @cohort_exercises.each do |cohort_exercise|
       - count = cohort_exercise.submissions.for_cohort(@cohort).count
       %tr
+        %td= cohort_exercise.id
         %td= link_to cohort_exercise.name, cohort_exercise.exercise.github_repo_url
         %td.submission_count= link_to(count, instructor_cohort_cohort_exercise_path(@cohort, cohort_exercise))
         %td

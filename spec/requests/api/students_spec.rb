@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe "Students API" do
-  describe 'when the github username is not present on the user' do
-    it 'updates the github username' do
+  describe 'GET /api/cohorts/:cohort_id/students' do
+    it 'returns valid student json' do
       cohort = create_cohort
       student1 = create_user(
         email: 'user1@example.com',
