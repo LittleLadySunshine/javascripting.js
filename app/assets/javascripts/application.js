@@ -31,6 +31,10 @@ $(document).ready(function() {
     });
   });
 
+  $(document).on("click", "[data-prevent-jump]", function(){
+    return false;
+  });
+
   new ZeroClipboard($("[data-clipboard-text]"));
 
   $(document).on("ajax:success", "[data-behavior=mark-as-read] a", function(e){

@@ -69,7 +69,11 @@
         %li= link_to cohort.name, cohort_daily_plans_path(cohort)
 
 - markdown = [@lesson_plan.objectives, @lesson_plan.activity].join("\n\n")
-
-%a{"href" => "", "data-clipboard-text" => markdown} Copy Text
-
-%pre= markdown
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      .pull-right
+        %a{"href" => "", data: {clipboard_text: markdown, prevent_jump: true}} Copy Text
+      Markdown for Class Notes
+  .panel-body
+    %pre= markdown
