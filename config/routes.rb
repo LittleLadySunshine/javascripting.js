@@ -5,7 +5,7 @@ Students::Application.routes.draw do
     resources :cohort_exercises, only: [] do
       resources :submissions, only: :index
     end
-    resources :cohorts, only: [] do
+    resources :cohorts, only: :index do
       resources :students, only: :index
     end
   end
