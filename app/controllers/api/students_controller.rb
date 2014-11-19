@@ -13,7 +13,7 @@ module Api
         }
       end
 
-      render json: results
+      render json: {student: results}
     end
 
   end
