@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'nokogiri'
 gem 'redcarpet'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'rspec-rails'
