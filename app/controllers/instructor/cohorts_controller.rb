@@ -55,10 +55,10 @@ class Instructor::CohortsController < InstructorRequiredController
         student,
         User.find(appointment[:instructor_id]),
         appointment[:time],
-      )
+      ).deliver
     end
     instructor_appointments.each do |instructor_id, appointments|
-      InstructorMailer.one_on_one_schedule(User.find(instructor_id), appointments)
+      InstructorMailer.one_on_one_schedule(User.find(instructor_id), appointments).deliver
     end
     redirect_to one_on_ones_instructor_cohort_path(params[:id]), notice: "Invitations were sent!"
   end
