@@ -6,6 +6,9 @@
 = form_tag one_on_ones_instructor_cohort_path(params[:id]), method: :get do
   - all_instructors.each do |instructor|
     %label
+      Start Time
+      = select_tag 'start_time', options_for_select(OneOnOneScheduler.all_times, @start_time)
+    %label
       %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
       = instructor.full_name
   = submit_tag 'Regenerate', class: 'btn btn-primary btn-sm'

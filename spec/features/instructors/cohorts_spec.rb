@@ -95,7 +95,7 @@ feature "Cohorts" do
 
       expect(page).to have_content("Student User")
       expect(page).to have_content("Teacher User")
-      expect(page).to have_content("1pm")
+      expect(page).to have_content("1:00pm")
     end
 
     scenario "instructors can see a table of acceptance links for gCamp" do

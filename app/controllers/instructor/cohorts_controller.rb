@@ -43,6 +43,7 @@ class Instructor::CohortsController < InstructorRequiredController
   end
 
   def one_on_ones
+    @start_time = params[:start_time].presence || '1:00pm'
     cohort = Cohort.find(params[:id])
 
     students = User.for_cohort(params[:id])
@@ -52,7 +53,7 @@ class Instructor::CohortsController < InstructorRequiredController
                            else
                              all_instructors
                            end
-    scheduler = OneOnOneScheduler.new(students, selected_instructors)
+    scheduler = OneOnOneScheduler.new(students, selected_instructors, @start_time)
     scheduler.generate_schedule
     render('one_on_ones', :locals => {
       :cohort => cohort,
