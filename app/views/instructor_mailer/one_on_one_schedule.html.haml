@@ -9,5 +9,5 @@
   %tbody
     - @appointments.each do |appointment|
       %tr
-        %td= appointment.student
+        %td= appointment.student.full_name
         %td= appointment.time
