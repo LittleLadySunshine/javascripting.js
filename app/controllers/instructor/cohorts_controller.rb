@@ -42,6 +42,17 @@ class Instructor::CohortsController < InstructorRequiredController
                                :cohort => cohort})
   end
 
+  def send_one_on_ones
+    params[:appointments].values.each do |appointment|
+      StudentMailer.one_on_one(
+        User.find(appointment[:student_id]),
+        User.find(appointment[:instructor_id]),
+        appointment[:time],
+      )
+    end
+    redirect_to one_on_ones_instructor_cohort_path(params[:id]), notice: "Invitations were sent!"
+  end
+
   def one_on_ones
     @start_time = params[:start_time].presence || '1:00pm'
     cohort = Cohort.find(params[:id])

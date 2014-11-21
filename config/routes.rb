@@ -69,6 +69,7 @@ Students::Application.routes.draw do
 
     resources :cohorts do
       get :one_on_ones, :on => :member
+      post :send_one_on_ones, on: :member
       get :acceptance, :on => :member
       get :mentors, :on => :member
       get :social, :on => :member

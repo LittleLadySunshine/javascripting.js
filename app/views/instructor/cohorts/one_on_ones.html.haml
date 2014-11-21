@@ -4,10 +4,10 @@
 = render partial: 'nav', locals: { cohort: cohort }
 
 = form_tag one_on_ones_instructor_cohort_path(params[:id]), method: :get do
+  %label
+    Start Time
+    = select_tag 'start_time', options_for_select(OneOnOneScheduler.all_times, @start_time)
   - all_instructors.each do |instructor|
-    %label
-      Start Time
-      = select_tag 'start_time', options_for_select(OneOnOneScheduler.all_times, @start_time)
     %label
       %input{type: 'checkbox', value: instructor.id, name: 'instructor_ids[]', checked: selected_instructors.include?(instructor)}
       = instructor.full_name
@@ -28,14 +28,21 @@
 .page-header
   %h2 Generated Appointments
 
-%table.table
-  %thead
-    %th Student
-    %th Instructor
-    %th Time
-  %tbody
-    - appointments.each do |appointment|
-      %tr
-        %td= appointment.student.full_name
-        %td= appointment.instructor.full_name
-        %td= appointment.time
+= form_tag send_one_on_ones_instructor_cohort_path(params[:id]), method: :post do
+  %table.table
+    %thead
+      %th Student
+      %th Instructor
+      %th Time
+    %tbody
+      - appointments.each_with_index do |appointment, index|
+        %tr
+          %td
+            %input{type: "hidden", value: appointment.student.id, name: "appointments[#{index}][student_id]"}
+            %input{type: "hidden", value: appointment.time, name: "appointments[#{index}][time]"}
+            %input{type: "hidden", value: appointment.instructor.id, name: "appointments[#{index}][instructor_id]"}
+            = appointment.student.full_name
+          %td= appointment.instructor.full_name
+          %td= appointment.time
+  %p
+    = submit_tag "Send Emails", class: "btn btn-primary"
