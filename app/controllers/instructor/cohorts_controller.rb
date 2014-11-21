@@ -43,12 +43,22 @@ class Instructor::CohortsController < InstructorRequiredController
   end
 
   def send_one_on_ones
+    instructor_appointments = {}
     params[:appointments].values.each do |appointment|
+      student = User.find(appointment[:student_id])
+      instructor_appointments[appointment[:instructor_id]] ||= []
+      instructor_appointments[appointment[:instructor_id]] << OpenStruct.new(
+        student: student,
+        time: appointment[:time]
+      )
       StudentMailer.one_on_one(
-        User.find(appointment[:student_id]),
+        student,
         User.find(appointment[:instructor_id]),
         appointment[:time],
       )
+    end
+    instructor_appointments.each do |instructor_id, appointments|
+      InstructorMailer.one_on_one_schedule(User.find(instructor_id), appointments)
     end
     redirect_to one_on_ones_instructor_cohort_path(params[:id]), notice: "Invitations were sent!"
   end

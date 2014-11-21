@@ -1,0 +1,13 @@
+%p
+  Here's your one-on-one schedule
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Time
+  %tbody
+    - @appointments.each do |appointment|
+      %tr
+        %td= appointment.student
+        %td= appointment.time
