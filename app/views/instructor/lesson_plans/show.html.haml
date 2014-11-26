@@ -77,3 +77,18 @@
       Markdown for Class Notes
   .panel-body
     %pre= markdown
+
+= render "instructor/lessons/form"
+
+%table.table
+  %thead
+    %tr
+      %th Cohort
+      %th Date
+      %th
+  %tbody
+    - @lesson_plan.lessons.each do |lesson|
+      %tr
+        %td= lesson.cohort.name
+        %td= lesson.date.to_formatted_s(:long)
+        %td= link_to('Remove', instructor_lesson_plan_lesson_path(@lesson_plan, lesson), method: :delete, data: {confirm: "Are you sure"}, class: 'btn btn-default')

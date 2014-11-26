@@ -28,6 +28,8 @@ class Instructor::LessonPlansController < InstructorRequiredController
     active_staffings = Staffing.where(user_id: user_session.current_user).active
     @cohorts = active_staffings.map(&:cohort)
     @lesson_plan = LessonPlan.find(params[:id])
+    @lesson = Lesson.new
+    @lessons = Lesson.all
   end
 
   def edit

@@ -55,7 +55,9 @@ Students::Application.routes.draw do
 
   namespace :instructor do
     resources :users
-    resources :lesson_plans
+    resources :lesson_plans do
+      resources :lessons, only: [:create, :destroy]
+    end
     resources :curriculums, except: :show do
       resources :curriculum_units do
         post :reorder, on: :collection

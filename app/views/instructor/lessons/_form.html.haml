@@ -1,0 +1,8 @@
+=form_for [:instructor, @lesson_plan, @lesson] do |f|
+  = errors_for(f)
+  .col-md-2
+    =f.collection_select(:cohort_id, Cohort.all, :id, :name, {}, {class:"form-control"})
+  .col-md-2
+    =f.date_field :date, class: "datetime form-control", title: 'date'
+  .col-md-2
+    =f.submit 'Assign to Cohort', class: 'btn btn-primary'
