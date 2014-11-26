@@ -4,7 +4,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :lesson_plan
 
   validates :date, presence: true
-  validates :cohort_id , presence: true, uniqueness: true
+  validates :cohort_id , uniqueness: {scope: [:lesson_plan]}
 
 
 end
