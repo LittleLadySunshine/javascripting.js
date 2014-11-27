@@ -17,6 +17,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 
+ENV['EMBER_APP_URL'] ||= 'http://localhost:4200'
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
