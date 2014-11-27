@@ -2,6 +2,12 @@ require 'rails_helper'
 
 describe "Students API" do
   describe 'GET /api/cohorts/:cohort_id/students' do
+    before do
+      user = create_instructor
+      mock_omniauth(info_overrides: {email: user.email, nickname: user.github_username})
+      get_via_redirect "/auth/github"
+    end
+
     it 'returns valid student json' do
       cohort = create_cohort
       student1 = create_user(

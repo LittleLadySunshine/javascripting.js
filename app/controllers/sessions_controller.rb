@@ -1,7 +1,22 @@
 class SessionsController < ApplicationController
   def create
     if request.env['omniauth.params']['src'] == 'ember'
-      redirect_to ENV['EMBER_APP_URL']
+      github_id = request.env['omniauth.auth']['uid']
+      github_info = request.env['omniauth.auth']['info'].merge('id' => github_id)
+
+      user = FindAndUpdateUserFromGithubInfo.call(github_info)
+
+      if user.present?
+        session[:access_token] = request.env['omniauth.auth']['credentials']['token']
+        user_session.sign_in(user)
+        if request.env['omniauth.params']['return_to']
+          redirect_to ENV['EMBER_APP_URL'] + request.env['omniauth.params']['return_to']
+        else
+          redirect_to ENV['EMBER_APP_URL']
+        end
+      else
+        redirect_to ENV['EMBER_APP_URL'] + '/access-denied'
+      end
     else
       github_id = request.env['omniauth.auth']['uid']
       github_info = request.env['omniauth.auth']['info'].merge('id' => github_id)
@@ -22,7 +37,11 @@ class SessionsController < ApplicationController
 
   def destroy
     user_session.sign_out
-    redirect_to root_path
+    if params[:src] == 'ember'
+      redirect_to ENV['EMBER_APP_URL']
+    else
+      redirect_to root_path
+    end
   end
 
   def failure

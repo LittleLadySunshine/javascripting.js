@@ -1,5 +1,5 @@
 module Api
-  class StudentsController < ActionController::Base
+  class StudentsController < BaseController
 
     def index
       cohort = Cohort.find(params[:cohort_id])
