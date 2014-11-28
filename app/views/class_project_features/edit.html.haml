@@ -3,7 +3,7 @@
 
 %ol.breadcrumb
   %li= link_to "Class Projects", class_projects_path
-  %li= link_to "#{@class_project.name} Features", class_project_path(@class_project)
+  %li= link_to "#{@class_project.name} Features", class_project_features_path(@class_project)
   %li.active Edit
 
 - url = class_project_feature_path(@class_project, @class_project_feature)
