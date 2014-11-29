@@ -44,5 +44,6 @@
               - else
                 = form_for [:instructor, @curriculum, @curriculum_unit, planned_lesson], html: {class: "form-horizontal"} do |f|
                   = f.hidden_field :lesson_plan_id, value: lesson_plan.id
-                  = hidden_field_tag :filter, params[:filter]
+                  - if params[:filter].present?
+                    = hidden_field_tag :filter, params[:filter]
                   = f.submit "Add", class: "btn btn-primary btn-sm"
