@@ -1,10 +1,10 @@
-=form_for [:instructor, @lesson_plan, @lesson] do |f|
-  = errors_for(f)
-  .col-md-2
-    =f.collection_select(:cohort_id, Cohort.all, :id, :name, {}, {class:"form-control"})
-  .col-md-2
-    =f.date_field :date, class: "datetime form-control", title: 'date'
-  .col-md-2
+.well
+  = form_for [:instructor, @lesson_plan, @lesson], html: {class: "form-inline"} do |f|
+    = errors_for(f)
+    .form-group
+      = f.collection_select(:cohort_id, Cohort.all, :id, :name, {}, {class:"form-control"})
+    .form-group
+      = f.date_field :date, class: "datetime form-control", title: 'date'
     - if params[:curriculum_unit_id].present?
       = hidden_field_tag :curriculum_unit_id, params[:curriculum_unit_id]
-    =f.submit 'Assign to Cohort', class: 'btn btn-primary'
+    = f.submit 'Assign to Cohort', class: 'btn btn-primary'

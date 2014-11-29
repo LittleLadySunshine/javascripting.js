@@ -87,9 +87,12 @@
   .panel-body
     %pre= markdown
 
+.page-header
+  %h3 Lessons
+
 = render "instructor/lessons/form"
 
-%table.table
+%table.table.table-striped
   %thead
     %tr
       %th Cohort
@@ -99,5 +102,7 @@
     - @lesson_plan.lessons.each do |lesson|
       %tr
         %td= lesson.cohort.name
-        %td= lesson.date.to_formatted_s(:long)
-        %td= link_to('Remove', instructor_lesson_plan_lesson_path(@lesson_plan, lesson, curriculum_unit_id: params[:curriculum_unit_id]), method: :delete, data: {confirm: "Are you sure"}, class: 'btn btn-default')
+        %td= link_to lesson.date.to_formatted_s(:long), cohort_daily_plan_path(lesson.cohort, lesson.date.strftime("%m/%d/%Y"))
+        %td
+          .text-right
+            = link_to('Remove', instructor_lesson_plan_lesson_path(@lesson_plan, lesson, curriculum_unit_id: params[:curriculum_unit_id]), method: :delete, data: {confirm: "Are you sure"}, class: 'btn btn-default')
