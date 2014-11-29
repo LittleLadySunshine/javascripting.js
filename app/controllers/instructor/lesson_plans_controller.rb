@@ -1,5 +1,11 @@
 class Instructor::LessonPlansController < InstructorRequiredController
 
+  before_action do
+    if params[:curriculum_unit_id].present?
+      @curriculum_unit = CurriculumUnit.find(params[:curriculum_unit_id])
+    end
+  end
+
   def index
     @lesson_plans = LessonPlan.ordered
     if params[:filter]
@@ -15,10 +21,21 @@ class Instructor::LessonPlansController < InstructorRequiredController
     @lesson_plan = LessonPlan.new(lesson_plan_params)
 
     if @lesson_plan.save
-      redirect_to(
-        instructor_lesson_plan_path(@lesson_plan),
-        notice: 'Lesson Plan successfully created'
-      )
+      if @curriculum_unit
+        PlannedLesson.create!(
+          curriculum_unit: @curriculum_unit,
+          lesson_plan: @lesson_plan
+        )
+        redirect_to(
+          instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum_unit.curriculum, @curriculum_unit),
+          notice: 'Lesson Plan successfully created'
+          )
+      else
+        redirect_to(
+          instructor_lesson_plan_path(@lesson_plan),
+          notice: 'Lesson Plan successfully created'
+        )
+      end
     else
       render :new
     end

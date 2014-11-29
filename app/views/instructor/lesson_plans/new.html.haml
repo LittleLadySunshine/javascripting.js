@@ -1,4 +1,14 @@
 .page-header
   %h1 New Lesson Plan
 
+- if params[:curriculum_unit_id].present?
+  %ol.breadcrumb
+    %li= link_to "Curriculums", instructor_curriculums_path
+    %li= link_to @curriculum_unit.curriculum.name, instructor_curriculum_curriculum_units_path(@curriculum_unit.curriculum)
+    %li= link_to @curriculum_unit.name, instructor_curriculum_curriculum_unit_path(@curriculum_unit.curriculum, @curriculum_unit)
+    %li
+      = link_to instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum_unit.curriculum, @curriculum_unit) do
+        Manage Lessons
+    %li.active New Lesson
+
 = render 'form'

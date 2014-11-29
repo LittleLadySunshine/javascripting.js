@@ -1,9 +1,11 @@
 .page-header
+  .pull-right
+    = link_to "Add Lesson Plan", new_instructor_lesson_plan_path(curriculum_unit_id: @curriculum_unit.id), class: "btn btn-info"
   %h1 Lesson Plans for #{@curriculum_unit.name}
 
 %ol.breadcrumb
   %li= link_to "Curriculums", instructor_curriculums_path
-  %li= link_to "Curriculum Units", instructor_curriculum_curriculum_units_path(@curriculum)
+  %li= link_to @curriculum.name, instructor_curriculum_curriculum_units_path(@curriculum)
   %li= link_to @curriculum_unit.name, instructor_curriculum_curriculum_unit_path(@curriculum, @curriculum_unit)
   %li.active Manage Lessons
 
