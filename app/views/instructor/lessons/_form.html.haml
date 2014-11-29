@@ -5,4 +5,6 @@
   .col-md-2
     =f.date_field :date, class: "datetime form-control", title: 'date'
   .col-md-2
+    - if params[:curriculum_unit_id].present?
+      = hidden_field_tag :curriculum_unit_id, params[:curriculum_unit_id]
     =f.submit 'Assign to Cohort', class: 'btn btn-primary'

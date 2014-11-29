@@ -64,6 +64,8 @@
     .col-md-offset-2.col-md-4
       - if params[:curriculum_unit_id].present?
         = hidden_field_tag :curriculum_unit_id, params[:curriculum_unit_id]
+        - path = f.object.persisted? ? instructor_lesson_plan_path(f.object, curriculum_unit_id: params[:curriculum_unit_id]) : instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum_unit.curriculum, @curriculum_unit)
+      - else
+        - path = f.object.persisted? ? instructor_lesson_plan_path(f.object) : instructor_lesson_plans_path
       = f.submit class: 'btn btn-primary'
-      - path = f.object.persisted? ? instructor_lesson_plan_path(f.object) : instructor_lesson_plans_path
       = link_to "cancel", path, class: "btn btn-default"

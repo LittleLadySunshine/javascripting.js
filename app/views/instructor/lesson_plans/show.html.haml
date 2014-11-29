@@ -1,19 +1,28 @@
 .page-header
   .pull-right
-    = link_to new_instructor_lesson_plan_path, class: "btn btn-info" do
+    = link_to new_instructor_lesson_plan_path(curriculum_unit_id: params[:curriculum_unit_id]), class: "btn btn-info" do
       %i.glyphicon.glyphicon-plus
       New Lesson Plan
-    = link_to edit_instructor_lesson_plan_path(@lesson_plan), class: "btn btn-info" do
+    = link_to edit_instructor_lesson_plan_path(@lesson_plan, curriculum_unit_id: params[:curriculum_unit_id]), class: "btn btn-info" do
       %i.glyphicon.glyphicon-pencil
       Edit
 
   %h1 #{@lesson_plan.name}
 
-%ol.breadcrumb
-  %li
-    = link_to "Lesson Plans", instructor_lesson_plans_path
-  %li.active
-    = @lesson_plan.name
+
+- if params[:curriculum_unit_id].present?
+  %ol.breadcrumb
+    %li= link_to "Curriculums", instructor_curriculums_path
+    %li= link_to @curriculum_unit.curriculum.name, instructor_curriculum_curriculum_units_path(@curriculum_unit.curriculum)
+    %li= link_to @curriculum_unit.name, instructor_curriculum_curriculum_unit_path(@curriculum_unit.curriculum, @curriculum_unit)
+    %li
+      = link_to instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum_unit.curriculum, @curriculum_unit) do
+        Manage Lessons
+    %li.active= @lesson_plan.name
+- else
+  %ol.breadcrumb
+    %li= link_to "Lesson Plans", instructor_lesson_plans_path
+    %li.active= @lesson_plan.name
 
 %p
   - @lesson_plan.tag_list.each do |tag|
@@ -91,4 +100,4 @@
       %tr
         %td= lesson.cohort.name
         %td= lesson.date.to_formatted_s(:long)
-        %td= link_to('Remove', instructor_lesson_plan_lesson_path(@lesson_plan, lesson), method: :delete, data: {confirm: "Are you sure"}, class: 'btn btn-default')
+        %td= link_to('Remove', instructor_lesson_plan_lesson_path(@lesson_plan, lesson, curriculum_unit_id: params[:curriculum_unit_id]), method: :delete, data: {confirm: "Are you sure"}, class: 'btn btn-default')

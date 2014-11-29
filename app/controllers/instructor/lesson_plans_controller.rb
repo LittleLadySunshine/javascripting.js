@@ -26,16 +26,11 @@ class Instructor::LessonPlansController < InstructorRequiredController
           curriculum_unit: @curriculum_unit,
           lesson_plan: @lesson_plan
         )
-        redirect_to(
-          instructor_curriculum_curriculum_unit_planned_lessons_path(@curriculum_unit.curriculum, @curriculum_unit),
-          notice: 'Lesson Plan successfully created'
-          )
-      else
-        redirect_to(
-          instructor_lesson_plan_path(@lesson_plan),
-          notice: 'Lesson Plan successfully created'
-        )
       end
+      redirect_to(
+        instructor_lesson_plan_path(@lesson_plan, curriculum_unit_id: params[:curriculum_unit_id].presence),
+        notice: 'Lesson Plan successfully created'
+      )
     else
       render :new
     end
@@ -58,7 +53,7 @@ class Instructor::LessonPlansController < InstructorRequiredController
 
     if @lesson_plan.update(lesson_plan_params)
       redirect_to(
-        instructor_lesson_plan_path(@lesson_plan),
+        instructor_lesson_plan_path(@lesson_plan, curriculum_unit_id: params[:curriculum_unit_id].presence),
         notice: 'Lesson Plan successfully updated'
       )
     else

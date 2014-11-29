@@ -11,7 +11,7 @@ class Instructor::LessonsController < ApplicationController
   def create
     @lesson = @lesson_plan.lessons.new(params.require(:lesson).permit(:date, :cohort_id, :lesson_plan_id))
     if @lesson.save
-      redirect_to instructor_lesson_plan_path(@lesson_plan)
+      redirect_to instructor_lesson_plan_path(@lesson_plan, curriculum_unit_id: params[:curriculum_unit_id])
     else
       render :new
     end
@@ -20,7 +20,7 @@ class Instructor::LessonsController < ApplicationController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
-    redirect_to instructor_lesson_plan_path(@lesson_plan)
+    redirect_to instructor_lesson_plan_path(@lesson_plan, curriculum_unit_id: params[:curriculum_unit_id])
   end
 
 end
