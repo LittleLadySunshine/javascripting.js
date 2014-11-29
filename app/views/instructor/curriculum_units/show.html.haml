@@ -77,7 +77,7 @@
       %tbody
         - @curriculum_unit.planned_lessons.ordered.each do |planned_lesson|
           %tr{id: planned_lesson.id}
-            %td= link_to planned_lesson.lesson_plan.name, instructor_lesson_plan_path(planned_lesson.lesson_plan)
+            %td= link_to planned_lesson.lesson_plan.name, instructor_lesson_plan_path(planned_lesson.lesson_plan, curriculum_unit_id: @curriculum_unit.id)
             %td
               .pull-right
                 = link_to "remove",
