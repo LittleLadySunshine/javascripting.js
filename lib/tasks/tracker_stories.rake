@@ -38,8 +38,6 @@ namespace :tracker do
       end
     end
 
-    p summaries
-
     TrackerStatus.delete_all
     summaries.each do |user, totals|
       TrackerStatus.create!(
