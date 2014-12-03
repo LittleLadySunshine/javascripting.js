@@ -7,11 +7,17 @@
   %thead
     %tr
       %th Name
+      %th Delivered Count
       %th(colspan="3" class="text-center") gCamp
   %tbody
     - @users.each do |user|
       %tr
         %td= user.full_name
+        %td
+          = @tracker_statuses[user.id].try(:delivered) || "?"
+          - if created = @tracker_statuses[user.id].try(:created_at)
+            %small.text-muted
+              (#{time_ago_in_words(created)})
         %td
           - if user.gcamp_tracker_url?
             = link_to 'Tracker', user.gcamp_tracker_url, target: :_blank

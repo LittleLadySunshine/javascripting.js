@@ -89,6 +89,8 @@ class Instructor::CohortsController < InstructorRequiredController
   def acceptance
     @cohort = Cohort.find(params[:id])
     @users = User.for_cohort(@cohort)
+    @tracker_statuses = TrackerStatus.where(user_id: @users).index_by(&:user_id)
+    @users = @users.sort_by{|user| @tracker_statuses[user.id].try(:delivered) || 0 }.reverse
   end
 
   def mentors
