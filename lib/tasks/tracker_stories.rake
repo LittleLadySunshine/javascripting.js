@@ -24,7 +24,7 @@ namespace :tracker do
           responses[user] = response_json
         end
       else
-        puts "  Invalid project id for #{name} / #{url}"
+        puts "  Invalid project id for #{user.full_name} / #{url}"
       end
       sleep 0.04
     end
