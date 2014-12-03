@@ -16,4 +16,8 @@ class Cohort < ActiveRecord::Base
   def order_added_exercises
     cohort_exercises.includes(:exercise).order(:created_at).map(&:exercise)
   end
+
+  def self.current
+    where('? between start_date and end_date', Date.today)
+  end
 end

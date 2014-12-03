@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125225111) do
+ActiveRecord::Schema.define(version: 20141203071617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,6 +238,21 @@ ActiveRecord::Schema.define(version: 20141125225111) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "tracker_statuses", force: true do |t|
+    t.integer  "user_id",                 null: false
+    t.integer  "delivered",   default: 0, null: false
+    t.integer  "accepted",    default: 0, null: false
+    t.integer  "rejected",    default: 0, null: false
+    t.integer  "started",     default: 0, null: false
+    t.integer  "finished",    default: 0, null: false
+    t.integer  "unstarted",   default: 0, null: false
+    t.integer  "unscheduled", default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "tracker_statuses", ["user_id"], name: "index_tracker_statuses_on_user_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
