@@ -9,7 +9,7 @@ namespace :tracker do
     students.each do |user|
       url = user.gcamp_tracker_url
       puts "Downloading stories for #{user.full_name}..."
-      project_id = url.sub('https://www.pivotaltracker.com/n/projects/', '')
+      project_id = url.sub(/https?:\/\/www\.pivotaltracker\.com\/n\/projects\//, '')
       if project_id.present? && project_id =~ /\A\d+$/
         conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
 
