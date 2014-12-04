@@ -14,7 +14,7 @@ namespace :tracker do
         conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
 
         response = conn.get do |req|
-          req.url "/services/v5/projects/#{project_id}/stories?limit=100&offset=0"
+          req.url "/services/v5/projects/#{project_id}/stories?limit=500&offset=0"
           req.headers['Content-Type'] = 'application/json'
           req.headers['X-TrackerToken'] = TRACKER_TOKEN
         end
