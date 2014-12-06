@@ -13,7 +13,7 @@ module Api
         }
       end
 
-      render json: submissions
+      render json: submissions.to_json
     end
 
   end

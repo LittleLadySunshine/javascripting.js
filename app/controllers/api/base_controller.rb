@@ -3,8 +3,8 @@ module Api
     include UserSessionHelper
 
     before_action do
-      response.headers['Access-Control-Allow-Origin'] = ENV['EMBER_URL']
-      response.headers['Access-Control-Allow-Credentials'] = true
+      # response.headers['Access-Control-Allow-Origin'] = ENV['EMBER_URL']
+      # response.headers['Access-Control-Allow-Credentials'] = true
 
       if !user_session.signed_in?
         render nothing: true, status: 403
