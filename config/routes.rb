@@ -2,6 +2,7 @@ Students::Application.routes.draw do
   root :to => "showcases#index"
 
   namespace :api do
+    get 'me' => 'base#me'
     get 'sign-in' => 'auth#sign_in'
     resources :cohort_exercises, only: [] do
       resources :submissions, only: :index
