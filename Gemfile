@@ -2,11 +2,11 @@ ruby '2.1.5'
 
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.1.8'
 gem 'pg'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.5'
+gem 'haml', '~> 4.0.6'
 gem 'font-awesome-sass'
-gem 'haml'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -18,7 +18,7 @@ gem 'neat', '1.5.1'
 gem 'acts-as-taggable-on'
 gem 'zeroclipboard-rails'
 gem 'rmagick', :require => 'RMagick'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.1.0'
 gem 'faraday', '~> 0.9.0'
 gem 'octokit'
 gem 'carrierwave'
@@ -28,7 +28,7 @@ gem 'redcarpet'
 gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'git-duet'
   gem 'dotenv-rails'
   gem 'quiet_assets'
@@ -50,5 +50,5 @@ group :test do
 end
 
 group :review, :production do
-  gem 'rails_12factor'
+  gem 'rails_12factor', '~> 0.0.3'
 end
