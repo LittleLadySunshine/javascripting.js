@@ -24,8 +24,8 @@ describe "Students API" do
       get "/api/cohorts/#{cohort.to_param}/students"
 
       response_json = JSON.parse(response.body, symbolize_names: true)
-      expect(response_json[:student].length).to eq(2)
-      usernames = response_json[:student].map{|user| user[:github_username] }
+      expect(response_json[:students].length).to eq(2)
+      usernames = response_json[:students].map{|user| user[:github_username] }
       expect(usernames).to match_array(["someuser1", "someuser2"])
     end
   end
