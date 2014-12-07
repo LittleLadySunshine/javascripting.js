@@ -3,6 +3,9 @@ module Api
     include UserSessionHelper
 
     before_action do
+      headers['Access-Control-Allow-Origin'] = ENV['EMBER_APP_URL']
+      headers['Access-Control-Allow-Credentials'] = 'true'
+
       if !user_session.signed_in?
         render nothing: true, status: :unauthorized
       end

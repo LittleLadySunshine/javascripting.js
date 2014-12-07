@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   include UserSessionHelper
 
+  before_action do
+    headers['Access-Control-Allow-Origin'] = ENV['EMBER_APP_URL']
+    headers['Access-Control-Allow-Credentials'] = 'true'
+  end
+
   def get_home_path
     if user_session.signed_in?
       if user_session.current_user.instructor?
