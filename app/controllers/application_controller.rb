@@ -15,12 +15,12 @@ class ApplicationController < ActionController::Base
       if user_session.current_user.instructor?
         active_staffings = Staffing.where(user_id: user_session.current_user).active
         if active_staffings.length == 1
-          instructor_cohort_path(active_staffings.first.cohort)
+          today_cohort_daily_plans_path(active_staffings.first.cohort)
         else
           instructor_cohorts_path
         end
       else
-        cohort_exercises_path(user_session.current_user.cohort)
+        today_cohort_daily_plans_path(user_session.current_user.cohort)
       end
     else
       root_path

@@ -72,7 +72,6 @@ feature "Student Exercises" do
     )
 
     click_on "Exercises"
-
     click_on "Arrays and things"
     click_on "Edit"
     fill_in "GitHub Repo Name", with: "other_submission"

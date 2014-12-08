@@ -1,4 +1,10 @@
 .page-header
   %h1 Daily plan for #{params[:id]}
+
+- if user_session.current_user.instructor?
+  = render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+- else
+  = render 'student/sub_nav'
+
 .jumbotron
-  There's no plan for this day yet.
+  %p.lead There's no plan for this day yet.
