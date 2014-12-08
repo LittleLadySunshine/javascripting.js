@@ -4,15 +4,36 @@
 
   %h2 Cohorts
 
+- mine, others = @cohorts.partition{|cohort| cohort.staffings.active.map(&:user).include?(user_session.current_user) }
+
+- if mine.present?
+  .page-header
+    %h3 My Cohorts
+  .row
+    - mine.sort_by(&:start_date).each do |cohort|
+      .col-md-12
+        .panel.panel-primary
+          .panel-heading
+            %h3.panel-title
+              = link_to instructor_cohort_path(cohort), style: "display: block;" do
+                = cohort.name
+          .panel-body
+            %ul.nav.nav-pills.cohort-nav
+              - instructor_tab_renderers(cohort).each do |renderer|
+                = renderer.render
+
+.page-header
+  %h3 Other Cohorts
+
 .row
-  - @cohorts.each do |cohort|
-    .col-md-6
+  - others.sort_by(&:start_date).reverse.each do |cohort|
+    .col-md-12
       .panel.panel-default
         .panel-heading
           %h3.panel-title
             = link_to instructor_cohort_path(cohort), style: "display: block;" do
               = cohort.name
         .panel-body
-          %ul
-            - instructor_cohort_links(cohort).each do |link|
-              %li= link_to link.text, link.path
+          %ul.nav.nav-pills.cohort-nav
+            - instructor_tab_renderers(cohort).each do |renderer|
+              = renderer.render
