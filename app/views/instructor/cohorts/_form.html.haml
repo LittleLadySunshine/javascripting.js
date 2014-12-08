@@ -28,8 +28,8 @@
 
   .form-group
     = f.label :directions, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.text_field :directions, class: "form-control"
+    .col-sm-6
+      = f.text_area :directions, class: "form-control"
 
   .form-group
     = f.label :pair_feedback_url, class: "col-sm-2 control-label"
@@ -51,6 +51,16 @@
           Show employment ribbon
 
   .form-group
+    = f.label :calendar_url, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :calendar_url, class: "form-control"
+
+  .form-group
+    = f.label :prereqs, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :prereqs, rows: 20, class: "form-control"
+
+  .form-group
     = f.label :hero, class: "col-sm-2 control-label"
     .col-sm-4
       = f.file_field :hero, class: "form-control"
@@ -60,5 +70,6 @@
       .col-sm-offset-2.col-sm-10
         = image_tag @cohort.hero.url, class: "img-responsive"
 
-  .col-md-offset-2
-    = f.submit "Save", class: "btn btn-primary"
+  .form-group
+    .col-md-offset-2.col-md-6
+      = f.submit "Save", class: "btn btn-primary"

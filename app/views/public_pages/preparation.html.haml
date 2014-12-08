@@ -1,58 +1,14 @@
 - content_for :title, "Preparing for gSchool"
 
-%section
-  %h1 Preparing for gSchool
+- if @cohort
+  - if @cohort.prereqs?
+    .preparation
+      = markdownify @cohort.prereqs
+  - else
+    %h1 Too soon!
 
-  In order to get ready for your upcoming gSchool session, please complete all of the following items before the first day of class.
-  If you have questions, please #{mail_to "instructors@gschool.it", "email us"}.
+    %p We haven't posted the pre-reqs for this cohort yet.
+- else
+  %h1 We're sorry
 
-%section
-  %h2 Typing
-  %p
-    Developers spend a lot of their day typing at a computer. The ability to type quickly and accurately will
-    allow you to spend less of your day thinking about typing and more of your day thinking about writing software.
-
-  %p
-    We ask that students spend 20-30 minutes <em>per day</em> practicing your typing. Even if you think you are
-    a good typist, this practice will help you get in the practice of typing computer code. For an example of a developer
-    who is a great typist, checkout out the 1 minute video on Gary Bernhardt’s #{link_to "Destroy All Software", "https://www.destroyallsoftware.com/screencasts", target: "_blank"}.
-  %p
-    You assignment is to create an account on #{link_to "Typing.io", "http://typing.io", target: "_blank"} and work with the Ruby and JavaScript exercises they have.
-    Sign up for the $9.99/month plan and set a reminder to cancel it at the end of the month.
-
-%section
-  %h2 Reading
-  %p
-    There are many people that are learning to program. Some of them teach themselves and some of them attend programs like gSchool. To
-    get a view of one journey from non-programming to programmer, please read all three parts of
-    #{link_to "a story", "http://brandonhays.com/blog/2012/01/23/learning-to-program-part-i-how-i-did-it/", target: "_blank"} by #{link_to "Brandon Hayes", "https://twitter.com/tehviking", target: "_blank"}.
-
-  %p
-    Part of the goal of gSchool is to teach your about the culture and thought process of software development. To get you started down this path,
-    we would like your to read the following:
-    %ol
-      %li
-        #{link_to "Learn to Program by Chris Pine", "http://www.amazon.com/Learn-Program-Facets-Ruby-Chris-ebook/dp/B00I9GR4T2/ref=sr_1_1?s=books&ie=UTF8&qid=1398181401&sr=1-1&keywords=learn+to+program", target: "_blank"} – a very well written introduction to programming.
-      %li
-        #{link_to "How to Count by Steven Frank", "http://www.amazon.com/gp/product/B005DPIKPE/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B005DPIKPE&linkCode=as2&tag=jumplab-20", target: "_blank"} – the underpinning theories of computing
-
-
-%section
-  %h2 Coding
-  %p
-    These exercises will give you a basic understanding of some of the topics we will be covering during the class. If you have already completed these,
-    please go through them again so they are fresh in your mind.
-  %ol
-    %li
-      #{link_to "Codecademy Web Fundamentals", "http://www.codecademy.com/tracks/web", target: "_blank"}
-
-
-%section
-  %h2 #{link_to "Log into site", sign_in_using_github_path} with your GitHub account
-  %p
-    Make sure that the primary GitHub email address matches the email address you used to submit your application. If
-    it does not, please let use know. If you do not have a GitHub account, please create one #{link_to "here", "https://github.com/"}.
-
-  %p
-    We will be using #{link_to "GitHub", "https://github.com/"} extensively throughout the class so
-    please feel free to poke around to see what it is all about.
+  %p The page you were looking for cannot be found.

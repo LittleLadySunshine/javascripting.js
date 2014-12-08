@@ -1,0 +1,10 @@
+- content_for :title, "Preparing for gSchool"
+
+%h1 Preparing for gSchool
+
+%p Please choose the cohort you are planning to attend:
+
+- @cohorts.select(&:prereqs?).each do |cohort|
+
+  %div
+    = link_to cohort.name, preparation_path(cohort)

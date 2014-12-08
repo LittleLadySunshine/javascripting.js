@@ -117,7 +117,9 @@ class Instructor::CohortsController < InstructorRequiredController
       :curriculum_id,
       :pair_feedback_url,
       :show_employment_ribbon,
-      :hero
+      :hero,
+      :prereqs,
+      :calendar_url,
     )
   end
 end

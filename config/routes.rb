@@ -20,11 +20,13 @@ Students::Application.routes.draw do
   get "/auth/failure" => "sessions#failure"
   get "/logout" => "sessions#destroy", :as => "logout"
 
-  get "/preparation" => "public_pages#preparation", :as => "preparation"
+  get "/preparation" => "public_pages#preparation_index", :as => "preparations"
+  get "/preparation/:id" => "public_pages#preparation", :as => "preparation"
   get "/calendar" => "public_pages#calendar", :as => "calendar"
 
   resources :cohorts, only: [] do
     get "/info" => "student/info#index", :as => "info"
+    get "/prereqs" => "student/info#prereqs", :as => "prereqs"
     resources :writeups, controller: 'student/writeups', only: :index
     resources :writeup_topics, only: [] do
       resources :writeups, only: [:new, :create, :edit, :update, :destroy], controller: 'student/writeups'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208050341) do
+ActiveRecord::Schema.define(version: 20141208052103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,11 @@ ActiveRecord::Schema.define(version: 20141208050341) do
     t.date     "end_date"
     t.string   "pair_feedback_url"
     t.string   "hero"
-    t.boolean  "showcase",               default: false, null: false
+    t.boolean  "showcase",                            default: false, null: false
     t.integer  "curriculum_id"
-    t.boolean  "show_employment_ribbon", default: false, null: false
+    t.boolean  "show_employment_ribbon",              default: false, null: false
+    t.string   "calendar_url",           limit: 1000
+    t.text     "prereqs"
   end
 
   add_index "cohorts", ["curriculum_id"], name: "index_cohorts_on_curriculum_id", using: :btree
