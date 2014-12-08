@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   enum role: [ :student, :instructor ]
   enum status: [ :active, :inactive ]
 
+  validates :greenhouse_candidate_id, uniqueness: {allow_blank: true}
   validates :email, :uniqueness => {:case_sensitive => false}
   validates :github_id, :uniqueness => { :case_sensitive => false, :allow_nil => true }
   validates :email, :first_name, :last_name, :presence => true

@@ -71,6 +71,10 @@
       %dt Shirt Size
       %dd= @user.shirt_size
 
+      - if @user.greenhouse_candidate_id
+        %dt Greenhouse ID
+        %dd= link_to @user.greenhouse_candidate_id, "https://app.greenhouse.io/people/#{@user.greenhouse_candidate_id}"
+
     - if @user.personal_project
       %h2 Personal Project
       %dl.dl-horizontal

@@ -27,6 +27,9 @@ Students::Application.routes.draw do
   resources :cohorts, only: [] do
     get "/info" => "student/info#index", :as => "info"
     get "/prereqs" => "student/info#prereqs", :as => "prereqs"
+    resources :applications, only: [:index], controller: 'greenhouse_applications' do
+      post :refresh, on: :collection
+    end
     resources :writeups, controller: 'student/writeups', only: :index
     resources :writeup_topics, only: [] do
       resources :writeups, only: [:new, :create, :edit, :update, :destroy], controller: 'student/writeups'

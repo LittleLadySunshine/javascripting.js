@@ -1,0 +1,26 @@
+.page-header
+  .pull-right
+    = link_to refresh_cohort_applications_path(@cohort), class: "btn btn-primary", method: :post do
+      %i.glyphicon.glyphicon-refresh
+      Refresh
+  %h1 Greenhouse Applications
+
+= render 'instructor/cohorts/nav', cohort: @cohort
+
+- @applications.each do |application|
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        = link_to application.full_name, "https://app.greenhouse.io/people/#{application.candidate_id}"
+    .panel-body
+      %dl.dl-horizontal
+        %dt Email
+        %dd= mail_to application.email, application.email
+        %dt Phone
+        %dd= application.phone
+        %dt URLs
+        %dd
+          - if application.urls.present?
+            %ul.list-unstyled
+              - application.urls.each do |url|
+                %li= link_to url, url

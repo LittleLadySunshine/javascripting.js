@@ -65,6 +65,11 @@
     .col-sm-4
       = f.file_field :hero, class: "form-control"
 
+  .form-group
+    = f.label :greenhouse_job_id, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :greenhouse_job_id, class: "form-control"
+
   - if @cohort.hero.present?
     .form-group
       .col-sm-offset-2.col-sm-10

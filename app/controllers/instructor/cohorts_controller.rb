@@ -120,6 +120,7 @@ class Instructor::CohortsController < InstructorRequiredController
       :hero,
       :prereqs,
       :calendar_url,
+      :greenhouse_job_id,
     )
   end
 end

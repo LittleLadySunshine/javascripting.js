@@ -1,5 +1,6 @@
 class Cohort < ActiveRecord::Base
   validates :name, :directions, :google_maps_location, :start_date, :end_date, :presence => true
+  validates :greenhouse_job_id, uniqueness: {allow_blank: true}
 
   belongs_to :curriculum
   has_many :cohort_exercises, dependent: :destroy
@@ -18,5 +19,9 @@ class Cohort < ActiveRecord::Base
 
   def self.current
     where('? between start_date and end_date', Date.today)
+  end
+
+  def self.upcoming
+    where('start_date > ?', Date.today)
   end
 end

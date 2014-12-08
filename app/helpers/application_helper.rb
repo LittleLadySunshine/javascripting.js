@@ -43,6 +43,7 @@ module ApplicationHelper
         "Import" => instructor_cohort_imports_path(cohort),
         "Writeup Topics" => instructor_cohort_writeup_topics_path(cohort),
         "Exercises" => instructor_cohort_cohort_exercises_path(cohort),
+        "Greenhouse" => cohort_applications_path(cohort),
       },
       "Student Facing" => cohort_info_path(cohort),
       "1-on-1 Schedule" => one_on_ones_instructor_cohort_path(cohort),

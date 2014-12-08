@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208052103) do
+ActiveRecord::Schema.define(version: 20141208065228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,9 +79,11 @@ ActiveRecord::Schema.define(version: 20141208052103) do
     t.boolean  "show_employment_ribbon",              default: false, null: false
     t.string   "calendar_url",           limit: 1000
     t.text     "prereqs"
+    t.integer  "greenhouse_job_id",      limit: 8
   end
 
   add_index "cohorts", ["curriculum_id"], name: "index_cohorts_on_curriculum_id", using: :btree
+  add_index "cohorts", ["greenhouse_job_id"], name: "index_cohorts_on_greenhouse_job_id", unique: true, using: :btree
 
   create_table "curriculum_units", force: true do |t|
     t.string   "name",                null: false
@@ -132,6 +134,14 @@ ActiveRecord::Schema.define(version: 20141208052103) do
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.string   "github_repo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "greenhouse_applications", force: true do |t|
+    t.integer  "cohort_id",        null: false
+    t.json     "application_json", null: false
+    t.json     "candidate_json",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -275,7 +285,7 @@ ActiveRecord::Schema.define(version: 20141208052103) do
     t.string   "github_username"
     t.string   "github_id"
     t.integer  "cohort_id"
-    t.integer  "role",              default: 0
+    t.integer  "role",                              default: 0
     t.string   "phone"
     t.string   "twitter"
     t.string   "blog"
@@ -287,13 +297,15 @@ ActiveRecord::Schema.define(version: 20141208052103) do
     t.string   "linkedin"
     t.string   "avatar"
     t.string   "shirt_size"
-    t.integer  "status",            default: 0, null: false
+    t.integer  "status",                            default: 0, null: false
     t.string   "gcamp_tracker_url"
     t.string   "gcamp_url"
     t.string   "employer"
+    t.integer  "greenhouse_candidate_id", limit: 8
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
+  add_index "users", ["greenhouse_candidate_id"], name: "index_users_on_greenhouse_candidate_id", unique: true, using: :btree
   add_index "users", ["status"], name: "index_users_on_status", using: :btree
 
   create_table "writeup_topics", force: true do |t|

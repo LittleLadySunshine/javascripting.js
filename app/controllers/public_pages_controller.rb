@@ -3,7 +3,7 @@ class PublicPagesController < ApplicationController
   layout 'public'
 
   def preparation_index
-    @cohorts = Cohort.current
+    @cohorts = Cohort.upcoming
   end
 
   def preparation
