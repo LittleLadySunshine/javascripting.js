@@ -12,5 +12,6 @@
     .col-sm-6
       = f.collection_select :status, Staffing.statuses, :first, :first, {}, class: "form-control"
 
-  .col-sm-offset-2
-    = f.submit class: 'btn btn-primary'
+  .form-group
+    .col-sm-offset-2.col-sm-6
+      = f.submit class: 'btn btn-primary'
