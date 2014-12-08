@@ -59,10 +59,9 @@ feature "Cohorts" do
       fill_in 'First name', :with => 'John'
       fill_in 'Last name', :with => 'Johnson'
       fill_in 'Email', :with => 'john@johnny.com'
+      click_on 'Create User'
 
-      click_on 'Add Student'
-
-      expect(page).to have_content('Student added successfully')
+      expect(page).to have_content('User created successfully')
       expect(page).to have_content('Boulder gSchool')
       expect(page).to have_content('John Johnson')
       expect(page).to have_content('john@johnny.com')
@@ -75,8 +74,7 @@ feature "Cohorts" do
 
       click_on 'Boulder gSchool'
       click_on 'Add Student'
-
-      click_on 'Add Student'
+      click_on 'Create User'
 
       expect(page).to have_content("Email can't be blank")
       expect(page).to have_content("First name can't be blank")

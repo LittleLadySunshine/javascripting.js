@@ -1,12 +1,23 @@
 .page-header
   %h2 Edit #{@user.first_name_was} #{@user.last_name_was}
 
-%ol.breadcrumb
-  %li
-    = link_to "Users", instructor_users_path
-  %li
-    = link_to "#{@user.first_name_was} #{@user.last_name_was}", instructor_user_path(@user)
-  %li.active
-    Edit
+- if @cohort
+  %ol.breadcrumb
+    %li= link_to "Cohorts", instructor_cohorts_path
+    %li= link_to @cohort.name, instructor_cohort_path(@cohort)
+    %li= link_to "#{@user.first_name_was} #{@user.last_name_was}", instructor_user_path(@user, cohort_id: @cohort)
+    %li.active Edit
+- else
+  %ol.breadcrumb
+    %li= link_to "Users", instructor_users_path
+    %li= link_to "#{@user.first_name_was} #{@user.last_name_was}", instructor_user_path(@user)
+    %li.active Edit
 
 = render 'form'
+
+.row.gutter-top
+  .col-md-10.col-md-offset-2
+    .well
+      = link_to [:instructor, @user], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do
+        %i.glyphicon.glyphicon-trash
+        Delete User

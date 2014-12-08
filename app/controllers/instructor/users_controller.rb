@@ -1,18 +1,26 @@
 class Instructor::UsersController < InstructorRequiredController
 
+  before_action do
+    @cohort = Cohort.find_by_id(params[:cohort_id])
+  end
+
   def index
     @users = User.order(:first_name, :last_name)
   end
 
   def new
     @user = User.new
+    @user.cohort = @cohort if @cohort
   end
 
   def create
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to instructor_users_path, notice: 'User created successfully'
+      if @user.student? && params[:send_welcome_email] == '1'
+        StudentMailer.invitation(@user.email).deliver
+      end
+      redirect_to instructor_user_path(@user, cohort_id: params[:cohort_id]), notice: 'User created successfully'
     else
       render :new
     end
@@ -31,7 +39,7 @@ class Instructor::UsersController < InstructorRequiredController
 
     if @user.update(user_params)
       flash[:notice] = 'User updated successfully'
-      redirect_to instructor_user_path(@user)
+      redirect_to instructor_user_path(@user, cohort_id: params[:cohort_id])
     else
       render :edit
     end

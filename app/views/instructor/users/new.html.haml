@@ -1,4 +1,14 @@
 .page-header
   %h2 New User
 
+- if @cohort
+  %ol.breadcrumb
+    %li= link_to "Cohorts", instructor_cohorts_path
+    %li= link_to @cohort.name, instructor_cohort_path(@cohort)
+    %li.active Add Student
+- else
+  %ol.breadcrumb
+    %li= link_to "Users", instructor_users_path
+    %li.active Add User
+
 = render 'form'

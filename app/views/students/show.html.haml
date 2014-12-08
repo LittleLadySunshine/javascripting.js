@@ -7,8 +7,7 @@
         %h1
           = @student.full_name
         %h3
-          = @student.employer
-
+          = @student.employments.active.first.try(:company_name)
 
 .student-information
   %aside

@@ -97,10 +97,16 @@
     .col-sm-4
       = f.text_field :gcamp_tracker_url, class: "form-control"
 
-  .col-sm-offset-2
-    = f.submit class: 'btn btn-primary'
+  - if f.object.new_record?
+    .form-group
+      .col-sm-4.col-sm-offset-2
+        .checkbox
+          %label.checkbox
+            = check_box_tag :send_welcome_email, 1, params[:send_welcome_email] == "1"
+            Send Welcome Email
 
-    - if f.object.persisted?
-      = link_to [:instructor, @user], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right" do
-        %i.glyphicon.glyphicon-trash
-        Delete User
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'
+      - if @cohort
+        = hidden_field_tag :cohort_id, @cohort.id

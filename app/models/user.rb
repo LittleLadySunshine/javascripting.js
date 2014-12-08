@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   belongs_to :cohort
   has_many :submissions
+  has_many :employments
   has_one :personal_project
 
   mount_uploader :avatar, AvatarUploader
@@ -52,6 +53,6 @@ class User < ActiveRecord::Base
   end
 
   def is_employed?
-    employer.present?
+    employments.active.present?
   end
 end

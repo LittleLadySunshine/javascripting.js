@@ -61,7 +61,7 @@ describe "Showcases" do
 
     expect(page).to have_content("HIRE ME!")
 
-    user.update(employer: "Awesomeness.io")
+    Employment.create!(user: user, company_name: "Awesomeness.io", active: true)
 
     visit root_path
     click_link("Awesome Cohort")

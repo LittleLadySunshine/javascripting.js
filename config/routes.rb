@@ -56,7 +56,9 @@ Students::Application.routes.draw do
   end
 
   namespace :instructor do
-    resources :users
+    resources :users do
+      resources :employments, except: [:index, :show]
+    end
     resources :lesson_plans do
       resources :lessons, only: [:create, :destroy]
     end
@@ -85,7 +87,7 @@ Students::Application.routes.draw do
       resources :staffings, except: [:show]
       resources :pairs
       resources :imports, only: [:index, :create]
-      resources :students, :only => [:new, :create, :show, :edit, :update] do
+      resources :students, :only => [] do
         resources :action_plan_entries
       end
       resources :projects, only: :index

@@ -1,18 +1,29 @@
-%ol.breadcrumb
-  %li
-    = link_to "Users", instructor_users_path
-  %li.active
-    = @user.full_name
-
 .page-header
-  = link_to "Edit", edit_instructor_user_path(@user), class: "btn btn-info pull-right"
+  .pull-right
+    = link_to "Add Employment", new_instructor_user_employment_path(@user, cohort_id: params[:cohort_id]), class: "btn btn-info"
+    = link_to "Edit", edit_instructor_user_path(@user, cohort_id: params[:cohort_id]), class: "btn btn-info"
   %h1
     = @user.full_name
     (#{@user.status})
 
+- if @cohort
+  %ol.breadcrumb
+    %li
+      = link_to "Cohorts", instructor_cohorts_path
+    %li
+      = link_to @cohort.name, instructor_cohort_path(@cohort)
+    %li.active
+      = @user.full_name
+- else
+  %ol.breadcrumb
+    %li
+      = link_to "Users", instructor_users_path
+    %li.active
+      = @user.full_name
+
 .row
   .col-md-4
-    = image_tag(@user.avatar.url, style: "width: 100%;")
+    = image_tag(@user.avatar.url(:card), class: "img-responsive")
 
   .col-md-8
     %h2 Personal Info
@@ -89,3 +100,100 @@
       %dd
         - if @user.gcamp_url?
           = link_to @user.gcamp_url, @user.gcamp_url
+
+    %h2 Employment
+
+    - @user.employments.each do |employment|
+      .panel.panel-default.panel-employment
+        .panel-heading
+          .pull-right
+            = link_to "edit", edit_instructor_user_employment_path(@user, employment, cohort_id: params[:cohort_id])
+            |
+            = link_to "delete", instructor_user_employment_path(@user, employment, cohort_id: params[:cohort_id]), method: :delete, data: {confirm: "Are you sure?"}
+          %h3.panel-title
+            = employment.company_name.presence || "(unknown)"
+        .panel-body
+          %dl.dl-horizontal
+            %dt City
+            %dd= employment.city
+
+            %dt Company Type
+            %dd= employment.company_type
+
+.row
+  .col-md-12
+    %h2 Exercises
+
+    %section.complete-exercises
+      %h3 Completed Exercises
+      - if @user.completed_exercises.present?
+        %ul
+          - @user.completed_exercises.each do |exercise|
+            %li= exercise.name
+      - else
+        .well
+          There are no completed exercises
+
+    %section.incomplete-exercises
+      %h3 Incomplete Exercises
+      - if @user.incomplete_exercises.present?
+        %ul
+          - @user.incomplete_exercises.each do |exercise|
+            %li= exercise.name
+      - else
+        .well
+          There are no incomplete exercises
+
+.row
+  .col-md-12
+    %h2 Pair Feedback
+
+    - pairings = Pairing.where(pair_id: @user)
+    - if pairings.present?
+      - pairings.each do |pairing|
+        .panel.panel-default
+          .panel-heading
+            .pull-right
+              = pairing.paired_on.to_s(:long)
+            %h3.panel-title
+              = pairing.user.full_name
+          .panel-body
+            = markdownify(pairing.feedback)
+    - else
+      .well
+        There is no pair feedback
+
+.row
+  .col-md-12
+    %h2 Writeups
+
+    - writeups = Writeup.where(user_id: @user)
+    - if writeups.present?
+      - writeups.each do |writeup|
+        .panel.panel-default
+          .panel-heading
+            .pull-right
+              = writeup.created_at.to_s(:long)
+            %h3.panel-title
+              = writeup.writeup_topic.subject
+          .panel-body
+            = markdownify(writeup.response)
+    - else
+      .well
+        This user hasn't written anything up yet
+
+.row
+  .col-md-12
+    %h2 Action Plan
+
+    - entry = ActionPlanEntry.order('created_at desc').where(user_id: @user).first
+    - if entry
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = entry.created_at.to_s(:long)
+        .panel-body
+          = markdownify(entry.description)
+    - else
+      .well
+        This user has no current action plan

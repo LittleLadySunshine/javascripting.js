@@ -1,0 +1,7 @@
+.page-header
+  %h2 Edit Employment for #{@user.full_name}
+
+- if @cohort
+  = render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
+
+= render 'form'
