@@ -14,9 +14,9 @@
 - if @students_who_did_not_complete.present?
   .page-header
     %h3 The following students have not completed the writeup
-  %ul
+  %ul.students-who-did-not-complete
     - @students_who_did_not_complete.each do |student|
-      %li= link_to student.full_name, instructor_cohort_student_path(@cohort, student)
+      %li= link_to student.full_name, instructor_user_path(student)
 
 - if @writeup_topic.description?
   .page-header
