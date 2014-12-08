@@ -82,6 +82,7 @@ Students::Application.routes.draw do
       get :one_on_ones, :on => :member
       post :send_one_on_ones, on: :member
       get :acceptance, :on => :member
+      post :refresh_acceptance, :on => :member
       get :mentors, :on => :member
       get :social, :on => :member
 

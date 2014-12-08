@@ -93,6 +93,12 @@ class Instructor::CohortsController < InstructorRequiredController
     @users = @users.sort_by{|user| @tracker_statuses[user.id].try(:delivered) || 0 }.reverse
   end
 
+  def refresh_acceptance
+    @cohort = Cohort.find(params[:id])
+    PivotalTrackerHarvester.new(@cohort).harvest
+    redirect_to acceptance_instructor_cohort_path(@cohort)
+  end
+
   def mentors
     @cohort = Cohort.find(params[:id])
     @users = User.for_cohort(@cohort)
