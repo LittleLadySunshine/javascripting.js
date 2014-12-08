@@ -43,6 +43,7 @@
                     %li= link_to 'Class Projects', class_projects_path
                     %li= link_to 'Users', instructor_users_path
                     %li= link_to 'Rubrics', instructor_rubrics_path
+                    %li= link_to 'Ember App', ENV['EMBER_APP_URL']
 
           %ul.nav.navbar-nav.pull-right
             - if user_session.signed_in?
