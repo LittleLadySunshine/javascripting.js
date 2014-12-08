@@ -37,8 +37,5 @@ feature "Writeup topics" do
     within('.students-who-did-not-complete') do
       expect(page).to have_content("The Student")
     end
-
-    save_and_open_page
   end
-
 end
