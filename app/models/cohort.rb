@@ -1,14 +1,14 @@
 class Cohort < ActiveRecord::Base
   validates :name, :directions, :google_maps_location, :start_date, :end_date, :presence => true
 
-  has_many :cohort_exercises
-  has_many :exercises, :through => :cohort_exercises
-  has_many :users
-  has_many :staffings
-  has_many :writeup_topics
-  has_many :instructors, :through => :staffings, :source => :user
   belongs_to :curriculum
-  has_many :lessons
+  has_many :cohort_exercises, dependent: :destroy
+  has_many :exercises, :through => :cohort_exercises
+  has_many :users, dependent: :destroy
+  has_many :staffings, dependent: :destroy
+  has_many :writeup_topics, dependent: :destroy
+  has_many :instructors, :through => :staffings, :source => :user
+  has_many :lessons, dependent: :destroy
 
   mount_uploader :hero, HeroUploader
 

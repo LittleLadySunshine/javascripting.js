@@ -17,6 +17,7 @@
           %th First Name
           %th Last Name
           %th Email
+          %th Company
           %th
         %tbody
           - @mentors.each do |mentor|
@@ -24,6 +25,7 @@
               %td= mentor.first_name
               %td= mentor.last_name
               %td= mentor.email
+              %td= mentor.company_name
               %td
                 .pull-right
                   = link_to 'edit', edit_cohort_student_mentor_path(@cohort, @user, mentor)

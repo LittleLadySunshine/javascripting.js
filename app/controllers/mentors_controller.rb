@@ -60,6 +60,6 @@ class MentorsController < SignInRequiredController
   private
 
   def mentor_params
-    params.require(:mentor).permit(:first_name, :last_name, :email)
+    params.require(:mentor).permit(:first_name, :last_name, :email, :company_name)
   end
 end

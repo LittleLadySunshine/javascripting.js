@@ -14,9 +14,10 @@ class User < ActiveRecord::Base
             }
 
   belongs_to :cohort
-  has_many :submissions
-  has_many :employments
-  has_one :personal_project
+  has_many :submissions, dependent: :destroy
+  has_many :employments, dependent: :destroy
+  has_many :staffings, dependent: :destroy
+  has_one :personal_project, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

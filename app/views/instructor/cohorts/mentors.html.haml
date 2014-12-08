@@ -3,18 +3,24 @@
 
 = render partial: 'nav', locals: { cohort: @cohort }
 
-%h3 Students without mentors
+- students_without_mentors = (@users - @mentors.map(&:user)).sort_by(&:first_name)
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Student
-      %th
-  %tbody
-    - (@users - @mentors.map(&:user)).sort_by(&:first_name).each do |user|
+- if students_without_mentors.present?
+  %h3 Students without mentors
+
+  %table.table.table-bordered.table-striped
+    %thead
       %tr
-        %td= user.full_name
-        %td= link_to "Manage", cohort_student_mentors_path(@cohort, user)
+        %th Student
+        %th
+    %tbody
+      - students_without_mentors.each do |user|
+        %tr
+          %td= user.full_name
+          %td= link_to "Manage", cohort_student_mentors_path(@cohort, user)
+- else
+  %p
+    All students have mentors
 
 %h3 Mentor List
 
@@ -23,6 +29,7 @@
     %tr
       %th Student
       %th Mentor
+      %th Company
       %th
   %tbody
     - @mentors.each do |mentor|
@@ -32,4 +39,5 @@
           = mentor.first_name
           = mentor.last_name
           (#{mail_to mentor.email, mentor.email})
+        %td= mentor.company_name
         %td= link_to "Manage", cohort_student_mentors_path(@cohort, mentor.user)

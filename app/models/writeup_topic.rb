@@ -1,7 +1,7 @@
 class WriteupTopic < ActiveRecord::Base
 
   belongs_to :cohort
-  has_many :writeups
+  has_many :writeups, dependent: :destroy
 
   validates :cohort, presence: true
   validates :subject, presence: true

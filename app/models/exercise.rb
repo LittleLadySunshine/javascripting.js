@@ -1,6 +1,6 @@
 class Exercise < ActiveRecord::Base
   acts_as_taggable
-  has_many :submissions
+  has_many :submissions, dependent: :destroy
   validates :name, :github_repo, :presence => true
 
   def submission_for(user_id)
