@@ -3,7 +3,7 @@
     = link_to refresh_cohort_applications_path(@cohort), class: "btn btn-primary", method: :post do
       %i.glyphicon.glyphicon-refresh
       Refresh
-  %h1 Greenhouse Applications
+  %h1 Greenhouse Applications for #{@cohort.name}
 
 = render 'instructor/cohorts/nav', cohort: @cohort
 
