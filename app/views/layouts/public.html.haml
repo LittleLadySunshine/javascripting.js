@@ -30,8 +30,6 @@
                   %li= nav_item t('nav.exercises'), instructor_exercises_path
                   %li= nav_item 'Lesson Plans', instructor_lesson_plans_path
                   %li= nav_item 'Users', instructor_users_path
-                - else
-                  = nav_item "Curriculum", current_user.cohort.curriculum_site_url
                 = nav_item "Personal Info", personal_information_path
 
       - if flash.any?

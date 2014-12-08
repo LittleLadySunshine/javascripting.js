@@ -1,5 +1,5 @@
 module ObjectFactories
-  
+
   def create_pairing(overrides = {})
     defaults = {
       feedback: 'great job!',
@@ -57,7 +57,6 @@ module ObjectFactories
       :directions => "<p>Some directions</p>",
       :google_maps_location => 'https://google.com',
       :start_date => "01/01/2001",
-      :curriculum_site_url => 'http://example.com/some-curriculum',
       :end_date => "06/01/2001"
     }
     Cohort.new(defaults.merge(overrides))

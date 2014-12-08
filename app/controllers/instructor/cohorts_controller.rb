@@ -115,7 +115,6 @@ class Instructor::CohortsController < InstructorRequiredController
       :directions,
       :showcase,
       :curriculum_id,
-      :curriculum_site_url,
       :pair_feedback_url,
       :show_employment_ribbon,
       :hero

@@ -1,6 +1,5 @@
 class Cohort < ActiveRecord::Base
   validates :name, :directions, :google_maps_location, :start_date, :end_date, :presence => true
-  validates :curriculum_site_url, presence: true
 
   has_many :cohort_exercises
   has_many :exercises, :through => :cohort_exercises

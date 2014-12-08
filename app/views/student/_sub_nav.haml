@@ -24,6 +24,5 @@
     %ul.dropdown-menu
       = nav_item "Students", cohort_students_path(@cohort)
       = nav_item "Class Details", cohort_info_path(@cohort)
-      = nav_item "Curriculum", @cohort.curriculum_site_url
 
   = nav_item "Mentorship", cohort_student_mentors_path(@cohort, user_session.current_user)
