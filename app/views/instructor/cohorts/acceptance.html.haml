@@ -11,12 +11,15 @@
   %thead
     %tr
       %th Name
+      %th Accepted Count
       %th Delivered Count
       %th(colspan="3" class="text-center") gCamp
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.full_name, instructor_user_path(user, cohort_id: @cohort)
+        %td
+          = @tracker_statuses[user.id].try(:accepted) || "?"
         %td
           = @tracker_statuses[user.id].try(:delivered) || "?"
           - if created = @tracker_statuses[user.id].try(:created_at)
