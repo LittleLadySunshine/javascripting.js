@@ -12,7 +12,6 @@ class GreenhouseHarvester
     response = conn.get do |req|
       req.url "/v1/applications"
       req.headers['Content-Type'] = 'application/json'
-      req.headers['X-TrackerToken'] = TRACKER_TOKEN
     end
 
     response_json = JSON.parse(response.body, symbolize_names: true)
