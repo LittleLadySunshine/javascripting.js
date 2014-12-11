@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :submissions, dependent: :destroy
   has_many :employments, dependent: :destroy
   has_many :staffings, dependent: :destroy
-  has_one :personal_project, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

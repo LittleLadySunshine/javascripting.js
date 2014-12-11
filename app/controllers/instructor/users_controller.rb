@@ -75,8 +75,6 @@ class Instructor::UsersController < InstructorRequiredController
       :linkedin,
       :avatar,
       :shirt_size,
-      :gcamp_url,
-      :gcamp_tracker_url,
       :greenhouse_candidate_id,
     )
   end

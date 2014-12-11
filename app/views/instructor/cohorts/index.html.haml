@@ -4,7 +4,7 @@
 
   %h2 Cohorts
 
-- mine, others = @cohorts.partition{|cohort| cohort.staffings.active.map(&:user).include?(user_session.current_user) }
+- mine, others = @cohorts.partition{|cohort| cohort.staffings.active.map(&:user).include?(current_user) }
 
 - if mine.present?
   .page-header

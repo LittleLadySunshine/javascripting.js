@@ -1,0 +1,14 @@
+.page-header
+  %h1 Edit Project
+
+- if @cohort
+  = render 'student/sub_nav'
+- else
+  %ol.breadcrumb
+    %li= link_to "Users", instructor_users_path
+    %li= link_to @user.full_name, instructor_user_path(@user)
+    %li= link_to 'Projects', user_projects_path(@user)
+    %li.active Edit
+
+= form_for [@user, @project], url: user_project_path(@user, @project), html: {class: "form-horizontal"} do |f|
+  = render 'form', f: f

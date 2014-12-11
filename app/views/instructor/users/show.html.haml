@@ -1,5 +1,6 @@
 .page-header
   .pull-right
+    = link_to "Projects", user_projects_path(@user), class: "btn btn-info"
     = link_to "Add Employment", new_instructor_user_employment_path(@user, cohort_id: params[:cohort_id]), class: "btn btn-info"
     = link_to "Edit", edit_instructor_user_path(@user, cohort_id: params[:cohort_id]), class: "btn btn-info"
   %h1
@@ -75,35 +76,26 @@
         %dt Greenhouse ID
         %dd= link_to @user.greenhouse_candidate_id, "https://app.greenhouse.io/people/#{@user.greenhouse_candidate_id}"
 
-    - if @user.personal_project
-      %h2 Personal Project
+    - StudentProject.for_user(@user).each do |project|
+      %h2 Project
       %dl.dl-horizontal
         %dt Name:
-        %dd= @user.personal_project.name
+        %dd= project.name
 
         %dt Description:
-        %dd= @user.personal_project.description
+        %dd= project.description
 
-        %dt Github:
-        %dd= link_to @user.personal_project.github_repo_url, @user.personal_project.github_repo_url
+        %dt Technical Notes:
+        %dd= project.technical_notes
 
-        %dt Tracker:
-        %dd= link_to @user.personal_project.tracker_url, @user.personal_project.tracker_url
+        %dt Github URL:
+        %dd= link_to project.github_url, project.github_url
+
+        %dt Tracker URL:
+        %dd= link_to project.tracker_url, project.tracker_url
 
         %dt Production:
-        %dd= link_to @user.personal_project.production_url, @user.personal_project.production_url
-
-    %h2 gCamp
-    %dl.dl-horizontal
-      %dt Tracker URL:
-      %dd
-        - if @user.gcamp_tracker_url?
-          = link_to @user.gcamp_tracker_url, @user.gcamp_tracker_url
-
-      %dt Production URL:
-      %dd
-        - if @user.gcamp_url?
-          = link_to @user.gcamp_url, @user.gcamp_url
+        %dd= link_to project.production_url, project.production_url
 
     %h2 Employment
 

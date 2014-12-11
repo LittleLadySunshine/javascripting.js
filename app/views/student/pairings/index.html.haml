@@ -5,7 +5,7 @@
 
 - if @pending_users.present?
   - @pending_users.each_value do |student|
-    - matching_pairing = Pairing.where(user_id: student.id, pair_id: user_session.current_user.id).first
+    - matching_pairing = Pairing.where(user_id: student.id, pair_id: current_user.id).first
     .panel.panel-info.pending-pairing
       .panel-heading
         %h3.panel-title Please fill in your pair feedback for #{student.full_name}

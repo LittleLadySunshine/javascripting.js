@@ -1,7 +1,7 @@
 .page-header
   %h1 Edit Mentor
 
-- if user_session.current_user.instructor?
+- if current_user.instructor?
   = render 'instructor/cohorts/nav', cohort: @cohort
 - else
   = render 'student/sub_nav'

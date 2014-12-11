@@ -9,7 +9,7 @@ class Student::WriteupsController < SignInRequiredController
   end
 
   def index
-    @writeups = Writeup.where(user_id: user_session.current_user).
+    @writeups = Writeup.where(user_id: current_user).
       order('created_at desc').
       includes(:writeup_topic)
 
@@ -22,7 +22,7 @@ class Student::WriteupsController < SignInRequiredController
 
   def create
     @writeup = @writeup_topic.writeups.new(writeup_params)
-    @writeup.user = user_session.current_user
+    @writeup.user = current_user
 
     if @writeup.save
       redirect_to(
@@ -36,13 +36,13 @@ class Student::WriteupsController < SignInRequiredController
 
   def edit
     @writeup = @writeup_topic.writeups.
-      where(user_id: user_session.current_user).
+      where(user_id: current_user).
       find(params[:id])
   end
 
   def update
     @writeup = @writeup_topic.writeups.
-      where(user_id: user_session.current_user).
+      where(user_id: current_user).
       find(params[:id])
 
     if @writeup.update(writeup_params)
@@ -57,7 +57,7 @@ class Student::WriteupsController < SignInRequiredController
 
   def destroy
     @writeup = @writeup_topic.writeups.
-      where(user_id: user_session.current_user).
+      where(user_id: current_user).
       find(params[:id])
     @writeup.destroy
     redirect_to cohort_writeups_path(@cohort)

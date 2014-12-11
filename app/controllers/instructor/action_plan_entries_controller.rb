@@ -19,7 +19,7 @@ class Instructor::ActionPlanEntriesController < InstructorRequiredController
     @entry.cohort = @cohort
 
     if @entry.save
-      StudentMailer.action_plan_entry(user_session.current_user, @entry).deliver
+      StudentMailer.action_plan_entry(current_user, @entry).deliver
       redirect_to(
         instructor_cohort_student_action_plan_entries_path(@cohort, @user),
         notice: 'Entry created successfully'
@@ -37,7 +37,7 @@ class Instructor::ActionPlanEntriesController < InstructorRequiredController
     @entry = ActionPlanEntry.for_cohort_and_user(@cohort, @user).find(params[:id])
 
     if @entry.update(entry_params)
-      StudentMailer.action_plan_entry(user_session.current_user, @entry).deliver
+      StudentMailer.action_plan_entry(current_user, @entry).deliver
       redirect_to(
         instructor_cohort_student_action_plan_entries_path(@cohort, @user),
         notice: 'Entry updated successfully'

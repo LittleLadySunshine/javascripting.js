@@ -10,11 +10,11 @@ feature "Student adding a personal project" do
       :last_name => "Builder"
     )
 
-    create_personal_project(
-      :name => "Some personal project",
-      :description => "This is a long description",
-      :github_repo_name => "github-url",
-      :user => student
+    StudentProject.create!(
+      user: student,
+      name: "Some personal project",
+      description: "This is a long description",
+      github_url: "http://github.com/gSchool",
     )
 
     create_instructor(
@@ -34,7 +34,7 @@ feature "Student adding a personal project" do
 
     expect(page).to have_content("Some personal project")
     expect(page).to have_content("This is a long description")
-    expect(page).to have_link("github-url")
+    expect(page).to have_link("http://github.com/gSchool")
 
   end
 end

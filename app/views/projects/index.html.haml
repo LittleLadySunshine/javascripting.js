@@ -1,0 +1,49 @@
+.page-header
+  .pull-right
+    = link_to "New Project", new_user_project_path(@user, cohort_id: params[:cohort_id]), :class => "btn btn-info"
+  %h1 Projects for #{@user.full_name}
+
+- if @cohort
+  = render 'student/sub_nav'
+- else
+  %ol.breadcrumb
+    %li= link_to "Users", instructor_users_path
+    %li= link_to @user.full_name, instructor_user_path(@user)
+    %li.active Projects
+
+- if @projects.present?
+  - @projects.each do |project|
+    .panel.panel-default
+      .panel-heading
+        .pull-right
+          = link_to "Edit", edit_user_project_path(@user, project, cohort_id: params[:cohort_id])
+          |
+          = link_to "Delete", user_project_path(@user, project, cohort_id: params[:cohort_id]), method: :delete, data: {confirm: "Are you sure?"}
+        %h3.panel-title
+          = project.name.presence || "(not set)"
+      .panel-body
+        %p= project.description
+
+        - if project.technical_notes?
+          %p= project.technical_notes
+
+        - if project.travis
+          %p Show travis badge
+
+        - if project.code_climate
+          %p Show code climate badge
+
+        - if project.screenshot?
+          %p= image_tag project.screenshot.url(:thumb)
+
+        - if project.github_url?
+          %p= link_to project.github_url, project.github_url
+
+        - if project.tracker_url?
+          %p= link_to project.tracker_url, project.tracker_url
+
+        - if project.production_url?
+          %p= link_to project.production_url, project.production_url
+- else
+  .jumbotron
+    %p.lead You don't have any projects yet

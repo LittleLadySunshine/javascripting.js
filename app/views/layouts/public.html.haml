@@ -23,7 +23,6 @@
 
           - if user_session.signed_in?
             .nav
-              - current_user = user_session.current_user
               %ul#navigation-menu
                 - if current_user.instructor?
                   %li= nav_item t('nav.instructors'), instructor_cohorts_path

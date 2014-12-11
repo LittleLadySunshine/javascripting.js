@@ -10,7 +10,7 @@
       %span.caret
     %ul.dropdown-menu
       = nav_item "Exercises", cohort_exercises_path(@cohort)
-      = nav_item "Personal Project", cohort_personal_project_path(@cohort)
+      = nav_item "Projects", user_projects_path(current_user, cohort_id: @cohort.id)
       = nav_item "Writeups", cohort_writeups_path(@cohort)
       = nav_item "Pair Bingo", cohort_pairings_path(@cohort)
       = nav_item "Action Plan", cohort_action_plan_entries_path(@cohort)
@@ -26,4 +26,4 @@
       = nav_item "Class Details", cohort_info_path(@cohort)
       = nav_item "Prereqs", cohort_prereqs_path(@cohort)
 
-  = nav_item "Mentorship", cohort_student_mentors_path(@cohort, user_session.current_user)
+  = nav_item "Mentorship", cohort_student_mentors_path(@cohort, current_user)

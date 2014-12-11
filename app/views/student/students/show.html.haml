@@ -10,9 +10,9 @@
     = image_tag(@student.avatar.url(:card), class: "img-responsive")
   .col-md-8
     %h2 Personal Info
-    %dl.horizontal
+    %dl.dl-horizontal
       %dt Email:
-      %dd= @student.email
+      %dd= mail_to @student.email, @student.email
 
       %dt Phone:
       %dd= @student.phone
@@ -32,14 +32,15 @@
         - if @student.blog.present?
           = link_to @student.blog, @student.blog
 
-    %h2 gCamp
-    %dl.dl-horizontal
-      %dt Tracker URL:
-      %dd
-        - if @student.gcamp_tracker_url?
-          = link_to @student.gcamp_tracker_url, @student.gcamp_tracker_url
+    - StudentProject.for_user(@student).each do |project|
+      %h2= project.name
+      %dl.dl-horizontal
+        %dt Tracker URL:
+        %dd
+          - if project.tracker_url?
+            = link_to project.tracker_url, project.tracker_url
 
-      %dt Production URL:
-      %dd
-        - if @student.gcamp_url?
-          = link_to @student.gcamp_url, @student.gcamp_url
+        %dt Production URL:
+        %dd
+          - if project.production_url?
+            = link_to project.production_url, project.production_url

@@ -39,6 +39,6 @@ class Student::SubmissionsController < SignInRequiredController
   def submission_params
     params.require(:submission).
       permit(:github_repo_name, :tracker_project_url).
-      merge(:user_id => user_session.current_user.id, :exercise_id => params[:exercise_id])
+      merge(:user_id => current_user.id, :exercise_id => params[:exercise_id])
   end
 end

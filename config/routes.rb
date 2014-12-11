@@ -24,6 +24,10 @@ Students::Application.routes.draw do
   get "/preparation/:id" => "public_pages#preparation", :as => "preparation"
   get "/calendar" => "public_pages#calendar", :as => "calendar"
 
+  resources :users, only: [] do
+    resources :projects, controller: 'projects'
+  end
+
   resources :cohorts, only: [] do
     get "/info" => "student/info#index", :as => "info"
     get "/prereqs" => "student/info#prereqs", :as => "prereqs"
@@ -41,7 +45,6 @@ Students::Application.routes.draw do
     resources :exercises, :only => [:index, :show], controller: 'student/exercises' do
       resources :submissions, :only => [:new, :create, :edit, :update], controller: 'student/submissions'
     end
-    resource :personal_project, :only => [:show, :edit, :update], controller: 'student/personal_projects'
     resources :action_plan_entries, controller: 'student/action_plan_entries', only: :index
     resources :daily_plans do
       get :today, on: :collection

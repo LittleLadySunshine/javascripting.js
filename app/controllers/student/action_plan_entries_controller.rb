@@ -5,7 +5,7 @@ class Student::ActionPlanEntriesController < SignInRequiredController
   end
 
   def index
-    user = user_session.current_user
+    user = current_user
 
     @entries = ActionPlanEntry.for_cohort_and_user(@cohort, user).order('created_at desc')
   end

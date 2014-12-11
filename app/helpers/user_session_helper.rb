@@ -3,12 +3,16 @@ module UserSessionHelper
     "/auth/github"
   end
 
+  def current_user
+    user_session.current_user
+  end
+
   def user_session
     @user_session ||= UserSession.new(session)
   end
 
   def ability
-    @ability ||= Ability.new(user_session.current_user)
+    @ability ||= Ability.new(current_user)
   end
 
   def can?(verb, noun)

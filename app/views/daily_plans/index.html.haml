@@ -7,7 +7,7 @@
 
   %h2 Daily Plans for #{@cohort.name}
 
-- if user_session.current_user.instructor?
+- if current_user.instructor?
   = render partial: 'instructor/cohorts/nav', locals: { cohort: @cohort }
 - else
   = render 'student/sub_nav'

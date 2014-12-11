@@ -27,7 +27,8 @@ module ApplicationHelper
       "Students" => {
         "Students" => instructor_cohort_path(cohort),
         "Action Plans" => instructor_cohort_action_plans_path(cohort),
-        "Acceptance" => acceptance_instructor_cohort_path(cohort),
+        "gCamp Acceptance" => acceptance_instructor_cohort_path(cohort, name: 'gcamp'),
+        "Rantly Acceptance" => acceptance_instructor_cohort_path(cohort, name: 'rantly'),
         "Personal Projects" => instructor_cohort_projects_path(cohort),
         "Social Links" => social_instructor_cohort_path(cohort),
         "Assessments" => cohort_rubrics_path(cohort),

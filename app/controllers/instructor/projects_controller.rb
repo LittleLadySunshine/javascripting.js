@@ -5,7 +5,8 @@ class Instructor::ProjectsController < InstructorRequiredController
   end
 
   def index
-    @projects = PersonalProject.for_cohort(@cohort)
+    @projects = StudentProject.for_user(User.for_cohort(@cohort))
+                  .sort_by{|project| project.user.full_name }
   end
 
 end

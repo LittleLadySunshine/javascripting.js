@@ -1,13 +1,13 @@
 class PersonalInformationController < SignInRequiredController
 
   def edit
-    @user = user_session.current_user
+    @user = current_user
   end
 
   def update
-    @user = user_session.current_user
+    @user = current_user
 
-    if @user.update(personal_project_params)
+    if @user.update(user_params)
       redirect_to personal_information_path, notice: "Personal information was successfully updated"
     else
       render :edit
@@ -16,7 +16,7 @@ class PersonalInformationController < SignInRequiredController
 
   private
 
-  def personal_project_params
+  def user_params
     params.require(:user).permit(
       :phone,
       :twitter,
@@ -29,7 +29,6 @@ class PersonalInformationController < SignInRequiredController
       :zip_code,
       :shirt_size,
       :gcamp_url,
-      :gcamp_tracker_url,
     )
   end
 end

@@ -21,7 +21,7 @@ class AssessmentsController < InstructorRequiredController
     @assessment = Assessment.new(
       user: @user,
       rubric: @rubric,
-      assessor: user_session.current_user,
+      assessor: current_user,
       date: params[:assessment][:date],
       questions_json: @rubric.questions_json,
     )

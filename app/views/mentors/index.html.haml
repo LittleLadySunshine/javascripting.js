@@ -4,7 +4,7 @@
 
   %h1 gSchool Mentors for #{@user.full_name}
 
-- if user_session.current_user.instructor?
+- if current_user.instructor?
   = render 'instructor/cohorts/nav', cohort: @cohort
 - else
   = render 'student/sub_nav'
