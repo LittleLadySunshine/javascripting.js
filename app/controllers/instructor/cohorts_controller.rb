@@ -98,7 +98,7 @@ class Instructor::CohortsController < InstructorRequiredController
   def refresh_acceptance
     @cohort = Cohort.find(params[:id])
     PivotalTrackerHarvester.new(@cohort).harvest
-    redirect_to acceptance_instructor_cohort_path(@cohort)
+    redirect_to acceptance_instructor_cohort_path(@cohort, class_project_id: params[:class_project_id])
   end
 
   def mentors

@@ -1,6 +1,6 @@
 .page-header
   .pull-right
-    = link_to refresh_acceptance_instructor_cohort_path(@cohort), class: "btn btn-primary", method: :post, data: {disable_with: "Refreshing..."} do
+    = link_to refresh_acceptance_instructor_cohort_path(@cohort, class_project_id: params[:class_project_id]), class: "btn btn-primary", method: :post, data: {disable_with: "Refreshing..."} do
       %i.glyphicon.glyphicon-refresh
       Refresh
   %h1 #{@cohort.name} Acceptance: #{@class_project.name}
