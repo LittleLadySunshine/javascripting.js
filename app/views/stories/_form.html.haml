@@ -4,15 +4,15 @@
 
   .form-group
     = f.label :title, class: "col-sm-2 control-label"
-    .col-sm-4
+    .col-sm-7
       = f.text_field :title, class: "form-control", autofocus: true
 
   .form-group
     = f.label :description, class: "col-sm-2 control-label"
-    .col-sm-4
+    .col-sm-7
       = f.text_area :description, class: "form-control", rows: rows
 
   .form-group
-    .col-md-offset-2.col-md-4
+    .col-sm-offset-2.col-sm-7
       = f.submit class: 'btn btn-primary'
       = link_to "cancel", class_project_epic_path(@class_project, @epic), class: "btn btn-default"
