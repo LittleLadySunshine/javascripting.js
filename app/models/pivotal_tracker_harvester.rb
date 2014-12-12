@@ -7,7 +7,7 @@ class PivotalTrackerHarvester
 
   def harvest
     students = User.for_cohort(@cohort)
-    projects = StudentProject.where(user_id: students).group_by(&:user_id)
+    projects = StudentProject.where(user_id: students).where.not(class_project_id: nil).group_by(&:user_id)
     responses = {}
 
     students.each do |user|
@@ -52,15 +52,15 @@ class PivotalTrackerHarvester
     summaries.each do |user, class_projects|
       class_projects.each do |class_project, totals|
         TrackerStatus.create!(
-        user: user,
-        class_project: class_project,
-        delivered: totals.fetch('delivered', []).length,
-        accepted: totals.fetch('accepted', []).length,
-        rejected: totals.fetch('rejected', []).length,
-        finished: totals.fetch('finished', []).length,
-        unstarted: totals.fetch('unstarted', []).length,
-        started: totals.fetch('started', []).length,
-        unscheduled: totals.fetch('unscheduled', []).length,
+          user: user,
+          class_project: class_project,
+          delivered: totals.fetch('delivered', []).length,
+          accepted: totals.fetch('accepted', []).length,
+          rejected: totals.fetch('rejected', []).length,
+          finished: totals.fetch('finished', []).length,
+          unstarted: totals.fetch('unstarted', []).length,
+          started: totals.fetch('started', []).length,
+          unscheduled: totals.fetch('unscheduled', []).length,
         )
       end
     end
