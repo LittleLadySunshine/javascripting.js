@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212011118) do
+ActiveRecord::Schema.define(version: 20141212030042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20141212011118) do
     t.text     "wireframes"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "label"
   end
 
   add_index "epics", ["class_project_id", "name", "category"], name: "index_category_epic_name", unique: true, using: :btree
@@ -233,6 +234,18 @@ ActiveRecord::Schema.define(version: 20141212011118) do
   add_index "staffings", ["cohort_id", "user_id"], name: "index_staffings_on_cohort_id_and_user_id", unique: true, using: :btree
   add_index "staffings", ["status"], name: "index_staffings_on_status", using: :btree
 
+  create_table "stories", force: true do |t|
+    t.integer  "epic_id",                 null: false
+    t.string   "title",                   null: false
+    t.string   "description"
+    t.integer  "position",    default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stories", ["epic_id", "position"], name: "index_stories_on_epic_id_and_position", unique: true, using: :btree
+  add_index "stories", ["epic_id", "title"], name: "index_stories_on_epic_id_and_title", unique: true, using: :btree
+
   create_table "student_projects", force: true do |t|
     t.integer  "user_id",                          null: false
     t.string   "name",                             null: false
@@ -248,6 +261,18 @@ ActiveRecord::Schema.define(version: 20141212011118) do
     t.datetime "updated_at"
     t.integer  "class_project_id"
   end
+
+  create_table "student_stories", force: true do |t|
+    t.integer  "class_project_id", null: false
+    t.integer  "epic_id",          null: false
+    t.integer  "story_id",         null: false
+    t.integer  "user_id",          null: false
+    t.string   "current_status",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "student_stories", ["story_id", "user_id"], name: "index_student_stories_on_story_id_and_user_id", unique: true, using: :btree
 
   create_table "submissions", force: true do |t|
     t.integer  "user_id"

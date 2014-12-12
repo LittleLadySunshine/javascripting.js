@@ -18,14 +18,19 @@
   .panel-heading
     %h3.panel-title
       MVP Stories
-  %table.table.table-bordered
-    - @epic.story_rows.each_with_index do |row, index|
-      %tr
-        - row.each do |cell|
-          - if index == 0
-            %th= cell
-          - else
-            %td= cell
+  - if @epic.stories.present?
+    %table.table.table-bordered{data: {behavior: :tablednd, reorder_url: reorder_class_project_epic_stories_path(@class_project, @epic)}}
+      %thead
+        %tr
+          %th Title
+          %th Description
+      %tbody
+        - @epic.stories.ordered.each do |story|
+          %tr{id: story.id}
+            %td= story.title
+            %td= markdownify story.description
+  .panel-body
+    = render 'stories/form'
 
 .panel.panel-default
   .panel-heading

@@ -21,6 +21,11 @@ feature 'Class Projects' do
     fill_in "Name", with: "Permissions"
     click_on "Create Epic"
     expect(page).to have_content("Epic was added")
+
+    fill_in "Title", with: "Users can do fun things"
+    click_on "Create Story"
+    expect(page).to have_content("Story was added")
+    expect(page).to have_content("Users can do fun things")
   end
 
 end

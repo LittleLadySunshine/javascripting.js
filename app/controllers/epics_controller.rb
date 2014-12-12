@@ -33,6 +33,7 @@ class EpicsController < SignInRequiredController
 
   def show
     @epic = @class_project.epics.find(params[:id])
+    @story = Story.new
   end
 
   def edit
@@ -56,7 +57,7 @@ class EpicsController < SignInRequiredController
     @epic = @class_project.epics.find_by(id: params[:id])
     @epic.try(:destroy)
     redirect_to(
-      epics_path(@class_project),
+      class_project_epics_path(@class_project),
       notice: 'Epic removed successfully'
     )
   end
@@ -68,9 +69,9 @@ class EpicsController < SignInRequiredController
       :class_project_id,
       :name,
       :category,
-      :stories,
       :wireframes,
       :position,
+      :label,
     )
   end
 end

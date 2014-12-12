@@ -16,12 +16,14 @@
       %thead
         %th Name
         %th Category
+        %th Label
         %th
       %tbody
         - @epics.each do |epic|
           %tr{id: epic.id}
             %td= link_to epic.name, class_project_epic_path(@class_project, epic)
             %td= epic.category
+            %td= epic.label
             %td
               .pull-right
                 = link_to 'edit', edit_class_project_epic_path(@class_project, epic)

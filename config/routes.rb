@@ -59,6 +59,9 @@ Students::Application.routes.draw do
 
   resources :class_projects do
     resources :epics do
+      resources :stories do
+        post :reorder, on: :collection
+      end
       post :reorder, on: :collection
     end
   end

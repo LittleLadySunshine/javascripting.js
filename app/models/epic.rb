@@ -1,10 +1,9 @@
-require 'csv'
-
 class Epic < ActiveRecord::Base
 
   enum category: [:mvp, :stretch]
 
   belongs_to :class_project
+  has_many :stories
 
   validates :class_project, presence: true
   validates :name,
@@ -24,14 +23,6 @@ class Epic < ActiveRecord::Base
 
   def self.ordered
     order(:position)
-  end
-
-  def story_rows
-    if stories?
-      CSV.parse(stories) rescue []
-    else
-      []
-    end
   end
 
 end
