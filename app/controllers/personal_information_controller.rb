@@ -28,7 +28,6 @@ class PersonalInformationController < SignInRequiredController
       :state,
       :zip_code,
       :shirt_size,
-      :gcamp_url,
     )
   end
 end

@@ -3,6 +3,7 @@ class StudentProject < ActiveRecord::Base
   mount_uploader :screenshot, ScreenshotUploader
 
   belongs_to :user
+  belongs_to :class_project
   validates :user, presence: true
   validates :github_url,
             format: {

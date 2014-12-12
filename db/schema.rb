@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211173931) do
+ActiveRecord::Schema.define(version: 20141212002849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,18 +231,19 @@ ActiveRecord::Schema.define(version: 20141211173931) do
   add_index "staffings", ["status"], name: "index_staffings_on_status", using: :btree
 
   create_table "student_projects", force: true do |t|
-    t.integer  "user_id",                         null: false
-    t.string   "name",                            null: false
+    t.integer  "user_id",                          null: false
+    t.string   "name",                             null: false
     t.text     "description"
     t.string   "github_url"
     t.string   "tracker_url"
     t.string   "production_url"
     t.string   "screenshot"
-    t.boolean  "code_climate",    default: false, null: false
-    t.boolean  "travis",          default: false, null: false
+    t.boolean  "code_climate",     default: false, null: false
+    t.boolean  "travis",           default: false, null: false
     t.text     "technical_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "class_project_id"
   end
 
   create_table "submissions", force: true do |t|
@@ -277,19 +278,20 @@ ActiveRecord::Schema.define(version: 20141211173931) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tracker_statuses", force: true do |t|
-    t.integer  "user_id",                 null: false
-    t.integer  "delivered",   default: 0, null: false
-    t.integer  "accepted",    default: 0, null: false
-    t.integer  "rejected",    default: 0, null: false
-    t.integer  "started",     default: 0, null: false
-    t.integer  "finished",    default: 0, null: false
-    t.integer  "unstarted",   default: 0, null: false
-    t.integer  "unscheduled", default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id",                      null: false
+    t.integer  "delivered",        default: 0, null: false
+    t.integer  "accepted",         default: 0, null: false
+    t.integer  "rejected",         default: 0, null: false
+    t.integer  "started",          default: 0, null: false
+    t.integer  "finished",         default: 0, null: false
+    t.integer  "unstarted",        default: 0, null: false
+    t.integer  "unscheduled",      default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "class_project_id",             null: false
   end
 
-  add_index "tracker_statuses", ["user_id"], name: "index_tracker_statuses_on_user_id", unique: true, using: :btree
+  add_index "tracker_statuses", ["user_id", "class_project_id"], name: "index_tracker_statuses_on_user_id_and_class_project_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

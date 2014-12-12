@@ -1,7 +1,8 @@
 class TrackerStatus < ActiveRecord::Base
 
   belongs_to :user
-  validates :user, presence: true, uniqueness: true
+  belongs_to :class_project
+  validates :user, presence: true, uniqueness: {scope: :class_project}
   validates :delivered, presence: true, numericality: true
   validates :accepted, presence: true, numericality: true
   validates :rejected, presence: true, numericality: true
