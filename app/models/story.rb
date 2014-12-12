@@ -2,6 +2,7 @@ class Story < ActiveRecord::Base
 
   belongs_to :epic
   validates :title, presence: true
+  validates :position, presence: true, numericality: true
 
   before_validation on: :create do
     if epic && !position
