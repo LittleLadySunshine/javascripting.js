@@ -89,9 +89,10 @@ class Instructor::CohortsController < InstructorRequiredController
   def acceptance
     @cohort = Cohort.find(params[:id])
     @users = User.for_cohort(@cohort)
-    @tracker_statuses = TrackerStatus.where(user_id: @users).index_by(&:user_id)
-    @users = @users.sort_by{|user| @tracker_statuses[user.id].try(:delivered) || 0 }.reverse
-    @projects = StudentProject.where(user_id: @users).where('lower(name) = ?', params[:name]).index_by(&:user_id)
+    @class_project = ClassProject.find(params[:class_project_id])
+    @tracker_statuses = TrackerStatus.where(user_id: @users, class_project_id: params[:class_project_id]).index_by(&:user_id)
+    @users = @users.sort_by{|user| @tracker_statuses[user.id].try(:delivered) || -1 }.reverse
+    @projects = StudentProject.where(user_id: @users, class_project_id: params[:class_project_id]).index_by(&:user_id)
   end
 
   def refresh_acceptance

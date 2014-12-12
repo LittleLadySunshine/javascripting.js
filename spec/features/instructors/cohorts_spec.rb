@@ -98,6 +98,7 @@ feature "Cohorts" do
       instructor = create_instructor(:first_name => "Teacher", :last_name => "User", :github_id => '1010')
       user = create_user(:first_name => "Student", :last_name => "User", :github_id => '1111', :cohort_id => cohort.id, :github_username => "Student12345")
       create_staffing(cohort: cohort, user: instructor)
+      ClassProject.create!(name: 'gCamp')
       sign_in(instructor)
 
       StudentProject.create!(

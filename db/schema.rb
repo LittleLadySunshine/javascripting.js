@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212002849) do
+ActiveRecord::Schema.define(version: 20141212005638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,17 +188,6 @@ ActiveRecord::Schema.define(version: 20141212002849) do
   add_index "pairings", ["pair_id"], name: "index_pairings_on_pair_id", using: :btree
   add_index "pairings", ["user_id", "pair_id", "paired_on"], name: "index_pairings_on_user_id_and_pair_id_and_paired_on", using: :btree
 
-  create_table "personal_projects", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "github_repo_name"
-    t.string   "tracker_url"
-    t.string   "production_url"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "planned_lessons", force: true do |t|
     t.integer  "curriculum_unit_id", null: false
     t.integer  "lesson_plan_id",     null: false
@@ -315,9 +304,6 @@ ActiveRecord::Schema.define(version: 20141212002849) do
     t.string   "avatar"
     t.string   "shirt_size"
     t.integer  "status",                            default: 0, null: false
-    t.string   "gcamp_tracker_url"
-    t.string   "gcamp_url"
-    t.string   "employer"
     t.integer  "greenhouse_candidate_id", limit: 8
   end
 

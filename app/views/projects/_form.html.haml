@@ -1,6 +1,11 @@
 = errors_for(f)
 
 .form-group
+  = f.label :class_project_id, class: "col-sm-3 control-label"
+  .col-sm-6
+    = f.collection_select :class_project_id, ClassProject.all, :id, :name, {include_blank: true}, class: "form-control"
+
+.form-group
   = f.label :name, class: "col-sm-3 control-label"
   .col-sm-6
     = f.text_field :name, class: "form-control"

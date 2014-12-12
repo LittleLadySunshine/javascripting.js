@@ -27,8 +27,6 @@ module ApplicationHelper
       "Students" => {
         "Students" => instructor_cohort_path(cohort),
         "Action Plans" => instructor_cohort_action_plans_path(cohort),
-        "gCamp Acceptance" => acceptance_instructor_cohort_path(cohort, name: 'gcamp'),
-        "Rantly Acceptance" => acceptance_instructor_cohort_path(cohort, name: 'rantly'),
         "Personal Projects" => instructor_cohort_projects_path(cohort),
         "Social Links" => social_instructor_cohort_path(cohort),
         "Assessments" => cohort_rubrics_path(cohort),
@@ -51,6 +49,9 @@ module ApplicationHelper
       "Pairs" => instructor_cohort_pairs_path(cohort),
       "Edit" => edit_instructor_cohort_path(cohort),
     }
+    ClassProject.all.each do |class_project|
+      link_groups['Students']["#{class_project.name} Acceptance"] = acceptance_instructor_cohort_path(cohort, class_project_id: class_project.id)
+    end
     if cohort.curriculum
       link_groups["Setup"] = {
         "Edit Curriculum" => instructor_curriculum_curriculum_units_path(cohort.curriculum)

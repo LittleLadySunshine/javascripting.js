@@ -3,7 +3,7 @@
     = link_to refresh_acceptance_instructor_cohort_path(@cohort), class: "btn btn-primary", method: :post, data: {disable_with: "Refreshing..."} do
       %i.glyphicon.glyphicon-refresh
       Refresh
-  %h1 #{@cohort.name} Acceptance Links
+  %h1 #{@cohort.name} Acceptance: #{@class_project.name}
 
 = render partial: 'nav', locals: { cohort: @cohort }
 
@@ -20,9 +20,15 @@
       %tr
         %td= link_to user.full_name, instructor_user_path(user, cohort_id: @cohort)
         %td
-          = @tracker_statuses[user.id].try(:accepted) || "?"
+          - if @tracker_statuses[user.id].try(:accepted)
+            = @tracker_statuses[user.id].try(:accepted)
+          - else
+            %span.text-muted ?
         %td
-          = @tracker_statuses[user.id].try(:delivered) || "?"
+          - if @tracker_statuses[user.id].try(:delivered)
+            = @tracker_statuses[user.id].try(:delivered)
+          - else
+            %span.text-muted ?
           - if created = @tracker_statuses[user.id].try(:created_at)
             %small.text-muted
               (#{time_ago_in_words(created)})

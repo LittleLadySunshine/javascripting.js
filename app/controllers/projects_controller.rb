@@ -59,6 +59,7 @@ class ProjectsController < SignInRequiredController
       :screenshot,
       :code_climate,
       :travis,
+      :class_project_id,
     )
   end
 end
