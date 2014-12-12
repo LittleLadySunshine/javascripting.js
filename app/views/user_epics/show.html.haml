@@ -13,6 +13,15 @@
   %tbody
     - @epic.stories.ordered.each do |story|
       %tr
-        %td= @student_stories[story.id].try(:pivotal_tracker_id)
+        %td
+          - if id = @student_stories[story.id].try(:pivotal_tracker_id)
+            = link_to id, "https://www.pivotaltracker.com/story/show/#{id}", target: :_blank
         %td= story.title
-        %td= story.description
+        %td= markdownify story.description
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Wireframes
+  .panel-body
+    = markdownify(@epic.wireframes)
