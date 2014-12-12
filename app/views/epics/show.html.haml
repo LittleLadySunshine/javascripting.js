@@ -27,7 +27,7 @@
       %tbody
         - @epic.stories.ordered.each do |story|
           %tr{id: story.id}
-            %td= story.title
+            %td= link_to story.title, edit_class_project_epic_story_path(@class_project, @epic, story)
             %td= markdownify story.description
   .panel-body
     = render 'stories/form'

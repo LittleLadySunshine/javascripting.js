@@ -11,7 +11,7 @@ class StoriesController < InstructorRequiredController
   end
 
   def create
-    @story = Story.new(epic_params)
+    @story = Story.new(story_params)
     @story.epic = @epic
 
     if @story.save
@@ -52,7 +52,7 @@ class StoriesController < InstructorRequiredController
 
   private
 
-  def epic_params
+  def story_params
     params.require(:story).permit(
       :title,
       :description,

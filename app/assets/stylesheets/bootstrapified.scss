@@ -13,13 +13,15 @@
  *= require_self
  */
 
-$navbar-height: 80px;
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/theme";
 
 @import "pygments";
+
+.navbar-header {
+  padding-top: 3px;
+}
 
 .gschool-logo {
   height: $navbar-height - 10px;
