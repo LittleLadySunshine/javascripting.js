@@ -10,7 +10,7 @@ module MarkdownHelper
 
   def markdownify(raw)
     if raw.present?
-      RENDERER.render(raw).html_safe
+      RENDERER.render(raw).gsub("<img ", '<img class="img-responsive" ').html_safe
     else
       ''
     end
