@@ -17,18 +17,20 @@ class ConvertEpicStories < ActiveRecord::Migration
     MigrationStory.delete_all
 
     MigrationEpic.all.each do |epic|
-      stories = CSV.parse(epic.stories, headers: true)
-      labels = []
-      stories.each_with_index do |story, index|
-        MigrationStory.create!(
-          epic_id: epic.id,
-          title: story['Title'] || story['Story'],
-          description: story['Description'],
-          position: index,
-        )
-        labels += story['Labels'].split(",").map(&:strip).reject{|label| %w(mvp stretch).include?(label) }
+      if epic.stories?
+        stories = CSV.parse(epic.stories, headers: true)
+        labels = []
+        stories.each_with_index do |story, index|
+          MigrationStory.create!(
+            epic_id: epic.id,
+            title: story['Title'] || story['Story'],
+            description: story['Description'],
+            position: index,
+          )
+          labels += story['Labels'].split(",").map(&:strip).reject{|label| %w(mvp stretch).include?(label) }
+        end
+        epic.update(label: labels.first)
       end
-      epic.update(label: labels.first)
     end
   end
 end
