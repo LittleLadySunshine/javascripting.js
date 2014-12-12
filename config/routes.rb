@@ -58,7 +58,7 @@ Students::Application.routes.draw do
   end
 
   resources :class_projects do
-    resources :features, controller: 'class_project_features' do
+    resources :epics do
       post :reorder, on: :collection
     end
   end

@@ -1,6 +1,6 @@
 require 'csv'
 
-class ClassProjectFeature < ActiveRecord::Base
+class Epic < ActiveRecord::Base
 
   enum category: [:mvp, :stretch]
 

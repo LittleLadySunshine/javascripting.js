@@ -1,0 +1,45 @@
+.page-header
+  .pull-right
+    = link_to new_class_project_epic_path(@class_project), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-plus
+      New Epic
+    = link_to edit_class_project_epic_path(@class_project, @epic), class: "btn btn-info" do
+      %i.glyphicon.glyphicon-pencil
+      Edit
+
+  %h1 #{@epic.name}
+
+%ol.breadcrumb
+  %li= link_to "Class Projects", class_projects_path
+  %li= link_to "#{@class_project.name} Epics", class_project_epics_path(@class_project)
+  %li.active= @epic.name
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      MVP Stories
+  %table.table.table-bordered
+    - @epic.story_rows.each_with_index do |row, index|
+      %tr
+        - row.each do |cell|
+          - if index == 0
+            %th= cell
+          - else
+            %td= cell
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      MVP Wireframes
+  .panel-body
+    = markdownify(@epic.wireframes)
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      .pull-right
+        = link_to "Copy to Clipboard", "#", data: {clipboard_text: epic_markdown(@epic), prevent_jump: true}
+      Markdown for class notes
+  .panel-body
+    %pre
+      = epic_markdown(@epic)
