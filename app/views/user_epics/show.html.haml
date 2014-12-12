@@ -1,0 +1,18 @@
+.page-header
+  - if @user.pivotal_tracker_token && @project && @project.tracker_url?
+    .pull-right
+      = link_to "Add to Tracker", add_to_tracker_user_epic_path(@user, @epic), class: "btn btn-primary", method: :post
+  %h2 #{@epic.class_project.name} #{@epic.name}
+
+%table.table
+  %thead
+    %tr
+      %th Tracker ID
+      %th Story
+      %th Description
+  %tbody
+    - @epic.stories.ordered.each do |story|
+      %tr
+        %td= @student_stories[story.id].try(:pivotal_tracker_id)
+        %td= story.title
+        %td= story.description

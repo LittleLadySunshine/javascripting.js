@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212030043) do
+ActiveRecord::Schema.define(version: 20141212060140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -263,13 +263,14 @@ ActiveRecord::Schema.define(version: 20141212030043) do
   end
 
   create_table "student_stories", force: true do |t|
-    t.integer  "class_project_id", null: false
-    t.integer  "epic_id",          null: false
-    t.integer  "story_id",         null: false
-    t.integer  "user_id",          null: false
-    t.string   "current_status",   null: false
+    t.integer  "class_project_id",             null: false
+    t.integer  "epic_id",                      null: false
+    t.integer  "story_id",                     null: false
+    t.integer  "user_id",                      null: false
+    t.string   "current_state",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pivotal_tracker_id", limit: 8, null: false
   end
 
   add_index "student_stories", ["story_id", "user_id"], name: "index_student_stories_on_story_id_and_user_id", unique: true, using: :btree
@@ -344,6 +345,7 @@ ActiveRecord::Schema.define(version: 20141212030043) do
     t.string   "shirt_size"
     t.integer  "status",                            default: 0, null: false
     t.integer  "greenhouse_candidate_id", limit: 8
+    t.string   "pivotal_tracker_token"
   end
 
   add_index "users", ["cohort_id"], name: "index_users_on_cohort_id", using: :btree

@@ -25,7 +25,10 @@ Students::Application.routes.draw do
   get "/calendar" => "public_pages#calendar", :as => "calendar"
 
   resources :users, only: [] do
-    resources :projects, controller: 'projects'
+    resources :projects
+    resources :epics, controller: 'user_epics' do
+      post :add_to_tracker, on: :member
+    end
   end
 
   resources :cohorts, only: [] do

@@ -28,6 +28,7 @@ class PersonalInformationController < SignInRequiredController
       :state,
       :zip_code,
       :shirt_size,
+      :pivotal_tracker_token,
     )
   end
 end

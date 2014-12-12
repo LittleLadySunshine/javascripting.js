@@ -76,6 +76,7 @@ class Instructor::UsersController < InstructorRequiredController
       :avatar,
       :shirt_size,
       :greenhouse_candidate_id,
+      :pivotal_tracker_token,
     )
   end
 
