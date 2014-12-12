@@ -99,7 +99,9 @@ Students::Application.routes.draw do
         resources :writeups
       end
       resources :tracker_accounts
-      resources :staffings, except: [:show]
+      resources :staffings, except: [:show] do
+        post :add_as_owner, on: :member
+      end
       resources :pairs
       resources :imports, only: [:index, :create]
       resources :students, :only => [] do

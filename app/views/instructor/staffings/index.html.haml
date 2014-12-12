@@ -12,6 +12,7 @@
       %th Status
       %th
       %th
+      %th
   %tbody
     - @staffings.each do |staffing|
       %tr
@@ -19,3 +20,9 @@
         %td= staffing.status
         %td= link_to 'edit', edit_instructor_cohort_staffing_path(@cohort, staffing)
         %td= link_to 'delete', instructor_cohort_staffing_path(@cohort, staffing), method: :delete, data: {confirm: true}
+        %td.text-right
+          = link_to 'Add as tracker owner',
+                    add_as_owner_instructor_cohort_staffing_path(@cohort, staffing),
+                    method: :post,
+                    data: {confirm: "This will add #{staffing.user.email} as an owner of all student tracker projects for this cohort.  Are you sure?"},
+                    class: "btn btn-xs btn-primary"

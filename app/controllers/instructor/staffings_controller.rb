@@ -26,6 +26,13 @@ class Instructor::StaffingsController < InstructorRequiredController
     end
   end
 
+  def add_as_owner
+    staffing = Staffing.find(params[:id])
+    PivotalTrackerOwnerAdder.new(params[:cohort_id], staffing.user.email).add
+    flash[:notice] = "We tried!  Hope it worked..."
+    redirect_to instructor_cohort_staffings_path(params[:cohort_id])
+  end
+
   def edit
     @staffing = @cohort.staffings.find(params[:id])
   end
